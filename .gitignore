@@ -1,0 +1,9 @@
+/composer.lock
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/.idea
+/public/images/*
+/public/images/

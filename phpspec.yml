@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: cboMbcredito
+        psr4_prefix: cboMbcredito
+        src_path: app
