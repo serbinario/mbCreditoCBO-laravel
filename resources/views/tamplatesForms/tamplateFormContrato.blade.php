@@ -6,61 +6,61 @@
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="cliente.nome" id="max_occupancy" type="text" >
-                    <label for="max_ocdcuwpancy">Chave J:</label>
+                    <label for="max_ocdcuwpancy">Nome:</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.cpf" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">CPF</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.agencia" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Agência</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.conta" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Conta</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.dataContratacao" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Data da Contratação</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.convenio" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Convênio</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.numeroContrato" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Nº do Contrato</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.valorContrato" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
-                </div>
-            </div>
+            {{--<div class="row">--}}
+                {{--<div class="input-field col s12 m6 l2">--}}
+                    {{--<input ng-model="agente.valorContrato" id="max_occupancy" type="text" >--}}
+                    {{--<label for="max_odccwupancy">Nome</label>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.qtdParcela" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Quantidade de Parcelas</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agente.dataProxLigacao" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Data Próx. Contato</label>
                 </div>
             </div>
             <div class="row">

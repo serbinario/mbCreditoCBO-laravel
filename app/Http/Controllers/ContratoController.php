@@ -9,7 +9,7 @@ use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use Seracademico\Validators\ContratoValidator;
+use MbCreditoCBO\Validators\ContratoValidator;
 
 class ContratoController extends Controller
 {
@@ -54,14 +54,12 @@ class ContratoController extends Controller
         #Criando a consulta
         $rows = \DB::table('chamadas')
             ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
-            ->join('agencias_callcenter', 'agencias_callcenter.id', '=', 'cliente.adencia_id')
-            ->join('clientes', 'clientes.id', '=', 'telefones.cliente_id')
-            ->join('')
-
+            ->join('agencias_callcenter', 'agencias_callcenter.id', '=', 'clientes.agencia_id')
+            ->join('telefones', 'telefones.id', '=', 'clientes.id')
             ->select
             ([
                 'chamadas.id',
-                'clientes.nome',
+                'clientes.name',
                 'clientes.cpf',
                 'agencias_callcenter.numero_agencia',
                 'clientes.conta',

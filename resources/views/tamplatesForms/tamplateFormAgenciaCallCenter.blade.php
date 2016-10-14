@@ -6,13 +6,13 @@
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agencia.numero" id="max_occupancy" type="text" >
-                    <label for="max_ocdcuwpancy">Chave J:</label>
+                    <label for="max_ocdcuwpancy">Número:</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <input ng-model="agencia.nome" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nome</label>
+                    <label for="max_odccwupancy">Nome:</label>
                 </div>
             </div>
             <div class="row">

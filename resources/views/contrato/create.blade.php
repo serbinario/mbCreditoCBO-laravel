@@ -1,5 +1,5 @@
 @extends('menu')
-{{dd('Entrou no create')}}
+
 @section('content')
     <div class="container">
         <section class="content">
