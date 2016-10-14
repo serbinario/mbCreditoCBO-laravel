@@ -2,20 +2,20 @@
 
 namespace MbCreditoCBO\Services;
 
-use MbCreditoCBO\Repositories\UserRepository;
-use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Repositories\AgenciaCallCenterRepository;
+use MbCreditoCBO\Entities\AgenciaCallCenter;
 
-class UserService
+class AgenciaCallCenterService
 {
     /**
-     * @var UserRepository
+     * @var AgenciaCallCenterRepository
      */
     private $repository;
 
     /**
-     * @param UserRepository $repository
+     * @param AgenciaCallCenterRepository $repository
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(AgenciaCallCenterRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -28,33 +28,33 @@ class UserService
     public function find($id)
     {
         #Recuperando o registro no banco de dados
-        $user = $this->repository->find($id);
+        $agenciaCallCenter = $this->repository->find($id);
 
         #Verificando se o registro foi encontrado
-        if(!$user) {
+        if(!$agenciaCallCenter) {
             throw new \Exception('Empresa não encontrada!');
         }
 
         #retorno
-        return $user;
+        return $agenciaCallCenter;
     }
 
     /**
      * @param array $data
      * @return array
      */
-    public function store(array $data) : User
+    public function store(array $data) : AgenciaCallCenter
     {
         #Salvando o registro pincipal
-        $user =  $this->repository->create($data);
+        $agenciaCallCenter =  $this->repository->create($data);
 
         #Verificando se foi criado no banco de dados
-        if(!$user) {
+        if(!$agenciaCallCenter) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $user;
+        return $agenciaCallCenter;
     }
 
     /**
@@ -62,19 +62,19 @@ class UserService
      * @param int $id
      * @return mixed
      */
-    public function update(array $data, int $id) : User
+    public function update(array $data, int $id) : AgenciaCallCenter
     {
         #Atualizando no banco de dados
-        $user = $this->repository->update($data, $id);
+        $agenciaCallCenter = $this->repository->update($data, $id);
 
 
         #Verificando se foi atualizado no banco de dados
-        if(!$user) {
+        if(!$agenciaCallCenter) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $user;
+        return $agenciaCallCenter;
     }
 
     /**

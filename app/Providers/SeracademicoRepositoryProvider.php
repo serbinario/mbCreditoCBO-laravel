@@ -50,8 +50,38 @@ class SeracademicoRepositoryProvider extends ServiceProvider
 		);
 
 		$this->app->bind(
-			\MbCreditoCBO\Repositories\Repository::class,
-			\MbCreditoCBO\Repositories\RepositoryEloquent::class
+			\MbCreditoCBO\Repositories\TipoContratoRepository::class,
+			\MbCreditoCBO\Repositories\TipoContratoRepositoryEloquent::class
 		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\ConvenioCallCenterRepository::class,
+			\MbCreditoCBO\Repositories\ConvenioCallCenterRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\ClienteRepository::class,
+			\MbCreditoCBO\Repositories\ClienteRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\TelefoneRepository::class,
+			\MbCreditoCBO\Repositories\TelefoneRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\AgenciaCallCenterRepository::class,
+			\MbCreditoCBO\Repositories\AgenciaCallCenterRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\ConvenioCallCenterRepository::class,
+			\MbCreditoCBO\Repositories\ConvenioCallCenterRepositoryEloquent::class
+		);
+
+//		$this->app->bind(
+//			\MbCreditoCBO\Repositories\UserRepository::class,
+//			\MbCreditoCBO\Repositories\UserRepositoryEloquent::class
+//		);
 	}
 }

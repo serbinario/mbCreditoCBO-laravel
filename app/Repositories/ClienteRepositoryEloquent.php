@@ -4,15 +4,15 @@ namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use MbCreditoCBO\Validators\UserValidator;
-use MbCreditoCBO\Repositories\UserRepository;
-use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Validators\ClienteValidator;
+use MbCreditoCBO\Repositories\ClienteRepository;
+use MbCreditoCBO\Entities\Cliente;
 
 /**
- * Class UserRepositoryEloquent
+ * Class ClienteRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepository
+class ClienteRepositoryEloquent extends BaseRepository implements ClienteRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function model()
     {
-        return User::class;
+        return Cliente::class;
     }
 
     /**
@@ -32,7 +32,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function validator()
     {
 
-         return UserValidator::class;
+         return ClienteValidator::class;
     }
 
 

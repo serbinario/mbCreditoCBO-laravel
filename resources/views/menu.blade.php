@@ -27,11 +27,12 @@
 <ul id="menuCbg" class="dropdown-content">
     <li><a href="#!">IMPORTAR ARQUIVOS</a></li>
     <li><a href="#!">PESQUISA</a></li>
+    <li><a href="{{ route('operador.index') }}">AGENTES</a></li>
 </ul>
 
 <ul id="menuCallCenter" class="dropdown-content">
     <li><a href="{{ route('contrato.index') }}">CONTRATOS</a></li>
-    <li><a href="#!">AGÊNCIAS</a></li>
+    <li><a href="{{ route('agencia.index') }}">AGÊNCIAS</a></li>
     <li><a href="#!">CONVÊNIOS</a></li>
     <li><a href="#!">ALTERAR SENHA</a></li>
 </ul>

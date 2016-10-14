@@ -5,18 +5,14 @@ namespace MbCreditoCBO\Validators;
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
-class UserValidator extends LaravelValidator
+class AgenciaCallCenterValidator extends LaravelValidator
 {
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
             
-			'id_operadores' =>  '' ,
-			'username' =>  '' ,
-			'password' =>  '' ,
-			'salt' =>  '' ,
-			'email' =>  '' ,
-			'is_active' =>  '' ,
+			'numero_agencia' =>  '' ,
+			'nome_agencia' =>  '' ,
 
         ],
         ValidatorInterface::RULE_UPDATE => [],

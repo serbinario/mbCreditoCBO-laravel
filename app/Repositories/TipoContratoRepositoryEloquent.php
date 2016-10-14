@@ -4,15 +4,15 @@ namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use MbCreditoCBO\Validators\UserValidator;
-use MbCreditoCBO\Repositories\UserRepository;
-use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Validators\TipoContratoValidator;
+use MbCreditoCBO\Repositories\TipoContratoRepository;
+use MbCreditoCBO\Entities\TipoContrato;
 
 /**
- * Class UserRepositoryEloquent
+ * Class TipoContratoRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepository
+class TipoContratoRepositoryEloquent extends BaseRepository implements TipoContratoRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function model()
     {
-        return User::class;
+        return TipoContrato::class;
     }
 
     /**
@@ -32,7 +32,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function validator()
     {
 
-         return UserValidator::class;
+         return TipoContratoValidator::class;
     }
 
 
