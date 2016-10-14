@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => cboMbcredito\User::class,
+        'model'  => MbCreditoCBO\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

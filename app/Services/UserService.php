@@ -1,12 +1,12 @@
 <?php
 
-namespace cboMbcredito\Services;
+namespace MbCreditoCBO\Services;
 
 
-use cboMbcredito\Repositories\RoleRepository;
-use cboMbcredito\Entities\User;
-use cboMbcredito\Repositories\PermissionRepository;
-use cboMbcredito\Repositories\UserRepository;
+use MbCreditoCBO\Repositories\RoleRepository;
+use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Repositories\PermissionRepository;
+use MbCreditoCBO\Repositories\UserRepository;
 
 class UserService
 {
@@ -229,7 +229,7 @@ class UserService
         #Criando e executando as consultas
         foreach ($models as $model) {
             #qualificando o namespace
-            $nameModel = "cboMbcredito\\Entities\\$model";
+            $nameModel = "MbCreditoCBO\\Entities\\$model";
 
             #Recuperando o registro e armazenando no array
             $result[strtolower($model)] = $nameModel::lists('name', 'id');

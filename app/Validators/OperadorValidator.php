@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Validators;
+namespace MbCreditoCBO\Validators;
 
 use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;

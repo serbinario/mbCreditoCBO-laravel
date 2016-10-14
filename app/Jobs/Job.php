@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Jobs;
+namespace MbCreditoCBO\Jobs;
 
 use Illuminate\Bus\Queueable;
 

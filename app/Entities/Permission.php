@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Entities;
+namespace MbCreditoCBO\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;

@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Providers;
+namespace MbCreditoCBO\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -25,23 +25,33 @@ class SeracademicoRepositoryProvider extends ServiceProvider
     {
 
         $this->app->bind(
-            \cboMbcredito\Repositories\UserRepository::class,
-            \cboMbcredito\Repositories\UserRepositoryEloquent::class
+            \MbCreditoCBO\Repositories\UserRepository::class,
+            \MbCreditoCBO\Repositories\UserRepositoryEloquent::class
         );
 
         $this->app->bind(
-            \cboMbcredito\Repositories\RoleRepository::class,
-            \cboMbcredito\Repositories\RoleRepositoryEloquent::class
+            \MbCreditoCBO\Repositories\RoleRepository::class,
+            \MbCreditoCBO\Repositories\RoleRepositoryEloquent::class
         );
 
         $this->app->bind(
-            \cboMbcredito\Repositories\PermissionRepository::class,
-            \cboMbcredito\Repositories\PermissionRepositoryEloquent::class
+            \MbCreditoCBO\Repositories\PermissionRepository::class,
+            \MbCreditoCBO\Repositories\PermissionRepositoryEloquent::class
         );
 
 		$this->app->bind(
-			\cboMbcredito\Repositories\OperadorRepository::class,
-			\cboMbcredito\Repositories\OperadorRepositoryEloquent::class
+			\MbCreditoCBO\Repositories\OperadorRepository::class,
+			\MbCreditoCBO\Repositories\OperadorRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\ContratoRepository::class,
+			\MbCreditoCBO\Repositories\ContratoRepositoryEloquent::class
+		);
+
+		$this->app->bind(
+			\MbCreditoCBO\Repositories\Repository::class,
+			\MbCreditoCBO\Repositories\RepositoryEloquent::class
 		);
 	}
 }

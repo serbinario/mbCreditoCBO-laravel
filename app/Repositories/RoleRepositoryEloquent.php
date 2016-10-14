@@ -1,12 +1,12 @@
 <?php
 
-namespace cboMbcredito\Repositories;
+namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use cboMbcredito\Repositories\RoleRepository;
-use cboMbcredito\Entities\Role;
-use cboMbcredito\Validators\RoleValidator;;
+use MbCreditoCBO\Repositories\RoleRepository;
+use MbCreditoCBO\Entities\Role;
+use MbCreditoCBO\Validators\RoleValidator;;
 
 /**
  * Class RoleRepositoryEloquent

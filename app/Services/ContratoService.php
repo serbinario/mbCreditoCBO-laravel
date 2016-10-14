@@ -2,20 +2,20 @@
 
 namespace MbCreditoCBO\Services;
 
-use MbCreditoCBO\Repositories\OperadorRepository;
-use MbCreditoCBO\Entities\Operador;
+use MbCreditoCBO\Repositories\ContratoRepository;
+use MbCreditoCBO\Entities\Contrato;
 
-class OperadorService
+class ContratoService
 {
     /**
-     * @var OperadorRepository
+     * @var ContratoRepository
      */
     private $repository;
 
     /**
-     * @param OperadorRepository $repository
+     * @param ContratoRepository $repository
      */
-    public function __construct(OperadorRepository $repository)
+    public function __construct(ContratoRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -25,37 +25,36 @@ class OperadorService
      * @return mixed
      * @throws \Exception
      */
-    public function find($id_operadores)
+    public function find($id)
     {
-
         #Recuperando o registro no banco de dados
-        $operador = $this->repository->findWhere(['id_operadores' => $id_operadores]);
+        $contrato = $this->repository->find($id);
 
         #Verificando se o registro foi encontrado
-        if(!$operador) {
-            throw new \Exception('Agente não encontrado!');
+        if(!$contrato) {
+            throw new \Exception('Empresa não encontrada!');
         }
 
         #retorno
-        return $operador[0];
+        return $contrato;
     }
 
     /**
      * @param array $data
      * @return array
      */
-    public function store(array $data) : Operador
+    public function store(array $data) : Contrato
     {
         #Salvando o registro pincipal
-        $operador =  $this->repository->create($data);
+        $contrato =  $this->repository->create($data);
 
         #Verificando se foi criado no banco de dados
-        if(!$operador) {
+        if(!$contrato) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $operador;
+        return $contrato;
     }
 
     /**
@@ -63,19 +62,19 @@ class OperadorService
      * @param int $id
      * @return mixed
      */
-    public function update(array $data, int $id) : Operador
+    public function update(array $data, int $id) : Contrato
     {
         #Atualizando no banco de dados
-        $operador = $this->repository->update($data, $id);
+        $contrato = $this->repository->update($data, $id);
 
 
         #Verificando se foi atualizado no banco de dados
-        if(!$operador) {
+        if(!$contrato) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $operador;
+        return $contrato;
     }
 
     /**

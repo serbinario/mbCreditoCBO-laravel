@@ -1,12 +1,12 @@
 <?php
 
-namespace cboMbcredito\Repositories;
+namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use cboMbcredito\Repositories\UserRepository;
-use cboMbcredito\Entities\User;
-use cboMbcredito\Validators\UserValidator;
+use MbCreditoCBO\Repositories\UserRepository;
+use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Validators\UserValidator;
 
 class UserRepositoryEloquent  extends BaseRepository implements UserRepository
 {

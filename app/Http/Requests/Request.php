@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Http\Requests;
+namespace MbCreditoCBO\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

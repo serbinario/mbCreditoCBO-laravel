@@ -1,8 +1,8 @@
 <?php
 
-namespace cboMbcredito\Http\Controllers\Auth;
+namespace MbCreditoCBO\Http\Controllers\Auth;
 
-use cboMbcredito\Http\Controllers\Controller;
+use MbCreditoCBO\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

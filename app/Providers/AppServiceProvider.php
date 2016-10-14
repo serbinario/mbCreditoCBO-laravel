@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Providers;
+namespace MbCreditoCBO\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

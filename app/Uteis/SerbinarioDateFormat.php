@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Uteis;
+namespace MbCreditoCBO\Uteis;
 
 use Carbon\Carbon;
 

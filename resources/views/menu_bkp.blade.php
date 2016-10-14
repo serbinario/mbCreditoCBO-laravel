@@ -39,7 +39,6 @@
 
 <ul id="menuConfiguracoes" class="dropdown-content">
     <li><a href="#!">GERENCIAMENTO DE USUÁRIOS</a></li>
-
 </ul>
 
 <div class="navbar-fixed"> <!-- class="navbar-fixed deixa fixo o menu -->

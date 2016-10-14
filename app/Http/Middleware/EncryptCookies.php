@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Http\Middleware;
+namespace MbCreditoCBO\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

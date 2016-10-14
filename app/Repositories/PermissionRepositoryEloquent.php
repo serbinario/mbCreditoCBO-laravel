@@ -1,11 +1,11 @@
 <?php
 
-namespace cboMbcredito\Repositories;
+namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use cboMbcredito\Repositories\PermissionRepository;
-use cboMbcredito\Entities\Permission;
+use MbCreditoCBO\Repositories\PermissionRepository;
+use MbCreditoCBO\Entities\Permission;
 
 /**
  * Class PermissionRepositoryEloquent

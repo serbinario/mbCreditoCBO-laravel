@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Providers;
+namespace MbCreditoCBO\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'cboMbcredito\Model' => 'cboMbcredito\Policies\ModelPolicy',
+        'MbCreditoCBO\Model' => 'MbCreditoCBO\Policies\ModelPolicy',
     ];
 
     /**

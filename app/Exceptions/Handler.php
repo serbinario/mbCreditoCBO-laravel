@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Exceptions;
+namespace MbCreditoCBO\Exceptions;
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

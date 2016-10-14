@@ -1,12 +1,12 @@
 <?php
 
-namespace cboMbcredito\Http\Controllers;
+namespace MbCreditoCBO\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use cboMbcredito\Http\Requests;
-use cboMbcredito\Http\Controllers\Controller;
-use cboMbcredito\Services\RoleService;
+use MbCreditoCBO\Http\Requests;
+use MbCreditoCBO\Http\Controllers\Controller;
+use MbCreditoCBO\Services\RoleService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Contracts\ValidatorInterface;
 

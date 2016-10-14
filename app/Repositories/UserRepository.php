@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Repositories;
+namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 

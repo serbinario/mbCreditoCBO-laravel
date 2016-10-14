@@ -149,13 +149,13 @@ return [
         /*
          * Application Service Providers...
          */
-        cboMbcredito\Providers\AppServiceProvider::class,
-        cboMbcredito\Providers\AuthServiceProvider::class,
-        cboMbcredito\Providers\EventServiceProvider::class,
-        cboMbcredito\Providers\RouteServiceProvider::class,
+        MbCreditoCBO\Providers\AppServiceProvider::class,
+        MbCreditoCBO\Providers\AuthServiceProvider::class,
+        MbCreditoCBO\Providers\EventServiceProvider::class,
+        MbCreditoCBO\Providers\RouteServiceProvider::class,
 
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
-        \cboMbcredito\Providers\SeracademicoRepositoryProvider::class,
+        \MbCreditoCBO\Providers\SeracademicoRepositoryProvider::class,
 
         /*
         * Laravel Framework Service Providers...

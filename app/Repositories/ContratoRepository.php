@@ -5,10 +5,10 @@ namespace MbCreditoCBO\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface RoleRepository
+ * Interface ContratoRepository
  * @package namespace App\Repositories;
  */
-interface RoleRepository extends RepositoryInterface
+interface ContratoRepository extends RepositoryInterface
 {
     //
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace cboMbcredito\Http\Controllers\Auth;
+namespace MbCreditoCBO\Http\Controllers\Auth;
 
-use cboMbcredito\User;
+use MbCreditoCBO\User;
 use Validator;
-use cboMbcredito\Http\Controllers\Controller;
+use MbCreditoCBO\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

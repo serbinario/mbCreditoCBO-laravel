@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Console\Commands;
+namespace MbCreditoCBO\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

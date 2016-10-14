@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Http\Middleware;
+namespace MbCreditoCBO\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

@@ -3,6 +3,7 @@
 <head>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{--<link href="/font-woff2/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" rel="stylesheet">--}}
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/forms.css "  media="screen,projection"/>
@@ -15,19 +16,28 @@
 </head>
 
 <body>
-<!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
+
+<ul id="menuCbo" class="dropdown-content">
+    <li><a href="#!">Importar Arquivo</a></li>
+    <li><a href="#!">Pesquisa</a></li>
+    <li><a href="{{ route('operador.index') }}">Agentes</a></li>
+    {{--<li class="divider"></li>--}}
 </ul>
 
-<ul id="dropdown2" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
+<ul id="menuCbg" class="dropdown-content">
+    <li><a href="#!">IMPORTAR ARQUIVOS</a></li>
+    <li><a href="#!">PESQUISA</a></li>
+</ul>
+
+<ul id="menuCallCenter" class="dropdown-content">
+    <li><a href="{{ route('contrato.index') }}">CONTRATOS</a></li>
+    <li><a href="#!">AGÊNCIAS</a></li>
+    <li><a href="#!">CONVÊNIOS</a></li>
+    <li><a href="#!">ALTERAR SENHA</a></li>
+</ul>
+
+<ul id="menuConfiguracoes" class="dropdown-content">
+    <li><a href="#!">GERENCIAMENTO DE USUÁRIOS</a></li>
 </ul>
 
 <div class="navbar-fixed"> <!-- class="navbar-fixed deixa fixo o menu -->
@@ -36,22 +46,20 @@
             <a href="#!" class="brand-logo right">Logo</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="Left hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
                 <li>
-                    <a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i>
+                    <a class="dropdown-button" href="#!" data-activates="menuCbo">CBO<i class="material-icons right">arrow_drop_down</i>
                     </a>
                 </li>
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
                 <li>
-                    <a class="dropdown-button" href="#!" data-activates="dropdown2">Dropdown<i class="material-icons right">arrow_drop_down</i>
+                    <a class="dropdown-button" href="#!" data-activates="menuCbg">CBG<i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="menuCallCenter">CALLCENTER<i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="menuConfiguracoes">CONFIGURAÇÕES<i class="material-icons right">arrow_drop_down</i>
                     </a>
                 </li>
             </ul>
@@ -61,14 +69,14 @@
 
 @yield('content')
 
-
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="/lib/materialize/dist/js/materialize.js"></script>
+<script type="text/javascript" src={{ asset('/lib/jquery/dist/jquery.min.js') }}></script>
+<script type="text/javascript" src={{ asset('/lib/materialize/dist/js/materialize.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/angular/angular.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/datatables/media/js/jquery.dataTables.js') }}></script>
 <script type="text/javascript" src={{ asset('/app.js') }}></script>
 <script type="text/javascript" src={{ asset('/js/controller/agente.ctrl.js') }}></script>
+<script type="text/javascript" src={{ asset('/js/controller/contrato.ctrl.js') }}></script>
 
 <script type="text/javascript">
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)

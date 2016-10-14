@@ -5,21 +5,21 @@ namespace MbCreditoCBO\Http\Controllers;
 use Illuminate\Http\Request;
 
 use MbCreditoCBO\Http\Requests;
-use MbCreditoCBO\Services\OperadorService;
-use MbCreditoCBO\Validators\OperadorValidator;
+use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
+use Seracademico\Validators\ContratoValidator;
 
-class OperadorController extends Controller
+class ContratoController extends Controller
 {
     /**
-    * @var OperadorService
+    * @var ContratoService
     */
     private $service;
 
     /**
-    * @var OperadorValidator
+    * @var ContratoValidator
     */
     private $validator;
 
@@ -29,10 +29,10 @@ class OperadorController extends Controller
     private $loadFields = [];
 
     /**
-    * @param OperadorService $service
-    * @param OperadorValidator $validator
+    * @param ContratoService $service
+    * @param ContratoValidator $validator
     */
-    public function __construct(OperadorService $service, OperadorValidator $validator)
+    public function __construct(ContratoService $service, ContratoValidator $validator)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
@@ -43,7 +43,7 @@ class OperadorController extends Controller
      */
     public function index()
     {
-        return view('operador.index');
+        return view('contrato.index');
     }
 
     /**
@@ -52,11 +52,25 @@ class OperadorController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $rows = \DB::table('operadores')->select(['id_operadores', 'cod_operadores', 'nome_operadores']);
+        $rows = \DB::table('chamadas')
+            ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
+            ->join('agencias_callcenter', 'agencias_callcenter.id', '=', 'cliente.adencia_id')
+            ->join('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+            ->join('')
+
+            ->select
+            ([
+                'chamadas.id',
+                'clientes.nome',
+                'clientes.cpf',
+                'agencias_callcenter.numero_agencia',
+                'clientes.conta',
+                'telefones.telefone',
+            ]);
 
         #Editando a grid
         return Datatables::of($rows)->addColumn('action', function ($row) {
-            return '<a href="edit/'.$row->id_operadores.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
         })->make(true);
     }
 
@@ -65,8 +79,11 @@ class OperadorController extends Controller
      */
     public function create()
     {
-//    dd('aa');
-        return view('operador.create');
+        #Carregando os dados para o cadastro
+        $loadFields = $this->service->load($this->loadFields);
+
+        #Retorno para view
+        return view('contrato.create', compact('loadFields'));
     }
 
     /**
@@ -98,20 +115,20 @@ class OperadorController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function edit($id_operadores)
+    public function edit($id)
     {
         try {
             #Recuperando a empresa
-            $model = $this->service->find($id_operadores);
+            $model = $this->service->find($id);
 
             #Tratando as datas
-            //$aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
+           // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
 
             #retorno para view
-            return view('operador.edit', compact('model', 'loadFields'));
+            return view('contrato.edit', compact('model', 'loadFields'));
         } catch (\Throwable $e) {dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }
@@ -122,7 +139,7 @@ class OperadorController extends Controller
      * @param $id
      * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id_operadores)
+    public function update(Request $request, $id)
     {
         try {
             #Recuperando os dados da requisição
@@ -132,7 +149,7 @@ class OperadorController extends Controller
             //$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             #Executando a ação
-            $this->service->update($data, $id_operadores);
+            $this->service->update($data, $id);
 
             #Retorno para a view
             return redirect()->back()->with("message", "Alteração realizada com sucesso!");

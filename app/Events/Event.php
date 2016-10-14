@@ -1,6 +1,6 @@
 <?php
 
-namespace cboMbcredito\Events;
+namespace MbCreditoCBO\Events;
 
 abstract class Event
 {

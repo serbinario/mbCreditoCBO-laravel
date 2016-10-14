@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(cboMbcredito\Entities\User::class, function (Faker\Generator $faker) {
+$factory->define(MbCreditoCBO\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
