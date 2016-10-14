@@ -1,5 +1,5 @@
 <div class="col m6 s12">
-    <div class="card-panel">
+    <div class="card-panel" ng-controller="AgenciaCrtl">
         <div class="row">
             <span class="blue-text text-darken-4"><h5 >Cadastro de Agente</h5></span>
             <div class="divider"></div>

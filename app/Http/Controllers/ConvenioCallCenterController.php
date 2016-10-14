@@ -9,7 +9,7 @@ use MbCreditoCBO\Services\ConvenioCallCenterService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use Seracademico\Validators\ConvenioCallCenterValidator;
+use MbCreditoCBO\Validators\ConvenioCallCenterValidator;
 
 class ConvenioCallCenterController extends Controller
 {
@@ -43,7 +43,7 @@ class ConvenioCallCenterController extends Controller
      */
     public function index()
     {
-        return view('convenioCallCenter.index');
+        return view('convenio.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class ConvenioCallCenterController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $rows = \DB::table('convenios_callcenter')->select(['id', 'nome']);
+        $rows = \DB::table('convenios_callcenter')->select(['id', 'nome_convenio']);
 
         #Editando a grid
         return Datatables::of($rows)->addColumn('action', function ($row) {
@@ -69,7 +69,7 @@ class ConvenioCallCenterController extends Controller
         $loadFields = $this->service->load($this->loadFields);
 
         #Retorno para view
-        return view('convenioCallCenter.create', compact('loadFields'));
+        return view('convenio.create', compact('loadFields'));
     }
 
     /**

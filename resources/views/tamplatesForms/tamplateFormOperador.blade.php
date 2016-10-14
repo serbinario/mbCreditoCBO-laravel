@@ -19,6 +19,9 @@
                     <div class="input-field col s12 m6 l12">
                         <button class="btn" ng-click="create()">Salvar</button>
                         <button class="btn" ng-click="create()">Voltar</button>
+
+                        [[agente.chaveJ]]
+                        [[agente.nome]]
                     </div>
                 </div>
         </div>
