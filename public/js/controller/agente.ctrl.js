@@ -1,16 +1,16 @@
 angular.module("mbCredCBO")
-    .controller("AgenteCreateCrtl", function ($scope, agenciaApi){
+    .controller("AgenteCreateCrtl", function ($scope, AgenciaApi){
 
         $scope.create = function (){
                 console.log('Entrou em AgenteCrtl');
         }
     })
 
-    .controller("AgenteEditCrtl", function ($scope, $http, agenciaApi){
+    .controller("AgenteEditCrtl", function ($scope, $http, AgenciaApi){
 
         $scope.agente = [];
         $scope.save = function (){
-            agenciaApi.get(function (response) {
+            agenciaApi.save(function (response) {
                 console.log(response.dados)
             })
 
