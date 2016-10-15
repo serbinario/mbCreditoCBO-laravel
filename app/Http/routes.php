@@ -7,6 +7,7 @@
         Route::post('store', ['as' => 'store', 'uses' => 'OperadorController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'OperadorController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'OperadorController@update']);
+        Route::get('getAgentes', ['as' => 'getAgentes', 'uses' => 'OperadorController@getAgentes']);
     });
 
     Route::group(['prefix' => 'contrato', 'as' => 'contrato.'], function () {

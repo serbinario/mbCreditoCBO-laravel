@@ -5,6 +5,8 @@ namespace MbCreditoCBO\Http\Controllers;
 use Illuminate\Http\Request;
 
 use MbCreditoCBO\Http\Requests;
+use Illuminate\Http\Response;
+use MbCreditoCBO\Repositories\OperadorRepository;
 use MbCreditoCBO\Services\OperadorService;
 use MbCreditoCBO\Validators\OperadorValidator;
 use Yajra\Datatables\Datatables;
@@ -32,10 +34,11 @@ class OperadorController extends Controller
     * @param OperadorService $service
     * @param OperadorValidator $validator
     */
-    public function __construct(OperadorService $service, OperadorValidator $validator)
+    public function __construct(OperadorService $service, OperadorValidator $validator, OperadorRepository $operadorRepository)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
+        $this->repository = $operadorRepository;
     }
 
     /**
@@ -136,6 +139,25 @@ class OperadorController extends Controller
 
             #Retorno para a view
             return redirect()->back()->with("message", "Alteração realizada com sucesso!");
+        } catch (ValidatorException $e) {
+            return redirect()->back()->withErrors($this->validator->errors())->withInput();
+        } catch (\Throwable $e) { dd($e);
+            return redirect()->back()->with('message', $e->getMessage());
+        }
+    }
+
+    /**
+     * @param Response $response
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function getAgentes(Response $response)
+    {
+        try {
+            #retornando todos os registros
+            $agente = $this->repository->findWhere(['id_operadores' => 2]);
+
+            #retorno para view
+            return response()->json(['dados' => $agente]);
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) { dd($e);
