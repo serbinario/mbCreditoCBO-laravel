@@ -83,6 +83,9 @@
 <script type="text/javascript" src={{ asset('/app.js') }}></script>
 <script type="text/javascript" src={{ asset('/js/controller/agente.ctrl.js') }}></script>
 <script type="text/javascript" src={{ asset('/js/controller/contrato.ctrl.js') }}></script>
+<script type="text/javascript" src={{ asset('/js/services/agenciaService.js') }}></script>
+
+
 
 <script type="text/javascript">
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)

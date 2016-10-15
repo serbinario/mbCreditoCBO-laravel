@@ -1,4 +1,4 @@
 angular.module('mbCredCBO')
-    .factory('Entry', function($resource) {
-        return $resource('/api/entries/:id'); // Note the full endpoint address
+    .factory('agenciaApi', function($resource) {
+        return $resource('/index.php/operador/getAgentes/:id'); // Note the full endpoint address
     });

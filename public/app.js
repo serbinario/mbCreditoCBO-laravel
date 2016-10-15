@@ -1,3 +1,3 @@
-angular.module("mbCredCBO", [], function ($interpolateProvider){
+angular.module("mbCredCBO", ['ngResource'], function ($interpolateProvider){
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 })
