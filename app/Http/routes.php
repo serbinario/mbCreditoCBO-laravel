@@ -45,3 +45,4 @@
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UserController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'UserController@update']);
     });
+

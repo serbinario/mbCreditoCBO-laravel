@@ -76,6 +76,8 @@
 <!-- -->
 <script type="text/javascript" src={{ asset('/lib/angular-resource/angular-resource.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/datatables/media/js/jquery.dataTables.js') }}></script>
+<script type="text/javascript" src={{ asset('/lib/angular-resource/angular-resource.js') }}></script>
+
 <!--AngularJS datatables-->
 {{--<script type="text/javascript" src={{ asset('/lib/datatables.net/js/jquery.dataTables.js') }}></script>--}}
 <script type="text/javascript" src={{ asset('/app.js') }}></script>
