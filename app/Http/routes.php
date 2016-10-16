@@ -10,6 +10,13 @@
         Route::get('getAgentes', ['as' => 'getAgentes', 'uses' => 'OperadorController@getAgentes']);
     });
 
+
+    Route::group(['prefix' => 'api/v1', 'as' => 'operador.'], function () {
+        //RESTFULL
+        Route::resource('operador', 'Operador2Controller');
+    });
+
+
     Route::group(['prefix' => 'contrato', 'as' => 'contrato.'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'ContratoController@index']);
         Route::get('grid', ['as' => 'grid', 'uses' => 'ContratoController@grid']);
@@ -45,4 +52,8 @@
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UserController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'UserController@update']);
     });
+
+
+
+
 

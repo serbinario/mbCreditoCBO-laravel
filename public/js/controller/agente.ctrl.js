@@ -10,7 +10,7 @@ angular.module("mbCredCBO")
 
         $scope.agente = [];
         $scope.save = function (){
-            agenciaApi.save(function (response) {
+            AgenciaApi.save(function (response) {
                 console.log(response.dados)
             })
 

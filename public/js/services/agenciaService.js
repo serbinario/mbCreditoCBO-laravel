@@ -1,21 +1,29 @@
+/* POST   /users
+ // POST   /users/:id # We won't use PUT, but we can
+ // DELETE /users/:id
+ // GET    /users
+ // GET    /users/:id
+ */
 angular.module('mbCredCBO')
+    //get( ); save( ); query( ); remove( ); delete( )
+    // { 'get':    {method:'GET'},
+    //     'save':   {method:'POST'},
+    //     'query':  {method:'GET', isArray:true},
+    //     'remove': {method:'DELETE'},
+    //     'delete': {method:'DELETE'} };
     .factory('AgenciaApi', function($resource) {
-
-        /* POST   /users
-        // POST   /users/:id # We won't use PUT, but we can
-        // DELETE /users/:id
-        // GET    /users
-        // GET    /users/:id
-        */
-
-        return $resource('/index.php/operador/getAgentes/:id', {}, {
-            get: { cache: true, method: 'get' },
-            save: { cache: true, method: 'put' }
+        return $resource('/index.php/operador/getAgentes/:id', null, {
+            'update': { method:'PUT' }
         });
 
     })
 
-    .factory('AgenciaApi2', function($http) {
+    .factory('AgenciaApi2', function($resource) {
+        return $resource('/index.php/operador/getAgentes/:id');
+
+    })
+
+    .factory('AgenciaApi3', function($http) {
 
         return {
             // get all the comments
