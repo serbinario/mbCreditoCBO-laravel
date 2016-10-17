@@ -47,10 +47,15 @@
     });
 
     //Rotas API restfull
-    Route::group(['prefix' => 'api/v1', 'as' => 'api.'], function () {
-        Route::resource('operador', 'Api/V1/OperadorController');
-        Route::resource('agencia', 'Api/V1/AgenciaCallCenterController');
-        Route::resource('agencia', 'Api/V1/ContratoController');
-        Route::resource('agencia', 'Api/V1/ConvenioController');
-        Route::resource('agencia', 'Api/V1/UsuarioController');
+    Route::group(['middleware' => ['oauth', 'cors'], 'prefix' => 'api/v1', 'as' => 'api.v1.'], function () {
+        Route::resource('operador', 'Api\V1\OperadorController');
+        Route::resource('agencia', 'Api\V1\AgenciaCallCenterController');
+        Route::resource('contrato', 'Api\V1\ContratoController');
+        Route::resource('convenio', 'Api\V1\ConvenioCallCenterController');
+        Route::resource('usuario', 'Api\V1\UsuarioController');
+    });
+
+    //Rota que responde à solicitações de acesso de token
+    Route::post('oauth/access_token', function() {
+        return Response::json(Authorizer::issueAccessToken());
     });

@@ -1,6 +1,6 @@
 <?php
 
-namespace MbCreditoCBO\Http\Controllers;
+namespace MbCreditoCBO\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 

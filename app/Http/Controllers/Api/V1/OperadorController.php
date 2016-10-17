@@ -1,6 +1,6 @@
 <?php
 
-namespace MbCreditoCBO\Http\Controllers;
+namespace MbCreditoCBO\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 
@@ -12,8 +12,9 @@ use MbCreditoCBO\Validators\OperadorValidator;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
+use MbCreditoCBO\Http\Controllers\Controller;
 
-class Operador2Controller extends Controller
+class OperadorController extends Controller
 {
     /**
     * @var OperadorService
