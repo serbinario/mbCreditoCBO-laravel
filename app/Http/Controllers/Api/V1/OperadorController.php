@@ -42,16 +42,12 @@ class Operador2Controller extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return mixed
      */
-//    public function index()
-//    {
-//        return view('operador.index');
-//    }
     public function index()
     {
         try {
-            # Recuperando todas as pessoas
+            #Recuperando todas os operadores
             $operadores = $this->repository->all();
 
             # Retorno Json

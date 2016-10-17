@@ -5,21 +5,21 @@ namespace MbCreditoCBO\Http\Controllers;
 use Illuminate\Http\Request;
 
 use MbCreditoCBO\Http\Requests;
-use MbCreditoCBO\Services\ConvenioCallCenterService;
+use MbCreditoCBO\Services\AgenciaCallCenterService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
-use MbCreditoCBO\Validators\ConvenioCallCenterValidator;
+use MbCreditoCBO\Validators\AgenciaCallCenterValidator;
 
-class ConvenioCallCenterController extends Controller
+class AgenciaCallCenterController extends Controller
 {
     /**
-    * @var ConvenioCallCenterService
+    * @var AgenciaCallCenterService
     */
     private $service;
 
     /**
-    * @var ConvenioCallCenterValidator
+    * @var AgenciaCallCenterValidator
     */
     private $validator;
 
@@ -29,10 +29,10 @@ class ConvenioCallCenterController extends Controller
     private $loadFields = [];
 
     /**
-    * @param ConvenioCallCenterService $service
-    * @param ConvenioCallCenterValidator $validator
+    * @param AgenciaCallCenterService $service
+    * @param AgenciaCallCenterValidator $validator
     */
-    public function __construct(ConvenioCallCenterService $service, ConvenioCallCenterValidator $validator)
+    public function __construct(AgenciaCallCenterService $service, AgenciaCallCenterValidator $validator)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
@@ -45,57 +45,42 @@ class ConvenioCallCenterController extends Controller
     {
         try {
             # Recuperando todas as agencias
-            $convenio = $this->repository->all();
+            $agencia = $this->repository->all();
 
             # Retorno Json
-            return response()->json(['data' => $convenio]);
+            return response()->json(['data' => $agencia]);
         } catch (\Throwable $e) {
             return response()->json(['error'   => true,'message' => $e->getMessage()]);
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function grid()
-    {
-        #Criando a consulta
-        $rows = \DB::table('convenios_callcenter')->select(['id', 'nome_convenio']);
-
-        #Editando a grid
-        return Datatables::of($rows)->addColumn('action', function ($row) {
-            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-        })->make(true);
-    }
+//    public function grid()
+//    {
+//        #Criando a consulta
+//        $rows = \DB::table('agencias_callcenter')->select(['id', 'numero_agencia', 'nome_agencia']);
+//
+//        #Editando a grid
+//        return Datatables::of($rows)->addColumn('action', function ($row) {
+//            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+//        })->make(true);
+//    }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
-    {
-        #Carregando os dados para o cadastro
-        $loadFields = $this->service->load($this->loadFields);
-
-        #Retorno para view
-        return view('convenio.create', compact('loadFields'));
-    }
-
-    /**
-     * @param Request $request
+     * @param AgenciaCreateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(ConvenioCreateRequest $request)
+    public function store(AgenciaCreateRequest $request)
     {
         try {
             #Validando dados
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             #Salvando registro
-            $convenios = $this->repository->create($request->all());
+            $agencias = $this->repository->create($request->all());
 
             $response = [
                 'message' => 'Agencia created.',
-                'data'    => $convenios->toArray(),
+                'data'    => $agencias->toArray(),
             ];
 
             #Retorno JSON
@@ -111,42 +96,59 @@ class ConvenioCallCenterController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function show($id)
     {
         try {
             #Recuperando registro especifico
-            $convenio = $this->repository->find($id);
+            $agencia = $this->repository->find($id);
 
             #Retorno Json
-            return response()->json(['data' => $convenio]);
+            return response()->json(['data' => $agencia]);
         } catch (\Throwable $e) {
             return response()->json(['error'   => true,'message' => $e->getMessage()]);
         }
     }
 
     /**
-     * @param ConvenioUpdateRequest $request
+     * @param AgenciaUpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(ConvenioUpdateRequest $request, $id)
+    public function update(AgenciaUpdateRequest $request, $id)
     {
         try {
             #Validando dados
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             #Retornando registro especifico
-            $convenio = $this->repository->update($id, $request->all());
+            $agencia = $this->repository->update($id, $request->all());
 
             $response = [
                 'message' => 'Pessoa updated.',
-                'data'    => $convenio->toArray(),
+                'data'    => $agencia->toArray(),
             ];
 
             #Resposta JSON
             return response()->json($response);
         } catch (ValidatorException $e) {
             return response()->json(['error'   => true,'message' => $e->getMessageBag()]);
+        } catch (\Throwable $e) {
+            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        try {
+            #Deletando registro especifico
+            $deleted = $this->repository->delete($id);
+
+            #Resposta JSON
+            return response()->json(['message' => 'Pessoa deleted.', 'deleted' => $deleted]);
         } catch (\Throwable $e) {
             return response()->json(['error'   => true,'message' => $e->getMessage()]);
         }

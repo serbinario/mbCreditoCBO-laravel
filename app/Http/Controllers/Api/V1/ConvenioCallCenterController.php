@@ -54,34 +54,19 @@ class ConvenioCallCenterController extends Controller
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function grid()
-    {
-        #Criando a consulta
-        $rows = \DB::table('convenios_callcenter')->select(['id', 'nome_convenio']);
-
-        #Editando a grid
-        return Datatables::of($rows)->addColumn('action', function ($row) {
-            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-        })->make(true);
-    }
+//    public function grid()
+//    {
+//        #Criando a consulta
+//        $rows = \DB::table('convenios_callcenter')->select(['id', 'nome_convenio']);
+//
+//        #Editando a grid
+//        return Datatables::of($rows)->addColumn('action', function ($row) {
+//            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+//        })->make(true);
+//    }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function create()
-    {
-        #Carregando os dados para o cadastro
-        $loadFields = $this->service->load($this->loadFields);
-
-        #Retorno para view
-        return view('convenio.create', compact('loadFields'));
-    }
-
-    /**
-     * @param Request $request
+     * @param ConvenioCreateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(ConvenioCreateRequest $request)
@@ -94,7 +79,7 @@ class ConvenioCallCenterController extends Controller
             $convenios = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Agencia created.',
+                'message' => 'Convenio created.',
                 'data'    => $convenios->toArray(),
             ];
 
@@ -111,7 +96,7 @@ class ConvenioCallCenterController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function show($id)
     {
         try {
             #Recuperando registro especifico

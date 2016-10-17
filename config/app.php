@@ -177,6 +177,12 @@ return [
          */
         Serbinario\L5scaffold\GeneratorsServiceProvider::class,
 
+        /**
+         * Oauth2
+         */
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+
 
     ],
 
@@ -243,7 +249,12 @@ return [
         'Datatables' => Yajra\Datatables\Datatables::class,
 
         //https://github.com/mcamara/laravel-localization
-        'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class
+        'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+
+        /**
+         * Oauth2
+         */
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
     ],
 

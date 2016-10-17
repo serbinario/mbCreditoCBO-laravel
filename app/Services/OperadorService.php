@@ -27,17 +27,16 @@ class OperadorService
      */
     public function find($id_operadores)
     {
-
         #Recuperando o registro no banco de dados
-        $operador = $this->repository->findWhere(['id_operadores' => $id_operadores]);
-
+        $operador = $this->repository->find($id_operadores);
+dd($operador);
         #Verificando se o registro foi encontrado
         if(!$operador) {
             throw new \Exception('Agente não encontrado!');
         }
 
         #retorno
-        return $operador[0];
+        return $operador;
     }
 
     /**

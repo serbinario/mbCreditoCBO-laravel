@@ -10,13 +10,6 @@
         Route::get('getAgentes', ['as' => 'getAgentes', 'uses' => 'OperadorController@getAgentes']);
     });
 
-
-    Route::group(['prefix' => 'api/v1', 'as' => 'operador.'], function () {
-        //RESTFULL
-        Route::resource('operador', 'Operador2Controller');
-    });
-
-
     Route::group(['prefix' => 'contrato', 'as' => 'contrato.'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'ContratoController@index']);
         Route::get('grid', ['as' => 'grid', 'uses' => 'ContratoController@grid']);
@@ -53,7 +46,11 @@
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'UserController@update']);
     });
 
-
-
-
-
+    //Rotas API restfull
+    Route::group(['prefix' => 'api/v1', 'as' => 'api.'], function () {
+        Route::resource('operador', 'Api/V1/OperadorController');
+        Route::resource('agencia', 'Api/V1/AgenciaCallCenterController');
+        Route::resource('agencia', 'Api/V1/ContratoController');
+        Route::resource('agencia', 'Api/V1/ConvenioController');
+        Route::resource('agencia', 'Api/V1/UsuarioController');
+    });
