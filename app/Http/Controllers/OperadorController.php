@@ -128,6 +128,7 @@ class OperadorController extends Controller
     public function update(Request $request, $id_operadores)
     {
         try {
+            //return response()->json(['dados' => $request->all()]);
             #Recuperando os dados da requisição
             $data = $request->all();
 
@@ -137,6 +138,7 @@ class OperadorController extends Controller
             #Executando a ação
             $this->service->update($data, $id_operadores);
 
+            return response()->json(['dados' => "dddddd"]);
             #Retorno para a view
             return redirect()->back()->with("message", "Alteração realizada com sucesso!");
         } catch (ValidatorException $e) {
@@ -162,6 +164,25 @@ class OperadorController extends Controller
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) { dd($e);
             return redirect()->back()->with('message', $e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
+     * curl -i -X DELETE localhost:8000/api/v1/operador/2
+     */
+    public function destroy($id)
+    {
+        try {
+            $deleted = $this->repository->delete($id);
+
+            return response()->json(['message' => 'Pessoa deleted.', 'deleted' => $deleted]);
+        } catch (\Throwable $e) {
+            return response()->json(['error'   => true,'message' => $e->getMessage()]);
         }
     }
 

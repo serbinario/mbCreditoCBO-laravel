@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/7.0.6-1+donate.sury.org~trusty+1
+Cache-Control: no-cache
+Date: Mon, 17 Oct 2016 23:10:51 GMT
+Content-Type: application/json
+Set-Cookie: laravel_session=eyJpdiI6ImlSNG9jYmQ0bzl0Q1VhbTBRUG1wZEE9PSIsInZhbHVlIjoiM0lCZWQ5cXVIak9EQ29MMXk2SzVCQ3NiSmt6NTVrbUNvRzFWbkFkcjluTWxEa2JqM2dvd0FBeUxCOWRmWnh5SHU0SDJlUkc4emJzUHd0STQ2KzlNUEE9PSIsIm1hYyI6IjYxYTE3MzFkOGQ4MjRhYmE3MWUwZTBjYmVhYjRmMTdlZmU4ZTUzM2ViMTljODg2NDQ5MGQ5NDZjMzFlM2YzYzMifQ%3D%3D; expires=Tue, 18-Oct-2016 01:10:51 GMT; Max-Age=7200; path=/; HttpOnly
+
+{"error":true,"message":"Argument 1 passed to Prettus\\Repository\\Eloquent\\BaseRepository::update() must be of the type array, string given, called in \/home\/paulo\/Projetos\/mbCreditoCBO-laravel\/app\/Http\/Controllers\/OperadorController.php on line 122"}

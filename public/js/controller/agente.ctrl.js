@@ -8,19 +8,21 @@ angular.module("mbCredCBO")
 
     .controller("AgenteEditCrtl", function ($scope, $http, AgenciaApi){
 
-        $scope.agente = [];
         $scope.save = function (){
-            AgenciaApi.save(function (response) {
+            AgenciaApi.save($scope.agente,function (response) {
                 console.log(response.dados)
             })
+        }
 
+        $scope.update = function (){
+            AgenciaApi.update({id:1},$scope.agente,function (response) {
+                console.log(response.dados)
+            })
+        }
 
-            /*$http.get('/index.php/operador/getAgentes')
-                    .then(function(response) {
-                            console.log(response.data.dados[0].cod_operadores);
-
-                            //$scope.agente.chaveJ = response.data.dados[0].cod_operadores;
-                            $scope.agente = response.data.dados[0];
-                });*/
+        $scope.delete = function (){
+            AgenciaApi.delete({id:1},function (response) {
+                console.log(response.dados)
+            })
         }
     })

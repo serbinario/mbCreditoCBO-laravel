@@ -12,7 +12,7 @@ angular.module('mbCredCBO')
     //     'remove': {method:'DELETE'},
     //     'delete': {method:'DELETE'} };
     .factory('AgenciaApi', function($resource) {
-        return $resource('/index.php/operador/getAgentes/:id', null, {
+        return $resource('/index.php/operador/:id', null, {
             'update': { method:'PUT' }
         });
 
@@ -36,6 +36,15 @@ angular.module('mbCredCBO')
                 return $http({
                     method: 'POST',
                     url: '/api/comments',
+                    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+                    data: $.param(commentData)
+                });
+            },
+
+            update : function(commentData) {
+                return $http({
+                    method: 'PUT',
+                    url: '/index.php/operador/1',
                     headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
                     data: $.param(commentData)
                 });

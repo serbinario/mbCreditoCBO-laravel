@@ -112,7 +112,7 @@ class OperadorController extends Controller
      * @return Response
      * curl -i -X PUT --user seconduser:second_password -d 'url=http://yahoo.com' localhost:8000/l4api/publi
      */
-    public function update(PessoaUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
