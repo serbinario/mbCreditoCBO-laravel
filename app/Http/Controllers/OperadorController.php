@@ -88,12 +88,15 @@ class OperadorController extends Controller
             #Executando a ação
             $this->service->store($data);
 
+            return response()->json(['error'   => false, 'message' => 'Pessoa Add.']);
             #Retorno para a view
-            return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
+            //return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
-            return redirect()->back()->withErrors($this->validator->errors())->withInput();
+            return response()->json(['error'   => true,'message' => $e->getMessageBag()]);
+           // return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) {print_r($e->getMessage()); exit;
-            return redirect()->back()->with('message', $e->getMessage());
+            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+            //return redirect()->back()->with('message', $e->getMessage());
         }
     }
 

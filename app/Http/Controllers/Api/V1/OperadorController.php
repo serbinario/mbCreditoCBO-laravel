@@ -83,7 +83,7 @@ class OperadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(PessoaCreateRequest $request)
+    public function store(Request $request)
     {
         try {
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);

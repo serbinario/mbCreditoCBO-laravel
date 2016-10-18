@@ -25,4 +25,5 @@ angular.module("mbCredCBO")
                 console.log(response.dados)
             })
         }
+
     })

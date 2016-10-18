@@ -69,10 +69,10 @@ class UsuarioController extends Controller
 //    }
 
     /**
-     * @param UsuarioCreateRequest $request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(UsuarioCreateRequest $request)
+    public function store(Request $request)
     {
         try {
             #Validando dados
@@ -117,7 +117,7 @@ class UsuarioController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UsuarioUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             #Validando dados

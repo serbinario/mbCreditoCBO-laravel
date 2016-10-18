@@ -17,7 +17,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l12">
-                        <button class="btn" ng-click="delete(agente)">Salvar</button>
+                        <button class="btn" ng-click="save(agente)">Salvar</button>
                         <button class="btn" ng-click="create()">Voltar</button>
                     </div>
                 </div>
