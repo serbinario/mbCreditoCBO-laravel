@@ -44,9 +44,26 @@ class OperadorController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function view()
     {
         return view('operador.index');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        try {
+            # Recuperando todas as pessoas
+            $operador = $this->repository->all();
+
+            # Retorno Json
+            return response()->json(['error'   => false, ['data' => $operador]]);
+        } catch (\Throwable $e) {
+            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+        }
+
     }
 
     /**
@@ -101,25 +118,20 @@ class OperadorController extends Controller
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * Display the specified resource.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function edit($id_operadores)
+    public function show($id)
     {
         try {
-            #Recuperando a empresa
-            $model = $this->service->find($id_operadores);
+            $operador = $this->repository->find($id);
 
-            #Tratando as datas
-            //$aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
-
-            #Carregando os dados para o cadastro
-            $loadFields = $this->service->load($this->loadFields);
-
-            #retorno para view
-            return view('operador.edit', compact('model', 'loadFields'));
-        } catch (\Throwable $e) {dd($e);
-            return redirect()->back()->with('message', $e->getMessage());
+            return response()->json(['error'   => false,'data' => $operador] );
+        } catch (\Throwable $e) {
+            return response()->json(['error'   => true,'message' => $e->getMessage()]);
         }
     }
 

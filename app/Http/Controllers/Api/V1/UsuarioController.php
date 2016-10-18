@@ -69,7 +69,7 @@ class UsuarioController extends Controller
 //    }
 
     /**
-     * @param Request $request
+     * @param UsuarioCreateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)

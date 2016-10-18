@@ -31,7 +31,7 @@
 
 <ul id="menuCallCenter" class="dropdown-content">
     <li><a href="{{ route('contrato.index') }}">CONTRATOS</a></li>
-    <li><a href="{{ route('agencia.index') }}">AGÊNCIAS</a></li>
+    <li><a href="{{ route('agencia.view') }}">AGÊNCIAS</a></li>
     <li><a href="{{ route('convenio.index') }}">CONVÊNIOS</a></li>
     {{--<li><a href="#!">ALTERAR SENHA</a></li>--}}
 </ul>
