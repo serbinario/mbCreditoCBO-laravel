@@ -26,7 +26,9 @@ class AgenciaCallCenterController extends Controller
     /**
     * @var array
     */
-    private $loadFields = [];
+    private $loadFields = [
+        'AgenciaCallCenter'
+    ];
 
     /**
     * @param AgenciaCallCenterService $service

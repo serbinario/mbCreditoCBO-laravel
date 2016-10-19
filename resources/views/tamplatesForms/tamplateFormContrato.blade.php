@@ -5,62 +5,67 @@
             <div class="divider"></div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="cliente.nome" id="max_occupancy" type="text" >
-                    <label for="max_ocdcuwpancy">Nome:</label>
+                    <label for="clientes[name]">Nome: </label>
+                    {!! Form::text('clientes[name]', Session::getOldInput('clientes[name]'), array('placeholder' => 'Nome completo')) !!}
+
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.cpf" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">CPF</label>
+                    <label for="clientes[cpf]">CPF</label>
+                    {!! Form::text('clientes[cpf]', Session::getOldInput('clientes[cpf]'), array('placeholder' => 'CPF do cliente')) !!}
+
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.agencia" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Agência</label>
+                    <label for="agencia_id">Agência</label>
+                    {!! Form::select('agencia_id', array(), null, array()) !!}
+
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.conta" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Conta</label>
+                    <label for="clientes[conta]">Conta</label>
+                    {!! Form::text('clientes[conta]', Session::getOldInput('clientes[conta]'), array('placeholder' => 'Conta do cliente')) !!}
+
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.dataContratacao" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Data da Contratação</label>
+                    <label for="chamadas[data_contratado]">Data da Contratação</label>
+                    {!! Form::text('chamadas[data_contratado]', Session::getOldInput('chamadas[data_contratado]'), array('placeholder' => 'Data da contratação')) !!}
+
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.convenio" id="max_occupancy" type="text" >
                     <label for="max_odccwupancy">Convênio</label>
+                    {!! Form::select('convenio_id', array(), null, array()) !!}
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.numeroContrato" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Nº do Contrato</label>
-                </div>
-            </div>
-            {{--<div class="row">--}}
-                {{--<div class="input-field col s12 m6 l2">--}}
-                    {{--<input ng-model="agente.valorContrato" id="max_occupancy" type="text" >--}}
-                    {{--<label for="max_odccwupancy">Nome</label>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.qtdParcela" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Quantidade de Parcelas</label>
+                    <label for="chamadas[condigo_transacao]">Data da Contratação</label>
+                    {!! Form::text('chamadas[condigo_transacao]', Session::getOldInput('chamadas[condigo_transacao]'), array('placeholder' => 'Nº do contrato')) !!}
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <input ng-model="agente.dataProxLigacao" id="max_occupancy" type="text" >
-                    <label for="max_odccwupancy">Data Próx. Contato</label>
+                    <label for="chamadas[valor_contratado]">Valor do Contrato</label>
+                    {!! Form::text('chamadas[valor_contratado]', Session::getOldInput('chamadas[valor_contratado]'), array('placeholder' => 'Valor do Contrato')) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l2">
+                    <label for="chamadas[prazo]">Quantidade de Parcelas</label>
+                    {!! Form::select('chamadas[prazo]', array(), null, array()) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 l2">
+                    <label for="chamadas[data_prox_chamada]">Data da Contratação</label>
+                    {!! Form::text('chamadas[data_prox_chamada]', Session::getOldInput('chamadas[data_prox_chamada]'), array('placeholder' => 'Data próx. Ligação')) !!}
                 </div>
             </div>
             <div class="row">

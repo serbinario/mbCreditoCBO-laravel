@@ -7,7 +7,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/forms.css "  media="screen,projection"/>
-
+    <link type="text/css" rel="stylesheet" href="/lib/angular-datatables/dist/css/angular-datatables.css "  media="screen,projection"/>
 
 {{--<link type="text/css" rel="stylesheet" href="/style.css"  media="screen,projection"/>--}}
 
@@ -31,7 +31,7 @@
 
 <ul id="menuCallCenter" class="dropdown-content">
     <li><a href="{{ route('contrato.index') }}">CONTRATOS</a></li>
-    <li><a href="{{ route('agencia.view') }}">AGÊNCIAS</a></li>
+    <li><a href="{{ route('agencia.index') }}">AGÊNCIAS</a></li>
     <li><a href="{{ route('convenio.index') }}">CONVÊNIOS</a></li>
     {{--<li><a href="#!">ALTERAR SENHA</a></li>--}}
 </ul>
@@ -73,17 +73,14 @@
 <script type="text/javascript" src={{ asset('/lib/jquery/dist/jquery.min.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/materialize/dist/js/materialize.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/angular/angular.js') }}></script>
-<!-- -->
-<script type="text/javascript" src={{ asset('/lib/angular-resource/angular-resource.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/datatables/media/js/jquery.dataTables.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/angular-resource/angular-resource.js') }}></script>
-
-<!--AngularJS datatables-->
-{{--<script type="text/javascript" src={{ asset('/lib/datatables.net/js/jquery.dataTables.js') }}></script>--}}
+<!--Angular datatables-->
+<script type="text/javascript" src={{ asset('/lib/angular-datatables/dist/angular-datatables.min.js') }}></script>
 <script type="text/javascript" src={{ asset('/app.js') }}></script>
 <script type="text/javascript" src={{ asset('/js/controller/agente.ctrl.js') }}></script>
 <script type="text/javascript" src={{ asset('/js/controller/contrato.ctrl.js') }}></script>
-<script type="text/javascript" src={{ asset('/js/services/agenciaService.js') }}></script>
+<script type="text/javascript" src={{ asset('/js/services/agenteService.js') }}></script>
 
 
 

@@ -29,7 +29,7 @@ class OperadorService
     {
         #Recuperando o registro no banco de dados
         $operador = $this->repository->find($id_operadores);
-dd($operador);
+
         #Verificando se o registro foi encontrado
         if(!$operador) {
             throw new \Exception('Agente não encontrado!');

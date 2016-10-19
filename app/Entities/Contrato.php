@@ -12,10 +12,10 @@ class Contrato extends Model implements Transformable
 
     protected $table    = 'chamadas';
 
-    protected $primaryKey = 'cliente_id';
+//    protected $primaryKey = 'cliente_id';
 
     protected $fillable = [ 
-//		'cliente_id',
+		'cliente_id',
 		'tipo_contrato_id',
 		'convenio_id',
 		'prazo',

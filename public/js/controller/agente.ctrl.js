@@ -1,21 +1,24 @@
 angular.module("mbCredCBO")
-    .controller("AgenteCreateCrtl", function ($scope, AgenciaApi){
 
-        $scope.create = function (){
-                console.log('Entrou em AgenteCrtl');
-        }
-    })
+    .controller("AgenteCrtl", function ($scope, $http, AgenteApi) {
 
-    .controller("AgenteEditCrtl", function ($scope, $http, AgenciaApi){
-
+        //Escutando o ng-click save()
         $scope.save = function (){
-            AgenciaApi.save($scope.agente,function (response) {
-                console.log(response.dados)
+            AgenteApi.save($scope.agente, function () {
+                console.log('Entrou em store')
+
+            })
+        }
+
+        $scope.edit = function (idAgente){
+            AgenteApi.edit({id:idAgente}, $scope, function (data) {
+                $scope.agente = data;
+
             })
         }
 
         $scope.update = function (){
-            AgenciaApi.update({id:1},$scope.agente,function (response) {
+            AgenciaApi.update({id:1}, $scope.agente,function (response) {
                 console.log(response.dados)
             })
         }
@@ -26,4 +29,4 @@ angular.module("mbCredCBO")
             })
         }
 
-    })
+    });

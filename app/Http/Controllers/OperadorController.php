@@ -44,26 +44,9 @@ class OperadorController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function view()
-    {
-        return view('operador.index');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
-        try {
-            # Recuperando todas as pessoas
-            $operador = $this->repository->all();
-
-            # Retorno Json
-            return response()->json(['error'   => false, ['data' => $operador]]);
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
-        }
-
+        return view('operador.index');
     }
 
     /**
@@ -85,7 +68,6 @@ class OperadorController extends Controller
      */
     public function create()
     {
-//    dd('aa');
         return view('operador.create');
     }
 
@@ -105,45 +87,38 @@ class OperadorController extends Controller
             #Executando a ação
             $this->service->store($data);
 
-            return response()->json(['error'   => false, 'message' => 'Pessoa Add.']);
             #Retorno para a view
-            //return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
+            return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessageBag()]);
-           // return redirect()->back()->withErrors($this->validator->errors())->withInput();
+            return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) {print_r($e->getMessage()); exit;
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
-            //return redirect()->back()->with('message', $e->getMessage());
+            return redirect()->back()->with('message', $e->getMessage());
         }
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        try {
-            $operador = $this->repository->find($id);
-
-            return response()->json(['error'   => false,'data' => $operador] );
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
-        }
-    }
-
-    /**
-     * @param Request $request
      * @param $id
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function update(Request $request, $id_operadores)
+    public function edit($id)
     {
         try {
-            //return response()->json(['dados' => $request->all()]);
+            #Buscando operador
+            $model = $this->service->find($id);
+
+            #Carregando os dados para o cadastro
+            $loadFields = $this->service->load($this->loadFields);
+
+            #retorno para view
+            return view('operador.edit', compact('model', 'loadFields'));
+        } catch (\Throwable $e) {dd($e);
+            return redirect()->back()->with('message', $e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
             #Recuperando os dados da requisição
             $data = $request->all();
 
@@ -151,30 +126,10 @@ class OperadorController extends Controller
             //$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             #Executando a ação
-            $this->service->update($data, $id_operadores);
+            $this->service->update($data, $id);
 
-            return response()->json(['dados' => "dddddd"]);
             #Retorno para a view
             return redirect()->back()->with("message", "Alteração realizada com sucesso!");
-        } catch (ValidatorException $e) {
-            return redirect()->back()->withErrors($this->validator->errors())->withInput();
-        } catch (\Throwable $e) { dd($e);
-            return redirect()->back()->with('message', $e->getMessage());
-        }
-    }
-
-    /**
-     * @param Response $response
-     * @return $this|\Illuminate\Http\RedirectResponse
-     */
-    public function getAgentes(Response $response)
-    {
-        try {
-            #retornando todos os registros
-            $agente = $this->repository->findWhere(['id_operadores' => 2]);
-
-            #retorno para view
-            return response()->json(['dados' => $agente]);
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) { dd($e);

@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Services;
 
+use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Entities\Contrato;
 
@@ -15,9 +16,11 @@ class ContratoService
     /**
      * @param ContratoRepository $repository
      */
-    public function __construct(ContratoRepository $repository)
+    public function __construct(ContratoRepository $repository, ClienteRepository $clienteRepository)
     {
         $this->repository = $repository;
+        $this->clienteRepository = $clienteRepository;
+
     }
 
     /**
@@ -41,12 +44,34 @@ class ContratoService
 
     /**
      * @param array $data
-     * @return array
+     * @return mixed
+     */
+    public function tratamentoCliente(array $data)
+    {
+        #Separando registros
+        $dados = $data['clientes'];
+
+        #Salvando registro
+        $cliente = $this->clienteRepository->create($dados);
+
+        return $cliente;
+    }
+
+    /**
+     * @param array $data
+     * @return Contrato
+     * @throws \Exception
      */
     public function store(array $data) : Contrato
     {
-        #Salvando o registro pincipal
-        $contrato =  $this->repository->create($data);
+        #Retorno
+        $cliente = $this->tratamentoCliente($data);
+
+        #Criando vinculo
+        $data['chamadas']['cliente_id'] = $cliente->id;
+
+        #Salvando registro pincipal
+        $contrato = $this->repository->create($data['chamadas']);
 
         #Verificando se foi criado no banco de dados
         if(!$contrato) {
@@ -66,7 +91,6 @@ class ContratoService
     {
         #Atualizando no banco de dados
         $contrato = $this->repository->update($data, $id);
-
 
         #Verificando se foi atualizado no banco de dados
         if(!$contrato) {

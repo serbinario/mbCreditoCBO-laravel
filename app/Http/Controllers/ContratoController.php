@@ -124,7 +124,7 @@ class ContratoController extends Controller
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
-
+dd($model);
             #retorno para view
             return view('contrato.edit', compact('model', 'loadFields'));
         } catch (\Throwable $e) {dd($e);

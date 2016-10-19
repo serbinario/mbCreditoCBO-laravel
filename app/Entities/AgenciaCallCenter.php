@@ -14,7 +14,8 @@ class AgenciaCallCenter extends Model implements Transformable
 
 //    protected $primaryKey = 'id_operadores';
 
-    protected $fillable = [ 
+    protected $fillable = [
+        'id',
 		'numero_agencia',
 		'nome_agencia',
 	];
