@@ -6,12 +6,8 @@
     {{--<link href="/font-woff2/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" rel="stylesheet">--}}
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/materialize.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="/dist/css/forems.css "  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="/dist/css/style.css "  media="screen,projection"/>
-    {{--<link rel="stylesheet" type="text/css" href="/dist/css/dataTables.materialize.css">--}}
-    {{--<link type="text/css" rel="stylesheet" href="/lib/angular-datatables/dist/css/angular-datatables.css "  media="screen,projection"/>--}}
-
-{{--<link type="text/css" rel="stylesheet" href="/style.css"  media="screen,projection"/>--}}
+    <link type="text/css" rel="stylesheet" href="/dist/css/forms.css "  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/dist/css/serDataTables.materialize.css"  media="screen,projection"/>
 
 <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -38,9 +34,9 @@
     {{--<li><a href="#!">ALTERAR SENHA</a></li>--}}
 </ul>
 
-<ul id="menuConfiguracoes" class="dropdown-content">
-    <li><a href="{{ route('usuario.index') }}">GERENCIAMENTO DE USUÁRIOS</a></li>
-</ul>
+{{--<ul id="menuConfiguracoes" class="dropdown-content">--}}
+    {{--<li><a href="#!">GERENCIAMENTO DE USUÁRIOS</a></li>--}}
+{{--</ul>--}}
 
 <div class="navbar-fixed"> <!-- class="navbar-fixed deixa fixo o menu -->
     <nav>
@@ -77,7 +73,7 @@
 <script type="text/javascript" src={{ asset('/lib/angular/angular.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/datatables/media/js/jquery.dataTables.js') }}></script>
 <script type="text/javascript" src={{ asset('/lib/angular-resource/angular-resource.js') }}></script>
-<script type="text/javascript" src="/dist/js/index.js"></script>
+<script type="text/javascript" src="/dist/js/serDataTables.materialize.js"></script>
 <!--Angular datatables-->
 <script type="text/javascript" src={{ asset('/lib/angular-datatables/dist/angular-datatables.min.js') }}></script>
 <script type="text/javascript" src={{ asset('/app.js') }}></script>
