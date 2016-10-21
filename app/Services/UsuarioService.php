@@ -54,8 +54,11 @@ class UsuarioService
      */
     public function registrandoUsuario($data)
     {
-        #Separando dados
+        #Separando dados de usuario - tabela users
         $dados = $data['usuario'];
+
+        #Encripitando a senha
+        $dados['password'] = \bcrypt($dados['password']);
 
         #Salvando registro
         $usuario = $this->repository->create($dados);
@@ -70,12 +73,13 @@ class UsuarioService
      */
     public function nivelPermissoesUsuario($data, $idUsuario)
     {
-        #Separando dados
+        #Separando dados de nível de permissão - tabela users_has_roles
         $permissao = $data['role'];
 
         #Criando registro nível de permissão
         $dados = ['user_id' => $idUsuario, 'role_id' => $permissao['role_id']];
 
+        #Retorno
         return $dados;
     }
 
@@ -85,10 +89,10 @@ class UsuarioService
      */
     public function store(array $data)
     {
-        #Registrando usuario - tabela users
+        #Metodo responsavel por registrar o usuario - tabela users
         $usuario = $this->registrandoUsuario($data);
 
-        #Registrando nível de permissão -
+        #Metodo responsavel por registrar o nível de permissão - tabela users_has_roles
         $permissoes = $this->nivelPermissoesUsuario($data, $usuario->id);
 
         #Salvando nivel de permissao do usuario - tabela users_has_roles
