@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <label for="password">Senha: </label>
-                    {!! Form::password('usuario[passaword]', array('placeholder' => 'Senha')) !!}
+                    {!! Form::password('usuario[password]', array('placeholder' => 'Senha')) !!}
 
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="input-field col s12 m6 l4">
                     <div class="input-field col s12">
-                        {!! Form::select('usuario[operador_id]', ([$loadFields['operador']->toArray()]), null, array()) !!}
+                        {!! Form::select('usuario[id_operadores]', ([$loadFields['operador']->toArray()]), null, array()) !!}
                         <label>Materialize Multiple Select</label>
                     </div>
                 </div>

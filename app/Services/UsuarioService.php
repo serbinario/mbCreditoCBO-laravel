@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Services;
 
+use MbCreditoCBO\Repositories\OperadorRepository;
 use MbCreditoCBO\Repositories\RoleRepository;
 use MbCreditoCBO\Repositories\UsuarioRepository;
 use MbCreditoCBO\Repositories\UserHoleRepository;
@@ -17,11 +18,15 @@ class UsuarioService
     /**
      * @param UsuarioRepository $repository
      */
-    public function __construct(RoleRepository $roleRepository , UsuarioRepository $repository, UserHoleRepository $userHoleRepository)
+    public function __construct(RoleRepository $roleRepository ,
+                                UsuarioRepository $repository,
+                                UserHoleRepository $userHoleRepository,
+                                OperadorRepository $operadorRepository)
     {
         $this->repository = $repository;
         $this->roleRepository = $roleRepository;
         $this->userHoleRepository = $userHoleRepository;
+        $this->operadorRepository = $operadorRepository;
     }
 
     /**
@@ -47,11 +52,11 @@ class UsuarioService
      * @param $data
      * @return mixed
      */
-    public function tratamentoUsuario($data)
+    public function registrandoUsuario($data)
     {
         #Separando dados
         $dados = $data['usuario'];
-dd($dados);
+
         #Salvando registro
         $usuario = $this->repository->create($dados);
 
@@ -59,16 +64,17 @@ dd($dados);
         return $usuario;
     }
 
-    public function tratamentoPermissoesUsuario($data)
+    /**
+     * @param $data
+     * @return array
+     */
+    public function nivelPermissoesUsuario($data, $idUsuario)
     {
-        #Usuário
-        $usuario = $this->tratamentoUsuario($data);
-
         #Separando dados
         $permissao = $data['role'];
 
         #Criando registro nível de permissão
-        $dados = ['user_id' => $usuario->id, 'role_id' => $permissao['level']];
+        $dados = ['user_id' => $idUsuario, 'role_id' => $permissao['role_id']];
 
         return $dados;
     }
@@ -77,22 +83,24 @@ dd($dados);
      * @param array $data
      * @return array
      */
-    public function store(array $data) : Usuario
+    public function store(array $data)
     {
-        #Retorno de metodos participantes
-        $usuario = $this->tratamentoUsuario($data);
-        $permissoes = $this->tratamentoPermissoesUsuario($data);
+        #Registrando usuario - tabela users
+        $usuario = $this->registrandoUsuario($data);
 
-        #Salvando registro principal
-        $this->userHoleRepository->create($permissoes);
+        #Registrando nível de permissão -
+        $permissoes = $this->nivelPermissoesUsuario($data, $usuario->id);
+
+        #Salvando nivel de permissao do usuario - tabela users_has_roles
+        $usuarioRole = $this->userHoleRepository->create($permissoes);
 
         #Verificando se foi criado no banco de dados
-        if(!$usuario) {
+        if(!$usuarioRole) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $usuario;
+        return $usuarioRole;
     }
 
     /**
