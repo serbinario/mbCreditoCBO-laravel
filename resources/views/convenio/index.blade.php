@@ -23,7 +23,7 @@
                         <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <table id="convenio-grid" class="display table table-bordered" cellspacing="0" width="100%">

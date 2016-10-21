@@ -4,21 +4,21 @@
     <div class="container">
         <div class="col m6 s12">
             <div class="card material-table" style="margin: 20px auto; padding:20px;">
-                <h3 class="box-title">Consultar Agente</h3>
+                {{--<h5 class="box-title">Consultar Agente</h5>--}}
                 <!-- inicio botao -->
-                <div class="row">
+                {{--<div class="row">
                     <div class="col-md-12">
                         <div class="col-sm-6 col-md-12 ">
                             <a href="{{ route('operador.create')}}" class="btn-sm btn-primary pull-right">Novo Cliente</a>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <!-- fim botao -->
 
                 <div class="table-header">
-                    <span class="table-title">Material Datatable</span>
+                    <span class="table-title">Consultar Agente</span>
                     <div class="actions">
-                        <a href="#add_users" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+                        <a href="{{ route('operador.create')}}" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
                         <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
                     </div>
                 </div>
@@ -30,14 +30,14 @@
                             <tr>
                                 <th>Chave J</th>
                                 <th>Nome</th>
-                                <th>Açao</th>
+                                <th style="width: 15%">Açao</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <th>Chave J</th>
                                 <th>Nome</th>
-                                <th>Açao</th>
+                                <th style="width: 15%" >Açao</th>
                             </tr>
                             </tbody>
                         </table>
@@ -64,8 +64,8 @@
             "oLanguage": {
                 "sStripClasses": "",
                 "sSearch": "",
-                "sSearchPlaceholder": "Enter Keywords Here",
-                "sInfo": "_START_ -_END_ of _TOTAL_",
+                "sSearchPlaceholder": "Digite um agente",
+                "sInfo": "_START_ - _END_ de _TOTAL_",
                 "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
                 '<option value="10">10</option>' +
                 '<option value="20">20</option>' +
