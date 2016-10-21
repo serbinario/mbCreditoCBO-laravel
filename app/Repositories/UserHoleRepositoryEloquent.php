@@ -4,15 +4,15 @@ namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use MbCreditoCBO\Validators\UserValidator;
-use MbCreditoCBO\Repositories\UserRepository;
-use MbCreditoCBO\Entities\User;
+use MbCreditoCBO\Validators\UserHoleValidator;
+use MbCreditoCBO\Repositories\UserHoleRepository;
+use MbCreditoCBO\Entities\UserHole;
 
 /**
- * Class UserRepositoryEloquent
+ * Class UserRoleRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepository
+class UserHoleRepositoryEloquent extends BaseRepository implements UserHoleRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function model()
     {
-        return User::class;
+        return UserHole::class;
     }
 
     /**
@@ -32,7 +32,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function validator()
     {
 
-         return UserValidator::class;
+         return UserHoleValidator::class;
     }
 
 

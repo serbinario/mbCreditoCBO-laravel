@@ -1,8 +1,7 @@
+{{--{{dd ($model) }}--}}
 <div class="col m6 s12">
-    <div class="card-panel" ng-controller="ContratoCrtl">
+    <div class="card-panel">
         <div class="row">
-            <span class="blue-text text-darken-4"><h5 >Cadastro de Clientes</h5></span>
-            <div class="divider"></div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
                     <label for="clientes[name]">Nome: </label>
@@ -52,7 +51,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l2">
-                    <label for="chamadas[valor_contratado]">Valor do Contrato</label>
+                    <label for="chamadas[valor_contratado]">Valor Contratado: </label>
                     {!! Form::text('chamadas[valor_contratado]', Session::getOldInput('chamadas[valor_contratado]'), array('placeholder' => 'Valor do Contrato')) !!}
                 </div>
             </div>

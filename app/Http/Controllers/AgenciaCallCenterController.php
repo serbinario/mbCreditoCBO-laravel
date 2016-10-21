@@ -67,11 +67,8 @@ class AgenciaCallCenterController extends Controller
      */
     public function create()
     {
-        #Carregando os dados para o cadastro
-        $loadFields = $this->service->load($this->loadFields);
-
         #Retorno para view
-        return view('agencia.create', compact('loadFields'));
+        return view('agencia.create');
     }
 
     /**
@@ -113,10 +110,10 @@ class AgenciaCallCenterController extends Controller
            // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
 
             #Carregando os dados para o cadastro
-            $loadFields = $this->service->load($this->loadFields);
+            $loadFields = $this->service->loadAgencia($this->loadFields);
 
             #retorno para view
-            return view('agenciaCallCenter.edit', compact('model', 'loadFields'));
+            return view('agencia.edit', compact('model', 'loadFields'));
         } catch (\Throwable $e) {dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }

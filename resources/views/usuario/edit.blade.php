@@ -21,8 +21,8 @@
             @endif
 
             <section class="content">
-                {!! Form::model($model, ['route'=> ['operador.update', $model->id], 'method' => "POST" ]) !!}
-                @include('tamplatesForms.tamplateFormUser')
+                {!! Form::model($model, ['route'=> ['usuario.update', $model->id], 'method' => "POST" ]) !!}
+                @include('tamplatesForms.tamplateFormUsuario')
                 {!! Form::close() !!}
             </section>
         </div>

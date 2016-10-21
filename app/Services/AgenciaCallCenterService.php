@@ -98,4 +98,26 @@ class AgenciaCallCenterService
         #retorno
         return $result;
     }
+
+    /**
+     * @param array $models
+     * @return array
+     */
+    public function loadAgencia(array $models) : array
+    {
+        #Declarando variáveis de uso
+        $result = [];
+
+        #Criando e executando as consultas
+        foreach ($models as $model) {
+            #qualificando o namespace
+            $nameModel = "MbCreditoCBO\\Entities\\$model";
+
+            #Recuperando o registro e armazenando no array
+            $result[strtolower($model)] = $nameModel::lists('numero_agencia', 'nome_agencia');
+        }
+
+        #retorno
+        return $result;
+    }
 }

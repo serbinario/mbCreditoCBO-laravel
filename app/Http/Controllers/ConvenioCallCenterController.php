@@ -43,15 +43,7 @@ class ConvenioCallCenterController extends Controller
      */
     public function index()
     {
-        try {
-            # Recuperando todas as agencias
-            $convenio = $this->repository->all();
-
-            # Retorno Json
-            return response()->json(['data' => $convenio]);
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
-        }
+        return view ('convenio.index');
     }
 
     /**
@@ -82,73 +74,75 @@ class ConvenioCallCenterController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(ConvenioCreateRequest $request)
+    public function store(Request $request)
     {
         try {
-            #Validando dados
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            #Recuperando os dados da requisição
+            $data = $request->all();
 
-            #Salvando registro
-            $convenios = $this->repository->create($request->all());
+            #Validando a requisição
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $response = [
-                'message' => 'Agencia created.',
-                'data'    => $convenios->toArray(),
-            ];
+            #Executando a ação
+            $this->service->store($data);
 
-            #Retorno JSON
-            return response()->json($response);
+            #Retorno para a view
+            return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessageBag()]);
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+            return redirect()->back()->withErrors($this->validator->errors())->withInput();
+        } catch (\Throwable $e) {print_r($e->getMessage()); exit;
+            return redirect()->back()->with('message', $e->getMessage());
         }
     }
 
     /**
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit($id)
     {
         try {
-            #Recuperando registro especifico
-            $convenio = $this->repository->find($id);
+            #Recuperando a empresa
+            $model = $this->service->find($id);
 
-            #Retorno Json
-            return response()->json(['data' => $convenio]);
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+            #Tratando as datas
+            // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
+
+            #Carregando os dados para o cadastro
+            $loadFields = $this->service->load($this->loadFields);
+
+            #retorno para view
+            return view('convenio.edit', compact('model', 'loadFields'));
+        } catch (\Throwable $e) {dd($e);
+            return redirect()->back()->with('message', $e->getMessage());
         }
     }
 
     /**
-     * @param ConvenioUpdateRequest $request
+     * @param Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function update(ConvenioUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
-            #Validando dados
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            #Recuperando os dados da requisição
+            $data = $request->all();
 
-            #Retornando registro especifico
-            $convenio = $this->repository->update($id, $request->all());
+            #Validando a requisição
+            //$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $response = [
-                'message' => 'Pessoa updated.',
-                'data'    => $convenio->toArray(),
-            ];
+            #Executando a ação
+            $this->service->update($data, $id);
 
-            #Resposta JSON
-            return response()->json($response);
+            #Retorno para a view
+            return redirect()->back()->with("message", "Alteração realizada com sucesso!");
         } catch (ValidatorException $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessageBag()]);
-        } catch (\Throwable $e) {
-            return response()->json(['error'   => true,'message' => $e->getMessage()]);
+            return redirect()->back()->withErrors($this->validator->errors())->withInput();
+        } catch (\Throwable $e) { dd($e);
+            return redirect()->back()->with('message', $e->getMessage());
         }
     }
 

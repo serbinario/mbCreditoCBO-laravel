@@ -37,12 +37,12 @@
     });
 
     Route::group(['prefix' => 'usuario', 'as' => 'usuario.'], function () {
-        Route::get('index', ['as' => 'index', 'uses' => 'UserController@index']);
-        Route::get('grid', ['as' => 'grid', 'uses' => 'UserController@grid']);
-        Route::get('create', ['as' => 'create', 'uses' => 'UserController@create']);
-        Route::post('store', ['as' => 'store', 'uses' => 'UserController@store']);
-        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UserController@edit']);
-        Route::post('update/{id}', ['as' => 'update', 'uses' => 'UserController@update']);
+        Route::get('index', ['as' => 'index', 'uses' => 'UsuarioController@index']);
+        Route::get('grid', ['as' => 'grid', 'uses' => 'UsuarioController@grid']);
+        Route::get('create', ['as' => 'create', 'uses' => 'UsuarioController@create']);
+        Route::post('store', ['as' => 'store', 'uses' => 'UsuarioController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UsuarioController@edit']);
+        Route::post('update/{id}', ['as' => 'update', 'uses' => 'UsuarioController@update']);
     });
 
     //Rotas API restfull

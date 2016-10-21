@@ -35,7 +35,7 @@ class ContratoService
 
         #Verificando se o registro foi encontrado
         if(!$contrato) {
-            throw new \Exception('Empresa não encontrada!');
+            throw new \Exception('Contrato não encontrada!');
         }
 
         #retorno

@@ -3,9 +3,10 @@
 @section('content')
     <div class="container">
         <section class="content">
-            {!! Form::open(['route'=>'contrato.store', 'id' => 'formContrato', 'method' => "POST" ]) !!}
-            @include('tamplatesForms.tamplateFormContrato')
+            {!! Form::open(['route'=>'usuario.store', 'id' => 'formUsuario', 'method' => "POST" ]) !!}
+            @include('tamplatesForms.tamplateFormUsuario')
             {!! Form::close() !!}
         </section>
     </div>
+
 @stop

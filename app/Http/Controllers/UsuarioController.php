@@ -5,40 +5,40 @@ namespace MbCreditoCBO\Http\Controllers;
 use Illuminate\Http\Request;
 
 use MbCreditoCBO\Http\Requests;
-use MbCreditoCBO\Http\Controllers\Controller;
-use MbCreditoCBO\Services\UserService;
-use MbCreditoCBO\Validators\UserValidator;
+use MbCreditoCBO\Services\UsuarioService;
 use Yajra\Datatables\Datatables;
+use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
+use MbCreditoCBO\Validators\UserHoleValidator;
+use MbCreditoCBO\Validators\UsuarioValidator;
 
-class UserController extends Controller
+class UsuarioController extends Controller
 {
     /**
-     * @var UserService
-     */
+    * @var UsuarioService
+    */
     private $service;
 
     /**
-     * @var UserValidator
-     */
+    * @var UsuarioValidator
+    */
     private $validator;
 
     /**
-     * @var array
-     */
+    * @var array
+    */
     private $loadFields = [
-        'Role',
-        'Permission'
+        'Operador'
     ];
 
     /**
-     * @param UserService $service
-     * @param UserValidator $validator
-     */
-    public function __construct(UserService $service, UserValidator $validator)
+    * @param UsuarioService $service
+    * @param UsuarioValidator $validator
+    */
+    public function __construct(UsuarioService $service, UsuarioValidator $validator)
     {
-        $this->service   = $service;
-        $this->validator = $validator;
+        $this->service   =  $service;
+        $this->validator =  $validator;
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        return view('usuario.index');
     }
 
     /**
@@ -55,33 +55,38 @@ class UserController extends Controller
     public function grid()
     {
         #Criando a consulta
-        $users = \DB::table('users')->select(['id', 'name', 'email']);
+        $rows = \DB::table('users')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
+            ->select(['id', 'users.username', 'operadores.nome_operadores', 'users.email']);
 
         #Editando a grid
-        return Datatables::of($users)->addColumn('action', function ($user) {
-            return '<a href="edit/'.$user->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+        return Datatables::of($rows)->addColumn('action', function ($row) {
+            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
         })->make(true);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         #Carregando os dados para o cadastro
         $loadFields = $this->service->load($this->loadFields);
 
         #Retorno para view
-        return view('user.create', compact('loadFields'));
+        return view('usuario.create', compact('loadFields'));
     }
 
     /**
      * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return $this|array|\Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         try {
             #Recuperando os dados da requisição
             $data = $request->all();
-
+//        dd($data);
             #Validando a requisição
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -90,7 +95,7 @@ class UserController extends Controller
 
             #Retorno para a view
             return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
-        } catch (ValidatorException $e) {print_r($e->getMessage()); exit;
+        } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
         } catch (\Throwable $e) {print_r($e->getMessage()); exit;
             return redirect()->back()->with('message', $e->getMessage());
@@ -104,14 +109,17 @@ class UserController extends Controller
     public function edit($id)
     {
         try {
-            #Recuperando o crud
-            $user = $this->service->find($id);
+            #Recuperando a empresa
+            $model = $this->service->find($id);
+
+            #Tratando as datas
+           // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
 
             #Carregando os dados para o cadastro
-            $loadFields = $this->service->load($this->loadFields);
+            $loadFields = $this->service->loadUsuario($this->loadFields);
 
             #retorno para view
-            return view('user.edit', compact('user', 'loadFields'));
+            return view('usuario.edit', compact('model', 'loadFields'));
         } catch (\Throwable $e) {dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }
@@ -129,7 +137,7 @@ class UserController extends Controller
             $data = $request->all();
 
             #Validando a requisição
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            //$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             #Executando a ação
             $this->service->update($data, $id);
@@ -142,4 +150,5 @@ class UserController extends Controller
             return redirect()->back()->with('message', $e->getMessage());
         }
     }
+
 }
