@@ -51,7 +51,7 @@ class UsuarioService
     {
         #Separando dados
         $dados = $data['usuario'];
-
+dd($dados);
         #Salvando registro
         $usuario = $this->repository->create($dados);
 
@@ -61,7 +61,6 @@ class UsuarioService
 
     public function tratamentoPermissoesUsuario($data)
     {
-
         #Usuário
         $usuario = $this->tratamentoUsuario($data);
 
