@@ -6,7 +6,7 @@
     {{--<link href="/font-woff2/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" rel="stylesheet">--}}
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/materialize.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="/lib/materialize/dist/css/forms.css "  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/dist/css/forms.css "  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="/dist/css/dataTables.materialize.css">
     {{--<link type="text/css" rel="stylesheet" href="/lib/angular-datatables/dist/css/angular-datatables.css "  media="screen,projection"/>--}}
 
