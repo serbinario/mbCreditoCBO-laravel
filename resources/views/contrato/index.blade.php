@@ -5,24 +5,24 @@
 <div class="container">
     <div class="col m6 s12">
         <div class="card material-table" style="margin: 20px auto; padding:20px;">
-            <h3 class="box-title">Consultar Agente</h3>
-            <!-- inicio botao -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-sm-6 col-md-12 ">
-                        <a href="{{ route('contrato.create')}}" class="btn-sm btn-primary pull-right">Novo Cliente</a>
-                    </div>
-                </div>
-            </div>
+            {{--<h3 class="box-title">Consultar Agente</h3>--}}
+            {{--<!-- inicio botao -->--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-12">--}}
+                    {{--<div class="col-sm-6 col-md-12 ">--}}
+                        {{--<a href="{{ route('contrato.create')}}" class="btn-sm btn-primary pull-right">Novo Cliente</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <!-- fim botao -->
 
-            <div class="table-header">
-                <span class="table-title">Material Datatable</span>
-                <div class="actions">
-                    <a href="#add_users" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
-                    <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                <div class="table-header">
+                    <span class="table-title">Consultar Contrato</span>
+                    <div class="actions">
+                        <a href="{{ route('contrato.create')}}" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                    </div>
                 </div>
-            </div>
 
             <div class="row">
                 <div class="col-md-12">

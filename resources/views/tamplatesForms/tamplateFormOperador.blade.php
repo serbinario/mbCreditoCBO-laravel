@@ -17,7 +17,9 @@
               <div class="row">
                   <div class="input-field col s12 m6 l12">
                       <button class="btn">Salvar</button>
-                      <button class="btn">Voltar</button>
+                      <a class="btn" href="http://ser.cbo/index.php/operador/index">Voltar</a>
+                      {{--<input class="btn" type="button" value="Voltar" onClick="history.go(-1)">--}}
+                      {{--<button class="btn">Voltar</button>--}}
                   </div>
               </div>
       </div>

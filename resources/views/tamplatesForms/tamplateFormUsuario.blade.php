@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="input-field col s12 m6 l12">
                     <button class="btn">Salvar</button>
-                    <button class="btn">Voltar</button>
+                    <a class="btn" href="http://ser.cbo/index.php/usuario/index">Voltar</a>
                 </div>
             </div>
         </div>

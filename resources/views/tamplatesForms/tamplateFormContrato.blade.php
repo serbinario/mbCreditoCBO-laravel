@@ -69,8 +69,8 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6 l12">
-                    <button class="btn" ng-click="create()">Salvar</button>
-                    <button class="btn" ng-click="create()">Voltar</button>
+                    <button class="btn">Salvar</button>
+                    <a class="btn" href="http://ser.cbo/index.php/contrato/index">Voltar</a>
                 </div>
             </div>
         </div>
