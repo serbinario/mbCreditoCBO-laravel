@@ -28,7 +28,8 @@ class UsuarioController extends Controller
     * @var array
     */
     private $loadFields = [
-        'Operador'
+        'Operador|resolvedName',
+
     ];
 
     /**
@@ -109,17 +110,35 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         try {
-            #Recuperando a empresa
+            #Recuperando o usuário
             $model = $this->service->find($id);
+
+            $roleOperador = $model->roles->filter(function ($role) {
+                return $role->id == 1;
+            });
+
+            $roleAdmin = $model->roles->filter(function ($role) {
+                return $role->id == 2;
+            });
+
+            $roleGerente = $model->roles->filter(function ($role) {
+                return $role->id == 3;
+            });
+
+            $rolePermission = [
+                'roleOperador' => count($roleOperador) > 0 ? true : false,
+                'roleAdmin' => count($roleAdmin) > 0 ? true : false,
+                'roleGerente' => count($roleGerente) > 0 ? true : false
+            ];
 
             #Tratando as datas
            // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
 
             #Carregando os dados para o cadastro
-            $loadFields = $this->service->loadUsuario($this->loadFields);
+            $loadFields = $this->service->load($this->loadFields);
 
             #retorno para view
-            return view('usuario.edit', compact('model', 'loadFields'));
+            return view('usuario.edit', compact('model', 'loadFields', 'rolePermission'));
         } catch (\Throwable $e) {dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }

@@ -4,15 +4,15 @@ namespace MbCreditoCBO\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use MbCreditoCBO\Repositories\RoleRepository;
-use MbCreditoCBO\Entities\Role;
-use MbCreditoCBO\Validators\RoleValidator;;
+use MbCreditoCBO\Repositories\HoleRepository;
+use MbCreditoCBO\Entities\Hole;
+//use MbCreditoCBO\Validators\HoleValidator;;
 
 /**
  * Class RoleRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
+class HoleRepositoryEloquent extends BaseRepository implements HoleRepository
 {
     /**
      * Specify Model class name
@@ -21,10 +21,8 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
      */
     public function model()
     {
-        return Role::class;
+        return Hole::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria

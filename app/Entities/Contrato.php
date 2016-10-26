@@ -10,7 +10,7 @@ class Contrato extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table    = 'chamadas';
+    protected $table      = 'chamadas';
 
 //    protected $primaryKey = 'cliente_id';
 
@@ -25,5 +25,22 @@ class Contrato extends Model implements Transformable
 		'codigo_transacao',
 		'data_prox_chamada',
 	];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeResolvedName($query)
+    {
+        return $query->select(['prazo as nome', 'id']);
+    }
 
 }

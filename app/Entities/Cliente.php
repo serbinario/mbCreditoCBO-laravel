@@ -20,4 +20,20 @@ class Cliente extends Model implements Transformable
 		'user_id',
 	];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contrato()
+    {
+        return $this->hasMany(Contrato::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function telefone()
+    {
+        return $this->hasMany(Telefone::class);
+    }
+
 }

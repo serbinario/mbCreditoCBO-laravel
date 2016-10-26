@@ -88,5 +88,10 @@ class SeracademicoRepositoryProvider extends ServiceProvider
 			\MbCreditoCBO\Repositories\UserHoleRepository::class,
 			\MbCreditoCBO\Repositories\UserHoleRepositoryEloquent::class
 		);
+
+        $this->app->bind(
+            \MbCreditoCBO\Repositories\HoleRepository::class,
+            \MbCreditoCBO\Repositories\HoleRepositoryEloquent::class
+        );
 	}
 }

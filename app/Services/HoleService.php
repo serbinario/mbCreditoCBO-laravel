@@ -3,10 +3,10 @@
 namespace MbCreditoCBO\Services;
 
 use MbCreditoCBO\Repositories\PermissionRepository;
-use MbCreditoCBO\Repositories\RoleRepository;
-use MbCreditoCBO\Entities\Role;
+use MbCreditoCBO\Repositories\HoleRepository;
+use MbCreditoCBO\Entities\Hole;
 
-class RoleService
+class HoleService
 {
     /**
      * @var RoleRepository
@@ -22,7 +22,7 @@ class RoleService
      * @param RoleRepository $repository
      * @param PermissionRepository $permissionRepository
      */
-    public function __construct(RoleRepository $repository, PermissionRepository $permissionRepository)
+    public function __construct(HoleRepository $repository, PermissionRepository $permissionRepository)
     {
         $this->repository           = $repository;
         $this->permissionRepository = $permissionRepository;

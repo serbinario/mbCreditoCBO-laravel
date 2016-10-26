@@ -3,7 +3,7 @@
 namespace MbCreditoCBO\Services;
 
 use MbCreditoCBO\Repositories\OperadorRepository;
-use MbCreditoCBO\Repositories\RoleRepository;
+use MbCreditoCBO\Repositories\HoleRepository;
 use MbCreditoCBO\Repositories\UsuarioRepository;
 use MbCreditoCBO\Repositories\UserHoleRepository;
 use MbCreditoCBO\Entities\Usuario;
@@ -18,34 +18,35 @@ class UsuarioService
     /**
      * @param UsuarioRepository $repository
      */
-    public function __construct(RoleRepository $roleRepository ,
+    public function __construct(HoleRepository $holeRepository ,
                                 UsuarioRepository $repository,
                                 UserHoleRepository $userHoleRepository,
                                 OperadorRepository $operadorRepository)
     {
         $this->repository = $repository;
-        $this->roleRepository = $roleRepository;
+        $this->holeRepository = $holeRepository;
         $this->userHoleRepository = $userHoleRepository;
         $this->operadorRepository = $operadorRepository;
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     * @throws \Exception
-     */
+
     public function find($id)
     {
-        #Recuperando o registro no banco de dados
-        $usuario = $this->repository->find($id);
+        $relacao = [
+            'operador',
+            'roles'
+        ];
 
+        #Recuperando o registro no banco de dados
+        $contrato = $this->repository->with($relacao)->find($id);
+//        dd($contrato);
         #Verificando se o registro foi encontrado
-        if(!$usuario) {
-            throw new \Exception('Empresa não encontrada!');
+        if(!$contrato) {
+            throw new \Exception('Usuário não encontrado!');
         }
 
         #retorno
-        return $usuario;
+        return $contrato;
     }
 
     /**
@@ -114,8 +115,22 @@ class UsuarioService
      */
     public function update(array $data, int $id) : Usuario
     {
+        #tratando a senha
+        if(empty($data['password'])) {
+            unset($data['password']); //Aqui estou destruíndo o índece do array, que armazena a senha
+        } else {
+            $newPassword = \bcrypt($data['password']);
+        }
+
         #Atualizando no banco de dados
         $usuario = $this->repository->update($data, $id);
+
+        # Alterando a senha do usuário
+        if(isset($newPassword)) {
+            $usuario->fill([
+                'password' => $newPassword //Aqui estou inserindo mais um índece no array, que armazenará a senha
+            ])->save();
+        }
 
 
         #Verificando se foi atualizado no banco de dados
@@ -128,43 +143,83 @@ class UsuarioService
     }
 
     /**
-     * @param array $models
+     * Método load
+     *
+     * Método responsável por recuperar todos os models (com seus repectivos
+     * métodos personalizados para consulta, se for o caso) do array passado
+     * por parâmetro.
+     *
+     * @param array $models || Melhorar esse código
      * @return array
      */
-    public function load(array $models) : array
+    public function load(array $models, $ajax = false) : array
     {
         #Declarando variáveis de uso
-        $result = [];
+        $result    = [];
+        $expressao = [];
 
         #Criando e executando as consultas
         foreach ($models as $model) {
+            # separando as strings
+            $explode   = explode("|", $model);
+
+            # verificando a condição
+            if(count($explode) > 1) {
+                $model     = $explode[0];
+                $expressao = explode(",", $explode[1]);
+            }
+
             #qualificando o namespace
-            $nameModel = "MbCreditoCBO\\Entities\\$model";
+            $nameModel = "\\MbCreditoCBO\\Entities\\$model";
 
-            #Recuperando o registro e armazenando no array
-            $result[strtolower($model)] = $nameModel::lists('nome_operadores', 'id_operadores');
-        }
+            #Verificando se existe sobrescrita do nome do model
+            //$model     = isset($expressao[2]) ? $expressao[2] : $model;
 
-        #retorno
-        return $result;
-    }
+            if ($ajax) {
+                if(count($expressao) > 0) {
+                    switch (count($expressao)) {
+                        case 1 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}()->orderBy('nome', 'asc')->get(['nome', 'id', 'codigo']);
+                            break;
+                        case 2 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}($expressao[1])->orderBy('nome', 'asc')->get(['nome', 'id', 'codigo']);
+                            break;
+                        case 3 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}($expressao[1], $expressao[2])->orderBy('nome', 'asc')->get(['nome', 'id', 'codigo']);
+                            break;
+                    }
 
-    /**
-     * @param array $models
-     * @return array
-     */
-    public function loadUsuario(array $models) : array
-    {
-        #Declarando variáveis de uso
-        $result = [];
+                } else {
+                    #Recuperando o registro e armazenando no array
+                    $result[strtolower($model)] = $nameModel::orderBy('nome', 'asc')->get(['nome', 'id']);
+                }
+            } else {
+                if(count($expressao) > 0) {
+                    switch (count($expressao)) {
+                        case 1 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}()->orderBy('nome', 'asc')->lists('nome', 'id');
+                            break;
+                        case 2 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}($expressao[1])->orderBy('nome', 'asc')->lists('nome', 'id');
+                            break;
+                        case 3 :
+                            #Recuperando o registro e armazenando no array
+                            $result[strtolower($model)] = $nameModel::{$expressao[0]}($expressao[1], $expressao[2])->orderBy('nome', 'asc')->lists('nome', 'id');
+                            break;
+                    }
+                } else {
+                    #Recuperando o registro e armazenando no array
+                    $result[strtolower($model)] = $nameModel::lists('nome', 'id');
+                }
+            }
 
-        #Criando e executando as consultas
-        foreach ($models as $model) {
-            #qualificando o namespace
-            $nameModel = "MbCreditoCBO\\Entities\\$model";
-
-            #Recuperando o registro e armazenando no array
-            $result[strtolower($model)] = $nameModel::lists('id', 'username', 'password', 'email');
+            # Limpando a expressão
+            $expressao = [];
         }
 
         #retorno

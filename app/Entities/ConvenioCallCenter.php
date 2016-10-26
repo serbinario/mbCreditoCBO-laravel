@@ -16,4 +16,13 @@ class ConvenioCallCenter extends Model implements Transformable
 		'nome_convenio',
 	];
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeResolvedName($query)
+    {
+        return $query->select(['nome_convenio as nome', 'id']);
+    }
+
 }

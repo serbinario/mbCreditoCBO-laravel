@@ -84,7 +84,7 @@
 <script type="text/javascript">
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     //$('.collapsible').collapsible();
-    //$('select').material_select();
+    $('select').material_select();
     $('.dropdown-button').dropdown();
     $('.button-collapse').sideNav();
     $('ul.tabs').tabs();
@@ -97,4 +97,7 @@
 @yield('javascript')
 
 </body>
+<footer class="main-footer">
+    <strong>Copyright &copy; 2015-2016 <a href="">SERBINARIO</a>.</strong> Todos os direitos reservados.
+</footer>
 </html>

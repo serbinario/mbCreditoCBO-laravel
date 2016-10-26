@@ -17,4 +17,12 @@ class Telefone extends Model implements Transformable
 		'telefone',
 	];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
 }

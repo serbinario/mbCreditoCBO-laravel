@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Role extends Model implements Transformable
+class Hole extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -19,4 +19,11 @@ class Role extends Model implements Transformable
         'level',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userHole()
+    {
+        return $this->hasMany(UserHole::class, 'role_id');
+    }
 }

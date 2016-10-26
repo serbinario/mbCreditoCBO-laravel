@@ -1,5 +1,0 @@
-suites:
-    main:
-        namespace: MbCreditoCBO
-        psr4_prefix: MbCreditoCBO
-        src_path: app

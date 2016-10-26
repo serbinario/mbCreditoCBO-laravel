@@ -16,4 +16,9 @@ class TipoContrato extends Model implements Transformable
 		'tipo_contrato',
 	];
 
+    public function scopeResolvedName($query)
+    {
+        return $query->select(['tipo_contrato as nome', 'id']);
+    }
+
 }

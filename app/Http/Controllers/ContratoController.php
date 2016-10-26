@@ -26,7 +26,12 @@ class ContratoController extends Controller
     /**
     * @var array
     */
-    private $loadFields = [];
+    private $loadFields = [
+        'ConvenioCallCenter|resolvedName',
+        'TipoContrato|resolvedName',
+        'Contrato|resolvedName',
+        'AgenciaCallCenter|resolvedName'
+    ];
 
     /**
     * @param ContratoService $service

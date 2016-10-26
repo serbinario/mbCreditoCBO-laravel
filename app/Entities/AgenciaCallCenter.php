@@ -20,4 +20,13 @@ class AgenciaCallCenter extends Model implements Transformable
 		'nome_agencia',
 	];
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeResolvedName($query)
+    {
+        return $query->select(['nome_agencia as nome', 'id']);
+    }
+
 }
