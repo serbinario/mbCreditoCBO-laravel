@@ -11,6 +11,7 @@
     "datatables": "1.10.12",
     "materialize": "0.97.7",
     "angular-datatables": "0.5.5",
-    "angular-resource": "1.5.8"
+    "angular-resource": "1.5.8",
+    "bootstrap": "3.3.7"
   }
 }

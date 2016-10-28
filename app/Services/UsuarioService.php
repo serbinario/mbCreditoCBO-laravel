@@ -29,7 +29,6 @@ class UsuarioService
         $this->operadorRepository = $operadorRepository;
     }
 
-
     public function find($id)
     {
         $relacao = [
@@ -39,7 +38,7 @@ class UsuarioService
 
         #Recuperando o registro no banco de dados
         $contrato = $this->repository->with($relacao)->find($id);
-//        dd($contrato);
+
         #Verificando se o registro foi encontrado
         if(!$contrato) {
             throw new \Exception('Usuário não encontrado!');
@@ -55,14 +54,11 @@ class UsuarioService
      */
     public function registrandoUsuario($data)
     {
-        #Separando dados de usuario - tabela users
-        $dados = $data['usuario'];
-
         #Encripitando a senha
-        $dados['password'] = \bcrypt($dados['password']);
+        $data['password'] = \bcrypt($data['password']);
 
         #Salvando registro
-        $usuario = $this->repository->create($dados);
+        $usuario = $this->repository->create($data);
 
         #Retorno
         return $usuario;
@@ -75,20 +71,23 @@ class UsuarioService
     public function nivelPermissoesUsuario($data, $idUsuario)
     {
         #Separando dados de nível de permissão - tabela users_has_roles
-        $permissao = $data['role'];
+        $permissoes = $data['userHole'];
 
-        #Criando registro nível de permissão
-        $dados = ['user_id' => $idUsuario, 'role_id' => $permissao['role_id']];
+        #Salvando registros
+        foreach ($permissoes as $permissao) {
+            #Salvando nivel de permissao do usuario - tabela users_has_roles
+            $this->userHoleRepository->create(['user_id' => $idUsuario, 'role_id' => $permissao]);
+        }
 
         #Retorno
-        return $dados;
+        return true;
     }
 
     /**
      * @param array $data
      * @return array
      */
-    public function store(array $data)
+    public function store(array $data) : Usuario
     {
         #Metodo responsavel por registrar o usuario - tabela users
         $usuario = $this->registrandoUsuario($data);
@@ -96,16 +95,13 @@ class UsuarioService
         #Metodo responsavel por registrar o nível de permissão - tabela users_has_roles
         $permissoes = $this->nivelPermissoesUsuario($data, $usuario->id);
 
-        #Salvando nivel de permissao do usuario - tabela users_has_roles
-        $usuarioRole = $this->userHoleRepository->create($permissoes);
-
         #Verificando se foi criado no banco de dados
-        if(!$usuarioRole) {
+        if(!$usuario) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $usuarioRole;
+        return $usuario;
     }
 
     /**

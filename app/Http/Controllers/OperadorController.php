@@ -44,6 +44,14 @@ class OperadorController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function novoMenu()
+    {
+        return view ('novoMenu');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('operador.index');

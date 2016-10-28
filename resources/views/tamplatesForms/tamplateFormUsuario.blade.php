@@ -26,13 +26,13 @@
             <div class="row" >
                 <label>Permissão:</label>
                 </br>
-                {!! Form::checkbox('userHole[role_id]', 1, isset($rolePermission['roleOperador']) ?? null, ['id' => 'opcao1']) !!}
+                {!! Form::checkbox('userHole[opcaoOperador]', 1, isset($rolePermission['roleOperador']) ?? null, ['id' => 'opcao1']) !!}
                 <label for="opcao1">OPERADOR</label>
 
-                {!! Form::checkbox('userHole[role_id]', 2, isset($rolePermission['roleAdmin']) ?? null, ['id' => 'opcao2']) !!}
+                {!! Form::checkbox('userHole[opcaoAdmin]', 2, isset($rolePermission['roleAdmin']) ?? null, ['id' => 'opcao2']) !!}
                 <label for="opcao2">ADMIN</label>
 
-                {!! Form::checkbox('userHole[role_id]', 3, isset($roleGerente['roleGerente']) ?? null, ['id' => 'opcao3']) !!}
+                {!! Form::checkbox('userHole[opcaoGerente]', 3, isset($rolePermission['roleGerente']) ?? null, ['id' => 'opcao3']) !!}
                 <label for="opcao3">GERENTE</label>
             </div>
             <div class="row">
