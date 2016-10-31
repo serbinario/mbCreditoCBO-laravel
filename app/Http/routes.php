@@ -9,6 +9,7 @@
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'OperadorController@update']);
         //Protótipo do menu
         Route::get('novoMenu', ['as' => 'novoMenu', 'uses' => 'OperadorController@novoMenu']);
+        Route::get('novoCreate', ['as' => 'novoCreate', 'uses' => 'OperadorController@novoCreate']);
 
     });
 

@@ -1,0 +1,58 @@
+<div class="col m6 s4">
+
+    <div class="card">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body card-padding">
+            <form role="form">
+                <div class="form-group fg-line">
+                    <label for="chaveJ">Email address</label>
+                    <input type="email" class="form-control input-sm" id="exampleInputEmail1"
+                           placeholder="Enter email">
+                </div>
+                <div class="form-group fg-line">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control input-sm" id="exampleInputPassword1"
+                           placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="1">
+                        <i class="input-helper"></i>
+                        Don't forget to check me out
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm m-t-10">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {{--<div class="card-panel">--}}
+      {{--<div class="row">--}}
+          {{--<span class="blue-text text-darken-4"><h5>Cadastro de Agente</h5></span>--}}
+          {{--<div class="divider"></div>--}}
+              {{--<div class="row">--}}
+                  {{--<div class="input-field col s12 m6 l2">--}}
+                      {{--<label for="cod_operadores">Chave J: </label>--}}
+                      {{--{!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('placeholder' => 'Chave J')) !!}--}}
+                  {{--</div>--}}
+              {{--</div>--}}
+              {{--<div class="row">--}}
+                  {{--<div class="input-field col s12 m6 l2">--}}
+                      {{--<label for="nome_operadores">Nome: </label>--}}
+                      {{--{!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('placeholder' => 'Nome Completo')) !!}--}}
+                  {{--</div>--}}
+              {{--</div>--}}
+              {{--<div class="row">--}}
+                  {{--<div class="input-field col s12 m6 l12">--}}
+                      {{--<button class="btn">Salvar</button>--}}
+                      {{--<a class="btn" href="http://ser.cbo/index.php/operador/index">Voltar</a>--}}
+                      {{--<input class="btn" type="button" value="Voltar" onClick="history.go(-1)">--}}
+                      {{--<button class="btn">Voltar</button>--}}
+                  {{--</div>--}}
+              {{--</div>--}}
+      {{--</div>--}}
+      {{--</div>--}}
+</div>

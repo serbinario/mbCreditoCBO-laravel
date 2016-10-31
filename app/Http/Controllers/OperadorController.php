@@ -42,11 +42,21 @@ class OperadorController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * Esta é um metodo criado apenas para fazer testes
+     * Assim que forem finalizados, favor remove-la
      */
     public function novoMenu()
     {
         return view ('novoMenu');
+    }
+
+    /**
+     * Esta é um metodo criado apenas para fazer testes
+     * Assim que forem finalizados, favor remove-la
+     */
+    public function novoCreate()
+    {
+        return view ('operador.novoCreate');
     }
 
     /**
