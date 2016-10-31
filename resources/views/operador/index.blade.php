@@ -1,38 +1,46 @@
 @extends('menu')
 
 @section('content')
+    <section id="content">
     <div class="container">
-        <div id="content">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Basic Example
-                                <small>It's just that simple. Turn your simple table into a sophisticated data table and
-                                    offer your users a nice experience and great features without any effort.
-                                </small>
-                            </h2>
-                        </div>
+        {{--<div class="block-header">--}}
+            {{--<h2>Data Table</h2>--}}
+        {{--</div>--}}
 
-                        <div class="table-responsive">
-                            <table id="grid-operador" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Chave J</th>
-                                    <th>Nome</th>
-                                    <th style="width: 15%">Açao</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Chave J</th>
-                                    <th>Nome</th>
-                                    <th style="width: 15%">Açao</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+        <div class="card material-table">
+            <div class="card-header">
+                <h2>Lista de Operadores
+                    {{--<small>It's just that simple. Turn your simple table into a sophisticated data table and--}}
+                        {{--offer your users a nice experience and great features without any effort.--}}
+                    {{--</small>--}}
+                </h2>
             </div>
+
+            <div class="table-responsive">
+                <table id="grid-operador" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Chave J</th>
+                        <th>Nome</th>
+                        <th>Açao</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Chave J</th>
+                        <th>Nome</th>
+                        <th>Açao</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    </section>
 @stop
 
 @section('javascript')

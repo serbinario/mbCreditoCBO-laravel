@@ -3,7 +3,6 @@
     </div>
 
     <div class="card-body card-padding">
-        <form role="form">
             <div class="form-group fg-line">
                 <label for="exampleInputEmail1">Chave J</label>
                 {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
@@ -16,7 +15,6 @@
             <button type="submit" class="btn btn-primary btn-sm m-t-10">Submit</button>
             <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/operador/index">Voltar</a>
 
-        </form>
     </div>
 </div>
 
