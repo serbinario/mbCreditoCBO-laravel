@@ -2,57 +2,43 @@
 
 @section('content')
     <div class="container">
-        <div class="col m6 s12">
-            <div class="card material-table" style="margin: 20px auto; padding:20px;">
-                {{--<h5 class="box-title">Consultar Agente</h5>--}}
-                <!-- inicio botao -->
-                {{--<div class="row">
-                    <div class="col-md-12">
-                        <div class="col-sm-6 col-md-12 ">
-                            <a href="{{ route('operador.create')}}" class="btn-sm btn-primary pull-right">Novo Cliente</a>
+        <div id="content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Basic Example
+                                <small>It's just that simple. Turn your simple table into a sophisticated data table and
+                                    offer your users a nice experience and great features without any effort.
+                                </small>
+                            </h2>
                         </div>
-                    </div>
-                </div>--}}
-                <!-- fim botao -->
 
-                <div class="table-header">
-                    <span class="table-title">Consultar Agente</span>
-                    <div class="actions">
-                        <a href="{{ route('operador.create')}}" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
-                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <table id="datatable" >
-                            <thead>
-                            <tr>
-                                <th>Chave J</th>
-                                <th>Nome</th>
-                                <th style="width: 15%">Açao</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>Chave J</th>
-                                <th>Nome</th>
-                                <th style="width: 15%" >Açao</th>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table id="grid-operador" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Chave J</th>
+                                    <th>Nome</th>
+                                    <th style="width: 15%">Açao</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>Chave J</th>
+                                    <th>Nome</th>
+                                    <th style="width: 15%">Açao</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
 @stop
 
 @section('javascript')
     <script type="text/javascript">
 
-        var table = $('#datatable').DataTable({
+        var table = $('#grid-operador').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{!! route('operador.grid') !!}",

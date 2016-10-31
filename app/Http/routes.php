@@ -7,9 +7,9 @@
         Route::post('store', ['as' => 'store', 'uses' => 'OperadorController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'OperadorController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'OperadorController@update']);
-        //Protótipo do menu
+        /*Protótipo do menu
         Route::get('novoMenu', ['as' => 'novoMenu', 'uses' => 'OperadorController@novoMenu']);
-        Route::get('novoCreate', ['as' => 'novoCreate', 'uses' => 'OperadorController@novoCreate']);
+        Route::get('novoCreate', ['as' => 'novoCreate', 'uses' => 'OperadorController@novoCreate']);*/
 
     });
 

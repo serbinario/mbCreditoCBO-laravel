@@ -2,11 +2,10 @@
 
 @section('content')
     <div class="container">
-        <section class="content">
+        <section id="content">
             {!! Form::open(['route'=>'operador.store', 'id' => 'formOperador', 'method' => "POST" ]) !!}
             @include('tamplatesForms.tamplateFormOperador')
             {!! Form::close() !!}
         </section>
     </div>
-
 @stop

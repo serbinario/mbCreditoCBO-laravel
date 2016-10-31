@@ -1,28 +1,45 @@
-<div class="col m6 s12">
-    <div class="card-panel">
-      <div class="row">
-          <span class="blue-text text-darken-4"><h5>Cadastro de Agente</h5></span>
-          <div class="divider"></div>
-              <div class="row">
-                  <div class="input-field col s12 m6 l2">
-                      <label for="cod_operadores">Chave J: </label>
-                      {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('placeholder' => 'Chave J')) !!}
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="input-field col s12 m6 l2">
-                      <label for="nome_operadores">Nome: </label>
-                      {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('placeholder' => 'Nome Completo')) !!}
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="input-field col s12 m6 l12">
-                      <button class="btn">Salvar</button>
-                      <a class="btn" href="http://ser.cbo/index.php/operador/index">Voltar</a>
-                      {{--<input class="btn" type="button" value="Voltar" onClick="history.go(-1)">--}}
-                      {{--<button class="btn">Voltar</button>--}}
-                  </div>
-              </div>
-      </div>
-      </div>
+<div class="card">
+    <div class="card-header">
+    </div>
+
+    <div class="card-body card-padding">
+        <form role="form">
+            <div class="form-group fg-line">
+                <label for="exampleInputEmail1">Chave J</label>
+                {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
+            </div>
+            <div class="form-group fg-line">
+                <label for="exampleInputPassword1">Nome</label>
+                {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome Completo')) !!}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10">Submit</button>
+            <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/operador/index">Voltar</a>
+
+        </form>
+    </div>
 </div>
+
+{{--
+<div class="card">
+    <div class="card-header">
+    </div>
+
+    <div class="card-body card-padding">
+        <form role="form">
+            <div class="form-group fg-line">
+                <label for="cod_operadores">Chave J: </label>
+                {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
+            </div>
+            <div class="form-group fg-line">
+                <div class="col-sm-4">
+                    <label for="nome_operadores">Nome: </label>
+                    {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome Completo')) !!}
+                </div>
+            </div>
+
+            <button class="btn">Salvar</button>
+            <a class="btn" href="http://ser.cbo/index.php/operador/index">Voltar</a>
+        </form>
+    </div>
+</div>--}}

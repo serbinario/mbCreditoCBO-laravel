@@ -1,4 +1,4 @@
-@extends('menu')
+@extends('menu_old')
 
 @section('content')
     <div class="container">
