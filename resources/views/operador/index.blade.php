@@ -3,17 +3,20 @@
 @section('content')
     <section id="content">
     <div class="container">
-        {{--<div class="block-header">--}}
-            {{--<h2>Data Table</h2>--}}
-        {{--</div>--}}
-
         <div class="card material-table">
             <div class="card-header">
-                <h2>Lista de Operadores
-                    {{--<small>It's just that simple. Turn your simple table into a sophisticated data table and--}}
-                        {{--offer your users a nice experience and great features without any effort.--}}
-                    {{--</small>--}}
-                </h2>
+                <h2>Listar Operadores</h2>
+
+                <!-- Botão novo -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="text-right">
+                            <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/operador/create">Nova Agente</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botão novo -->
+
             </div>
 
             <div class="table-responsive">

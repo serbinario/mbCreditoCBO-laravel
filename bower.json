@@ -8,6 +8,7 @@
   "license": "MIT",
   "homepage": "",
   "dependencies": {
+    "jquery": "2.2.4",
     "animate.css": "^3.5.2",
     "autosize": "^3.0.17",
     "bootstrap-select": "^1.11.2",
@@ -30,7 +31,6 @@
     "summernote": "^0.8.2",
     "typeahead.js": "^0.11.1",
     "Waves": "fians/Waves#^0.7.5",
-    "jquery": "2.2.4",
     "moment": "^2.15.1",
     "chosen": "^1.6.2",
     "bootstrap": "^3.3.7",

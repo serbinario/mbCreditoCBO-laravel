@@ -9,11 +9,16 @@
 
             <div class="card material-table">
                 <div class="card-header">
-                    <h2>Lista de Operadores
-                        {{--<small>It's just that simple. Turn your simple table into a sophisticated data table and--}}
-                        {{--offer your users a nice experience and great features without any effort.--}}
-                        {{--</small>--}}
-                    </h2>
+                    <h2>Listar Convênios</h2>
+                    <!-- Botão novo -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="text-right">
+                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/convenio/create">Novo Convênio</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botão novo -->
                 </div>
 
                 <div class="table-responsive">

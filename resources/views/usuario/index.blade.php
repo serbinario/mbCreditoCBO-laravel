@@ -1,31 +1,26 @@
 @extends('menu')
 
 @section('content')
+    <section id="content">
+        <div class="container">
+            <div class="card material-table">
+                <div class="card-header">
+                    <h2>Listar Usuários</h2>
 
-    <div class="container">
-        <div class="col m6 s12">
-            <div class="card material-table" style="margin: 20px auto; padding:20px;">
-            {{--<h3 class="box-title">Consultar Agente</h3>--}}
-            {{--<!-- inicio botao -->--}}
-            {{--<div class="row">--}}
-            {{--<div class="col-md-12">--}}
-            {{--<div class="col-sm-6 col-md-12 ">--}}
-            {{--<a href="{{ route('contrato.create')}}" class="btn-sm btn-primary pull-right">Novo Cliente</a>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            <!-- fim botao -->
-
-                <div class="table-header">
-                    <span class="table-title">Consultar Usuário</span>
-                    <div class="actions">
-                        <a href="{{ route('usuario.create')}}" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
-                        <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                    <!-- Botão novo -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="text-right">
+                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/usuario/create">Novo Usuário</a>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Botão novo -->
+
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table id="usuario-grid" class="display table table-bordered" cellspacing="0" width="100%">
+
+                <div class="table-responsive">
+                    <table id="usuario-grid" class="table table-hover">
                             <thead>
                             <tr>
                                 <th>Login</th>
@@ -42,12 +37,12 @@
                                 <th>Açao</th>
                             </tr>
                             </tfoot>
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
+
         </div>
-    </div>
+    </section>
 
 @stop
 

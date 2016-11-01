@@ -95,13 +95,13 @@
                 <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBO</a>
-
                     <ul>
                         <li><a href="{{ route('operador.index') }}">Agentes</a></li>
                     </ul>
                 </li>
+
                 <li class="sub-menu">
-                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>CBG</a>
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBG</a>
 
                     <ul>
                         {{--<li><a href="textual-menu.html">Textual menu</a></li>
@@ -109,20 +109,20 @@
                         <li><a href="top-mainmenu.html">Mainmenu on top</a></li>--}}
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>Callcenter</a>
 
+                <li class="sub-menu">
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-phone"></i>Callcenter</a>
                     <ul>
                         <li><a href="{{ route('contrato.index') }}">Contratos</a></li>
                         <li><a href="{{ route('agencia.index') }}">Agências</a></li>
                         <li><a href="{{ route('convenio.index') }}">Convênios</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>Configurações</a>
 
+                <li class="sub-menu">
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-globe-lock"></i>Configurações</a>
                     <ul>
-                        <li><a href="{{ route('contrato.index') }}">Contratos</a></li>
+                        <li><a href="{{ route('usuario.index') }}">Gerenciamento de Usuários</a></li>
                     </ul>
                 </li>
 
@@ -134,25 +134,36 @@
 
     </section>
 
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="preloader pls-blue">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20" />
+            </svg>
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+
 
     <footer id="footer">
-        Copyright &copy; 2015 Material Admin
+        <strong>Copyright &copy; 2015-2016 SERBINARIO.</strong> Todos os direitos reservados.
 
         <ul class="f-menu">
-            <li><a href="">Home</a></li>
-            <li><a href="">CBO</a></li>
-            <li><a href="">CBG</a></li>
-            <li><a href="">Support</a></li>
-            <li><a href="">Contact</a></li>
+            <li><a href="http://serbinario.com.br/">Início</a></li>
+            <li><a href="http://serbinario.com.br/#sobre">Sobre</a></li>
+            <li><a href="http://serbinario.com.br/#service">Serviços</a></li>
+            <li><a href="http://serbinario.com.br/#produtos">Produtos</a></li>
+            <li><a href="http://serbinario.com.br/#contato">Contato</a></li>
         </ul>
     </footer>
 
     <!-- Javascript Libraries -->
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/lib/Waves/dist/waves.min.js"></script>
-    <script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>
+    {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
     <script src="/lib/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/lib/datatables.net/js/jquery.dataTables.min.js"></script>
 
@@ -161,7 +172,7 @@
         <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
         <!--[endif]-->
 
-        <script type="text/javascript" src={{ asset('/dist/js/app.min.js') }}></script>
+        <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
         @yield('javascript')
 
