@@ -141,6 +141,8 @@
     <script src="/lib/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/lib/datatables.net/js/jquery.dataTables.min.js"></script>
 
+    {{--teste--}}
+
 
 
 
@@ -148,7 +150,7 @@
 
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]-->
-        <script type="text/javascript" src={{ asset('/dist/js/jquery-placeholder/jquery.placeholder.min.js') }}></script>
+        <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
         <!--[endif]-->
 
         <script type="text/javascript" src={{ asset('/dist/js/app.min.js') }}></script>
