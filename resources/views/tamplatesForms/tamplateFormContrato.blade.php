@@ -1,4 +1,3 @@
-{{--{{ dd($model) }}--}}
 <div class="col m6 s12">
     <div class="card-panel">
         <div class="row">
