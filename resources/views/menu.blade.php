@@ -110,6 +110,16 @@
                     </ul>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>CBG</a>
+
+                    <ul>
+                        <li><a href="textual-menu.html">Textual menu</a></li>
+                        <li><a href="image-logo.html">Image logo</a></li>
+                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
+                    </ul>
+                </li>
+
 
             </ul>
         </aside>
@@ -118,6 +128,17 @@
         @yield('content')
 
     </section>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="preloader pls-blue">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20" />
+            </svg>
+
+            <p>Please wait...</p>
+        </div>
+    </div>
 
 
     <footer id="footer">
@@ -133,7 +154,7 @@
     </footer>
 
     <!-- Javascript Libraries -->
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/lib/Waves/dist/waves.min.js"></script>
@@ -153,7 +174,7 @@
         <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
         <!--[endif]-->
 
-        <script type="text/javascript" src={{ asset('/dist/js/app.min.js') }}></script>
+        <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
         @yield('javascript')
 
