@@ -20,7 +20,7 @@
                 </div>
             @endif
 
-            <section class="content">
+            <section id="content">
                 {!! Form::model($model, ['route'=> ['contrato.update', $model->id], 'method' => "POST" ]) !!}
                 @include('tamplatesForms.tamplateFormContrato')
                 {!! Form::close() !!}

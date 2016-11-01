@@ -104,12 +104,27 @@
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>CBG</a>
 
                     <ul>
-                        <li><a href="textual-menu.html">Textual menu</a></li>
+                        {{--<li><a href="textual-menu.html">Textual menu</a></li>
                         <li><a href="image-logo.html">Image logo</a></li>
-                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
+                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>--}}
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>Callcenter</a>
 
+                    <ul>
+                        <li><a href="{{ route('contrato.index') }}">Contratos</a></li>
+                        <li><a href="{{ route('agencia.index') }}">Agências</a></li>
+                        <li><a href="{{ route('convenio.index') }}">Convênios</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-view-compact"></i>Configurações</a>
+
+                    <ul>
+                        <li><a href="{{ route('contrato.index') }}">Contratos</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </aside>
@@ -140,13 +155,6 @@
     <script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="/lib/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/lib/datatables.net/js/jquery.dataTables.min.js"></script>
-
-    {{--teste--}}
-
-
-
-
-
 
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]-->

@@ -20,7 +20,7 @@
                 </div>
             @endif
 
-            <section class="content">
+            <section id="content">
                 {!! Form::model($model, ['route'=> ['usuario.update', $model->id], 'method' => "POST" ]) !!}
                 @include('tamplatesForms.tamplateFormUsuario')
                 {!! Form::close() !!}

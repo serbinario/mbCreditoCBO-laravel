@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <section class="content">
+        <section id="content">
             {!! Form::open(['route'=>'agencia.store', 'id' => 'formOperador', 'method' => "POST" ]) !!}
             @include('tamplatesForms.tamplateFormAgenciaCallCenter')
             {!! Form::close() !!}

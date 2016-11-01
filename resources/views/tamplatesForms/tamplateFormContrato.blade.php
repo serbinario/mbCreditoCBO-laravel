@@ -1,81 +1,90 @@
-<div class="col m6 s12">
-    <div class="card-panel">
-        <div class="row">
-            <div class="row">
-                <div class="input-field col s12 m6 l5">
-                    {!! Form::text('cliente[name]', Session::getOldInput('cliente[name]'), array('placeholder' => 'Nome completo')) !!}
-                    <label for="cliente[name]">Nome: </label>
-                </div>
-                <div class="input-field col s12 m6 l3">
-                    {!! Form::text('cliente[cpf]', Session::getOldInput('clientes[cpf]'), array('placeholder' => 'CPF do cliente')) !!}
-                    <label for="cliente[cpf]">CPF</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    @if(isset($model))
-                    {!! Form::text('cliente[telefone]', $model->cliente->telefone->last()->telefone??"", array('placeholder' => 'Nº telefone')) !!}
-                        @else
-                        {!! Form::text('cliente[telefone]', Session::getOldInput('cliente[telefone]'), array('placeholder' => 'Nº telefone')) !!}
-                    @endif
-                    <label for="cliente[telefone]">Telefone Fixo</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array()) !!}
-                    <label for="cliente[agencia_id]">Agência</label>
-                </div>
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::text('cliente[conta]', Session::getOldInput('cliente[conta]'), array('placeholder' => 'Conta do cliente')) !!}
-                    <label for="cliente[conta]">Conta</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::select('convenio_id', ([$loadFields['conveniocallcenter']->toArray()]), null, array()) !!}
-                    <label>Convênio</label>
-                </div>
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::select('tipo_contrato_id', ([$loadFields['tipocontrato']->toArray()]), null, array()) !!}
-                    <label>Tipos de Créditos</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::text('data_contratado', Session::getOldInput('data_contratado'), array('placeholder' => 'Data da contratação')) !!}
-                    <label for="data_contratado">Data da Contratação</label>
-                </div>
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::text('valor_contratado', Session::getOldInput('valor_contratado'), array('placeholder' => 'Valor do Contrato')) !!}
-                    <label for="valor_contratado">Valor Contratado</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('placeholder' => 'Número do Contrato')) !!}
-                    <label for="codigo_transacao">Nº do Contrato</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::select('prazo', ([$loadFields['contrato']->toArray()]), null, array()) !!}
-                    <label for="prazo">Quantidade de Parcelas</label>
-                </div>
-                <div class="input-field col s12 m6 l2">
-                    {!! Form::text('data_prox_chamada', Session::getOldInput('data_prox_chamada'), array('placeholder' => 'Data')) !!}
-                    <label for="data_prox_chamada">Data próx. Ligação</label>
+<div class="card">
+    <div class="card-header">
+    </div>
+
+    <div class="card-body card-padding">
+        <div class="form-group fg-line">
+            <label for="cliente[name]">Nome </label>
+            {!! Form::text('cliente[name]', Session::getOldInput('cliente[name]'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome completo')) !!}
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="cliente[cpf]">CPF</label>
+            {!! Form::text('cliente[cpf]', Session::getOldInput('clientes[cpf]'), array('class' => 'form-control input-sm', 'placeholder' => 'CPF do cliente')) !!}
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="cliente[telefone]">Telefone Fixo</label>
+            @if(isset($model))
+                {!! Form::text('cliente[telefone]', $model->cliente->telefone->last()->telefone??"", array('class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
+            @else
+                {!! Form::text('cliente[telefone]', Session::getOldInput('cliente[telefone]'), array('class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
+            @endif
+        </div>
+
+        <div class="fg-line">
+            <label for="cliente[agencia_id]">Agência</label>
+            <div class="form-group">
+                <div class="select">
+                   {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array('class'=> 'form-control')) !!}
                 </div>
             </div>
         </div>
-            <!--botão-->
-            <div class="row">
-                <div class="input-field col s12 m6 l12">
-                    <button class="btn">Salvar</button>
-                    <a class="btn" href="http://ser.cbo/index.php/contrato/index">Voltar</a>
+
+        <div class="form-group fg-line">
+            <label for="cliente[conta]">Conta</label>
+            {!! Form::text('cliente[conta]', Session::getOldInput('cliente[conta]'), array('class' => 'form-control input-sm', 'placeholder' => 'Conta do cliente')) !!}
+        </div>
+
+        <div class="fg-line">
+            <label for="cliente[agencia_id]">Convêmio</label>
+            <div class="form-group">
+                <div class="select">
+                    {!! Form::select('convenio_id', ([$loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'form-control')) !!}
                 </div>
             </div>
-            <!--botão-->
         </div>
+
+        <div class="fg-line">
+            <label for="cliente[agencia_id]">Tipos de Créditos</label>
+            <div class="form-group">
+                <div class="select">
+                {!! Form::select('tipo_contrato_id', ([$loadFields['tipocontrato']->toArray()]), null, array('class'=> 'form-control')) !!}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="data_contratado">Data da Contratação</label>
+            {!! Form::text('data_contratado', Session::getOldInput('data_contratado'), array('class' => 'form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="valor_contratado">Valor Contratado</label>
+            {!! Form::text('valor_contratado', Session::getOldInput('valor_contratado'), array('class' => 'form-control input-sm', 'placeholder' => 'Valor do Contrato')) !!}
+        </div>
+        <div class="form-group fg-line">
+            <label for="codigo_transacao">Nº do Contrato</label>
+            {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="cliente[agencia_id]">Quantidade de Parcelas</label>
+            <div class="form-group">
+                <div class="select">
+                {!! Form::select('prazo', ([$loadFields['contrato']->toArray()]), null, array('class'=> 'form-control')) !!}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group fg-line">
+            <label for="data_prox_chamada">Data próx. Ligação</label>
+            {!! Form::text('data_prox_chamada', Session::getOldInput('data_prox_chamada'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
+        </div>
+
+            <!--botão-->
+                    <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
+                    <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/contrato/index">Voltar</a>
+            <!--botão-->
     </div>
 </div>
