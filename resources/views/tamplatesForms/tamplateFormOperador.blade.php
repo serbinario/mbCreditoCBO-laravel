@@ -3,14 +3,26 @@
     </div>
 
     <div class="card-body card-padding">
-            <div class="form-group fg-line">
-                <label for="exampleInputEmail1">Chave J</label>
-                {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
+            <div class="form-group">
+                <div class="fg-line">
+                    <label class="control-label" for="exampleInputEmail1">Chave J</label>
+                    {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
+                </div>
             </div>
-            <div class="form-group fg-line">
-                <label for="exampleInputPassword1">Nome</label>
-                {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome Completo')) !!}
+            <div class="form-group">
+                <div class="fg-line">
+                    <label for="exampleInputPassword1">Nome</label>
+                    {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome Completo')) !!}
+                </div>
             </div>
+
+     {{--       <div class="form-group has-error">
+                <div class="fg-line">
+                    <label for="inputError1" class="control-label">Input with error</label>
+                    <input type="text" value="Nam et eleifend massa. Cum sociis natoque penatibus" id="inputError1" class="form-control">
+                </div>
+                <small class="help-block">This is an error help block</small>
+            </div>--}}
 
             <button type="submit" class="btn btn-primary btn-sm m-t-10">Salvar</button>
             <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/operador/index">Voltar</a>

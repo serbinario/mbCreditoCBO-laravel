@@ -167,6 +167,8 @@
     <script src="/lib/sweetalert2/dist/sweetalert2.min.js"></script>
     <script src="/lib/datatables.net/js/jquery.dataTables.min.js"></script>
 
+    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+
         <!-- Placeholder for IE9 -->
         <!--[if IE 9 ]-->
         <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
