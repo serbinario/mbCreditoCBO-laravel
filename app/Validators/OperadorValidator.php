@@ -10,11 +10,10 @@ class OperadorValidator extends LaravelValidator
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            
-			'id_operadores' =>  '' ,
-			'cod_operadores' =>  '' ,
-			'nome_operadores' =>  '' ,
-			'status_operadores' =>  '' ,
+
+			'cod_operadores' =>  'digits_between:1,8' ,
+			'nome_operadores' =>  'required|max:200', //Adicionar alpha_space
+			'status_operadores' =>  'integer|max:1' ,
 
         ],
         ValidatorInterface::RULE_UPDATE => [],

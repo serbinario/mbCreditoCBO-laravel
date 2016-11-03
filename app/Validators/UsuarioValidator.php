@@ -10,13 +10,13 @@ class UsuarioValidator extends LaravelValidator
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            
-			'id_operadores' =>  '' ,
-			'username' =>  '' ,
-			'password' =>  '' ,
+
+			'username' =>  'required|max:8' ,
+			'password' =>  'required|' ,
 			'salt' =>  '' ,
 			'email' =>  '' ,
-			'active' =>  '' ,
+			'active' =>  'integer|max:1' ,
+            'users.users_has_roles.role_id' => 'required'
 
         ],
         ValidatorInterface::RULE_UPDATE => [],

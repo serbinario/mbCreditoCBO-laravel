@@ -72,13 +72,10 @@ class ContratoService
      * @param array $data
      * @return mixed
      */
-    public function tratamentoTelefone(array $data)
+    public function tratamentoTelefone(array $data, $idCliente)
     {
-        #
-        $cliente = $data['cliente'];
-
-        $telefone = ['telefone' => $cliente->telefone, 'cliente_id' => $data->id];
-        dd($telefone);
+        #criando arrya de telefone - tb_telefones
+        $dados = ['telefone' => $data['telefone']['numero'], 'cliente_id' => $idCliente->id];
 
         #Salvando registro
         $telefone = $this->telefoneRepository->create($dados);
@@ -94,14 +91,14 @@ class ContratoService
      */
     public function store(array $data) : Contrato
     {
-        /*#Retorno
+        #Retorno
         $cliente = $this->tratamentoCliente($data);
-
+        /*
         #Criando vinculo com tablea cliente
         $data['cliente_id'] = $cliente->id;*/
 
         #Salvando registro de tlefone
-        $telefone = $this->tratamentoTelefone($data);
+        $telefone = $this->tratamentoTelefone($data, $cliente);
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data);

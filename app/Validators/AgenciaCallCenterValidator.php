@@ -7,15 +7,21 @@ use \Prettus\Validator\LaravelValidator;
 
 class AgenciaCallCenterValidator extends LaravelValidator
 {
+    protected $attribute =[
+
+    ];
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
             
-			'numero_agencia' =>  '' ,
-			'nome_agencia' =>  '' ,
+			'numero_agencia' =>  'required|numeric' ,
+			'nome_agencia' =>  'required' , //alpha space
 
         ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+            'numero_agencia' =>  'required|numeric' ,
+            'nome_agencia' =>  'required' , //alpha space
+        ],
    ];
 
 }

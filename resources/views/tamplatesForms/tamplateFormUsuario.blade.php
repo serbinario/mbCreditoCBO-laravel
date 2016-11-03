@@ -3,19 +3,25 @@
     </div>
 
     <div class="card-body card-padding">
-        <div class="form-group fg-line">
-            <label for="username">Login: </label>
-            {!! Form::text('username', Session::getOldInput('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
+        <div class="form-group">
+            <div class=" fg-line">
+                <label for="username">Login: </label>
+                {!! Form::text('username', Session::getOldInput('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
+            </div>
         </div>
 
-        <div class="form-group fg-line">
-            <label for="password">Senha: </label>
-            {!! Form::password('password', array('class' => 'form-control input-sm', 'placeholder' => 'Senha')) !!}
+        <div class="form-group">
+            <div class=" fg-line">
+                <label for="password">Senha: </label>
+                {!! Form::password('password', array('class' => 'form-control input-sm', 'placeholder' => 'Senha')) !!}
+            </div>
         </div>
 
-        <div class="form-group fg-line">
-            <label for="email">E-mail: </label>
-            {!! Form::text('email', Session::getOldInput('email'), array('class' => 'form-control input-sm', 'placeholder' => 'E-mail')) !!}
+        <div class="form-group">
+            <div class=" fg-line">
+                <label for="email">E-mail: </label>
+                {!! Form::text('email', Session::getOldInput('email'), array('class' => 'form-control input-sm', 'placeholder' => 'E-mail')) !!}
+            </div>
         </div>
 
         <label>Permissão:</label>
@@ -38,9 +44,9 @@
             </label>
         </div>
 
-        <div class="form-group fg-line">
-            <label for="id_operadores">Operador</label>
-            <div class="form-group">
+        <div class="form-group">
+            <div class="fg-line">
+                <label for="id_operadores">Operador</label>
                 <div class="select">
                     {!! Form::select('id_operadores', ([$loadFields['operador']->toArray()]), null, array('class'=> 'form-control')) !!}
                 </div>
@@ -52,3 +58,14 @@
 
     </div>
 </div>
+
+@section('javascript')
+    {{--Mensagens personalizadas--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/messages_pt_BR.js')  }}"></script>
+    {{--Regras adicionais--}}
+    <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/alphanumeric.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
+    {{--Regras de validação--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/validacao/usuario.js')  }}"></script>
+@endsection
