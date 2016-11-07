@@ -147,15 +147,13 @@
             if (cpfCliente == "") {
                 alert("Por favor, informe um número válido");
             } else {
-
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
                     url: 'http://ser.cbo/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
-                    console.log(json.dados.length);
-
+                    //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
