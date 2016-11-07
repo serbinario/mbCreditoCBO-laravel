@@ -9,6 +9,11 @@
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+    /*
+     *
+     */
+    Route::get('index', ['as' => 'index', 'uses' => 'DefaultController@index']);
+
     Route::group(['prefix' => 'operador', 'as' => 'operador.'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'OperadorController@index']);
         Route::get('grid', ['as' => 'grid', 'uses' => 'OperadorController@grid']);
