@@ -1,72 +1,166 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
 
-    <title>SerAcadêmico - Login</title>
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
 
-    <link href="{{ asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+        <!-- CSS -->
+        <link href="css/app_1.min.css" rel="stylesheet">
+        <link href="css/app_2.min.css" rel="stylesheet">
+    </head>
 
-    <link href="{{ asset('/css/animate.css')}}" rel="stylesheet">
-    <link href="{{ asset('/css/style.css')}}" rel="stylesheet">
-   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--}}
-</head>
-<body class="gray-bg">
-<div class="loginColumns animated fadeInDown">
-    <div class="row">
-        <div class="col-sm-4 col-md-6">
-
-            <h2 class="text-center">Bem Vindo ao <b class="text-success">SerAcadêmico</b></h2>
-
-            <p class="text-center">
-                Faça login para ter acesso. Caso não esteja cadastrado, increva-se.
-            </p>
-
-        </div>
-        <div class="col-sm-8 col-md-6">
-            <div class="ibox-content">
-                <p>
-                    <img src="{{ asset('/img/seracad.png')}}" style="width: 50%;margin-left: 25%;"/>
-                </p>
-                {!! Form::open(['url'=>'auth/login', 'method' => "POST"]) !!}
-                {!! csrf_field() !!}
-                <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="Usuário">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Senha">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Logar</button>
-
-                @if(Session::has('message'))
-                    <div class="alert alert-danger">
-                        @lang('messages.login_and_password_invalids')<br>
+    <body>
+        <div class="login-content">
+            <!-- Login -->
+            <div class="lc-block toggled" id="l-login">
+                <div class="lcb-form">
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                        <div class="fg-line">
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
                     </div>
 
-                @endif
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                        <div class="fg-line">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                    </div>
 
-               {{-- <p class="text-muted text-center">
-                    <small><a href="#">Esqueceu a senha?</a></small>
-                </p>
-                <p class="text-muted text-center">
-                    <small>Não tem uma conta?</small>
-                </p>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">Criar uma conta</a>--}}
-                {!! Form::close() !!}
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            <i class="input-helper"></i>
+                            Keep me signed in
+                        </label>
+                    </div>
+
+                    <a href="" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+                </div>
+
+                <div class="lcb-navigation">
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
+                </div>
+            </div>
+
+            <!-- Register -->
+            <div class="lc-block" id="l-register">
+                <div class="lcb-form">
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                        <div class="fg-line">
+                            <input type="text" class="form-control" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                        <div class="fg-line">
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                        <div class="fg-line">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <a href="" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-check"></i></a>
+                </div>
+
+                <div class="lcb-navigation">
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-login"><i class="zmdi zmdi-long-arrow-right"></i> <span>Sign in</span></a>
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
+                </div>
+            </div>
+
+            <!-- Forgot Password -->
+            <div class="lc-block" id="l-forget-password">
+                <div class="lcb-form">
+                    <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
+
+                    <div class="input-group m-b-20">
+                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                        <div class="fg-line">
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <a href="" class="btn btn-login btn-success btn-float"><i class="zmdi zmdi-check"></i></a>
+                </div>
+
+                <div class="lcb-navigation">
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-login"><i class="zmdi zmdi-long-arrow-right"></i> <span>Sign in</span></a>
+                    <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
+                </div>
             </div>
         </div>
-    </div>
-    <hr/>
-    <div class="row">
-        <div class="col-md-6">
 
-        </div>
-        <div class="col-md-6 text-right">
-            <img src="{{ asset('/img/s1.png')}}" style="width: 20%;"/>
-        </div>
-    </div>
-<script src="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')}}" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/app.min.js"></script>
+    </body>
 </html>

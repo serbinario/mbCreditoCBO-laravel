@@ -1,7 +1,7 @@
 // Regras de validação
 $(document).ready(function () {
 
-    $("#formContrato").validate({
+    /*$("#formContrato").validate({
         rules: {
             'cliente[name]': {
                 required: true,
@@ -53,6 +53,10 @@ $(document).ready(function () {
             data_prox_chamada: {
                 date: true
             },
+            matricula: {
+                maxlength: 15,
+                number: true
+            }
         },
         //For custom messages
         messages: {
@@ -76,5 +80,5 @@ $(document).ready(function () {
             $(element).parent().parent().removeClass("has-error");
 
         }
-    });
+    });*/
 });

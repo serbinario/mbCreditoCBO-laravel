@@ -163,4 +163,31 @@ class ContratoController extends Controller
         }
     }
 
+    /**
+     * @param $clienteCpf
+     * @return mixed
+     */
+    public function searchCliente($cpfCliente)
+    {
+        try{
+            #Consultado
+            $cliente = \DB::table('telefones')
+                ->join ('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+                ->select([
+                    'clientes.id',
+                    'clientes.name',
+                    'clientes.cpf',
+                    'clientes.conta',
+                    'telefones.telefone as numero'
+                ])
+                ->where('clientes.cpf', $cpfCliente)
+                ->get();
+
+        #retorno para view
+        return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $cliente]);
+    } catch (\Throwable $e) {
+return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+}
+    }
+
 }

@@ -24,6 +24,7 @@ class Contrato extends Model implements Transformable
 		'status_chamada',
 		'codigo_transacao',
 		'data_prox_chamada',
+        'matricula'
 	];
 
     /**

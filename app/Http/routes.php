@@ -1,5 +1,14 @@
 <?php
 
+    // Rotas de autenticação
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+    // Rotas para novos usuarios
+    Route::get('auth/register', 'Auth\AuthController@getRegister');
+    Route::post('auth/register', 'Auth\AuthController@postRegister');
+
     Route::group(['prefix' => 'operador', 'as' => 'operador.'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'OperadorController@index']);
         Route::get('grid', ['as' => 'grid', 'uses' => 'OperadorController@grid']);
@@ -16,6 +25,9 @@
         Route::post('store', ['as' => 'store', 'uses' => 'ContratoController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ContratoController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ContratoController@update']);
+        //Busca de cliente por CPF
+        Route::get('searchCliente/{clienteCpf}', ['as' => 'searchCliente', 'uses' => 'ContratoController@searchCliente']);
+
     });
 
     Route::group(['prefix' => 'agencia', 'as' => 'agencia.'], function () {

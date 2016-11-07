@@ -77,7 +77,7 @@ class ContratoService
         #criando arrya de telefone - tb_telefones
         $dados = ['telefone' => $data['telefone']['numero'], 'cliente_id' => $idCliente->id];
 
-        #Salvando registro
+        #Salvando registro e vinculando ao cliente
         $telefone = $this->telefoneRepository->create($dados);
 
         #Retorno
@@ -93,9 +93,6 @@ class ContratoService
     {
         #Retorno
         $cliente = $this->tratamentoCliente($data);
-        /*
-        #Criando vinculo com tablea cliente
-        $data['cliente_id'] = $cliente->id;*/
 
         #Salvando registro de tlefone
         $telefone = $this->tratamentoTelefone($data, $cliente);
