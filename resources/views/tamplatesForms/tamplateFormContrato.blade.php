@@ -19,6 +19,8 @@
             <h4>Consultar cliente por CPF:</h4>
         </div>
 
+
+
         <div class="row">
                 <div class="form-group col-sm-4">
                     <div class=" fg-line">
@@ -66,15 +68,7 @@
                 <div class=" fg-line">
                     <label for="cliente[agencia_id]">Agência</label>
                     <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array('class'=> 'form-control')) !!}
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-sm-4">
-                <div class="fg-line">
-                    <label for="cliente[agencia_id]">Agência</label>
-                    <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array('class'=> 'form-control')) !!}
+                        {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -89,7 +83,7 @@
                 <div class=" fg-line">
                     <label for="convenio_id">Convêmio</label>
                     <div class="select">
-                        {!! Form::select('convenio_id', ([$loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'form-control')) !!}
+                        {!! Form::select('convenio_id', ([$loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -97,7 +91,7 @@
                 <div class="fg-line">
                     <label for="tipo_contrato_id">Tipos de Créditos</label>
                     <div class="select">
-                        {!! Form::select('tipo_contrato_id', ([$loadFields['tipocontrato']->toArray()]), null, array('class'=> 'form-control')) !!}
+                        {!! Form::select('tipo_contrato_id', ([$loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -135,13 +129,12 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="prazo">Quantidade de Parcelas</label>
-                    <div class="form-group">
-                        <div class="select">
-                            {!! Form::select('prazo', ([$loadFields['contrato']->toArray()]), null, array('class'=> 'form-control')) !!}
-                        </div>
+                    <div class="select">
+                        {!! Form::select('prazo', ([$loadFields['contrato']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="form-group">
