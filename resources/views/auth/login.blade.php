@@ -19,19 +19,19 @@
     <!-- Login -->
     <div class="lc-block toggled" id="l-login">
 
-        {!! Form::open(['url'=>'auth/login', 'method' => "POST" ]) !!}
+        {!! Form::open(['route'=>'auth.postLogin', 'method' => "POST" ]) !!}
             {!! csrf_field() !!}
 
             <div class="lcb-form">
                 <div class="form-group">
                     <div class="fg-line">
-                        <input type="text" class="form-control" placeholder="Login">
+                        {!! Form::text('username', old('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Login')) !!}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="fg-line">
-                        <input type="password" class="form-control" placeholder="Senha">
+                        {!! Form::password('password', array('class' => 'form-control input-sm', 'placeholder' => 'Senha')) !!}
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                     </label>
                 </div>
 
-                <a href="" class="btn btn-login btn-success"><i class="zmdi zmdi-arrow-forward"></i></a>
+                <button type="submit">Logar</button>
             </div>
 
         {!! Form::close() !!}

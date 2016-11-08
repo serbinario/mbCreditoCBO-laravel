@@ -6,7 +6,7 @@
         <div class="form-group">
             <div class=" fg-line">
                 <label for="username">Login: </label>
-                {!! Form::text('username', Session::getOldInput('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
+                {!! Form::text('username', old('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
             </div>
         </div>
 
@@ -20,7 +20,7 @@
         <div class="form-group">
             <div class=" fg-line">
                 <label for="email">E-mail: </label>
-                {!! Form::text('email', Session::getOldInput('email'), array('class' => 'form-control input-sm', 'placeholder' => 'E-mail')) !!}
+                {!! Form::text('email', old('email'), array('class' => 'form-control input-sm', 'placeholder' => 'E-mail')) !!}
             </div>
         </div>
 

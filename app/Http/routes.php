@@ -1,17 +1,19 @@
 <?php
 
     // Rotas de autenticação
-    Route::get('auth/login', 'Auth\AuthController@getLogin');
-    Route::post('auth/login', 'Auth\AuthController@postLogin');
-    Route::get('auth/logout', 'Auth\AuthController@getLogout');
+    Route::get('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@getLogin']);
+    Route::post('auth/login', ['as' => 'auth.postLogin', 'uses' => 'Auth\AuthController@postLogin']);
+    Route::get('auth/logout', ['as' => 'auth.getLogout', 'uses' => 'Auth\AuthController@getLogout']);
 
     // Rotas para novos usuarios
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-    /*
-     *
-     */
+/**
+ *
+ */
+Route::group(['middleware' => 'auth'], function () {
+
     Route::get('index', ['as' => 'index', 'uses' => 'DefaultController@index']);
 
     Route::group(['prefix' => 'operador', 'as' => 'operador.'], function () {
@@ -61,6 +63,8 @@
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UsuarioController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'UsuarioController@update']);
     });
+
+});
 
     //Rotas API restfull
     Route::group(['middleware' => ['oauth', 'cors'], 'prefix' => 'api/v1', 'as' => 'api.v1.'], function () {

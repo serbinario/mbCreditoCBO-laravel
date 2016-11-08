@@ -29,7 +29,7 @@ class AuthController extends Controller
      * Atributo que armazena o caminho de redirecionamento
      * quando o usuário tiver sucesso ao se autenticar
      */
-    protected $redirectPath = '/mbCreditoCBO/index';
+    protected $redirectPath = '/index';
 
     /**
      * @var string
@@ -38,6 +38,11 @@ class AuthController extends Controller
      * quando o usuário "deslogar"
      */
     protected $redirectAfterLogout = '/auth/login';
+
+    /**
+     * @var string
+     */
+    protected $username = 'username';
 
     /**
      * Create a new authentication controller instance.
@@ -58,7 +63,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
@@ -73,9 +78,13 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'username' => $data['username'],
+//            'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            //'id_operadores' => $data['id_operadores']
+            /*'opcaoOperador' => $data['permissao'],
+            'opcaoAdmin' => $data['permissao'],
+            'opcaoGerente' => $data['permissao']*/
         ]);
     }
 }
