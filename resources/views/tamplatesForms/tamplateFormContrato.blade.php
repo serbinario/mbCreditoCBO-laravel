@@ -72,7 +72,15 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-group col-sm-4">
+                <div class=" fg-line">
+                    <label for="cliente[conta]">Conta</label>
+                        {!! Form::text('cliente[conta]', Session::getOldInput('cliente[conta]'), array('id' => 'clienteConta', 'class' => 'form-control input-sm', 'placeholder' => 'Conta do cliente')) !!}
+                </div>
+            </div>
         </div>
+        
 
         <div class="topo-conteudo-full">
             <h4>Dados do Contrato</h4>
