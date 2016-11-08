@@ -17,6 +17,16 @@
         <link type="text/css" rel="stylesheet" href="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
 
+        {{--<link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">--}}
+        {{--<link href="/lib/nouislider/distribute/nouislider.min.css" rel="stylesheet">--}}
+        {{--<link href="/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--}}
+        {{--<link href="/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet">--}}
+        {{--<link href="/lib/farbtastic/farbtastic.css" rel="stylesheet">--}}
+        <link href="/lib/chosen/chosen.css" rel="stylesheet">
+        <link href="/lib/summernote/dist/summernote.css" rel="stylesheet">
+
+
+
 
         <link type="text/css" rel="stylesheet" href="/dist/css/app_1.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="/dist/css/app_2.min.css"  media="screen,projection"/>
@@ -173,6 +183,8 @@
         <!--[if IE 9 ]-->
         <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
         <!--[endif]-->
+
+        <script src="/lib/chosen/chosen.jquery.js"></script>
 
         <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
