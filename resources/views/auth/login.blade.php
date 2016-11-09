@@ -39,7 +39,7 @@
                     <label>
                         <input type="checkbox" value="">
                         <i class="input-helper"></i>
-                        Keep me signed in
+                        Manter-me conectado
                     </label>
                 </div>
 
@@ -49,8 +49,8 @@
         {!! Form::close() !!}
 
         <div class="lcb-navigation">
-            <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
-            <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
+            <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Cadastre-se</span></a>
+            <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Esquecei a senha</span></a>
         </div>
     </div>
 

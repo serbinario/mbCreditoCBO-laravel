@@ -17,7 +17,7 @@ class ContratoValidator extends LaravelValidator
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
 
-            'cliente.name' => 'required|max:200', //alpha space
+            /*'cliente.name' => 'required|max:200', //alpha space
             'cliente.cpf' => 'required|numeric|max:15',
             'cliente.telefone' => 'required|max:11',
             'cliente.agencia' => 'integer',
@@ -29,7 +29,7 @@ class ContratoValidator extends LaravelValidator
 			'data_contratado' =>  'serbinario_date_format:"d/m/Y"' ,
 			'status_chamada' =>  'integer|max:1' ,
 			'codigo_transacao' =>  'required|integer' ,
-			'data_prox_chamada' =>  'serbinario_date_format:"d/m/Y"' ,
+			'data_prox_chamada' =>  'serbinario_date_format:"d/m/Y"' ,*/
 
         ],
         ValidatorInterface::RULE_UPDATE => [],

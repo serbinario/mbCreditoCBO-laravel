@@ -57,6 +57,9 @@ class UsuarioService
         #Encripitando a senha
         $data['password'] = \bcrypt($data['password']);
 
+        #
+        $data['active'] = 1;
+
         #Salvando registro
         $usuario = $this->repository->create($data);
 

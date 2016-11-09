@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-right">
-                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/contrato/create">Novo Contrato</a>
+                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/contrato/create">Novo Cliente</a>
                             </div>
                         </div>
                     </div>
@@ -25,6 +25,7 @@
                     <table id="contrato-grid" class="table table-hover">
                         <thead>
                         <tr>
+                            <th>Detalhe</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -35,6 +36,7 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>Detalhe</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -54,12 +56,17 @@
 
 @section('javascript')
     <script type="text/javascript">
-        console.log('teste');
         var table = $('#contrato-grid').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{!! route('contrato.grid') !!}",
             columns: [
+                {
+                    "className":      'details-control',
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ''
+                },
                 {data: 'name', name: 'clientes.name'},
                 {data: 'cpf', name: 'clientes.cpf'},
                 {data: 'numero_agencia', name: 'agencias_callcenter.numero_agencia'},
@@ -82,5 +89,43 @@
                 '</select></div>'
             },
         });
+
+        var detailRows = [];
+
+        // evento para criação dos detalhes da grid
+        $('#contrato-grid').on( 'click', 'tr td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+            var idx = $.inArray( tr.attr('id'), detailRows );
+
+            if ( row.child.isShown() ) {
+                tr.removeClass( 'details' );
+                row.child.hide();
+
+                // Remove from the 'open' array
+                detailRows.splice( idx, 1 );
+            }
+            else {
+                tr.addClass( 'details' );
+                row.child( formatCursadas( row.data() ) ).show();
+
+                // Add to the 'open' array
+                if ( idx === -1 ) {
+                    detailRows.push( tr.attr('id') );
+                }
+            }
+        } );
+
+        // On each draw, loop over the `detailRows` array and show any child rows
+        table.on( 'draw', function () {
+            $.each( detailRows, function ( i, id ) {
+                $('#'+id+' td.details-control').trigger( 'click' );
+            } );
+        } );
+
+        function formatDetail(d) {
+
+        }
+
     </script>
 @stop

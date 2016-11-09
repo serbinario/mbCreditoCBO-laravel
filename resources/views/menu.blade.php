@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Material Admin</title>
+        <title>MB Crédito - CBO</title>
 
         {{--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
 
@@ -44,7 +44,7 @@
             </li>
 
             <li class="hi-logo hidden-xs">
-                <a href="index.html">Material Admin</a>
+                <a href="index.html">MB Crédito - CBO</a>
             </li>
 
             <li class="pull-right">
@@ -76,10 +76,12 @@
                 <a href="" data-ma-action="profile-menu-toggle">
                     <div class="sp-pic">
                         <img src="/dist/img/demo/profile-pics/1.jpg" alt="">
+                        {{--{{dd(Auth::user())}}--}}
+                        {{Auth::user()->operador()->get()->first()->nome_operadores}}
                     </div>
 
                     <div class="sp-info">
-                        Malinda Hollaway
+                        Parâmetros de Usuário
 
                         <i class="zmdi zmdi-caret-down"></i>
                     </div>
@@ -87,16 +89,16 @@
 
                 <ul class="main-menu">
                     <li>
-                        <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        <a href="profile-about.html"><i class="zmdi zmdi-account"></i>Perfil</a>
                     </li>
-                    <li>
+                    {{--<li>
                         <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                    </li>--}}
+                    <li>
+                        <a href=""><i class="zmdi zmdi-settings"></i>Alterar Senha</a>
                     </li>
                     <li>
-                        <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
-                    </li>
-                    <li>
-                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        <a href="http://ser.cbo/index.php/auth/logout"><i class="zmdi zmdi-time-restore"></i>Sair</a>
                     </li>
                 </ul>
             </div>
@@ -187,6 +189,8 @@
         <script src="/lib/chosen/chosen.jquery.js"></script>
 
         <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
+
+        <script> jQuery(".chosen").chosen(); </script>
 
         @yield('javascript')
 
