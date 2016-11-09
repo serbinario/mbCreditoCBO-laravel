@@ -42,14 +42,27 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function permissions()
     {
         return $this->belongsToMany(Permission ::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function operador()
+    {
+        return $this->belongsTo(Operador::class, 'id_operadores');
     }
 }

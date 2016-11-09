@@ -63,7 +63,7 @@ class ContratoService
 
         #Salvando registro
         $cliente = $this->clienteRepository->create($dados);
-
+dd($cliente);
         #Retorno
         return $cliente;
     }

@@ -170,4 +170,16 @@ class UsuarioController extends Controller
         }
     }
 
+    public function dadosUsuario()
+    {
+        $usuario = \DB::table('operadores')
+            ->join   ('users', 'users.id', '=', 'users.id_operadores')
+            ->select (
+                'operadores.id',
+                'operadores.nome_operadores'
+            );
+
+        return view('menu', compact('usuario'));
+    }
+
 }

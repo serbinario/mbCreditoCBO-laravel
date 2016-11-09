@@ -65,10 +65,10 @@
 
         <div class="row">
             <div class="form-group col-sm-4">
-                <div class=" fg-line">
+                <div class="fg-line">
                     <label for="cliente[agencia_id]">Agência</label>
                     <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([$loadFields['agenciacallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia', 'class' => 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class=" fg-line">
                     <label for="convenio_id">Convêmio</label>
                     <div class="select">
-                        {!! Form::select('convenio_id', ([$loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('convenio_id', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="fg-line">
                     <label for="tipo_contrato_id">Tipos de Créditos</label>
                     <div class="select">
-                        {!! Form::select('tipo_contrato_id', ([$loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('tipo_contrato_id', ([["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="data_contratado">Data da Contratação</label>
-                        {!! Form::text('data_contratado', Session::getOldInput('data_contratado'), array('class' => 'form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
+                        {!! Form::text('data_contratado', Session::getOldInput('data_contratado'), array('class' => 'datepicker form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 <div class="fg-line">
                     <label for="prazo">Quantidade de Parcelas</label>
                     <div class="select">
-                        {!! Form::select('prazo', ([$loadFields['contrato']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('prazo', ([["" => "Número de parcelas"] + $loadFields['contrato']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     {{--Regras de validação--}}
-    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
 
     <script type="text/javascript">
 
@@ -185,19 +185,27 @@
                     url: 'http://ser.cbo/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
+                    console.log(json.dados);
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
+
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
 
+                        /*$('#clienteAgencia option').attr('selected', false);*/
+                        $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);
+//                        $('#clienteAgencia').chosen().select(11);
+
+
                         //Desabilitando os input
-                        $('#clienteNome').prop('disabled', true);
+                        $('#clienteNome').attr('readonly', true);
                         $('#clienteCpf').prop('disabled', true);
                         $('#clienteConta').prop('disabled', true);
-                        $('#clienteTelefone').prop('disabled', true);
+                        $('#clienteTelefone').attr('readonly', true);
+                        $('#clienteAgencia').prop('disabled', true);
 
                     } else {
                         //Apagando dados do input
@@ -205,6 +213,7 @@
                         $('#clienteCpf').val("");
                         $('#clienteConta').val("");
                         $('#clienteTelefone').val("");
+                        $('#clienteAgencia').val("");
                     }
                 })
             }

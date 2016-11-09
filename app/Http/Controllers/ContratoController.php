@@ -173,21 +173,24 @@ class ContratoController extends Controller
             #Consultado
             $cliente = \DB::table('telefones')
                 ->join ('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+                ->join ('agencias_callcenter as agencia', 'agencia.id', '=', 'clientes.agencia_id')
                 ->select([
-                    'clientes.id',
+                    'clientes.id as idCliente',
                     'clientes.name',
                     'clientes.cpf',
                     'clientes.conta',
+                    'agencia.numero_agencia',
+                    'agencia.id',
                     'telefones.telefone as numero'
                 ])
                 ->where('clientes.cpf', $cpfCliente)
                 ->get();
 
-        #retorno para view
-        return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $cliente]);
-    } catch (\Throwable $e) {
-return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
-}
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $cliente]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
     }
 
 }
