@@ -18,9 +18,6 @@
         <div class="topo-conteudo-full">
             <h4>Consultar cliente por CPF:</h4>
         </div>
-
-
-
         <div class="row">
                 <div class="form-group col-sm-4">
                     <div class=" fg-line">
@@ -30,7 +27,6 @@
                 </div>
             <div class="col-sm-4 m-t-15">
                 <a class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</a>
-
             </div>
         </div>
         <div class="topo-conteudo-full">
@@ -68,7 +64,7 @@
                 <div class="fg-line">
                     <label for="cliente[agencia_id]">Agência</label>
                     <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia', 'class' => 'chosen')) !!}
+                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia')) !!} {{--, 'class'=> 'chosen'--}}
                     </div>
                 </div>
             </div>
@@ -185,7 +181,7 @@
                     url: 'http://ser.cbo/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
-                    console.log(json.dados);
+
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
 
@@ -199,13 +195,12 @@
                         $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);
 //                        $('#clienteAgencia').chosen().select(11);
 
-
                         //Desabilitando os input
                         $('#clienteNome').attr('readonly', true);
-                        $('#clienteCpf').prop('disabled', true);
-                        $('#clienteConta').prop('disabled', true);
+                        $('#clienteCpf').attr('readonly', true);
+                        $('#clienteConta').attr('readonly', true);
                         $('#clienteTelefone').attr('readonly', true);
-                        $('#clienteAgencia').prop('disabled', true);
+                        $('#clienteAgencia').attr('readonly', true);
 
                     } else {
                         //Apagando dados do input

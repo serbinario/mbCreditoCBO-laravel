@@ -3,9 +3,6 @@
 @section('content')
     <section id="content">
         <div class="container">
-            {{--<div class="block-header">--}}
-            {{--<h2>Data Table</h2>--}}
-            {{--</div>--}}
 
             <div class="card material-table">
                 <div class="card-header">
@@ -14,7 +11,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-right">
-                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/contrato/create">Novo Cliente</a>
+                                <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/contrato/create">Novo Cliente</a>
                             </div>
                         </div>
                     </div>
@@ -25,7 +22,7 @@
                     <table id="contrato-grid" class="table table-hover">
                         <thead>
                         <tr>
-                            <th>Detalhe</th>
+                            {{--<th>Detalhe</th>--}}
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -36,7 +33,7 @@
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>Detalhe</th>
+                            {{--<th>Detalhe</th>--}}
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -61,20 +58,20 @@
             serverSide: true,
             ajax: "{!! route('contrato.grid') !!}",
             columns: [
-                {
+                /*{
                     "className":      'details-control',
                     "orderable":      false,
                     "data":           null,
                     "defaultContent": ''
-                },
+                },*/
                 {data: 'name', name: 'clientes.name'},
                 {data: 'cpf', name: 'clientes.cpf'},
-                {data: 'numero_agencia', name: 'agencias_callcenter.numero_agencia'},
+                {data: 'numero_agencia', name: 'agencias.numero_agencia'},
                 {data: 'conta', name: 'clientes.conta'},
                 {data: 'telefone', name: 'telefones.telefone'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
-            ],
-            "oLanguage": {
+            ]
+            /*"oLanguage": {
                 "sStripClasses": "",
                 "sSearch": "",
                 "sSearchPlaceholder": "Enter Keywords Here",
@@ -87,10 +84,10 @@
                 '<option value="50">50</option>' +
                 '<option value="-1">All</option>' +
                 '</select></div>'
-            },
+            },*/
         });
 
-        var detailRows = [];
+        /*var detailRows = [];
 
         // evento para criação dos detalhes da grid
         $('#contrato-grid').on( 'click', 'tr td.details-control', function () {
@@ -114,7 +111,7 @@
                     detailRows.push( tr.attr('id') );
                 }
             }
-        } );
+        });
 
         // On each draw, loop over the `detailRows` array and show any child rows
         table.on( 'draw', function () {
@@ -125,7 +122,7 @@
 
         function formatDetail(d) {
 
-        }
+        }*/
 
     </script>
 @stop

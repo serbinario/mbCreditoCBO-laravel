@@ -63,7 +63,7 @@ class ContratoService
 
         #Salvando registro
         $cliente = $this->clienteRepository->create($dados);
-dd($cliente);
+
         #Retorno
         return $cliente;
     }
@@ -96,6 +96,9 @@ dd($cliente);
 
         #Salvando registro de tlefone
         $telefone = $this->tratamentoTelefone($data, $cliente);
+
+        #Criando vinculo
+        $data['cliente_id'] = $cliente->id;
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data);

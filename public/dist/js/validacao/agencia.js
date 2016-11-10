@@ -4,17 +4,16 @@ $(document).ready(function () {
     $("#formAgencia").validate({
         rules: {
             numero_agencia: {
-                number: true,
+                maxlength: 6,
+                bankBr: true,
                 required: true
-            }
-        },
-        rules: {
+            },
             nome_agencia: {
                 alphaSpace: true,
                 required: true
             }
         },
-        //For custom messages
+        //Para mensagens personalizadas
         /*messages: {
             nome_operadores:{
                 required: "Enter a username",

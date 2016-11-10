@@ -59,16 +59,16 @@ class ContratoController extends Controller
         #Criando a consulta
         $rows = \DB::table('chamadas')
             ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
-            ->join('agencias_callcenter', 'agencias_callcenter.id', '=', 'clientes.agencia_id')
-            ->join('telefones', 'telefones.id', '=', 'clientes.id')
+            ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
+            ->leftJoin('telefones', 'telefones.cliente_id', '=', 'clientes.id')
             ->select
             ([
                 'chamadas.id',
                 'clientes.name',
                 'clientes.cpf',
-                'agencias_callcenter.numero_agencia',
+                'agencias.numero_agencia',
                 'clientes.conta',
-                'telefones.telefone',
+                'telefones.telefone'
             ]);
 
         #Editando a grid

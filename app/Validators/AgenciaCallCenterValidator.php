@@ -14,13 +14,13 @@ class AgenciaCallCenterValidator extends LaravelValidator
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
             
-			'numero_agencia' =>  'required|numeric' ,
-			'nome_agencia' =>  'required' , //alpha space
+//			'numero_agencia' =>  'required|numeric' ,
+//			'nome_agencia' =>  'required' , //alpha space
 
         ],
         ValidatorInterface::RULE_UPDATE => [
-            'numero_agencia' =>  'required|numeric' ,
-            'nome_agencia' =>  'required' , //alpha space
+            /*'numero_agencia' =>  'required|numeric' ,
+            'nome_agencia' =>  'required' , //alpha space*/
         ],
    ];
 
