@@ -13,10 +13,10 @@ $(document).ready(function () {
                 number: true,
                 maxlength: 15
             },
-            'cliente[telefone]': {
+            telefones: {
                 required: true,
                 number: true,
-                maxlength: 11
+                maxlength: 12
             },
             'cliente[agencia_id]': {
                 required: true,
@@ -24,7 +24,7 @@ $(document).ready(function () {
             },
             'cliente[conta]': {
                 required: true,
-                number: true,
+                bankBr: true,
                 maxlength: 6
             },
             convenio_id: {
@@ -36,8 +36,7 @@ $(document).ready(function () {
                 integer: true
             },
             data_contratado: {
-                date: true,
-                minlength:true
+                date: true
             },
             valor_contratado: {
                 required: true,
@@ -59,12 +58,12 @@ $(document).ready(function () {
             }
         },
         //For custom messages
-        messages: {
+        /*messages: {
             nome_operadores:{
                 required: "Enter a username",
                 minlength: "Enter at least 5 characters"
             }
-        },
+        },*/
         //Define qual elemento será adicionado
         errorElement : 'small',
         errorPlacement: function(error, element) {

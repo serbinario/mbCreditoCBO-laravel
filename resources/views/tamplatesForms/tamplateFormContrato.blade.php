@@ -141,7 +141,6 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="form-group col-sm-3">
                 <div class=" fg-line">
@@ -158,7 +157,7 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="matricula">Matrícula</label>
-                    {!! Form::text('matricula', Session::getOldInput('matricula'), array('class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+                    {!! Form::text('matricula', Session::getOldInput('matricula'), array('class' => 'form-control input-sm', 'placeholder' => 'Número de Matrícula')) !!}
                 </div>
             </div>
 
@@ -192,9 +191,10 @@
     {{--Regras adicionais--}}
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/alphanumeric.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     {{--Regras de validação--}}
-    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
 
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
@@ -234,9 +234,8 @@
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
 
-                        /*$('#clienteAgencia option').attr('selected', false);*/
+                        //Preenchendo o select de agência
                         $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);
-//                        $('#clienteAgencia').chosen().select(11);
 
                         //Desabilitando os input
                         $('#clienteNome').attr('readonly', true);

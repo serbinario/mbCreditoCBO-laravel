@@ -36,8 +36,9 @@
     {{--Regras adicionais--}}
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/alphanumeric.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/chaveJ.js')  }}"></script>
     {{--Regras de validação--}}
-    <script type="text/javascript" src="{{ asset('/dist/js/validacao/operador.js')  }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/operador.js')  }}"></script>--}}
 @endsection
 
 
