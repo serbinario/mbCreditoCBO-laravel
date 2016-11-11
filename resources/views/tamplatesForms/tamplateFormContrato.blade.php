@@ -137,7 +137,7 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="codigo_transacao">Nº do Contrato</label>
-                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('id' => 'condigoTransacao', 'class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
                 </div>
             </div>
             <div class="form-group col-sm-3">
@@ -155,7 +155,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="form-group">
@@ -230,6 +229,23 @@
                 })
             }
         });
+
+        //Verificando se o número de contrato que foi preenchido já existe no banco
+        /*$(document).on('focusout', "#condigoTransacao", function () {
+            //Recuperando valor preenchido no campo
+            var numeroContrato = $('#condigoTransacao').val();
+
+            jQuery.ajax({
+                type: 'GET',
+                url: 'http://ser.cbo/index.php/contrato/searchContrato/' + numeroContrato,
+                datatype: 'json'
+            }).done(function (json) {
+
+                if(json.dados.length > 0){
+                    alert("O número de contrato preenchido já existe");
+                }
+            })
+        });*/
 
     </script>
 

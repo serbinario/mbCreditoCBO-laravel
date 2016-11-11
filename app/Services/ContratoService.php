@@ -25,6 +25,7 @@ class ContratoService
         $this->repository = $repository;
         $this->clienteRepository = $clienteRepository;
         $this->telefoneRepository = $telefoneRepository;
+        $this->contratoRepository = $telefoneRepository;
 
     }
 
@@ -84,6 +85,17 @@ class ContratoService
         return $telefone;
     }
 
+    public function numeroContrato($data)
+    {
+        #
+        $numeroContrato = $data['codigo_transacao'];
+
+        #
+        $contrato = $this->contratoRepository->findWhere('codigo_transacao');
+
+
+    }
+
     /**
      * @param array $data
      * @return Contrato
@@ -94,7 +106,7 @@ class ContratoService
         #Retorno
         $cliente = $this->tratamentoCliente($data);
 
-        #Salvando registro de tlefone
+        #Salvando registro de telefone
         $telefone = $this->tratamentoTelefone($data, $cliente);
 
         #Criando vinculo
