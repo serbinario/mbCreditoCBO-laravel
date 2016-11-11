@@ -70,7 +70,14 @@ class ContratoController extends Controller
         $rows = \DB::table('chamadas')
             ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
             ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
-            ->leftJoin('telefones', 'telefones.cliente_id', '=', 'clientes.id')
+            ->leftJoin('telefones', function ($join) {
+                $join->on(
+                    'telefones.id', '=',
+                    \DB::raw('(SELECT telefone_atual.id FROM telefones as telefone_atual 
+                        where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
+                );
+            })
+            //->leftJoin('telefones', 'telefones.cliente_id', '=', 'clientes.id')
             ->select
             ([
                 'chamadas.id',
