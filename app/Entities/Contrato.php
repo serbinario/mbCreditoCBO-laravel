@@ -36,6 +36,22 @@ class Contrato extends Model implements Transformable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tipoContrato()
+    {
+        return $this->belongsTo(TipoContrato::class, 'tipo_contrato_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function convenio()
+    {
+        return $this->belongsTo(ConvenioCallCenter::class, 'convenio_id');
+    }
+
+    /**
      * @param $query
      * @return mixed
      */

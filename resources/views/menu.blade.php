@@ -25,12 +25,10 @@
         <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
         <link href="{{ asset('/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
 
-
-
-
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_2.min.css') }}"  media="screen,projection"/>
 
+        @yield('css')
     </head>
     <body>
     <header id="header" class="clearfix" data-ma-theme="blue">

@@ -1,5 +1,18 @@
 @extends('menu')
 
+@section("css")
+    <style type="text/css">
+        td.details-control {
+            background: url("{{asset("imagemgrid/icone-produto-plus.png")}}") no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.details td.details-control {
+            background: url("{{asset("imagemgrid/icone-produto-minus.png")}}") no-repeat center center;
+        }
+    </style>
+@stop
+
 @section('content')
     <section id="content">
         <div class="container">
@@ -22,7 +35,7 @@
                     <table id="contrato-grid" class="table table-hover">
                         <thead>
                         <tr>
-                            {{--<th>Detalhe</th>--}}
+                            <th>Detalhe</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -33,7 +46,7 @@
                         </thead>
                         <tfoot>
                         <tr>
-                            {{--<th>Detalhe</th>--}}
+                            <th>Detalhe</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Agência</th>
@@ -58,12 +71,12 @@
             serverSide: true,
             ajax: "{!! route('contrato.grid') !!}",
             columns: [
-                /*{
+                {
                     "className":      'details-control',
                     "orderable":      false,
                     "data":           null,
                     "defaultContent": ''
-                },*/
+                },
                 {data: 'name', name: 'clientes.name'},
                 {data: 'cpf', name: 'clientes.cpf'},
                 {data: 'numero_agencia', name: 'agencias.numero_agencia'},
@@ -87,7 +100,7 @@
             },*/
         });
 
-        /*var detailRows = [];
+        var detailRows = [];
 
         // evento para criação dos detalhes da grid
         $('#contrato-grid').on( 'click', 'tr td.details-control', function () {
@@ -104,7 +117,7 @@
             }
             else {
                 tr.addClass( 'details' );
-                row.child( formatCursadas( row.data() ) ).show();
+                row.child( formatDetail( row.data() ) ).show();
 
                 // Add to the 'open' array
                 if ( idx === -1 ) {
@@ -120,9 +133,44 @@
             } );
         } );
 
+        // Função de formatação do detalhe
         function formatDetail(d) {
+            // Transformando em json
+            var contratos = JSON.parse(d.contratos);
 
-        }*/
+            // Criando html de retorno
+            var html =  '<table class="table-responsible">' +
+                            '<thead>' +
+                            '<tr>' +
+                                '<th>Prazo</th>' +
+                                '<th>Valor Contratado</th>' +
+                                '<th>Data da contratação</th>' +
+                                '<th>Tipo contratação</th>' +
+                                '<th>Convênio</th>' +
+                                '<th>Nº do contrato</th>' +
+                                '<th>Data da religação</th>' +
+                            '</tr>' +
+                            '</thead>';
+
+            // Percorrendo os contratos e meintando o body da table
+            for(var i = 0; i < contratos.length; i++) {
+                html += '<tr>' +
+                            '<td>'+ contratos[i].prazo +'</td>' +
+                            '<td>'+ contratos[i].valor_contratado + '</td>' +
+                            '<td>'+ contratos[i].data_contratado + '</td>' +
+                            '<td>'+ contratos[i].tipo_contrato.tipo_contrato + '</td>' +
+                            '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
+                            '<td>'+ contratos[i].codigo_transacao + '</td>' +
+                            '<td>'+ contratos[i].data_prox_chamada + '</td>' +
+                        '</tr>';
+            }
+
+            // Finalizando o html
+            html += '</table>';
+
+            // Retornando o html
+            return html;
+        }
 
     </script>
 @stop

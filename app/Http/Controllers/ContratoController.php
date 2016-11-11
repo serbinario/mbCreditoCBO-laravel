@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
 use MbCreditoCBO\Repositories\ClienteRepository;
+use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -41,16 +42,26 @@ class ContratoController extends Controller
     private $clienteRepository;
 
     /**
+     * @var ContratoRepository
+     */
+    private $contratoRepository;
+
+    /**
      * ContratoController constructor.
      * @param ContratoService $service
      * @param ContratoValidator $validator
      * @param ClienteRepository $clienteRepository
+     * @param ContratoRepository $contratoRepository
      */
-    public function __construct(ContratoService $service, ContratoValidator $validator, ClienteRepository $clienteRepository)
+    public function __construct(ContratoService $service,
+                                ContratoValidator $validator,
+                                ClienteRepository $clienteRepository,
+                                ContratoRepository $contratoRepository)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
         $this->clienteRepository = $clienteRepository;
+        $this->contratoRepository = $contratoRepository;
     }
 
     /**
@@ -77,9 +88,9 @@ class ContratoController extends Controller
                         where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
                 );
             })
-            //->leftJoin('telefones', 'telefones.cliente_id', '=', 'clientes.id')
             ->select
             ([
+                'clientes.id as idCliente',
                 'chamadas.id',
                 'clientes.name',
                 'clientes.cpf',
@@ -89,8 +100,15 @@ class ContratoController extends Controller
             ]);
 
         #Editando a grid
-        return Datatables::of($rows)->addColumn('action', function ($row) {
-            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+        return Datatables::of($rows)
+            ->addColumn('contratos', function ($row) {
+                return $this->contratoRepository->with([
+                    'tipoContrato',
+                    'convenio'
+                ])->findByField(['cliente_id' => $row->idCliente]);
+            })
+            ->addColumn('action', function ($row) {
+                return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
         })->make(true);
     }
 
