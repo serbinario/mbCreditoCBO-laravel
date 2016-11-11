@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Services;
 
+use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Repositories\TelefoneRepository;
@@ -35,13 +36,8 @@ class ContratoService
      */
     public function find($id)
     {
-
-        $relacao = [
-            'cliente.telefone'
-        ];
-
         #Recuperando o registro no banco de dados
-        $contrato = $this->repository->with($relacao)->find($id);
+        $contrato = $this->repository->find($id);
 
         #Verificando se o registro foi encontrado
         if(!$contrato) {
@@ -72,16 +68,15 @@ class ContratoService
      * @param array $data
      * @return mixed
      */
-    public function tratamentoTelefone(array $data, $idCliente)
+    public function tratamentoTelefone(array $data, $cliente)
     {
-        #criando arrya de telefone - tb_telefones
-        $dados = ['telefone' => $data['telefone']['numero'], 'cliente_id' => $idCliente->id];
+        # Recortando os telefones em arrays
+        $telefonesArray = explode(',', $data['telefones']);
 
-        #Salvando registro e vinculando ao cliente
-        $telefone = $this->telefoneRepository->create($dados);
-
-        #Retorno
-        return $telefone;
+        # Percorrendo e salvando os telefones
+        foreach ($telefonesArray as $telefone) {
+            $cliente->telefones()->save(new Telefone(['telefone' => $telefone]));
+        }
     }
 
     /**
@@ -106,8 +101,10 @@ class ContratoService
      */
     public function store(array $data) : Contrato
     {
-        #Retorno
+        # Salvando o cliente e retornando o objeto
         $cliente = $this->tratamentoCliente($data);
+
+        # Tratamento do número do contrato
         $this->numeroContrato($data);
 
         #Salvando registro de telefone

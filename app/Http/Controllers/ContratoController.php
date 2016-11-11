@@ -4,7 +4,9 @@ namespace MbCreditoCBO\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
+use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -34,13 +36,21 @@ class ContratoController extends Controller
     ];
 
     /**
-    * @param ContratoService $service
-    * @param ContratoValidator $validator
-    */
-    public function __construct(ContratoService $service, ContratoValidator $validator)
+     * @var ClienteRepository
+     */
+    private $clienteRepository;
+
+    /**
+     * ContratoController constructor.
+     * @param ContratoService $service
+     * @param ContratoValidator $validator
+     * @param ClienteRepository $clienteRepository
+     */
+    public function __construct(ContratoService $service, ContratoValidator $validator, ClienteRepository $clienteRepository)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
+        $this->clienteRepository = $clienteRepository;
     }
 
     /**
@@ -231,9 +241,31 @@ class ContratoController extends Controller
             ]);
 
         #Editando a grid
-        return Datatables::of($rows)->addColumn('action', function ($row) {
-            //$html = '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-            return '';
-        })->make(true);
+        return Datatables::of($rows)
+            ->addColumn('action', function ($row) {
+                return '';
+            })
+            ->make(true);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $idClient
+     * @return mixed
+     */
+    public function storePhone(Request $request, int $idClient)
+    {
+        try{
+            # Recuperando o cliente
+            $cliente = $this->clienteRepository->find($idClient);
+            
+            # Adicionando o telefone
+            $cliente->telefones()->saveMany([new Telefone(['telefone' => $request->get('telefone')])]);
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
     }
 }
