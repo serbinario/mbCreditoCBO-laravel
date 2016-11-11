@@ -31,9 +31,9 @@ class Cliente extends Model implements Transformable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function telefone()
+    public function telefones()
     {
-        return $this->hasMany(Telefone::class);
+        return $this->hasMany(Telefone::class, 'cliente_id');
     }
 
 }

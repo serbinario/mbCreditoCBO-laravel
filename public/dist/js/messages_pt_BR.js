@@ -72,5 +72,7 @@ $.extend( $.validator.messages, {
 	vinUS: "O n&uacute;mero de identifica&ccedil;&atilde;o de ve&iacute;culo informada (VIN) &eacute; inv&aacute;lido.",
 	zipcodeUS: "Por favor, fornece&ccedil;a um c&oacute;digo postal americano v&aacute;lido.",
 	ziprange: "O c&oacute;digo postal deve estar entre 902xx-xxxx e 905xx-xxxx",
-	cpfBR: "Por favor, forne&ccedil;a um CPF v&aacute;lido."
+	cpfBR: "Por favor, forne&ccedil;a um CPF v&aacute;lido.",
+	bankBr: "Por favor, insira apenas números e/ou '-'",
+	chaveJ: "Por favor, insira o número de sua chave precedido da letra 'J'",
 } );

@@ -34,7 +34,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ContratoController@update']);
         //Busca de cliente por CPF
         Route::get('searchCliente/{clienteCpf}', ['as' => 'searchCliente', 'uses' => 'ContratoController@searchCliente']);
+        //Busca de contrato
+        Route::get('searchContrato/{numeroContrato}', ['as' => 'searchContrato', 'uses' => 'ContratoController@searchContrato']);
 
+        # Rotas de GERENCIAMENTO DE TELEFONES
+        Route::get('telefone/grid/{idClient}', ['as' => 'telefone.grid', 'uses' => 'ContratoController@gridPhones']);
+        Route::post('telefone/store/{idClient}', ['as' => 'telefone.create', 'uses' => 'ContratoController@storePhone']);
     });
 
     Route::group(['prefix' => 'agencia', 'as' => 'agencia.'], function () {

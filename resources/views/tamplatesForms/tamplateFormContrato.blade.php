@@ -15,24 +15,24 @@
 
 <div class="card">
     <div class="card-body card-padding">
-        <div class="topo-conteudo-full">
-            <h4>Consultar cliente por CPF:</h4>
-        </div>
+        @if(!isset($model))
+            <div class="topo-conteudo-full">
+                <h4>Consultar cliente por CPF:</h4>
+            </div>
 
-
-
-        <div class="row">
+            <div class="row">
                 <div class="form-group col-sm-4">
                     <div class=" fg-line">
                         <label for="searchCpf"></label>
                         {!! Form::text('searchCpf', Session::getOldInput('searchCpf'), array('id' => 'searchCliente', 'class' => 'form-control input-sm', 'placeholder' => 'Número de CPF')) !!}
                     </div>
                 </div>
-            <div class="col-sm-4 m-t-15">
-                <a class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</a>
-
+                <div class="col-sm-4 m-t-15">
+                    <a class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</a>
+                </div>
             </div>
-        </div>
+        @endif
+
         <div class="topo-conteudo-full">
             <h4>Dados do cliente</h4>
         </div>
@@ -52,23 +52,12 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class=" fg-line">
-                <label for="numero">Telefone Fixo</label>
-                @if(isset($model))
-                    {!! Form::text('telefone[numero]', $model->cliente->telefone->last()->telefone??"", array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
-                @else
-                    {!! Form::text('telefone[numero]', Session::getOldInput('telefone[numero]'), array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
-                @endif
-            </div>
-        </div>
-
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
                     <label for="cliente[agencia_id]">Agência</label>
                     <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia', 'class' => 'chosen')) !!}
+                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia')) !!} {{--, 'class'=> 'chosen'--}}
                     </div>
                 </div>
             </div>
@@ -81,6 +70,45 @@
             </div>
         </div>
 
+        <div class="topo-conteudo-full">
+            <h4>Telefones</h4>
+        </div>
+
+        <div class="row">
+            <div class="table-responsive">
+                <div class="form-group col-sm-2">
+                    <input type="text" id="addPhoneText" class="form-control input-sm" placeholder='Nº telefone'>
+                    {{--{!! Form::text('telefone', null, array('id' => 'addPhoneText', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}--}}
+                </div>
+
+                <div class="form-group col-sm-2">
+                    <a class="btn btn-primary btn-sm m-t-10" id="addPhone" onclick="objTablePhone.newFone(this)">Adicionar</a>
+
+                </div>
+
+
+                <table id="telefones-grid" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Telefone</th>
+                        <th style="width: 10%">Ação</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <input type="hidden" name="telefones" id="telefones">
+            {{--<div class="form-group">--}}
+                {{--<div class=" fg-line">--}}
+                    {{--<label for="numero">Telefone Fixo</label>--}}
+                    {{--@if(isset($model))--}}
+                        {{--{!! Form::text('telefone[numero]', $model->cliente->telefone->last()->telefone??"", array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}--}}
+                    {{--@else--}}
+                        {{--{!! Form::text('telefone[numero]', Session::getOldInput('telefone[numero]'), array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        </div>
 
         <div class="topo-conteudo-full">
             <h4>Dados do Contrato</h4>
@@ -113,7 +141,6 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="form-group col-sm-3">
                 <div class=" fg-line">
@@ -124,13 +151,13 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="codigo_transacao">Nº do Contrato</label>
-                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('id' => 'condigoTransacao', 'class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="matricula">Matrícula</label>
-                    {!! Form::text('matricula', Session::getOldInput('matricula'), array('class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+                    {!! Form::text('matricula', Session::getOldInput('matricula'), array('class' => 'form-control input-sm', 'placeholder' => 'Número de Matrícula')) !!}
                 </div>
             </div>
 
@@ -142,7 +169,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="form-group">
@@ -152,10 +178,10 @@
             </div>
         </div>
 
-            <!--botão-->
-            <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
-            <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/contrato/index">Voltar</a>
-            <!--botão-->
+        <!--botão-->
+        <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
+        <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.index') }}">Voltar</a>
+        <!--botão-->
     </div>
 </div>
 
@@ -165,15 +191,30 @@
     {{--Regras adicionais--}}
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/alphanumeric.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     {{--Regras de validação--}}
-    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
 
+    {{--GERENCIAMENTO TELEFONES--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
+        // Habilitando o ambiemte (Grid de Telefones) para create ou edit
+        @if(isset($model))
+        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+        objTablePhone = new TablePhonesEdit("{{$model->cliente->id}}");
+        @else
+        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+        objTablePhone = new TablePhonesCreate();
+        @endif
 
+        /*
+         Evento responsável por consulta o cpf no banco de dados
+         e preencher os dados do cliente se o cpf for encontrado.
+         */
         $(document).on('click', "#btnConsultar", function () {
-        //Recuperando CPF inserido
-        var cpfCliente = $('#searchCliente').val();
+            //Recuperando CPF inserido
+            var cpfCliente = $('#searchCliente').val();
 
             //Checando se o campo de consulta foi preenchido
             if (cpfCliente == "") {
@@ -182,31 +223,30 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'http://ser.cbo/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: '/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
-                    console.log(json.dados);
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
-
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
 
-                        /*$('#clienteAgencia option').attr('selected', false);*/
+                        //Preenchendo o select de agência
                         $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);
-//                        $('#clienteAgencia').chosen().select(11);
-
 
                         //Desabilitando os input
                         $('#clienteNome').attr('readonly', true);
-                        $('#clienteCpf').prop('disabled', true);
-                        $('#clienteConta').prop('disabled', true);
+                        $('#clienteCpf').attr('readonly', true);
+                        $('#clienteConta').attr('readonly', true);
                         $('#clienteTelefone').attr('readonly', true);
-                        $('#clienteAgencia').prop('disabled', true);
+                        $('#clienteAgencia').attr('readonly', true);
 
+                        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+                        objTablePhone.tableDestroy();
+                        objTablePhone = new TablePhonesEdit(json.dados[0]['idCliente']);
                     } else {
                         //Apagando dados do input
                         $('#clienteNome').val("");
@@ -214,10 +254,31 @@
                         $('#clienteConta').val("");
                         $('#clienteTelefone').val("");
                         $('#clienteAgencia').val("");
+
+                        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+                        objTablePhone.tableDestroy();
+                        objTablePhone = new TablePhonesCreate();
                     }
                 })
             }
         });
+
+        //Verificando se o número de contrato que foi preenchido já existe no banco
+        /*$(document).on('focusout', "#condigoTransacao", function () {
+            //Recuperando valor preenchido no campo
+            var numeroContrato = $('#condigoTransacao').val();
+
+            jQuery.ajax({
+                type: 'GET',
+                url: 'http://ser.cbo/index.php/contrato/searchContrato/' + numeroContrato,
+                datatype: 'json'
+            }).done(function (json) {
+
+                if(json.dados.length > 0){
+                    alert("O número de contrato preenchido já existe");
+                }
+            })
+        });*/
 
     </script>
 

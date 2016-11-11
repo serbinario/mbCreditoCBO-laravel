@@ -1,11 +1,21 @@
 @extends('menu')
 
+@section("css")
+    <style type="text/css">
+        td.details-control {
+            background: url("{{asset("imagemgrid/icone-produto-plus.png")}}") no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.details td.details-control {
+            background: url("{{asset("imagemgrid/icone-produto-minus.png")}}") no-repeat center center;
+        }
+    </style>
+@stop
+
 @section('content')
     <section id="content">
         <div class="container">
-            {{--<div class="block-header">--}}
-            {{--<h2>Data Table</h2>--}}
-            {{--</div>--}}
 
             <div class="card material-table">
                 <div class="card-header">
@@ -14,7 +24,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-right">
-                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/contrato/create">Novo Cliente</a>
+                                <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.create')  }}">Novo Cliente</a>
                             </div>
                         </div>
                     </div>
@@ -69,12 +79,12 @@
                 },
                 {data: 'name', name: 'clientes.name'},
                 {data: 'cpf', name: 'clientes.cpf'},
-                {data: 'numero_agencia', name: 'agencias_callcenter.numero_agencia'},
+                {data: 'numero_agencia', name: 'agencias.numero_agencia'},
                 {data: 'conta', name: 'clientes.conta'},
                 {data: 'telefone', name: 'telefones.telefone'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
-            ],
-            "oLanguage": {
+            ]
+            /*"oLanguage": {
                 "sStripClasses": "",
                 "sSearch": "",
                 "sSearchPlaceholder": "Enter Keywords Here",
@@ -87,7 +97,7 @@
                 '<option value="50">50</option>' +
                 '<option value="-1">All</option>' +
                 '</select></div>'
-            },
+            },*/
         });
 
         var detailRows = [];
@@ -107,14 +117,14 @@
             }
             else {
                 tr.addClass( 'details' );
-                row.child( formatCursadas( row.data() ) ).show();
+                row.child( formatDetail( row.data() ) ).show();
 
                 // Add to the 'open' array
                 if ( idx === -1 ) {
                     detailRows.push( tr.attr('id') );
                 }
             }
-        } );
+        });
 
         // On each draw, loop over the `detailRows` array and show any child rows
         table.on( 'draw', function () {
@@ -123,8 +133,43 @@
             } );
         } );
 
+        // Função de formatação do detalhe
         function formatDetail(d) {
+            // Transformando em json
+            var contratos = JSON.parse(d.contratos);
 
+            // Criando html de retorno
+            var html =  '<table class="table-responsible">' +
+                            '<thead>' +
+                            '<tr>' +
+                                '<th>Prazo</th>' +
+                                '<th>Valor Contratado</th>' +
+                                '<th>Data da contratação</th>' +
+                                '<th>Tipo contratação</th>' +
+                                '<th>Convênio</th>' +
+                                '<th>Nº do contrato</th>' +
+                                '<th>Data da religação</th>' +
+                            '</tr>' +
+                            '</thead>';
+
+            // Percorrendo os contratos e meintando o body da table
+            for(var i = 0; i < contratos.length; i++) {
+                html += '<tr>' +
+                            '<td>'+ contratos[i].prazo +'</td>' +
+                            '<td>'+ contratos[i].valor_contratado + '</td>' +
+                            '<td>'+ contratos[i].data_contratado + '</td>' +
+                            '<td>'+ contratos[i].tipo_contrato.tipo_contrato + '</td>' +
+                            '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
+                            '<td>'+ contratos[i].codigo_transacao + '</td>' +
+                            '<td>'+ contratos[i].data_prox_chamada + '</td>' +
+                        '</tr>';
+            }
+
+            // Finalizando o html
+            html += '</table>';
+
+            // Retornando o html
+            return html;
         }
 
     </script>

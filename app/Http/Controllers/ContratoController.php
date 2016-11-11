@@ -4,7 +4,10 @@ namespace MbCreditoCBO\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
+use MbCreditoCBO\Repositories\ClienteRepository;
+use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -34,13 +37,31 @@ class ContratoController extends Controller
     ];
 
     /**
-    * @param ContratoService $service
-    * @param ContratoValidator $validator
-    */
-    public function __construct(ContratoService $service, ContratoValidator $validator)
+     * @var ClienteRepository
+     */
+    private $clienteRepository;
+
+    /**
+     * @var ContratoRepository
+     */
+    private $contratoRepository;
+
+    /**
+     * ContratoController constructor.
+     * @param ContratoService $service
+     * @param ContratoValidator $validator
+     * @param ClienteRepository $clienteRepository
+     * @param ContratoRepository $contratoRepository
+     */
+    public function __construct(ContratoService $service,
+                                ContratoValidator $validator,
+                                ClienteRepository $clienteRepository,
+                                ContratoRepository $contratoRepository)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
+        $this->clienteRepository = $clienteRepository;
+        $this->contratoRepository = $contratoRepository;
     }
 
     /**
@@ -59,21 +80,35 @@ class ContratoController extends Controller
         #Criando a consulta
         $rows = \DB::table('chamadas')
             ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
-            ->join('agencias_callcenter', 'agencias_callcenter.id', '=', 'clientes.agencia_id')
-            ->join('telefones', 'telefones.id', '=', 'clientes.id')
+            ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
+            ->leftJoin('telefones', function ($join) {
+                $join->on(
+                    'telefones.id', '=',
+                    \DB::raw('(SELECT telefone_atual.id FROM telefones as telefone_atual 
+                        where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
+                );
+            })
             ->select
             ([
+                'clientes.id as idCliente',
                 'chamadas.id',
                 'clientes.name',
                 'clientes.cpf',
-                'agencias_callcenter.numero_agencia',
+                'agencias.numero_agencia',
                 'clientes.conta',
-                'telefones.telefone',
+                'telefones.telefone'
             ]);
 
         #Editando a grid
-        return Datatables::of($rows)->addColumn('action', function ($row) {
-            return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+        return Datatables::of($rows)
+            ->addColumn('contratos', function ($row) {
+                return $this->contratoRepository->with([
+                    'tipoContrato',
+                    'convenio'
+                ])->findByField(['cliente_id' => $row->idCliente]);
+            })
+            ->addColumn('action', function ($row) {
+                return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
         })->make(true);
     }
 
@@ -109,7 +144,7 @@ class ContratoController extends Controller
             return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
-        } catch (\Throwable $e) {print_r($e->getMessage()); exit;
+        } catch (\Throwable $e) {
             return redirect()->back()->with('message', $e->getMessage());
         }
     }
@@ -164,7 +199,7 @@ class ContratoController extends Controller
     }
 
     /**
-     * @param $clienteCpf
+     * @param $cpfCliente
      * @return mixed
      */
     public function searchCliente($cpfCliente)
@@ -193,4 +228,69 @@ class ContratoController extends Controller
         }
     }
 
+    /**
+     * @param $numeroContrato
+     * @return mixed
+     */
+    public function searchContrato($numeroContrato)
+    {
+        try{
+            #Consultando
+            $contrato = \DB::table('chamadas')
+                ->select('chamadas.id')
+                ->where('codigo_transacao', $numeroContrato)
+                ->get();
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $contrato]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    ### Métodos de GERENCIAMENTO DE TELEFONES ###
+
+    /**
+     * @param int $idClient
+     * @return mixed
+     */
+    public function gridPhones(int $idClient)
+    {
+        #Criando a consulta
+        $rows = \DB::table('telefones')
+            ->join('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+            ->where('clientes.id', $idClient)
+            ->select([
+                'telefones.id',
+                'telefones.telefone'
+            ]);
+
+        #Editando a grid
+        return Datatables::of($rows)
+            ->addColumn('action', function ($row) {
+                return '';
+            })
+            ->make(true);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $idClient
+     * @return mixed
+     */
+    public function storePhone(Request $request, int $idClient)
+    {
+        try{
+            # Recuperando o cliente
+            $cliente = $this->clienteRepository->find($idClient);
+            
+            # Adicionando o telefone
+            $cliente->telefones()->saveMany([new Telefone(['telefone' => $request->get('telefone')])]);
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
 }

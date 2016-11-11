@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Services;
 
+use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Repositories\TelefoneRepository;
@@ -35,13 +36,8 @@ class ContratoService
      */
     public function find($id)
     {
-
-        $relacao = [
-            'cliente.telefone'
-        ];
-
         #Recuperando o registro no banco de dados
-        $contrato = $this->repository->with($relacao)->find($id);
+        $contrato = $this->repository->find($id);
 
         #Verificando se o registro foi encontrado
         if(!$contrato) {
@@ -63,7 +59,7 @@ class ContratoService
 
         #Salvando registro
         $cliente = $this->clienteRepository->create($dados);
-dd($cliente);
+
         #Retorno
         return $cliente;
     }
@@ -72,16 +68,30 @@ dd($cliente);
      * @param array $data
      * @return mixed
      */
-    public function tratamentoTelefone(array $data, $idCliente)
+    public function tratamentoTelefone(array $data, $cliente)
     {
-        #criando arrya de telefone - tb_telefones
-        $dados = ['telefone' => $data['telefone']['numero'], 'cliente_id' => $idCliente->id];
+        # Recortando os telefones em arrays
+        $telefonesArray = explode(',', $data['telefones']);
 
-        #Salvando registro e vinculando ao cliente
-        $telefone = $this->telefoneRepository->create($dados);
+        # Percorrendo e salvando os telefones
+        foreach ($telefonesArray as $telefone) {
+            $cliente->telefones()->save(new Telefone(['telefone' => $telefone]));
+        }
+    }
 
-        #Retorno
-        return $telefone;
+    /**
+     * @param $data
+     * @throws \Exception
+     */
+    public function numeroContrato($data)
+    {
+        #Consultando
+        $contrato = $this->repository->findWhere(['codigo_transacao' => $data['codigo_transacao']]);
+
+        #Validando
+        if (count($contrato) > 0) {
+            throw new \Exception('Número de contrato já existe.');
+        }
     }
 
     /**
@@ -91,11 +101,17 @@ dd($cliente);
      */
     public function store(array $data) : Contrato
     {
-        #Retorno
+        # Salvando o cliente e retornando o objeto
         $cliente = $this->tratamentoCliente($data);
 
-        #Salvando registro de tlefone
-        $telefone = $this->tratamentoTelefone($data, $cliente);
+        # Tratamento do número do contrato
+        $this->numeroContrato($data);
+
+        #Salvando registro de telefone
+        $this->tratamentoTelefone($data, $cliente);
+
+        #Criando vinculo entre contrato e cliente
+        $data['cliente_id'] = $cliente->id;
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data);
