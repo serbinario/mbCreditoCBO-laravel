@@ -18,6 +18,7 @@
         <div class="topo-conteudo-full">
             <h4>Consultar cliente por CPF:</h4>
         </div>
+
         <div class="row">
                 <div class="form-group col-sm-4">
                     <div class=" fg-line">
@@ -29,6 +30,7 @@
                 <a class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</a>
             </div>
         </div>
+
         <div class="topo-conteudo-full">
             <h4>Dados do cliente</h4>
         </div>
@@ -45,17 +47,6 @@
                     <label for="cliente[cpf]">CPF</label>
                     {!! Form::text('cliente[cpf]', Session::getOldInput('clientes[cpf]'), array('id' => 'clienteCpf', 'class' => 'form-control input-sm', 'placeholder' => 'CPF do cliente')) !!}
                 </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class=" fg-line">
-                <label for="numero">Telefone Fixo</label>
-                @if(isset($model))
-                    {!! Form::text('telefone[numero]', $model->cliente->telefone->last()->telefone??"", array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
-                @else
-                    {!! Form::text('telefone[numero]', Session::getOldInput('telefone[numero]'), array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
-                @endif
             </div>
         </div>
 
@@ -76,7 +67,33 @@
                 </div>
             </div>
         </div>
-        
+
+        <div class="topo-conteudo-full">
+            <h4>Telefones</h4>
+        </div>
+
+        <div class="row">
+            <div class="table-responsive">
+                <table id="telefones-grid" class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Telefone</th>
+                        <th>Açao</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            {{--<div class="form-group">--}}
+                {{--<div class=" fg-line">--}}
+                    {{--<label for="numero">Telefone Fixo</label>--}}
+                    {{--@if(isset($model))--}}
+                        {{--{!! Form::text('telefone[numero]', $model->cliente->telefone->last()->telefone??"", array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}--}}
+                    {{--@else--}}
+                        {{--{!! Form::text('telefone[numero]', Session::getOldInput('telefone[numero]'), array('id' => 'clienteTelefone', 'class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        </div>
 
         <div class="topo-conteudo-full">
             <h4>Dados do Contrato</h4>

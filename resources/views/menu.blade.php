@@ -10,26 +10,26 @@
 
         {{--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
 
-        <link type="text/css" rel="stylesheet" href="/lib/fullcalendar/dist/fullcalendar.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/lib/animate.css/animate.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/lib/sweetalert2/dist/sweetalert2.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/fullcalendar/dist/fullcalendar.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/animate.css/animate.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 
         {{--<link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">--}}
         {{--<link href="/lib/nouislider/distribute/nouislider.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/farbtastic/farbtastic.css" rel="stylesheet">--}}
-        <link href="/lib/chosen/chosen.css" rel="stylesheet">
-        <link href="/lib/summernote/dist/summernote.css" rel="stylesheet">
+        <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
+        <link href="{{ asset('/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
 
 
 
 
-        <link type="text/css" rel="stylesheet" href="/dist/css/app_1.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="/dist/css/app_2.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_2.min.css') }}"  media="screen,projection"/>
 
     </head>
     <body>
@@ -171,28 +171,28 @@
     </footer>
 
     <!-- Javascript Libraries -->
-    <script src="/lib/jquery/dist/jquery.js"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/lib/Waves/dist/waves.min.js"></script>
+    <script src="{{ asset('/lib/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
     {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
-    <script src="/lib/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 
-    <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
 
-        <!-- Placeholder for IE9 -->
-        <!--[if IE 9 ]-->
-        <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
-        <!--[endif]-->
+    <!-- Placeholder for IE9 -->
+    <!--[if IE 9 ]-->
+    <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
+    <!--[endif]-->
 
-        <script src="/lib/chosen/chosen.jquery.js"></script>
+    <script src="{{ asset('/lib/chosen/chosen.jquery.j') }}s"></script>
 
-        <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
+    <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
-        <script> jQuery(".chosen").chosen(); </script>
+    <script> jQuery(".chosen").chosen(); </script>
 
-        @yield('javascript')
+    @yield('javascript')
 
     </body>
 </html>

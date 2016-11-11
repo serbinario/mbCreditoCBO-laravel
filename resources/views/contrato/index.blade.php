@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-right">
-                                <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/contrato/create">Novo Cliente</a>
+                                <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.create')  }}">Novo Cliente</a>
                             </div>
                         </div>
                     </div>
