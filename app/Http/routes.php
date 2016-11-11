@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
         //Busca de contrato
         Route::get('searchContrato/{numeroContrato}', ['as' => 'searchContrato', 'uses' => 'ContratoController@searchContrato']);
 
+        # Rotas de GERENCIAMENTO DE TELEFONES
+        Route::get('telefone/grid/{idClient}', ['as' => 'index', 'uses' => 'ContratoController@gridPhones']);
     });
 
     Route::group(['prefix' => 'agencia', 'as' => 'agencia.'], function () {

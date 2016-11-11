@@ -74,6 +74,19 @@
 
         <div class="row">
             <div class="table-responsive">
+                <div class="form-group col-sm-2">
+                    {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder' => 'Nº telefone')) !!}
+                </div>
+
+                <div class="form-group col-sm-2">
+                    @if(isset($model))
+                        <a class="btn btn-primary btn-sm m-t-10" id="addPhoneEdit">Adicionar</a>
+                    @else
+                        <a class="btn btn-primary btn-sm m-t-10" id="addPhoneCreate">Adicionar</a>
+                    @endif
+                </div>
+
+
                 <table id="telefones-grid" class="table table-hover">
                     <thead>
                     <tr>
@@ -181,11 +194,18 @@
     {{--Regras de validação--}}
     {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
 
-    <script type="text/javascript">
+    {{--GERENCIAMENTO TELEFONES--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
 
+
+    <script type="text/javascript">
+        /*
+         Evento responsável por consulta o cpf no banco de dados
+         e preencher os dados do cliente se o cpf for encontrado.
+         */
         $(document).on('click', "#btnConsultar", function () {
-        //Recuperando CPF inserido
-        var cpfCliente = $('#searchCliente').val();
+            //Recuperando CPF inserido
+            var cpfCliente = $('#searchCliente').val();
 
             //Checando se o campo de consulta foi preenchido
             if (cpfCliente == "") {
@@ -194,13 +214,11 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: 'http://ser.cbo/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: '/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
-
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
-
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
@@ -218,6 +236,8 @@
                         $('#clienteTelefone').attr('readonly', true);
                         $('#clienteAgencia').attr('readonly', true);
 
+                        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+                        objTablePhone = new TablePhonesEdit(json.dados[0]['id']);
                     } else {
                         //Apagando dados do input
                         $('#clienteNome').val("");
@@ -225,6 +245,9 @@
                         $('#clienteConta').val("");
                         $('#clienteTelefone').val("");
                         $('#clienteAgencia').val("");
+
+                        // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
+                        objTablePhone = new TablePhonesCreate();
                     }
                 })
             }

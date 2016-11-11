@@ -164,7 +164,7 @@ class ContratoController extends Controller
     }
 
     /**
-     * @param $clienteCpf
+     * @param $cpfCliente
      * @return mixed
      */
     public function searchCliente($cpfCliente)
@@ -213,4 +213,27 @@ class ContratoController extends Controller
         }
     }
 
+    ### Métodos de GERENCIAMENTO DE TELEFONES ###
+
+    /**
+     * @param int $idClient
+     * @return mixed
+     */
+    public function gridPhones(int $idClient)
+    {
+        #Criando a consulta
+        $rows = \DB::table('telefones')
+            ->join('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+            ->where('clientes.id', $idClient)
+            ->select([
+                'telefones.id',
+                'telefones.telefone'
+            ]);
+
+        #Editando a grid
+        return Datatables::of($rows)->addColumn('action', function ($row) {
+            //$html = '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            return '';
+        })->make(true);
+    }
 }
