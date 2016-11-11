@@ -193,4 +193,24 @@ class ContratoController extends Controller
         }
     }
 
+    /**
+     * @param $numeroContrato
+     * @return mixed
+     */
+    public function searchContrato($numeroContrato)
+    {
+        try{
+            #Consultando
+            $contrato = \DB::table('chamadas')
+                ->select('chamadas.id')
+                ->where('codigo_transacao', $numeroContrato)
+                ->get();
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $contrato]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
 }

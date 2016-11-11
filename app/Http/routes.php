@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ContratoController@update']);
         //Busca de cliente por CPF
         Route::get('searchCliente/{clienteCpf}', ['as' => 'searchCliente', 'uses' => 'ContratoController@searchCliente']);
+        //Busca de contrato
+        Route::get('searchContrato/{numeroContrato}', ['as' => 'searchContrato', 'uses' => 'ContratoController@searchContrato']);
 
     });
 
