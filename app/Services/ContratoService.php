@@ -25,7 +25,6 @@ class ContratoService
         $this->repository = $repository;
         $this->clienteRepository = $clienteRepository;
         $this->telefoneRepository = $telefoneRepository;
-        $this->contratoRepository = $telefoneRepository;
 
     }
 
@@ -85,15 +84,19 @@ class ContratoService
         return $telefone;
     }
 
+    /**
+     * @param $data
+     * @throws \Exception
+     */
     public function numeroContrato($data)
     {
-        #
-        $numeroContrato = $data['codigo_transacao'];
+        #Consultando
+        $contrato = $this->repository->findWhere(['codigo_transacao' => $data['codigo_transacao']]);
 
-        #
-        $contrato = $this->contratoRepository->findWhere('codigo_transacao');
-
-
+        #Validando
+        if (count($contrato) > 0) {
+            throw new \Exception('Número de contrato já existe.');
+        }
     }
 
     /**
@@ -105,11 +108,12 @@ class ContratoService
     {
         #Retorno
         $cliente = $this->tratamentoCliente($data);
+        $this->numeroContrato($data);
 
         #Salvando registro de telefone
-        $telefone = $this->tratamentoTelefone($data, $cliente);
+        $this->tratamentoTelefone($data, $cliente);
 
-        #Criando vinculo
+        #Criando vinculo entre contrato e cliente
         $data['cliente_id'] = $cliente->id;
 
         #Salvando registro pincipal
