@@ -10,7 +10,7 @@ $(document).ready(function () {
             },
             'cliente[cpf]': {
                 required: true,
-                number: true,
+                cpfBR: true,
                 maxlength: 15
             },
             telefones: {
@@ -25,7 +25,7 @@ $(document).ready(function () {
             'cliente[conta]': {
                 required: true,
                 bankBr: true,
-                maxlength: 6
+                maxlength: 15,
             },
             convenio_id: {
                 required: true,

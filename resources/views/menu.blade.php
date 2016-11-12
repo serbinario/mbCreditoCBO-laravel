@@ -178,6 +178,8 @@
     <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
+
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->
