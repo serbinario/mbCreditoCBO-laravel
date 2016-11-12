@@ -15,7 +15,7 @@
         </div>
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
-        <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/convenio/index">Voltar</a>
+        <a class="btn btn-primary btn-sm m-t-10" href="{{ route('convenio.index') }}">Voltar</a>
     </div>
 </div>
 
