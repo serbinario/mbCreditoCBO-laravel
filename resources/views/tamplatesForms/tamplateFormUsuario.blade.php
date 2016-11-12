@@ -1,8 +1,15 @@
+<div class="block-header">
+    <h2>Cadastro de Usuário</h2>
+
+</div>
 <div class="card">
-    <div class="card-header">
-    </div>
+
 
     <div class="card-body card-padding">
+        <div class="topo-conteudo-full">
+            <h4>Dados do Usuário</h4>
+        </div>
+
         <div class="form-group">
             <div class=" fg-line">
                 <label for="username">Login: </label>

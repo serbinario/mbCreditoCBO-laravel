@@ -1,8 +1,14 @@
+<div class="block-header">
+    <h2>Cadastro de Agências</h2>
+
+</div>
+
 <div class="card">
-    <div class="card-header">
-    </div>
 
     <div class="card-body card-padding">
+        <div class="topo-conteudo-full">
+            <h4>Dados da Agência</h4>
+        </div>
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">

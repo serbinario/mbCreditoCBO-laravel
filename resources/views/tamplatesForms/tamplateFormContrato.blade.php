@@ -1,13 +1,3 @@
-<style>
-    .topo-conteudo-full {
-        border-bottom: 1px solid #c3ced2;
-        color: #136d9c;
-        display: block;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-</style>
-
 <div class="block-header">
     <h2>Cadastro de Contratos</h2>
 
