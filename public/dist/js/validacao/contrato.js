@@ -11,7 +11,8 @@ $(document).ready(function () {
             'cliente[cpf]': {
                 required: true,
                 cpfBR: true,
-                maxlength: 15
+                maxlength: 15,
+                //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
             },
             telefones: {
                 required: true,

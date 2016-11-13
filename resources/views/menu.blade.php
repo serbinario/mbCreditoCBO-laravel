@@ -183,6 +183,7 @@
     {{--jquery Validator https://jqueryvalidation.org/ --}}
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
 
 
     <!-- Placeholder for IE9 -->
