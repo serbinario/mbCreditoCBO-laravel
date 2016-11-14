@@ -190,8 +190,16 @@ class ContratoController extends Controller
         #Carregando os dados para o cadastro
         $loadFields = $this->service->load($this->loadFields);
 
+        # Array de parcelas
+        $arrayParcelas = ['' => 'Selecione uma parcela'];
+
+        # Criando as parcelas
+        for ($i = 1; $i <= 72; $i++) {
+            $arrayParcelas[$i] = $i;
+        }
+
         #Retorno para view
-        return view('contrato.create', compact('loadFields'));
+        return view('contrato.create', compact('loadFields', 'arrayParcelas'));
     }
 
     /**

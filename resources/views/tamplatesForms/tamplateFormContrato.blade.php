@@ -155,7 +155,7 @@
                 <div class="fg-line">
                     <label for="prazo">Quantidade de Parcelas</label>
                     <div class="select">
-                        {!! Form::select('prazo', ([["" => "Número de parcelas"] + $loadFields['contrato']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('prazo', $arrayParcelas, null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
