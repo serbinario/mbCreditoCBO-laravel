@@ -69,13 +69,18 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        return view('contrato.index');
+        # Dados de preenchimento para o filtro da grid
+        $meses = ['' => 'Selecione um mês', 1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Maio',
+            6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
+
+        # Retorno para view
+        return view('contrato.index', compact('meses'));
     }
 
     /**
      * @return mixed
      */
-    public function grid()
+    public function grid(Request $request)
     {
         #Criando a consulta
         $rows = \DB::table('chamadas')
@@ -88,8 +93,7 @@ class ContratoController extends Controller
                         where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
                 );
             })
-            ->select
-            ([
+            ->select([
                 'clientes.id as idCliente',
                 'chamadas.id',
                 'clientes.name',
@@ -101,6 +105,38 @@ class ContratoController extends Controller
 
         #Editando a grid
         return Datatables::of($rows)
+            ->filter(function ($query) use ($request) {
+                # Filtrando por mes
+                if ($request->has('mes')) {
+                    $query->where(\DB::raw('MONTH(chamadas.data_contratado)'), '=', $request->get('mes'));
+                }
+
+                # Filtrando por ranger de data
+                if ($request->has('dataIni') && $request->has('dataFin')) {
+                    # Convertendo as datas
+                    $dataIni = \DateTime::createFromFormat('d/m/Y', $request->get('dataIni'));
+                    $dataFin = \DateTime::createFromFormat('d/m/Y', $request->get('dataFin'));
+
+                    # Validando a conversão das datas
+                    if($dataIni && $dataFin) {
+                        $query->whereBetween('chamadas.data_contratado',[$dataIni->format('Y-m-d'), $dataFin->format('Y-m-d')]);
+                    }
+                }
+
+                # Filtrando Global
+                if ($request->has('global')) {
+                    # recuperando o valor da requisição
+                    $search = $request->get('global');
+
+                    #condição
+                    $query->where(function ($where) use ($search) {
+                        $where->orWhere('clientes.name', 'like', "%$search%")
+                            ->orWhere('clientes.cpf', 'like', "%$search%")
+                            ->orWhere('clientes.conta', 'like', "%$search%")
+                            ->orWhere('agencias.numero_agencia', 'like', "%$search%");
+                    });
+                }
+            })
             ->addColumn('contratos', function ($row) {
                 return $this->contratoRepository->with([
                     'tipoContrato',

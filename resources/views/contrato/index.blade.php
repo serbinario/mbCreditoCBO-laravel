@@ -31,31 +31,76 @@
                     <!-- Botão novo -->
                 </div>
 
-                <div class="table-responsive">
-                    <table id="contrato-grid" class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>Detalhe</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Agência</th>
-                            <th>Nº da Conta</th>
-                            <th>Telefone</th>
-                            <th>Açao</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Detalhe</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Agência</th>
-                            <th>Nº da Conta</th>
-                            <th>Telefone</th>
-                            <th>Açao</th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                <div class="card-body card-padding">
+                    <div class="topo-conteudo-full">
+                        <h4>Filtros Avançados:</h4>
+                    </div>
+
+                    <form id="search-form" role="form" method="GET">
+                        <div class="row">
+                            <div class="form-group col-sm-3">
+                                <div class=" fg-line">
+                                    <label for="searchMes"></label>
+                                    <div class="select">
+                                        {!! Form::select('searchMes', $meses, date('m'), array('class'=> 'chosen form-control input-sm')) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                <div class=" fg-line">
+                                    <label for="searchDataIni"></label>
+                                    {!! Form::text('searchDataIni', null, array('id' => 'searchDataIni', 'class' => 'form-control input-sm', 'placeholder' => 'Data Inicial')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                <div class=" fg-line">
+                                    <label for="searchCpf"></label>
+                                    {!! Form::text('searchDataFin', null, array('id' => 'searchDataFin', 'class' => 'form-control input-sm', 'placeholder' => 'Data Final')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-2">
+                                <div class=" fg-line">
+                                    <label for="searchGlobal"></label>
+                                    {!! Form::text('searchGlobal', null, array('id' => 'searchGlobal', 'class' => 'form-control input-sm', 'placeholder' => 'Pesquisar ...')) !!}
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-2 m-t-15">
+                                <button type="submit" class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table id="contrato-grid" class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Detalhe</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Agência</th>
+                                <th>Nº da Conta</th>
+                                <th>Telefone</th>
+                                <th>Açao</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Detalhe</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Agência</th>
+                                <th>Nº da Conta</th>
+                                <th>Telefone</th>
+                                <th>Açao</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -69,7 +114,16 @@
         var table = $('#contrato-grid').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{!! route('contrato.grid') !!}",
+            ajax: {
+                url: "{!! route('contrato.grid') !!}",
+                data: function (d) {
+                    d.mes = $('select[name=searchMes] option:selected').val();
+                    d.dataIni = $('input[name=searchDataIni]').val();
+                    d.dataFin = $('input[name=searchDataFin]').val();
+                    d.global  = $('input[name=searchGlobal]').val();
+                }
+            },
+            bFilter: false,
             columns: [
                 {
                     "className":      'details-control',
@@ -100,6 +154,13 @@
             },*/
         });
 
+        // Função do submit do search da grid principal
+        $('#btnConsultar').click(function(e) {
+            table.draw();
+            e.preventDefault();
+        });
+
+        // Variável detalhes das linhas
         var detailRows = [];
 
         // evento para criação dos detalhes da grid
