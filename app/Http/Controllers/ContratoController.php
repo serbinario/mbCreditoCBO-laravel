@@ -243,8 +243,16 @@ class ContratoController extends Controller
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
 
+            # Array de parcelas
+            $arrayParcelas = ['' => 'Selecione uma parcela'];
+
+            # Criando as parcelas
+            for ($i = 1; $i <= 72; $i++) {
+                $arrayParcelas[$i] = $i;
+            }
+
             #retorno para view
-            return view('contrato.edit', compact('model', 'loadFields'));
+            return view('contrato.edit', compact('model', 'loadFields','arrayParcelas'));
         } catch (\Throwable $e) {dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }
@@ -284,8 +292,7 @@ class ContratoController extends Controller
     {
         try{
             #Consultado
-            $cliente = \DB::table('telefones')
-                ->join ('clientes', 'clientes.id', '=', 'telefones.cliente_id')
+            $cliente = \DB::table('clientes')
                 ->join ('agencias_callcenter as agencia', 'agencia.id', '=', 'clientes.agencia_id')
                 ->select([
                     'clientes.id as idCliente',
@@ -293,8 +300,7 @@ class ContratoController extends Controller
                     'clientes.cpf',
                     'clientes.conta',
                     'agencia.numero_agencia',
-                    'agencia.id',
-                    'telefones.telefone as numero'
+                    'agencia.id'
                 ])
                 ->where('clientes.cpf', $cpfCliente)
                 ->get();
