@@ -122,17 +122,23 @@
             processing: true,
             serverSide: true,
             createdRow: function ( row, data, index ) {
-                if(data.hasOwnProperty('data_contratado') && data.data_contratado) {
+
+                if(data.hasOwnProperty('contratos')) {
+                    // Convertendo para json
+                    var contratos = JSON.parse(data.contratos);
+
                     // Tratando a data
-                    var arrayDate = data.data_contratado.split("/");
-                    var dateBase  = new Date(arrayDate[2], arrayDate[1], arrayDate[0]);
+                    for(var i = 0; i < contratos.length; i++) {
+                        var arrayDate = contratos[i].data_prox_chamada.split("/");
+                        var dateBase  = new Date(arrayDate[2], arrayDate[1], arrayDate[0]);
 
-                    // Recuperando a data atual
-                    var dateNow   = new Date();
+                        // Recuperando a data atual
+                        var dateNow   = new Date();
 
-                    // vendo se a data da chamada é atual
-                    if(dateBase.getDate() == dateNow.getDate()) {
-                        $(row).find('td').addClass('date_alert');
+                        // vendo se a data da chamada é atual
+                        if(dateBase.getDate() == dateNow.getDate()) {
+                            $(row).find('td').addClass('date_alert');
+                        }
                     }
                 }
             },

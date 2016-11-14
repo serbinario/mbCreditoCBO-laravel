@@ -3,6 +3,7 @@
 namespace MbCreditoCBO\Services;
 
 use Illuminate\Support\Facades\Auth;
+use MbCreditoCBO\Entities\Cliente;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
@@ -50,19 +51,21 @@ class ContratoService
     }
 
     /**
-     * @param array $data
+     * @param $data
      * @return mixed
      */
-    public function tratamentoCliente(array $data)
+    public function tratamentoCliente($data)
     {
-        #Separando registros
-        $dados = $data['cliente'];
+        # Recuperando os clientes
+        $arrayCliente = $this->clienteRepository->findByField(['cpf' => $data['cpf']]);
+        
+        # validando a consulta
+        if(count($arrayCliente) > 0) {
+            return $arrayCliente[0];
+        }
 
-        #Salvando registro
-        $cliente = $this->clienteRepository->create($dados);
-
-        #Retorno
-        return $cliente;
+        # Salvando e retornando cliente
+        return $this->clienteRepository->create($data);
     }
 
     /**
@@ -72,11 +75,13 @@ class ContratoService
     public function tratamentoTelefone(array $data, $cliente)
     {
         # Recortando os telefones em arrays
-        $telefonesArray = explode(',', $data['telefones']);
+        if(!empty($data['telefones'])) {
+            $telefonesArray = explode(',', $data['telefones']);
 
-        # Percorrendo e salvando os telefones
-        foreach ($telefonesArray as $telefone) {
-            $cliente->telefones()->save(new Telefone(['telefone' => $telefone]));
+            # Percorrendo e salvando os telefones
+            foreach ($telefonesArray as $telefone) {
+                $cliente->telefones()->save(new Telefone(['telefone' => $telefone]));
+            }
         }
     }
 
@@ -87,7 +92,7 @@ class ContratoService
     public function numeroContrato($data)
     {
         #Consultando
-        $contrato = $this->repository->findWhere(['codigo_transacao' => $data['codigo_transacao']]);
+        $contrato = $this->repository->findWhere(['codigo_transacao' => $data['contrato']['codigo_transacao']]);
 
         #Validando
         if (count($contrato) > 0) {
@@ -112,11 +117,11 @@ class ContratoService
         $this->tratamentoTelefone($data, $cliente);
 
         #Criando vinculo entre contrato e cliente e usuário
-        $data['cliente_id'] = $cliente->id;
-        $data['user_id'] = Auth::user()->id;
+        $data['contrato']['cliente_id'] = $cliente->id;
+        $data['contrato']['user_id'] = Auth::user()->id;
 
         #Salvando registro pincipal
-        $contrato = $this->repository->create($data);
+        $contrato = $this->repository->create($data['contrato']);
 
         #Verificando se foi criado no banco de dados
         if(!$contrato) {
@@ -130,20 +135,21 @@ class ContratoService
     /**
      * @param array $data
      * @param int $id
-     * @return mixed
+     * @return Cliente
+     * @throws \Exception
      */
-    public function update(array $data, int $id) : Contrato
+    public function update(array $data, int $id) : Cliente
     {
         #Atualizando no banco de dados
-        $contrato = $this->repository->update($data, $id);
+        $cliente = $this->clienteRepository->update($data, $id);
 
         #Verificando se foi atualizado no banco de dados
-        if(!$contrato) {
+        if(!$cliente) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
         #Retorno
-        return $contrato;
+        return $cliente;
     }
 
     /**

@@ -14,7 +14,8 @@
                 <div class="form-group col-sm-4">
                     <div class=" fg-line">
                         <label for="searchCpf"></label>
-                        {!! Form::text('searchCpf', Session::getOldInput('searchCpf'), array('id' => 'searchCliente', 'class' => 'form-control input-sm', 'placeholder' => 'Número de CPF')) !!}
+                        {!! Form::text('searchCpf', Session::getOldInput('searchCpf'),
+                            array(isset($model) ? 'readonly' : '' ,'id' => 'searchCliente', 'class' => 'form-control input-sm', 'placeholder' => 'Número de CPF')) !!}
                     </div>
                 </div>
                 <div class="col-sm-4 m-t-15">
@@ -30,14 +31,16 @@
         <div class="row">
             <div class="form-group col-sm-8">
                 <div class=" fg-line">
-                    <label for="cliente[name]">Nome </label>
-                    {!! Form::text('cliente[name]', Session::getOldInput('cliente[name]'), array('id' => 'clienteNome', 'class' => 'form-control input-sm', 'placeholder' => 'Nome completo do cliente')) !!}
+                    <label for="name">Nome </label>
+                    {!! Form::text('name', Session::getOldInput('name'),
+                        array(isset($model) ? 'readonly' : '', 'id' => 'clienteNome', 'class' => 'form-control input-sm', 'placeholder' => 'Nome completo do cliente')) !!}
                     </div>
                 </div>
             <div class="form-group col-sm-4">
                 <div class="fg-line">
                     <label for="cliente[cpf]">CPF</label>
-                    {!! Form::text('cliente[cpf]', Session::getOldInput('clientes[cpf]'), array('id' => 'clienteCpf', 'class' => 'form-control input-sm', 'placeholder' => 'CPF do cliente')) !!}
+                    {!! Form::text('cpf', Session::getOldInput('cpf'),
+                        array(isset($model) ? 'readonly' : '', 'id' => 'clienteCpf', 'class' => 'form-control input-sm', 'placeholder' => 'CPF do cliente')) !!}
                 </div>
             </div>
         </div>
@@ -47,7 +50,8 @@
                 <div class="fg-line">
                     <label for="cliente[agencia_id]">Agência</label>
                     <div class="select">
-                        {!! Form::select('cliente[agencia_id]', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia')) !!} {{--, 'class'=> 'chosen'--}}
+                        {!! Form::select('agencia_id', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null,
+                            array(isset($model) ? 'disabled' : '', 'id' => 'clienteAgencia')) !!}
                     </div>
                 </div>
             </div>
@@ -55,7 +59,8 @@
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
                     <label for="cliente[conta]">Conta</label>
-                        {!! Form::text('cliente[conta]', Session::getOldInput('cliente[conta]'), array('id' => 'clienteConta', 'class' => 'form-control input-sm', 'placeholder' => 'Conta do cliente')) !!}
+                        {!! Form::text('conta', Session::getOldInput('conta'),
+                            array(isset($model) ? 'readonly' : '', 'id' => 'clienteConta', 'class' => 'form-control input-sm', 'placeholder' => 'Conta do cliente')) !!}
                 </div>
             </div>
         </div>
@@ -107,25 +112,25 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
-                    <label for="convenio_id">Convêmio</label>
+                    <label for="'contrato[convenio_id]">Convêmio</label>
                     <div class="select">
-                        {!! Form::select('convenio_id', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[convenio_id]', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
             <div class="form-group col-sm-4">
                 <div class="fg-line">
-                    <label for="tipo_contrato_id">Tipos de Créditos</label>
+                    <label for="contrato[tipo_contrato_id]">Tipos de Créditos</label>
                     <div class="select">
-                        {!! Form::select('tipo_contrato_id', ([["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[tipo_contrato_id]', ([["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
             <div class="form-group col-sm-4">
                 <div class="fg-line">
                     <div class="fg-line">
-                        <label for="data_contratado">Data da Contratação</label>
-                        {!! Form::text('data_contratado', Session::getOldInput('data_contratado'), array('class' => 'datepicker form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
+                        <label for="contrato[data_contratado]">Data da Contratação</label>
+                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'datepicker form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
                     </div>
                 </div>
             </div>
@@ -134,28 +139,28 @@
         <div class="row">
             <div class="form-group col-sm-3">
                 <div class=" fg-line">
-                    <label for="valor_contratado">Valor Contratado</label>
-                    {!! Form::text('valor_contratado', Session::getOldInput('valor_contratado'), array('class' => 'form-control input-sm', 'placeholder' => 'Valor do Contrato')) !!}
+                    <label for="contrato[valor_contratado]">Valor Contratado</label>
+                    {!! Form::text('contrato[valor_contratado]', Session::getOldInput('contrato[valor_contratado]'), array('class' => 'form-control input-sm', 'placeholder' => 'Valor do Contrato')) !!}
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <div class="fg-line">
-                    <label for="codigo_transacao">Nº do Contrato</label>
-                    {!! Form::text('codigo_transacao', Session::getOldInput('codigo_transacao'), array('id' => 'condigoTransacao', 'class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
+                    <label for="contrato[codigo_transacao]">Nº do Contrato</label>
+                    {!! Form::text('contrato[codigo_transacao]', Session::getOldInput('contrato[codigo_transacao]'), array('id' => 'condigoTransacao', 'class' => 'form-control input-sm', 'placeholder' => 'Número do Contrato')) !!}
                 </div>
             </div>
             <div class="form-group col-sm-3">
                 <div class="fg-line">
-                    <label for="matricula">Matrícula</label>
-                    {!! Form::text('matricula', Session::getOldInput('matricula'), array('class' => 'form-control input-sm', 'placeholder' => 'Número de Matrícula')) !!}
+                    <label for="contrato[matricula]">Matrícula</label>
+                    {!! Form::text('contrato[matricula]', Session::getOldInput('contrato[matricula]'), array('class' => 'form-control input-sm', 'placeholder' => 'Número de Matrícula')) !!}
                 </div>
             </div>
 
             <div class="form-group col-sm-3">
                 <div class="fg-line">
-                    <label for="prazo">Quantidade de Parcelas</label>
+                    <label for="contrato[prazo]">Quantidade de Parcelas</label>
                     <div class="select">
-                        {!! Form::select('prazo', $arrayParcelas, null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[prazo]', $arrayParcelas, null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -163,8 +168,8 @@
 
         <div class="form-group">
             <div class="fg-line">
-                <label for="data_prox_chamada">Data próx. Ligação</label>
-                {!! Form::text('data_prox_chamada', Session::getOldInput('data_prox_chamada'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
+                <label for="contrato[data_prox_chamada]">Data próx. Ligação</label>
+                {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
             </div>
         </div>
 
@@ -192,7 +197,7 @@
         // Habilitando o ambiemte (Grid de Telefones) para create ou edit
         @if(isset($model))
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
-        objTablePhone = new TablePhonesEdit("{{$model->cliente->id}}");
+        objTablePhone = new TablePhonesEdit("{{$model->id}}");
         @else
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
         objTablePhone = new TablePhonesCreate();
@@ -253,6 +258,22 @@
             }
         });
 
+        // evento para interromper a submissão
+        $('#formContrato').submit(function (event) {
+            @if(!isset($model))
+                // Variável quer armazenará os conteudos
+                var telefones = [];
+
+                // Percorrendo todos os conteudos
+                $.each(objTablePhone.getTable().rows().data(),function (index, valor) {
+                    telefones[index] = valor[0];
+                });
+
+                // Adicionando na requisição
+                $("#telefones").val(telefones);
+            @endif
+        });
+
         //Verificando se o número de contrato que foi preenchido já existe no banco
         /*$(document).on('focusout', "#condigoTransacao", function () {
             //Recuperando valor preenchido no campo
@@ -269,6 +290,22 @@
                 }
             })
         });*/
+
+       /* // Validação personalizada
+        $.validator.addMethod("uniqueContrato", function(value, element) {
+            $.ajax({
+                type: "POST",
+                url: '',
+                data: "checkUsername="+value,
+                dataType:"html",
+                success: function(msg)
+                {
+                    //If username exists, set response to true
+                    response = ( msg == 'true' ) ? true : false;
+                }
+            });
+            return response;
+        },"Username is Already Taken");*/
 
     </script>
 

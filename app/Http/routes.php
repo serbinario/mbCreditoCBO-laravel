@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'ContratoController@index']);
         Route::get('grid', ['as' => 'grid', 'uses' => 'ContratoController@grid']);
         Route::get('create', ['as' => 'create', 'uses' => 'ContratoController@create']);
+        Route::get('createContrato/{idCliente}', ['as' => 'createContrato', 'uses' => 'ContratoController@createContrato']);
         Route::post('store', ['as' => 'store', 'uses' => 'ContratoController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ContratoController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ContratoController@update']);

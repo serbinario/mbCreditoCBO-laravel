@@ -84,8 +84,8 @@ class ContratoController extends Controller
     public function grid(Request $request)
     {
         #Criando a consulta
-        $rows = \DB::table('chamadas')
-            ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
+        $rows = \DB::table('clientes')
+            ->join('chamadas', 'chamadas.cliente_id', '=', 'clientes.id')
             ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->leftJoin('telefones', function ($join) {
@@ -95,6 +95,7 @@ class ContratoController extends Controller
                         where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
                 );
             })
+            ->where('users.id', Auth::user()->id)
             ->orderBy('chamadas.data_contratado', 'DESC')
             ->groupBy('clientes.id')
             ->select([
@@ -104,8 +105,7 @@ class ContratoController extends Controller
                 'clientes.cpf',
                 'agencias.numero_agencia',
                 'clientes.conta',
-                'telefones.telefone',
-                \DB::raw('DATE_FORMAT(chamadas.data_contratado, "%d/%m/%Y") as data_contratado')
+                'telefones.telefone'
             ]);
 
         #Editando a grid
@@ -129,7 +129,7 @@ class ContratoController extends Controller
                 if ($request->has('mes')) {
                     $query->where(\DB::raw('MONTH(chamadas.data_contratado)'), '=', $request->get('mes'));
                 }
-
+               
                 # Filtrando por ranger de data
                 if ($request->has('dataIni') && $request->has('dataFin')) {
                     # Convertendo as datas
@@ -157,8 +157,9 @@ class ContratoController extends Controller
                 }
             })
             ->addColumn('contratos', function ($row) {
+                # Retorno
                 return $this->contratoRepository->with(['tipoContrato', 'convenio'])
-                    ->findByField(['cliente_id' => $row->idCliente]);
+                    ->findByField(['cliente_id' => $row->idCliente, 'user_id' =>  Auth::user()->id]);
             })
             ->addColumn('action', function ($row) {
                 # Html de retorno
@@ -174,7 +175,9 @@ class ContratoController extends Controller
 
                     # Aplicando o filtro
                     if(!in_array('ROLE_GERENTE', $arrayRole)) {
-                        $html .= '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $html .= '<a href="edit/'.$row->idCliente.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $html .= '  ';
+                        $html .= '<a href="createContrato/'.$row->idCliente.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-file"></i> Novo Contrato</a>';
                     }
                 }
 
@@ -200,6 +203,34 @@ class ContratoController extends Controller
 
         #Retorno para view
         return view('contrato.create', compact('loadFields', 'arrayParcelas'));
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function createContrato($id)
+    {
+        try {
+            #Recuperando o contrato
+            $model = $this->clienteRepository->find($id);
+
+            #Carregando os dados para o cadastro
+            $loadFields = $this->service->load($this->loadFields);
+
+            # Array de parcelas
+            $arrayParcelas = ['' => 'Selecione uma parcela'];
+
+            # Criando as parcelas
+            for ($i = 1; $i <= 72; $i++) {
+                $arrayParcelas[$i] = $i;
+            }
+
+            #retorno para view
+            return view('contrato.createContrato', compact('model', 'loadFields', 'arrayParcelas'));
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('message', $e->getMessage());
+        }
     }
 
     /**
@@ -234,11 +265,8 @@ class ContratoController extends Controller
     public function edit($id)
     {
         try {
-            #Recuperando a empresa
-            $model = $this->service->find($id);
-
-            #Tratando as datas
-           // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
+            #Recuperando o contrato
+            $model = $this->clienteRepository->find($id);
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
@@ -253,7 +281,7 @@ class ContratoController extends Controller
 
             #retorno para view
             return view('contrato.edit', compact('model', 'loadFields','arrayParcelas'));
-        } catch (\Throwable $e) {dd($e);
+        } catch (\Throwable $e) {
             return redirect()->back()->with('message', $e->getMessage());
         }
     }

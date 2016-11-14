@@ -20,8 +20,8 @@
                         @endforeach
                     </div>
                 @endif
-                {!! Form::model($model, ['route'=> ['contrato.update', $model->id], 'method' => "POST" ]) !!}
-                @include('tamplatesForms.tamplateFormCliente')
+                {!! Form::model($model, ['route'=> ['contrato.store'], 'method' => "POST" ]) !!}
+                @include('tamplatesForms.tamplateFormContrato')
                 {!! Form::close() !!}
             </section>
         </div>

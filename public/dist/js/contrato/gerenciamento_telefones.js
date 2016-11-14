@@ -111,18 +111,3 @@ function TablePhonesCreate() {
             .draw();
     }
 }
-
-
-// evento para interromper a submissão
-$('#formContrato').submit(function (event) {
-    // Variável quer armazenará os conteudos
-    var telefones = [];
-
-    // Percorrendo todos os conteudos
-    $.each(objTablePhone.getTable().rows().data(),function (index, valor) {
-        telefones[index] = valor[0];
-    });
-
-    // Adicionando na requisição
-    $("#telefones").val(telefones);
-});

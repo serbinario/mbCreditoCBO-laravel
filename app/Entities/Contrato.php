@@ -5,14 +5,18 @@ namespace MbCreditoCBO\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use MbCreditoCBO\Uteis\SerbinarioDateFormat;
 
 class Contrato extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table      = 'chamadas';
+    protected $table = 'chamadas';
 
-//    protected $primaryKey = 'cliente_id';
+    protected $dates = [
+        "data_prox_chamada",
+        "data_contratado"
+    ];
 
     protected $fillable = [ 
 		'cliente_id',
@@ -24,8 +28,45 @@ class Contrato extends Model implements Transformable
 		'status_chamada',
 		'codigo_transacao',
 		'data_prox_chamada',
-        'matricula'
+        'matricula',
+        'user_id'
 	];
+
+    /**
+     *
+     * @return \DateTime
+     */
+    public function getDataContratadoAttribute()
+    {
+        return SerbinarioDateFormat::toBrazil($this->attributes['data_contratado']);
+    }
+
+    /**
+     *
+     * @return \DateTime
+     */
+    public function setDataContratadoAttribute($value)
+    {
+        $this->attributes['data_contratado'] = SerbinarioDateFormat::toUsa($value);
+    }
+
+    /**
+     *
+     * @return \DateTime
+     */
+    public function getDataProxChamadaAttribute()
+    {
+        return SerbinarioDateFormat::toBrazil($this->attributes['data_prox_chamada']);
+    }
+
+    /**
+     *
+     * @return \DateTime
+     */
+    public function setDataProxChamadaAttribute($value)
+    {
+        $this->attributes['data_prox_chamada'] = SerbinarioDateFormat::toUsa($value);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
