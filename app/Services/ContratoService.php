@@ -19,6 +19,11 @@ class ContratoService
     private $repository;
 
     /**
+     * @var string
+     */
+    private $destinationPath = "images/";
+
+    /**
      * @param ContratoRepository $repository
      */
     public function __construct(ContratoRepository $repository,
@@ -101,6 +106,42 @@ class ContratoService
     }
 
     /**
+     * Método tratamentoImagem
+     *
+     * Método que faz o tratamento das imagens enviadas para o cadastro
+     * do vestibulando.
+     *
+     * @param array $data
+     * @return array
+     */
+    public function tratamentoImagem(array &$data, $contrato = "")
+    {
+        #tratando a imagem
+        foreach ($data as $key => $value) {
+            $explode = explode("_", $key);
+
+            if (count($explode) > 0 && $explode[0] == "path") {
+                $file = $data[$key];
+                $fileName = md5(uniqid(rand(), true)) . "." . $file->getClientOriginalExtension();
+
+                # Validando a atualização
+                if (!empty($contrato) && $contrato->{$key} != null) {
+                    unlink(__DIR__ . "/../../../public/" . $this->destinationPath . $contrato->{$key});
+                }
+
+                #Movendo a imagem
+                $file->move($this->destinationPath, $fileName);
+
+                #renomeando
+                $data[$key] = $fileName;
+            }
+        }
+
+        # retorno
+        return $data;
+    }
+
+    /**
      * @param array $data
      * @return Contrato
      * @throws \Exception
@@ -119,6 +160,9 @@ class ContratoService
         #Criando vinculo entre contrato e cliente e usuário
         $data['contrato']['cliente_id'] = $cliente->id;
         $data['contrato']['user_id'] = Auth::user()->id;
+
+        # Tratando a imagem
+        $this->tratamentoImagem($data['contrato']);
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data['contrato']);

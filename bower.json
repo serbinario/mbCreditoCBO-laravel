@@ -40,6 +40,7 @@
     "sweetalert2": "^5.0.7",
     "datatables.net-bs": "^1.10.12",
     "datatables.net-dt": "^1.10.12",
-    "jquery-validation": "^1.15.1"
+    "jquery-validation": "^1.15.1",
+    "jasny-bootstrap": "^3.1.3"
   }
 }

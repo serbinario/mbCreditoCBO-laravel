@@ -166,14 +166,35 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="fg-line">
-                <label for="contrato[data_prox_chamada]">Data próx. Ligação</label>
-                {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
+        <div class="row">
+            <div class="form-group col-sm-3">
+                <div class="fg-line">
+                    <label for="contrato[data_prox_chamada]">Data próx. Ligação</label>
+                    {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
+                </div>
             </div>
         </div>
 
-        <!--botão-->
+        <div class="topo-conteudo-full">
+            <h4>Upload de Arquivos</h4>
+        </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <span class="btn btn-primary btn-file m-r-10">
+                            <span class="fileinput-new">Selecione um arquivo</span>
+                            {{--<span class="fileinput-exists">Mudar</span>--}}
+                            <input type="file" name="contrato[path_arquivo]">
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--botão-->
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
         <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.index') }}">Voltar</a>
         <!--botão-->

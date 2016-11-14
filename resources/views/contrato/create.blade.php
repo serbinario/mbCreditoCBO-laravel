@@ -23,7 +23,7 @@
             </div>
             {{-- Fim mensagem de alerta --}}
             {{--Formulario--}}
-            {!! Form::open(['route'=>'contrato.store', 'id' => 'formContrato', 'method' => "POST", 'id' => 'formContrato' ]) !!}
+            {!! Form::open(['route'=>'contrato.store', 'id' => 'formContrato', 'method' => "POST", "files" => true ]) !!}
             @include('tamplatesForms.tamplateFormContrato')
             {!! Form::close() !!}
             {{--Fim formulario--}}
