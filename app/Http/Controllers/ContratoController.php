@@ -4,6 +4,7 @@ namespace MbCreditoCBO\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
 use MbCreditoCBO\Repositories\ClienteRepository;
@@ -86,6 +87,7 @@ class ContratoController extends Controller
         $rows = \DB::table('chamadas')
             ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
             ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->leftJoin('telefones', function ($join) {
                 $join->on(
                     'telefones.id', '=',
@@ -93,6 +95,8 @@ class ContratoController extends Controller
                         where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
                 );
             })
+            ->orderBy('chamadas.data_contratado', 'DESC')
+            ->groupBy('clientes.id')
             ->select([
                 'clientes.id as idCliente',
                 'chamadas.id',
@@ -100,12 +104,27 @@ class ContratoController extends Controller
                 'clientes.cpf',
                 'agencias.numero_agencia',
                 'clientes.conta',
-                'telefones.telefone'
+                'telefones.telefone',
+                \DB::raw('DATE_FORMAT(chamadas.data_contratado, "%d/%m/%Y") as data_contratado')
             ]);
 
         #Editando a grid
         return Datatables::of($rows)
             ->filter(function ($query) use ($request) {
+                # Recuperando o usuário
+                $user = Auth::user();
+
+                # Filtrando por usuário
+                if(count($user->roles->toArray()) > 0) {
+                    # Recuperando a coluna de permissões
+                    $arrayRole = array_column($user->roles->toArray(), 'role');
+
+                    # Aplicando o filtro
+                    if(!in_array('ROLE_ADMIN', $arrayRole) && !in_array('ROLE_GERENTE', $arrayRole)) {
+                        $query->where('users.id', $user->id);
+                    }
+                }
+
                 # Filtrando por mes
                 if ($request->has('mes')) {
                     $query->where(\DB::raw('MONTH(chamadas.data_contratado)'), '=', $request->get('mes'));
@@ -138,13 +157,28 @@ class ContratoController extends Controller
                 }
             })
             ->addColumn('contratos', function ($row) {
-                return $this->contratoRepository->with([
-                    'tipoContrato',
-                    'convenio'
-                ])->findByField(['cliente_id' => $row->idCliente]);
+                return $this->contratoRepository->with(['tipoContrato', 'convenio'])
+                    ->findByField(['cliente_id' => $row->idCliente]);
             })
             ->addColumn('action', function ($row) {
-                return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                # Html de retorno
+                $html = '';
+
+                # Recuperando o usuário
+                $user = Auth::user();
+
+                # Filtrando por usuário
+                if(count($user->roles->toArray()) > 0) {
+                    # Recuperando a coluna de permissões
+                    $arrayRole = array_column($user->roles->toArray(), 'role');
+
+                    # Aplicando o filtro
+                    if(!in_array('ROLE_GERENTE', $arrayRole)) {
+                        $html .= '<a href="edit/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                    }
+                }
+
+                return $html;
         })->make(true);
     }
 

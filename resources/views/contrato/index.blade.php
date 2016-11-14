@@ -10,6 +10,10 @@
         tr.details td.details-control {
             background: url("{{asset("imagemgrid/icone-produto-minus.png")}}") no-repeat center center;
         }
+
+        .date_alert {
+            background-color: #ccccff;
+        }
     </style>
 @stop
 
@@ -117,6 +121,21 @@
         var table = $('#contrato-grid').DataTable({
             processing: true,
             serverSide: true,
+            createdRow: function ( row, data, index ) {
+                if(data.hasOwnProperty('data_contratado') && data.data_contratado) {
+                    // Tratando a data
+                    var arrayDate = data.data_contratado.split("/");
+                    var dateBase  = new Date(arrayDate[2], arrayDate[1], arrayDate[0]);
+
+                    // Recuperando a data atual
+                    var dateNow   = new Date();
+
+                    // vendo se a data da chamada é atual
+                    if(dateBase.getDate() == dateNow.getDate()) {
+                        $(row).find('td').addClass('date_alert');
+                    }
+                }
+            },
             ajax: {
                 url: "{!! route('contrato.grid') !!}",
                 data: function (d) {

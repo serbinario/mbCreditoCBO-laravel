@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Services;
 
+use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
@@ -110,8 +111,9 @@ class ContratoService
         #Salvando registro de telefone
         $this->tratamentoTelefone($data, $cliente);
 
-        #Criando vinculo entre contrato e cliente
+        #Criando vinculo entre contrato e cliente e usuário
         $data['cliente_id'] = $cliente->id;
+        $data['user_id'] = Auth::user()->id;
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data);
