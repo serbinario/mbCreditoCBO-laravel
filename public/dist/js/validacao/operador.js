@@ -10,7 +10,7 @@ $(document).ready(function () {
             },
             cod_operadores: {
                 required: true,
-                alphanumeric: true,
+                chaveJ: true,
                 maxlength: 8
             }
         },

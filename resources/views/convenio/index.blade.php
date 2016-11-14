@@ -3,18 +3,18 @@
 @section('content')
     <section id="content">
         <div class="container">
-            {{--<div class="block-header">--}}
-            {{--<h2>Data Table</h2>--}}
-            {{--</div>--}}
+            <div class="block-header">
+                <h2>Listar Convênios</h2>
+            </div>
 
             <div class="card material-table">
                 <div class="card-header">
-                    <h2>Listar Convênios</h2>
+
                     <!-- Botão novo -->
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="text-right">
-                                <a class="btn btn-primary btn-sm m-t-10", href="http://ser.cbo/index.php/convenio/create">Novo Convênio</a>
+                                <a class="btn btn-primary btn-sm m-t-10", href="{{ route('convenio.create') }}">Novo Convênio</a>
                             </div>
                         </div>
                     </div>

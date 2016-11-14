@@ -10,13 +10,14 @@ $(document).ready(function () {
             },
             'cliente[cpf]': {
                 required: true,
-                number: true,
-                maxlength: 15
+                cpfBR: true,
+                maxlength: 15,
+                //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
             },
-            'cliente[telefone]': {
+            telefones: {
                 required: true,
                 number: true,
-                maxlength: 11
+                maxlength: 12
             },
             'cliente[agencia_id]': {
                 required: true,
@@ -24,8 +25,8 @@ $(document).ready(function () {
             },
             'cliente[conta]': {
                 required: true,
-                number: true,
-                maxlength: 6
+                bankBr: true,
+                maxlength: 15,
             },
             convenio_id: {
                 required: true,
@@ -36,8 +37,7 @@ $(document).ready(function () {
                 integer: true
             },
             data_contratado: {
-                date: true,
-                minlength:true
+                date: true
             },
             valor_contratado: {
                 required: true,
@@ -59,12 +59,12 @@ $(document).ready(function () {
             }
         },
         //For custom messages
-        messages: {
+        /*messages: {
             nome_operadores:{
                 required: "Enter a username",
                 minlength: "Enter at least 5 characters"
             }
-        },
+        },*/
         //Define qual elemento será adicionado
         errorElement : 'small',
         errorPlacement: function(error, element) {

@@ -1,8 +1,12 @@
-<div class="card">
-    <div class="card-header">
-    </div>
+<div class="block-header">
+    <h2>Cadastro de Convênios</h2>
 
+</div>
+<div class="card">
     <div class="card-body card-padding">
+        <div class="topo-conteudo-full">
+            <h4>Dados do Convênio</h4>
+        </div>
         <div class="form-group">
             <div class="fg-line">
                 <label for="nome_convenio">Nome:</label>
@@ -11,7 +15,7 @@
         </div>
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
-        <a class="btn btn-primary btn-sm m-t-10" href="http://ser.cbo/index.php/convenio/index">Voltar</a>
+        <a class="btn btn-primary btn-sm m-t-10" href="{{ route('convenio.index') }}">Voltar</a>
     </div>
 </div>
 

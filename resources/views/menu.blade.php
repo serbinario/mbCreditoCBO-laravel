@@ -28,6 +28,9 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_2.min.css') }}"  media="screen,projection"/>
 
+        {{-- CSS personalizados--}}
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/demo.css') }}"  media="screen,projection"/>
+
         @yield('css')
     </head>
     <body>
@@ -75,11 +78,11 @@
                     <div class="sp-pic">
                         <img src="/dist/img/demo/profile-pics/1.jpg" alt="">
                         {{--{{dd(Auth::user())}}--}}
-                        {{Auth::user()->operador()->get()->first()->nome_operadores}}
+                        {{--{{Auth::user()->operador()->get()->first()->nome_operadores}}--}}
                     </div>
 
                     <div class="sp-info">
-                        Parâmetros de Usuário
+                        {{Auth::user()->operador()->get()->first()->nome_operadores}}
 
                         <i class="zmdi zmdi-caret-down"></i>
                     </div>
@@ -156,16 +159,16 @@
     </div>
 
 
-    <footer id="footer">
-        <strong>Copyright &copy; 2015-2016 SERBINARIO.</strong> Todos os direitos reservados.
+    <footer id="footer" class="p-t-0">
+        <strong>Copyright &copy; 2015-2016 <a target="_blank" href="http://serbinario.com.br"><i></i>SERBINARIO</a> .</strong> Todos os direitos reservados.
 
-        <ul class="f-menu">
+       {{-- <ul class="f-menu">
             <li><a href="http://serbinario.com.br/">Início</a></li>
             <li><a href="http://serbinario.com.br/#sobre">Sobre</a></li>
             <li><a href="http://serbinario.com.br/#service">Serviços</a></li>
             <li><a href="http://serbinario.com.br/#produtos">Produtos</a></li>
             <li><a href="http://serbinario.com.br/#contato">Contato</a></li>
-        </ul>
+        </ul>--}}
     </footer>
 
     <!-- Javascript Libraries -->
@@ -177,14 +180,18 @@
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 
+    {{--jquery Validator https://jqueryvalidation.org/ --}}
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
+
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->
     <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
     <!--[endif]-->
 
-    <script src="{{ asset('/lib/chosen/chosen.jquery.j') }}s"></script>
+    <script src="{{ asset('/lib/chosen/chosen.jquery.js') }}"></script>
 
     <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
