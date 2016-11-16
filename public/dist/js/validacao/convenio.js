@@ -5,16 +5,17 @@ $(document).ready(function () {
         rules: {
             nome_convenio: {
                 required: true,
-                alphaSpace: true
+                alphaSpace: true,
+                maxlength: 100
             }
         },
         //For custom messages
-        messages: {
+        /*messages: {
             nome_operadores:{
                 required: "Enter a username",
                 minlength: "Enter at least 5 characters"
             }
-        },
+        },*/
         //Define qual elemento será adicionado
         errorElement : 'small',
         errorPlacement: function(error, element) {

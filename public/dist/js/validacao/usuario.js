@@ -1,19 +1,19 @@
 // Regras de validação
 $(document).ready(function () {
 
-    /*$("#formUsuario").validate({
+    $("#formUsuario").validate({
         rules: {
             username: {
                 alphanumeric: true,
-                max: 8,
-                required: true
+                required: true,
+                chaveJ: true
             },
             password: {
                 alphanumeric: true,
+                max: 60,
                 required: true
             },
             email: {
-                alphanumeric: true,
                 email: true
             },
 
@@ -35,12 +35,12 @@ $(document).ready(function () {
             }
         },
         //For custom messages
-        /!*messages: {
+        /*messages: {
          nome_operadores:{
          required: "Enter a username",
          minlength: "Enter at least 5 characters"
          }
-         },*!/
+         },*/
         //Define qual elemento será adicionado
         errorElement : 'small',
         errorPlacement: function(error, element) {
@@ -56,5 +56,5 @@ $(document).ready(function () {
             $(element).parent().parent().removeClass("has-error");
 
         }
-    });*/
+    });
 });
