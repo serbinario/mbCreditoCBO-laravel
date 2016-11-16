@@ -74,5 +74,5 @@ $.extend( $.validator.messages, {
 	ziprange: "O c&oacute;digo postal deve estar entre 902xx-xxxx e 905xx-xxxx",
 	cpfBR: "Por favor, forne&ccedil;a um CPF v&aacute;lido.",
 	bankBr: "Por favor, insira apenas números e/ou '-'",
-	chaveJ: "Por favor, insira o número de sua chave precedido da letra 'J'",
+	chaveJ: "Por favor, insira o número de sua chave, com 7 digitos, precedido da letra 'J'",
 } );

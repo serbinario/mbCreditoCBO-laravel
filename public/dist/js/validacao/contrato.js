@@ -3,15 +3,15 @@ $(document).ready(function () {
 
     $("#formContrato").validate({
         rules: {
-            'cliente[name]': {
+            name: {
                 required: true,
                 alphaSpace: true,
                 maxlength: 200
             },
-            'cliente[cpf]': {
+            cpf: {
                 required: true,
                 cpfBR: true,
-                maxlength: 15,
+                maxlength: 15
                 //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
             },
             telefones: {
@@ -19,42 +19,42 @@ $(document).ready(function () {
                 number: true,
                 maxlength: 12
             },
-            'cliente[agencia_id]': {
+            agencia_id: {
                 required: true,
                 integer: true
             },
-            'cliente[conta]': {
+            conta: {
                 required: true,
                 bankBr: true,
                 maxlength: 15,
             },
-            convenio_id: {
+            'contrato[convenio_id]': {
                 required: true,
                 integer: true
             },
-            tipo_contrato_id: {
+            'contrato[tipo_contrato_id]': {
                 required: true,
                 integer: true
             },
-            data_contratado: {
+            'contrato[data_contratado]': {
                 date: true
             },
-            valor_contratado: {
+            'contrato[valor_contratado]': {
                 required: true,
                 number: true
             },
-            codigo_transacao: {
+            'contrato[codigo_transacao]': {
                 required: true,
                 number: true
             },
-            /*prazo: {
+            'contrato[prazo]': {
                 required: true
-            },*/
-            data_prox_chamada: {
+            },
+            'contrato[data_prox_chamada]': {
                 date: true
             },
-            matricula: {
-                maxlength: 15,
+            'contrato[matricula]': {
+                maxlength: 20,
                 number: true
             }
         },

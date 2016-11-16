@@ -6,12 +6,11 @@ $(document).ready(function () {
             nome_operadores: {
                 required: true,
                 alphaSpace: true,
-                minlength: 5
+                maxlength: 200
             },
             cod_operadores: {
                 required: true,
-                chaveJ: true,
-                maxlength: 8
+                chaveJ: true
             }
         },
         //For custom messages

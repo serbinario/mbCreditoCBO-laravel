@@ -38,7 +38,7 @@
                 </div>
             <div class="form-group col-sm-4">
                 <div class="fg-line">
-                    <label for="cliente[cpf]">CPF</label>
+                    <label for="cpf">CPF</label>
                     {!! Form::text('cpf', Session::getOldInput('cpf'),
                         array(isset($model) ? 'readonly' : '', 'id' => 'clienteCpf', 'class' => 'form-control input-sm', 'placeholder' => 'CPF do cliente')) !!}
                 </div>
@@ -48,7 +48,7 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
-                    <label for="cliente[agencia_id]">Agência</label>
+                    <label for="agencia_id">Agência</label>
                     <div class="select">
                         {!! Form::select('agencia_id', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null,
                             array(isset($model) ? 'disabled' : '', 'id' => 'clienteAgencia')) !!}
@@ -58,7 +58,7 @@
 
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
-                    <label for="cliente[conta]">Conta</label>
+                    <label for="conta">Conta</label>
                         {!! Form::text('conta', Session::getOldInput('conta'),
                             array(isset($model) ? 'readonly' : '', 'id' => 'clienteConta', 'class' => 'form-control input-sm', 'placeholder' => 'Conta do cliente')) !!}
                 </div>
@@ -112,7 +112,7 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
-                    <label for="'contrato[convenio_id]">Convêmio</label>
+                    <label for="contrato[convenio_id]">Convêmio</label>
                     <div class="select">
                         {!! Form::select('contrato[convenio_id]', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
@@ -209,6 +209,7 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js')  }}"></script>
     {{--Regras de validação--}}
     <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
 

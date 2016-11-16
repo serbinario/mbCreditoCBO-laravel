@@ -105,7 +105,7 @@
             </div>
 
             <ul class="main-menu">
-                <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                <li><a href="{{ route('index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBO</a>
                     <ul>
