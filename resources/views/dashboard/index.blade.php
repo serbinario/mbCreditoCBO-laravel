@@ -95,7 +95,7 @@
     <script src="{{ asset('/lib/flot.curvedlines/curvedLines.js')}}"></script>
     <script src="{{ asset('/lib/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{ asset('/lib/Flot/jquery.flot.time.js')}}"></script>
-    <script src="{{ asset('/lib/sparklines/jquery.sparkline.min.js')  }}"></script>
+    <script src="{{ asset('/dist/js/sparklines/jquery.sparkline.min.js')  }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             // Relatório de Contratos por Mês
