@@ -180,11 +180,9 @@
     <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
 
     <!-- -->
-    <script src="{{ asset('/lib/jquery.datetimepicker.js') }}"></script>
-
-    {{--<script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.min.js') }}"></script>
-    <script src="{{ asset('/lib/php-date-formatter/js/php-date-formatter.min.js') }}"></script>
-    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>--}}
+    <script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
+    <script src="{{ asset('/lib/php-date-formatter/js/php-date-formatter.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>
 
     {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
