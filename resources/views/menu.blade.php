@@ -16,6 +16,7 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
 
         {{--<link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">--}}
         {{--<link href="/lib/nouislider/distribute/nouislider.min.css" rel="stylesheet">--}}
@@ -177,6 +178,14 @@
     <script src="{{ asset('/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
+
+    <!-- -->
+    <script src="{{ asset('/lib/jquery.datetimepicker.js') }}"></script>
+
+    {{--<script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('/lib/php-date-formatter/js/php-date-formatter.min.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>--}}
+
     {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>

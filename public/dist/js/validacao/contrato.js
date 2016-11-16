@@ -11,7 +11,8 @@ $(document).ready(function () {
             cpf: {
                 required: true,
                 cpfBR: true,
-                maxlength: 15
+                maxlength: 15,
+                unique: ['cpf', $('#clienteCpf').val(),'contrato.js']
                 //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
             },
             telefones: {
@@ -78,7 +79,6 @@ $(document).ready(function () {
         unhighlight: function(element, errorClass, validClass) {
             //console.log("Sucess");
             $(element).parent().parent().removeClass("has-error");
-
         }
     });
 });

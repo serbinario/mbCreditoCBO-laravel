@@ -1,6 +1,5 @@
 $.validator.addMethod("unique",
     function(value, element, params) {
-    console.log(value)
         var isUnique = false;
         if(value == '')
             return isUnique;
@@ -24,5 +23,5 @@ $.validator.addMethod("unique",
         return isUnique;
 
     },
-    jQuery.validator.format("Cpf já está em uso")
+    jQuery.validator.format("O CPF informado já se encontra em uso")
 );

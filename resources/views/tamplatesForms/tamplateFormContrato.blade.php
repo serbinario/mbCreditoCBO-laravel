@@ -130,7 +130,7 @@
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="contrato[data_contratado]">Data da Contratação</label>
-                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'datepicker form-control input-sm', 'placeholder' => 'Data da contratação')) !!}
+                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'form-control datepicker date input-sm', 'placeholder' => 'Data da contratação')) !!}
                     </div>
                 </div>
             </div>
