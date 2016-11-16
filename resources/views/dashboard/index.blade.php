@@ -68,10 +68,19 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Relatório de Contratos {{ date('Y') }}<small>Quantidade de contratos por mês</small></h2>
+                    <h2>Relatório de Contratos (Mensal) {{ date('Y') }}<small>Quantidade de contratos por mês</small></h2>
                 </div>
                 <div class="card-body card-padding-sm">
                     <div id="bar-chart" class="flot-chart"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Relatório de Contratos (Anual)<small>Quantidade de contratos por Ano</small></h2>
+                </div>
+                <div class="card-body card-padding-sm">
+                    <div id="flot-chart" class="flot-chart"></div>
                 </div>
             </div>
         </div>
@@ -89,6 +98,7 @@
     <script src="{{ asset('/lib/sparklines/jquery.sparkline.min.js')  }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            // Relatório de Contratos por Mês
             $.getJSON( "{{ route('dashboard.chartContratosByMonth') }}", function( data ) {
                 $.plot("#bar-chart", [data], {
                     colors: ["#00BCD4"],
@@ -107,8 +117,8 @@
                         borderWidth: 1,
                         borderColor: '#eee',
                         show : true,
-                        hoverable : true,
-                        clickable : true
+                        hoverable : false,
+                        clickable : false
                     },
                     bars: {
                         show: true,
@@ -117,6 +127,32 @@
                         fill: 1
                     }
                 });
+            });
+
+            // Relatório de cotratos por ano
+            $.getJSON("{{ route('dashboard.chartContratosByYear') }}", function (json) {
+                var options = {
+                    colors: ["#00BCD4"],
+                    grid : {
+                        borderWidth: 1,
+                        borderColor: '#eee',
+                        show : true,
+                        hoverable : false,
+                        clickable : false
+                    },
+                    lines: {
+                        show: true
+                    },
+                    points: {
+                        show: true
+                    },
+                    xaxis: {
+                        tickDecimals: 0,
+                        tickSize: 1
+                    }
+                };
+
+                $.plot("#flot-chart", [json], options);
             });
         });
     </script>
