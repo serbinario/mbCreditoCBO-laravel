@@ -122,6 +122,13 @@ class ContratoService
 
             if (count($explode) > 0 && $explode[0] == "path") {
                 $file = $data[$key];
+
+                if (empty($data[$key])) {
+                    unset($data[$key]);
+
+                    return true;
+                }
+
                 $fileName = md5(uniqid(rand(), true)) . "." . $file->getClientOriginalExtension();
 
                 # Validando a atualização
@@ -291,6 +298,35 @@ class ContratoService
 
         #retorno
         return $result;
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    public function tratamentoCampos(array &$data)
+    {
+        # Tratamento de campos de chaves estrangeira
+        foreach ($data as $key => $value) {
+            if(is_array($value)) {
+                foreach ($value as $key2 => $value2) {
+                    $explodeKey2 = explode("_", $key2);
+
+                    if ($explodeKey2[count($explodeKey2) -1] == "id" && $value2 == null ) {
+                        $data[$key][$key2] = null;
+                    }
+                }
+            }
+
+            $explodeKey = explode("_", $key);
+
+            if ($explodeKey[count($explodeKey) -1] == "id" && $value == null ) {
+                $data[$key] = null;
+            }
+        }
+
+        #Retorno
+        return $data;
     }
 
 }
