@@ -4,6 +4,7 @@ namespace MbCreditoCBO\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
@@ -401,6 +402,22 @@ class ContratoController extends Controller
 
             #retorno para view
             return \Illuminate\Support\Facades\Response::json(['success' => true]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @param $id
+     * @return Response
+     */
+    public function viewContrato($id)
+    {
+        try{
+            return new Response(file_get_contents($this->service->getPathArquivo($id)), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="'.'contrato.pdf'.'"'
+            ]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
         }

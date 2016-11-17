@@ -238,6 +238,7 @@
                                 '<th>Convênio</th>' +
                                 '<th>Nº do contrato</th>' +
                                 '<th>Data da religação</th>' +
+                                '<th>Link Contrato</th>' +
                             '</tr>' +
                             '</thead>';
 
@@ -251,6 +252,9 @@
                             '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
                             '<td>'+ contratos[i].codigo_transacao + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
+                            '<td>'+ (contratos[i].path_arquivo ?
+                                    '<a target="_blank" href="/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
+                            '</td>' +
                         '</tr>';
             }
 

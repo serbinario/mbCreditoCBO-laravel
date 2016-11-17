@@ -142,6 +142,19 @@ class ContratoService
     }
 
     /**
+     * @param $id
+     * @return string
+     */
+    public function getPathArquivo($id)
+    {
+        # Recuperando o contrato
+        $contrato = $this->repository->find($id);
+
+        #Retornando o caminho completo do arquivo
+        return $this->destinationPath . $contrato->path_arquivo;
+    }
+
+    /**
      * @param array $data
      * @return Contrato
      * @throws \Exception

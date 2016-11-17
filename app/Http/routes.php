@@ -44,6 +44,9 @@ Route::group(['middleware' => 'auth'], function () {
         # Rotas de GERENCIAMENTO DE TELEFONES
         Route::get('telefone/grid/{idClient}', ['as' => 'telefone.grid', 'uses' => 'ContratoController@gridPhones']);
         Route::post('telefone/store/{idClient}', ['as' => 'telefone.create', 'uses' => 'ContratoController@storePhone']);
+        
+        # Rota do pdf do contrato
+        Route::get('viewContrato/{id}', ['as' => 'viewContrato', 'uses' => 'ContratoController@viewContrato']);
     });
 
     Route::group(['prefix' => 'agencia', 'as' => 'agencia.'], function () {
