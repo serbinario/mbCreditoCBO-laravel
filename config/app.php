@@ -137,11 +137,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        /*
-        * Gerador de PDF
-        */
-        Barryvdh\Snappy\ServiceProvider::class,
-
         //Form
        //Illuminate\Html\HtmlServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
