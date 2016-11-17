@@ -10,11 +10,13 @@ class ConvenioCallCenterValidator extends LaravelValidator
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            
-			'nome_convenio' =>  'required' ,
+			'nome_convenio' =>  'required|serbinario_alpha_space|max:100'
 
         ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+            'nome_convenio' =>  'required|serbinario_alpha_space|max:100'
+
+        ],
    ];
 
 }

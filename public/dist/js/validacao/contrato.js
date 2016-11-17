@@ -3,6 +3,10 @@ $(document).ready(function () {
 
     $("#formContrato").validate({
         rules: {
+            searchCpf: {
+                number: true,
+                maxlength: 15
+            },
             name: {
                 required: true,
                 alphaSpace: true,
@@ -15,7 +19,7 @@ $(document).ready(function () {
                 unique: ['cpf', $('#clienteCpf').val(),'contrato.js']
                 //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
             },
-            telefones: {
+            addPhoneText: {
                 required: true,
                 number: true,
                 maxlength: 12
