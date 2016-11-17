@@ -130,7 +130,7 @@
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="contrato[data_contratado]">Data da Contratação</label>
-                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'form-control datepicker date input-sm', 'placeholder' => 'Data da contratação')) !!}
+                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data da contratação')) !!}
                     </div>
                 </div>
             </div>
@@ -170,7 +170,7 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="contrato[data_prox_chamada]">Data próx. Ligação</label>
-                    {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control input-sm', 'placeholder' => 'Data')) !!}
+                    {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data')) !!}
                 </div>
             </div>
         </div>
@@ -211,7 +211,7 @@
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js')  }}"></script>
     {{--Regras de validação--}}
-    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
+    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
 
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
@@ -295,6 +295,8 @@
                 $("#telefones").val(telefones);
             @endif
         });
+
+//        $('#datetimepicker').datepicker();
 
         //Verificando se o número de contrato que foi preenchido já existe no banco
         /*$(document).on('focusout', "#condigoTransacao", function () {

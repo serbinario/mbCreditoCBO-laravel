@@ -180,9 +180,11 @@
     <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
 
     <!-- -->
-    <script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
+    {{--<script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
     <script src="{{ asset('/lib/php-date-formatter/js/php-date-formatter.js') }}"></script>
-    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>--}}
+
+    <script src="{{ asset('/dist/jquery.datetimepicker.js') }}"></script>
 
     {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
@@ -194,7 +196,6 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
     <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
 
-
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->
     <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
@@ -204,7 +205,12 @@
 
     <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
-    <script> jQuery(".chosen").chosen(); </script>
+    <script type="text/javascript">
+        $(".chosen").chosen();
+        $('.dateTimePicker').datetimepicker({
+            format : 'd/m/Y'
+        });
+    </script>
 
     @yield('javascript')
 
