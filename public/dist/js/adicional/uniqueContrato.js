@@ -1,4 +1,4 @@
-$.validator.addMethod("unique",
+$.validator.addMethod("uniqueContrato",
     function(value, element, params) {
         var isUnique = false;
         if(value == '')
@@ -9,7 +9,7 @@ $.validator.addMethod("unique",
            // id_send ='id='+params[1]+'&';
 
         $.ajax({
-            url: '/index.php/contrato/searchCliente/' + value,
+            url: '/index.php/contrato/searchContrato/' + value,
             type : 'GET',
             async: false,
             data: value,
@@ -25,5 +25,5 @@ $.validator.addMethod("unique",
         return isUnique;
 
     },
-    $.validator.format("O CPF informado já se encontra em uso")
+    $.validator.format("O número informado já se encontra em uso")
 );

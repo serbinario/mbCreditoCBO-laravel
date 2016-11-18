@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
         # Validator conta bancaria
         Validator::extend('bank_br', function($attribute, $value, $formats, $validator) {
             #expressão regular
-            $pattern = "/^([0-9]{4})[-]?([0-9]?)$/";
+            $pattern = "/^[0-9]+[-]?[0-9]+$/";
 
             #Validando pela expressão regular
             if (\preg_match($pattern, $value)) {

@@ -16,8 +16,7 @@ $(document).ready(function () {
                 required: true,
                 cpfBR: true,
                 maxlength: 15,
-                unique: ['cpf', $('#clienteCpf').val(),'contrato.js']
-                //unique:['/index.php/contrato/searchCliente/'], //http://stackoverflow.com/questions/2048112/jquery-validation-plugin-and-check-unique-field
+                unique: ['cpf', $('#clienteCpf').val(),'uniqueCpf.js']
             },
             addPhoneText: {
                 required: true,
@@ -50,7 +49,8 @@ $(document).ready(function () {
             },
             'contrato[codigo_transacao]': {
                 required: true,
-                number: true
+                number: true,
+                uniqueContrato: ['codigo_transacao', $('#codigoTransacao').val(),'uniqueContrato.js']
             },
             'contrato[prazo]': {
                 required: true
