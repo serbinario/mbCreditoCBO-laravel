@@ -4,13 +4,13 @@ $(document).ready(function () {
     $("#formAgencia").validate({
         rules: {
             numero_agencia: {
+                required: true,
                 maxlength: 6,
-                bankBr: true,
-                required: true
+                bankBr: true
             },
             nome_agencia: {
-                alphaSpace: true,
-                required: true
+                required: true,
+                alphaSpace: true
             }
         },
         //Para mensagens personalizadas
@@ -33,7 +33,6 @@ $(document).ready(function () {
         unhighlight: function(element, errorClass, validClass) {
             //console.log("Sucess");
             $(element).parent().parent().removeClass("has-error");
-
         }
     });
 });

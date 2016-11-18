@@ -67,7 +67,6 @@ class AgenciaCallCenterService
         #Atualizando no banco de dados
         $agenciaCallCenter = $this->repository->update($data, $id);
 
-
         #Verificando se foi atualizado no banco de dados
         if(!$agenciaCallCenter) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');

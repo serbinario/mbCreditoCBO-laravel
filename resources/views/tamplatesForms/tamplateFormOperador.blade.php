@@ -1,10 +1,8 @@
 <div class="block-header">
     <h2>Cadastro de Agentes</h2>
-
 </div>
+
 <div class="card">
-
-
     <div class="card-body card-padding">
         <div class="topo-conteudo-full">
             <h4>Dados do Agente</h4>
@@ -18,7 +16,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
@@ -27,14 +24,6 @@
                 </div>
             </div>
         </div>
-
-     {{--       <div class="form-group has-error">
-                <div class="fg-line">
-                    <label for="inputError1" class="control-label">Input with error</label>
-                    <input type="text" value="Nam et eleifend massa. Cum sociis natoque penatibus" id="inputError1" class="form-control">
-                </div>
-                <small class="help-block">This is an error help block</small>
-            </div>--}}
 
             <button type="submit" class="btn btn-primary btn-sm m-t-10">Salvar</button>
             <a class="btn btn-primary btn-sm m-t-10" href="{{ route('operador.index') }}">Voltar</a>

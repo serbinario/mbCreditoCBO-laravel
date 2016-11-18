@@ -1,14 +1,13 @@
 <div class="block-header">
     <h2>Cadastro de Agências</h2>
-
 </div>
 
 <div class="card">
-
     <div class="card-body card-padding">
         <div class="topo-conteudo-full">
             <h4>Dados da Agência</h4>
         </div>
+
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
@@ -17,7 +16,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
@@ -29,7 +27,6 @@
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
         <a class="btn btn-primary btn-sm m-t-10" href="{{ route('agencia.index') }}">Voltar</a>
-        
     </div>
 </div>
 

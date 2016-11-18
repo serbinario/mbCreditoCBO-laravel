@@ -22,7 +22,7 @@
                 @endif
             </div>
             {{-- Fim mensagem de alerta --}}
-            {{--Formulario--}}
+        {{--Formulario--}}
         {!! Form::open(['route'=>'agencia.store', 'id' => 'formAgencia', 'method' => "POST" ]) !!}
         @include('tamplatesForms.tamplateFormAgenciaCallCenter')
         {!! Form::close() !!}
