@@ -481,7 +481,6 @@ class ContratoController extends Controller
                 ->where('chamadas.codigo_transacao', $contrato['value'])
                 ->where('clientes.id', $contrato['idCliente'])
                 ->get();
-                dd($contrato);
             }
 
             if (count($contrato) > 0 ) {
@@ -489,7 +488,7 @@ class ContratoController extends Controller
             }
 
             #retorno para view
-            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $result]);
+            return \Illuminate\Support\Facades\Response::json(['success' => $result]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
         }

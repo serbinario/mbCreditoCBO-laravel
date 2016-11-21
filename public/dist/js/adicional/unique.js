@@ -16,6 +16,7 @@ $.validator.addMethod("unique",
             dataType: 'json',
             cache: true,
             success: function(data){
+                console.log(data);
                 if (data.success == false) {
                     isUnique = true;
                 }
