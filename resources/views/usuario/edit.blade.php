@@ -22,7 +22,7 @@
                     </div>
                 @endif
 
-                {!! Form::model($model, ['route'=> ['usuario.update', $model->id], 'id' => 'formAgencia', 'method' => "POST" ]) !!}
+                {!! Form::model($model, ['route'=> ['usuario.update', $model->id], 'id' => 'formUsuario', 'method' => "POST" ]) !!}
                 @include('tamplatesForms.tamplateFormUsuario')
                 {!! Form::close() !!}
             </section>
