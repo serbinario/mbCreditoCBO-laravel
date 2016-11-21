@@ -17,8 +17,8 @@ class AgenciaCallCenterValidator extends LaravelValidator
 			'nome_agencia' =>  'required|serbinario_alpha_space'
         ],
         ValidatorInterface::RULE_UPDATE => [
-            'numero_agencia' =>  'required|bank_br' ,
-            'nome_agencia' =>  'required|serbinario_alpha_space'
+            /*'numero_agencia' =>  'required|bank_br' ,
+            'nome_agencia' =>  'required|serbinario_alpha_space'*/
         ],
    ];
 

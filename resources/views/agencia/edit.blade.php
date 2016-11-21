@@ -21,7 +21,7 @@
             @endif
 
             <section id="content">
-                {!! Form::model($model, ['route'=> ['agencia.update', $model->id], 'method' => "POST" ]) !!}
+                {!! Form::model($model, ['route'=> ['agencia.update', $model->id], 'id' => 'formAgencia', 'method' => "POST" ]) !!}
                 @include('tamplatesForms.tamplateFormAgenciaCallCenter')
                 {!! Form::close() !!}
             </section>

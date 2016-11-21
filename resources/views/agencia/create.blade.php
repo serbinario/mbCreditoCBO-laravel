@@ -22,11 +22,11 @@
                 @endif
             </div>
             {{-- Fim mensagem de alerta --}}
-        {{--Formulario--}}
-        {!! Form::open(['route'=>'agencia.store', 'id' => 'formAgencia', 'method' => "POST" ]) !!}
-        @include('tamplatesForms.tamplateFormAgenciaCallCenter')
-        {!! Form::close() !!}
-        {{--Fim formulario--}}
+            {{--Formulario--}}
+            {!! Form::open(['route'=>'agencia.store', 'id' => 'formAgencia', 'method' => "POST" ]) !!}
+            @include('tamplatesForms.tamplateFormAgenciaCallCenter')
+            {!! Form::close() !!}
+            {{--Fim formulario--}}
         </section>
     </div>
 @stop

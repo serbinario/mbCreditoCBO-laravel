@@ -22,7 +22,7 @@
                     </div>
                 @endif
 
-                {!! Form::model($model, ['route'=> ['convenio.update', $model->id], 'method' => "POST" ]) !!}
+                {!! Form::model($model, ['route'=> ['convenio.update', $model->id], 'id' => 'formAgencia', 'method' => "POST" ]) !!}
                 @include('tamplatesForms.tamplateFormConvenioCallCenter')
                 {!! Form::close() !!}
             </section>

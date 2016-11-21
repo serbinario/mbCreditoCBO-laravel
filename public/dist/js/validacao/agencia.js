@@ -13,13 +13,13 @@ $(document).ready(function () {
                 alphaSpace: true
             }
         },
-        //Para mensagens personalizadas
+        //For custom messages
         /*messages: {
-            nome_operadores:{
-                required: "Enter a username",
-                minlength: "Enter at least 5 characters"
-            }
-        },*/
+             nome_operadores:{
+             required: "Enter a username",
+             minlength: "Enter at least 5 characters"
+         }
+         },*/
         //Define qual elemento será adicionado
         errorElement : 'small',
         errorPlacement: function(error, element) {
@@ -33,6 +33,7 @@ $(document).ready(function () {
         unhighlight: function(element, errorClass, validClass) {
             //console.log("Sucess");
             $(element).parent().parent().removeClass("has-error");
+
         }
     });
 });

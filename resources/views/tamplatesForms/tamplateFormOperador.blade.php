@@ -11,7 +11,7 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
-                    <label for="exampleInputPassword1">Nome</label>
+                    <label class="control-label" for="nome_operadores">Nome</label>
                     {!! Form::text('nome_operadores', Session::getOldInput('nome_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome Completo')) !!}
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class="fg-line">
-                    <label class="control-label" for="exampleInputEmail1">Chave J</label>
+                    <label class="control-label" for="cod_operadores">Chave J</label>
                     {!! Form::text('cod_operadores', Session::getOldInput('cod_operadores'), array('class' => 'form-control input-sm', 'placeholder' => 'Chave J')) !!}
                 </div>
             </div>
