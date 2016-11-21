@@ -302,7 +302,7 @@ class ContratoController extends Controller
             $data = $request->all();
 
             #Validando a requisição
-            //$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             #Executando a ação
             $this->service->update($data, $id);
@@ -339,26 +339,6 @@ class ContratoController extends Controller
 
             #retorno para view
             return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $cliente]);
-        } catch (\Throwable $e) {
-            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
-        }
-    }
-
-    /**
-     * @param $numeroContrato
-     * @return mixed
-     */
-    public function searchContrato($numeroContrato)
-    {
-        try{
-            #Consultando
-            $contrato = \DB::table('chamadas')
-                ->select('chamadas.id')
-                ->where('codigo_transacao', $numeroContrato)
-                ->get();
-
-            #retorno para view
-            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $contrato]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
         }
@@ -416,11 +396,100 @@ class ContratoController extends Controller
      */
     public function viewContrato($id)
     {
-        try{
+        try {
             return new Response(file_get_contents($this->service->getPathArquivo($id)), 200, [
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'inline; filename="'.'contrato.pdf'.'"'
             ]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function searchCpf(Request $request)
+    {
+        try {
+            #Declaração de variável de uso
+            $result = false;
+            #Dados vindo na requisição
+            $contrato = $request->all();
+
+            #
+            if (empty($contrato['idCliente'])) {
+                #Consultando
+                $cpfCliente = \DB::table('clientes')
+                    ->select([
+                        'clientes.cpf'
+                    ])
+                    ->where('clientes.cpf', $contrato['value'])
+                    ->get();
+
+            } else {
+                #Consultando
+                $cpfCliente = \DB::table('clientes')
+                    ->select([
+                        'clientes.id',
+                        'clientes.cpf'
+                    ])
+                    ->where('clientes.id', '!=' ,$contrato['idCliente'])
+                    ->where('clientes.cpf', $contrato['value'])
+                    ->get();
+            }
+
+            if (count($cpfCliente) > 0 ) {
+                $result = true;
+            }
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => $result]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function searchContrato(Request $request)
+    {
+        try{
+            #Declaração de variável de uso
+            $result = false;
+            #Recuperando dados da requisição
+            $contrato = $request->all();
+
+            if (empty($contrato['idCliente'])) {
+            #Consultando
+            $contrato = \DB::table('chamadas')
+                ->select([
+                    'codigo_transacao'
+                ])
+                ->where('codigo_transacao', $contrato['value'])
+                ->get();
+
+            } else {
+            $contrato = \DB::table('chamadas')
+                ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
+                ->select(['chamadas.codigo_transacao',
+                         'clientes.id'
+                        ])
+                ->where('chamadas.codigo_transacao', $contrato['value'])
+                ->where('clientes.id', $contrato['idCliente'])
+                ->get();
+                dd($contrato);
+            }
+
+            if (count($contrato) > 0 ) {
+                $result = true;
+            }
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $result]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
         }

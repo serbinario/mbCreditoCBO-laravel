@@ -20,7 +20,7 @@
                         @endforeach
                     </div>
                 @endif
-                {!! Form::model($model, ['route'=> ['contrato.store'], 'method' => "POST", "files" => true ]) !!}
+                {!! Form::model($model, ['route'=> ['contrato.store'], 'id' => 'formContrato', 'method' => "POST", "files" => true ]) !!}
                 @include('tamplatesForms.tamplateFormContrato')
                 {!! Form::close() !!}
             </section>

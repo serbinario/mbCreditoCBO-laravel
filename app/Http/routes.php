@@ -36,10 +36,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store', ['as' => 'store', 'uses' => 'ContratoController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'ContratoController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ContratoController@update']);
-        //Busca de cliente por CPF
+
+        //Busca de cliente por CPF em cadastro de contratos
         Route::get('searchCliente/{clienteCpf}', ['as' => 'searchCliente', 'uses' => 'ContratoController@searchCliente']);
-        //Busca de contrato
-        Route::get('searchContrato/{numeroContrato}', ['as' => 'searchContrato', 'uses' => 'ContratoController@searchContrato']);
+
+        /*Rota que possibilita o teste de cadastro contratos
+        onde é feito o teste se o no. contrato que foi inserido
+        já se encontra cadastrado*/
+        Route::post('searchContrato', ['as' => 'searchContrato', 'uses' => 'ContratoController@searchContrato']);
+
+        /*Rota que possibilita o teste de cadastro contratos
+        onde é feito o teste se o cpf que foi inserido já se
+        encontra cadastrado*/
+        Route::post('searchCpf', ['as' => 'searchCpf', 'uses' => 'ContratoController@searchCpf']);
 
         # Rotas de GERENCIAMENTO DE TELEFONES
         Route::get('telefone/grid/{idClient}', ['as' => 'telefone.grid', 'uses' => 'ContratoController@gridPhones']);

@@ -3,20 +3,20 @@ $(document).ready(function () {
 
     $("#formContrato").validate({
         rules: {
-            searchCpf: {
+            /*searchCpf: {
                 number: true,
                 maxlength: 15
-            },
-            name: {
+            },*/
+            /*name: {
                 required: true,
                 alphaSpace: true,
                 maxlength: 200
-            },
+            },*/
             cpf: {
                 required: true,
                 cpfBR: true,
                 maxlength: 15,
-                unique: ['cpf', $('#clienteCpf').val(),'uniqueCpf.js']
+                unique: ['/index.php/contrato/searchCpf', $('#idCliente').val()]
             },
             addPhoneText: {
                 required: true,
@@ -50,7 +50,7 @@ $(document).ready(function () {
             'contrato[codigo_transacao]': {
                 required: true,
                 number: true,
-                uniqueContrato: ['codigo_transacao', $('#codigoTransacao').val(),'uniqueContrato.js']
+                unique: ['/index.php/contrato/searchContrato', $('#idCliente').val()]
             },
             'contrato[prazo]': {
                 required: true

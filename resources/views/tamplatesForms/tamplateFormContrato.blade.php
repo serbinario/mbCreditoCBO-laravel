@@ -5,6 +5,9 @@
 
 <div class="card">
     <div class="card-body card-padding">
+
+        <input type="hidden" id="idCliente" value="{{ isset($model->id) ? $model->id : null }}">
+
         @if(!isset($model))
             <div class="topo-conteudo-full">
                 <h4>Consultar cliente por CPF:</h4>
@@ -15,6 +18,7 @@
                     <div class=" fg-line">
                         <label for="searchCpf"></label>
                         {!! Form::text('searchCpf', Session::getOldInput('searchCpf'),
+                            /*Se a página for carregada com dados do banco, searcCpf ficará oculto*/
                             array(isset($model) ? 'readonly' : '' ,'id' => 'searchCliente', 'class' => 'form-control input-sm', 'placeholder' => 'Número de CPF')) !!}
                     </div>
                 </div>
@@ -112,7 +116,7 @@
         <div class="row">
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
-                    <label for="contrato[convenio_id]">Convêmio</label>
+                    <label for="contrato[convenio_id]">Convênio</label>
                     <div class="select">
                         {!! Form::select('contrato[convenio_id]', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
                     </div>
@@ -193,7 +197,6 @@
                 </div>
             </div>
 
-
             <!--botão-->
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
         <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.index') }}">Voltar</a>
@@ -209,7 +212,6 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
-    <script type="text/javascript" src="{{ asset('/dist/js/adicional/uniqueContrato.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js')  }}"></script>
     {{--Regras de validação--}}

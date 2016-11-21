@@ -6,17 +6,17 @@ $.validator.addMethod("unique",
 
         id_send= '';
         if(params[1] !='')
-           // id_send ='id='+params[1]+'&';
+            id_send ='id='+params[1]+'&';
 
         $.ajax({
-            url: '/index.php/contrato/searchCliente/' + value,
-            type : 'GET',
+            url: params[0],
+            type : 'POST',
             async: false,
-            data: value,
+            data: { idCliente : params[1], value : value},
             dataType: 'json',
             cache: true,
             success: function(data){
-                if (data.dados.length == 0) {
+                if (data.success == false) {
                     isUnique = true;
                 }
             }
