@@ -22,7 +22,6 @@ $.extend( $.validator.messages, {
 	range: $.validator.format( "Por favor, forne&ccedil;a um valor entre {0} e {1}." ),
 	max: $.validator.format( "Por favor, forne&ccedil;a um valor menor ou igual a {0}." ),
 	min: $.validator.format( "Por favor, forne&ccedil;a um valor maior ou igual a {0}." ),
-	alphaSpace: "Este campo deve conter apenas letras e espaços entre palavras",
 
 	// Metodos Adicionais
 	maxWords: $.validator.format( "Por favor, forne&ccedil;a com {0} palavras ou menos." ),
@@ -75,4 +74,6 @@ $.extend( $.validator.messages, {
 	cpfBR: "Por favor, forne&ccedil;a um CPF v&aacute;lido.",
 	bankBr: "Por favor, insira apenas números e/ou '-'",
 	chaveJ: "Por favor, insira o número de sua chave, com 7 digitos, precedido da letra 'J'",
+	alphaSpace: "Este campo deve conter apenas letras e espaços entre palavras",
+	decimal: "Este campo deve conter apenas números e duas casas após a vírgula",
 } );

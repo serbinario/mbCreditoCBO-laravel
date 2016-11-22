@@ -144,7 +144,7 @@
             <div class="form-group col-sm-3">
                 <div class=" fg-line">
                     <label for="contrato[valor_contratado]">Valor Contratado</label>
-                    {!! Form::text('contrato[valor_contratado]', Session::getOldInput('contrato[valor_contratado]'), array('class' => 'form-control input-sm', 'placeholder' => 'Valor do Contrato')) !!}
+                    {!! Form::text('contrato[valor_contratado]', Session::getOldInput('contrato[valor_contratado]'), array('id' => 'valorContrato', 'class' => 'form-control input-sm', 'placeholder' => 'Valor do Contrato')) !!}
                 </div>
             </div>
             <div class="form-group col-sm-3">
@@ -212,10 +212,11 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/decimal.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js')  }}"></script>
     {{--Regras de validação--}}
-    {{--<script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
 
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
@@ -305,6 +306,7 @@
         $(document).ready(function() {
             $('#clienteCpf').mask('000.000.000-00', {reverse: true});
             $('#searchCliente').mask('000.000.000-00', {reverse: true});
+            $('#valorContrato').mask('0000,00', {reverse: true});
         });
 
         //Verificando se o número de contrato que foi preenchido já existe no banco

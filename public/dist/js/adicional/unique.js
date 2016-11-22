@@ -26,5 +26,5 @@ $.validator.addMethod("unique",
         return isUnique;
 
     },
-    $.validator.format("O CPF informado já se encontra em uso")
+    $.validator.format("Este número já se encontra cadastrado")
 );

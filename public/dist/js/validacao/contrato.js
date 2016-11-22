@@ -46,7 +46,7 @@ $(document).ready(function () {
             },
             'contrato[valor_contratado]': {
                 required: true,
-                number: true
+                decimal: true
             },
             'contrato[codigo_transacao]': {
                 required: true,
