@@ -25,19 +25,6 @@ class ContratoRepositoryEloquent extends BaseRepository implements ContratoRepos
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
-    public function validator()
-    {
-
-         return ContratoValidator::class;
-    }
-
-
-
-    /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
