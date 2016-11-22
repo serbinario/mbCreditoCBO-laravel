@@ -63,7 +63,7 @@ class ContratoService
     {
         # Recuperando os clientes
         $arrayCliente = $this->clienteRepository->findByField(['cpf' => $data['cpf']]);
-        
+
         # validando a consulta
         if(count($arrayCliente) > 0) {
             return $arrayCliente[0];
@@ -93,6 +93,8 @@ class ContratoService
     /**
      * @param $data
      * @throws \Exception
+     * Metodo responsavel por checar se o número de contrato que foi inserido
+     * já se encontra cadastrado na base de dados
      */
     public function numeroContrato($data)
     {
