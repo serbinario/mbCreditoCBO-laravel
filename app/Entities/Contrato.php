@@ -101,5 +101,4 @@ class Contrato extends Model implements Transformable
     {
         return $query->select(['prazo as nome', 'id']);
     }
-
 }

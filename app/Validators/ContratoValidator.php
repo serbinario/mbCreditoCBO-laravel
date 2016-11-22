@@ -22,7 +22,6 @@ class ContratoValidator extends LaravelValidator
 //            'telefones' => 'required|max:11',
             'agencia' => 'integer',
             'conta' => 'bank_br',
-
 			'contrato.tipo_contrato_id' =>  'integer' ,
 			'contrato.convenio_id' =>  'integer' ,
 			'contrato.prazo' =>  'integer' ,
@@ -40,7 +39,6 @@ class ContratoValidator extends LaravelValidator
 //            'telefones' => 'required|max:11',
             'agencia' => 'integer',
             'conta' => 'bank_br',
-
             'contrato.tipo_contrato_id' =>  'integer' ,
             'contrato.convenio_id' =>  'integer' ,
             'contrato.prazo' =>  'integer' ,

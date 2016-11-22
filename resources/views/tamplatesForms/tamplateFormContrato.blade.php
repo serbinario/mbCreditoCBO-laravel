@@ -286,8 +286,6 @@
 
         // evento para interromper a submissão
         $('#formContrato').submit(function (event) {
-            /*Possibilita a remoção da mascara do campo cpf antes do envio*/
-            $('#clienteCpf').mask('000.000.000-00').unmask();
 
             @if(!isset($model))
                 // Variável quer armazenará os conteudos
