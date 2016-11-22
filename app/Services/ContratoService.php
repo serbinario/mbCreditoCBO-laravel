@@ -188,7 +188,7 @@ class ContratoService
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data['contrato']);
-
+       
         #Verificando se foi criado no banco de dados
         if(!$contrato) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
