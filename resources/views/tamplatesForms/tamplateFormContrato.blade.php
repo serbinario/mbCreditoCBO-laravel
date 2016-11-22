@@ -286,6 +286,9 @@
 
         // evento para interromper a submissão
         $('#formContrato').submit(function (event) {
+            /*Possibilita a remoção da mascara do campo cpf antes do envio*/
+            $('#clienteCpf').mask('000.000.000-00').unmask();
+
             @if(!isset($model))
                 // Variável quer armazenará os conteudos
                 var telefones = [];
@@ -300,7 +303,11 @@
             @endif
         });
 
-//        $('#datetimepicker').datepicker();
+        /*Mascaras*/
+        $(document).ready(function() {
+            $('#clienteCpf').mask('000.000.000-00', {reverse: true});
+            $('#searchCliente').mask('000.000.000-00', {reverse: true});
+        });
 
         //Verificando se o número de contrato que foi preenchido já existe no banco
         /*$(document).on('focusout', "#condigoTransacao", function () {

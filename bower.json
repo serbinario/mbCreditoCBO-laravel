@@ -36,7 +36,7 @@
     "bootstrap": "^3.3.7",
     "jqvmap": "manifestinteractive/jqvmap#^1.5.1",
     "dropzone": "^4.3.0",
-    "jquery-mask-plugin": "igorescobar/jQuery-Mask-Plugin#^1.14.0",
+    "jquery-mask-plugin": "jquery-mask#^1.14.0",
     "sweetalert2": "^5.0.7",
     "datatables.net-bs": "^1.10.12",
     "datatables.net-dt": "^1.10.12",

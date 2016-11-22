@@ -196,6 +196,9 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
     <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
 
+    {{-- Mascaras https://igorescobar.github.io/jQuery-Mask-Plugin/ --}}
+    <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
+
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->
     <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>

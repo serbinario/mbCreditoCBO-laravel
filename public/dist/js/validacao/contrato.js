@@ -7,11 +7,11 @@ $(document).ready(function () {
                 number: true,
                 maxlength: 15
             },*/
-            /*name: {
+            name: {
                 required: true,
-                alphaSpace: true,
+                /*alphaSpace: true,*/
                 maxlength: 200
-            },*/
+            },
             cpf: {
                 required: true,
                 cpfBR: true,
@@ -41,6 +41,7 @@ $(document).ready(function () {
                 integer: true
             },
             'contrato[data_contratado]': {
+                required: true,
                 date: true
             },
             'contrato[valor_contratado]': {
@@ -56,6 +57,7 @@ $(document).ready(function () {
                 required: true
             },
             'contrato[data_prox_chamada]': {
+                required: true,
                 date: true
             },
             'contrato[matricula]': {
