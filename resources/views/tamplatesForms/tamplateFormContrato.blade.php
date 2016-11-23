@@ -197,7 +197,7 @@
                 </div>
             </div>
 
-            <!--botão-->
+        <!--botão-->
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
         <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.index') }}">Voltar</a>
         <!--botão-->

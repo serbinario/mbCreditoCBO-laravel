@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <label>Permissão:</label>
+        <label>Nível de permissão:</label>
         </br>
         <div class="form-group">
             <label for="opcao1" class="checkbox checkbox-inline m-r-20">

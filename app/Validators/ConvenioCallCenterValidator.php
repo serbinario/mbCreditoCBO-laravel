@@ -7,6 +7,15 @@ use \Prettus\Validator\LaravelValidator;
 
 class ConvenioCallCenterValidator extends LaravelValidator
 {
+    protected $messages   = [
+        'required' => ':attribute é requerido',
+        'serbinario_alpha_space' => ':attribute deve conter apenas letras e espaços',
+        'max' => ':attribute deve conter no máximo :size caracteres'
+    ];
+
+    protected $attributes =[
+        'nome_convenio' => 'Nome do Convênio'
+    ];
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [

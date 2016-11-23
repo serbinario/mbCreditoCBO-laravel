@@ -8,11 +8,13 @@ $(document).ready(function () {
                 required: true,
                 chaveJ: true
             },
+
             password: {
                 alphanumeric: true,
                 maxlength: 60,
                 required: true
             },
+
             email: {
                 email: true
             },
@@ -21,14 +23,17 @@ $(document).ready(function () {
                 integer: true,
                 required: true
             },
+
             'userHole[opcaoAdmin]': {
                 integer: true,
                 required: true
             },
+
             'userHole[opcaoGerente]': {
                 integer: true,
                 required: true
             },
+
             id_operadores: {
                 integer: true,
                 required: true
