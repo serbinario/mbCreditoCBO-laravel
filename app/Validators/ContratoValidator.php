@@ -26,7 +26,7 @@ class ContratoValidator extends LaravelValidator
             'contrato.tipo_contrato_id' =>  'integer' ,
             'contrato.convenio_id' =>  'integer' ,
             'contrato.prazo' =>  'integer' ,
-            'contrato.valor_contratado' =>  'required' ,
+            'contrato.valor_contratado' =>  'required|decimal' ,
             'contrato.data_contratado' =>  'required|serbinario_date_format:"d/m/Y"' ,
             'contrato.codigo_transacao' =>  'required|integer' , //unique:chamadas,codigo_transacao
             'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"' ,

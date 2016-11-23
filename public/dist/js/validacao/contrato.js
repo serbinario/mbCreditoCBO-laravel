@@ -3,10 +3,10 @@ $(document).ready(function () {
 
     $("#formContrato").validate({
         rules: {
-            /*searchCpf: {
-                number: true,
+            searchCpf: {
+                // number: true,
                 maxlength: 15
-            },*/
+            },
             name: {
                 required: true,
                 /*alphaSpace: true,*/
@@ -42,7 +42,7 @@ $(document).ready(function () {
             },
             'contrato[data_contratado]': {
                 required: true,
-                date: true
+                dateBr: true
             },
             'contrato[valor_contratado]': {
                 required: true,
@@ -58,7 +58,7 @@ $(document).ready(function () {
             },
             'contrato[data_prox_chamada]': {
                 required: true,
-                date: true
+                dateBr: true
             },
             'contrato[matricula]': {
                 maxlength: 20,

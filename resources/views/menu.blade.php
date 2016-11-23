@@ -178,24 +178,15 @@
     <script src="{{ asset('/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
-
-    <!-- -->
-    {{--<script src="{{ asset('/lib/datetimepicker/build/jquery.datetimepicker.full.js') }}"></script>
-    <script src="{{ asset('/lib/php-date-formatter/js/php-date-formatter.js') }}"></script>
-    <script src="{{ asset('/lib/jquery-mousewheel/jquery.mousewheel.min.js') }}"></script>--}}
-
     <script src="{{ asset('/dist/jquery.datetimepicker.js') }}"></script>
-
-    {{--<script src="/lib/bootstrap-growl/bootstrap-growl.min.js"></script>--}}
+    <script src="{{ asset('/lib/bootstrap-growl/jquery.bootstrap-growl.min.js') }}"></script>
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-
     {{--jquery Validator https://jqueryvalidation.org/ --}}
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
     <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
-
     {{-- Mascaras https://igorescobar.github.io/jQuery-Mask-Plugin/ --}}
     <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
 

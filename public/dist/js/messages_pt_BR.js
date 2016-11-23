@@ -75,5 +75,6 @@ $.extend( $.validator.messages, {
 	bankBr: "Por favor, insira apenas números e/ou '-'",
 	chaveJ: "Por favor, insira o número de sua chave, com 7 digitos, precedido da letra 'J'",
 	alphaSpace: "Este campo deve conter apenas letras e espaços entre palavras",
-	decimal: "Este campo deve conter apenas números e duas casas após a vírgula",
+	decimal: "Este campo deve conter apenas números",
+	dateBr: "Formato de data usado no Brasil",
 } );

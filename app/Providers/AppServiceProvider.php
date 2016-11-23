@@ -88,6 +88,21 @@ class AppServiceProvider extends ServiceProvider
             #retorno
             return false;
         });
+
+        # Validator números decimais
+        Validator::extend('decimal', function($attribute, $value, $formats, $validator) {
+            #expressão regular
+            $pattern = "/^\d*\,?[0-9]{2}$/";
+
+            #Validando pela expressão regular
+            if (\preg_match($pattern, $value)) {
+                return true;
+            }
+
+            #retorno
+            return false;
+        });
+
     }
 
     /**

@@ -306,7 +306,8 @@
         $(document).ready(function() {
             $('#clienteCpf').mask('000.000.000-00', {reverse: true});
             $('#searchCliente').mask('000.000.000-00', {reverse: true});
-            $('#valorContrato').mask('0000,00', {reverse: true});
+            $('#valorContrato').mask('00000,00', {reverse: true});
+            $('#addPhoneText').mask('(00) 000000000');
         });
 
         //Verificando se o número de contrato que foi preenchido já existe no banco
