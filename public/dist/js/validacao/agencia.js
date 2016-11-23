@@ -5,8 +5,9 @@ $(document).ready(function () {
         rules: {
             numero_agencia: {
                 required: true,
-                maxlength: 6,
-                bankBr: true
+                bankBr: true,
+                minlength: 4,
+                maxlength: 15
             },
             nome_agencia: {
                 required: true,

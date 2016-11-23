@@ -56,7 +56,9 @@ class DashBoardController extends Controller
     {
         # Criando a query
         $query = \DB::table('chamadas')
-            ->where(\DB::raw('FLOOR((DayOfMonth(chamadas.data_contratado)-1)/7)+1'), date('w'))
+            ->where(\DB::raw('WEEK(data_contratado,5) - WEEK(DATE_SUB(data_contratado, INTERVAL DAYOFMONTH(data_contratado)-1 DAY),5)+1'), date('w') +1)
+            ->where(\DB::raw('MONTH(data_contratado)'), date('m'))
+            ->where(\DB::raw('YEAR(data_contratado)'), date('Y'))
             ->select([
                 \DB::raw('count(id) as qtd_contratos')
             ]);
@@ -125,8 +127,7 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->where(\DB::raw('YEAR(chamadas.data_contratado)'), date('Y'))
             ->select([
-                'chamadas.data_contratado',
-                \DB::raw('count(id) as qtd_contratos'),
+                'chamadas.data_contratado'
             ]);
 
         # Validando o retorno da query
@@ -137,18 +138,18 @@ class DashBoardController extends Controller
 
                 # Seleção do mês
                 switch ((int) $dateTemp->format('m')) {
-                    case 1: $arrayMonth[0][1] += $result->qtd_contratos; break;
-                    case 2: $arrayMonth[1][1] += $result->qtd_contratos; break;
-                    case 3: $arrayMonth[2][1] += $result->qtd_contratos; break;
-                    case 4: $arrayMonth[3][1] += $result->qtd_contratos; break;
-                    case 5: $arrayMonth[4][1] += $result->qtd_contratos; break;
-                    case 6: $arrayMonth[5][1] += $result->qtd_contratos; break;
-                    case 7: $arrayMonth[6][1] += $result->qtd_contratos; break;
-                    case 8: $arrayMonth[7][1] += $result->qtd_contratos; break;
-                    case 9: $arrayMonth[8][1] += $result->qtd_contratos; break;
-                    case 10: $arrayMonth[9][1] += $result->qtd_contratos; break;
-                    case 11: $arrayMonth[10][1] += $result->qtd_contratos; break;
-                    case 12: $arrayMonth[11][1] += $result->qtd_contratos; break;
+                    case 1: $arrayMonth[0][1] += 1; break;
+                    case 2: $arrayMonth[1][1] += 1; break;
+                    case 3: $arrayMonth[2][1] += 1; break;
+                    case 4: $arrayMonth[3][1] += 1; break;
+                    case 5: $arrayMonth[4][1] += 1; break;
+                    case 6: $arrayMonth[5][1] += 1; break;
+                    case 7: $arrayMonth[6][1] += 1; break;
+                    case 8: $arrayMonth[7][1] += 1; break;
+                    case 9: $arrayMonth[8][1] += 1; break;
+                    case 10: $arrayMonth[9][1] += 1; break;
+                    case 11: $arrayMonth[10][1] += 1; break;
+                    case 12: $arrayMonth[11][1] += 1; break;
                 }
             }
         }

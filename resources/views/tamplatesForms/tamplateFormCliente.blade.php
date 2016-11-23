@@ -92,6 +92,11 @@
     <script type="text/javascript">
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
         objTablePhone = new TablePhonesEdit("{{$model->id}}");
+
+        /*Mascaras*/
+        $(document).ready(function() {
+            $('#addPhoneText').mask('(00) 000000000');
+        });
     </script>
 
 @endsection

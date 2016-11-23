@@ -10,7 +10,7 @@ $(document).ready(function () {
             },
             password: {
                 alphanumeric: true,
-                max: 60,
+                maxlength: 60,
                 required: true
             },
             email: {
