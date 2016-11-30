@@ -7,11 +7,11 @@
     <title>Material Admin</title>
 
     <!--CSS Vendor-->
-    <link type="text/css" rel="stylesheet" href="/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
 
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="/dist/css/app_1.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
 </head>
 
 <body>
@@ -112,9 +112,9 @@
 </div>
 
 <!-- Javascript Libraries -->
-<script src="/lib/jquery/dist/jquery.min.js"></script>
-<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/lib/Waves/dist/waves.min.js"></script>
+<script src="{{ asset('/lib/jquery/dist/jquery.js') }}"></script>
+<script src="{{ asset('/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
 
 <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 

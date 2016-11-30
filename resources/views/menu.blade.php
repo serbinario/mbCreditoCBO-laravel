@@ -10,27 +10,27 @@
 
         {{--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/fullcalendar/dist/fullcalendar.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/animate.css/animate.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/sweetalert2/dist/sweetalert2.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/fullcalendar/dist/fullcalendar.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/animate.css/animate.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
 
         {{--<link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">--}}
         {{--<link href="/lib/nouislider/distribute/nouislider.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet">--}}
         {{--<link href="/lib/farbtastic/farbtastic.css" rel="stylesheet">--}}
-        <link href="{{ asset('/public/lib/chosen/chosen.css') }}" rel="stylesheet">
-        <link href="{{ asset('/public/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
+        <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
+        <link href="{{ asset('/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/dist/css/app_1.min.css') }}"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/dist/css/app_2.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_2.min.css') }}"  media="screen,projection"/>
 
         {{-- CSS personalizados--}}
-        <link type="text/css" rel="stylesheet" href="{{ asset('/public/dist/css/demo.css') }}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/demo.css') }}"  media="screen,projection"/>
 
         @yield('css')
     </head>
@@ -174,30 +174,30 @@
     </footer>
 
     <!-- Javascript Libraries -->
-    <script src="{{ asset('/public/lib/jquery/dist/jquery.js') }}"></script>
-    <script src="{{ asset('/public/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/public/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-    <script src="{{ asset('/public/lib/Waves/dist/waves.min.js') }}"></script>
-    <script src="{{ asset('/public/dist/jquery.datetimepicker.js') }}"></script>
-    <script src="{{ asset('/public/lib/bootstrap-growl/jquery.bootstrap-growl.min.js') }}"></script>
-    <script src="{{ asset('/public/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('/public/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/lib/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('/lib/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
+    <script src="{{ asset('/dist/jquery.datetimepicker.js') }}"></script>
+    <script src="{{ asset('/lib/bootstrap-growl/jquery.bootstrap-growl.min.js') }}"></script>
+    <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     {{--jquery Validator https://jqueryvalidation.org/ --}}
-    <script src="{{ asset('/public/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
-    <script src="{{ asset('/public/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/public/dist/js/adicional/unique.js')  }}"></script>
-    <script src="{{ asset('/public/dist/js/fileinput/fileinput.min.js')}}"></script>
+    <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
+    <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
     {{-- Mascaras https://igorescobar.github.io/jQuery-Mask-Plugin/ --}}
-    <script src="{{ asset('/public/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
+    <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->
-    <script type="text/javascript" src={{ asset('/public/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
+    <script type="text/javascript" src={{ asset('/lib/jquery-placeholder/jquery.placeholder.min.js') }}></script>
     <!--[endif]-->
 
-    <script src="{{ asset('/public/lib/chosen/chosen.jquery.js') }}"></script>
+    <script src="{{ asset('/lib/chosen/chosen.jquery.js') }}"></script>
 
-    <script type="text/javascript" src={{ asset('/public/dist/js/app.js') }}></script>
+    <script type="text/javascript" src={{ asset('/dist/js/app.js') }}></script>
 
     <script type="text/javascript">
         $(".chosen").chosen();
