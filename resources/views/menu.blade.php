@@ -100,7 +100,7 @@
                         <a href=""><i class="zmdi zmdi-settings"></i>Alterar Senha</a>
                     </li>
                     <li>
-                        <a href="http://ser.cbo/index.php/auth/logout"><i class="zmdi zmdi-time-restore"></i>Sair</a>
+                        <a href="{{ route('auth.getLogout') }}"><i class="zmdi zmdi-time-restore"></i>Sair</a>
                     </li>
                 </ul>
             </div>
