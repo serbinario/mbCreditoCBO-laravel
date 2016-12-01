@@ -57,14 +57,14 @@
                             <div class="form-group col-sm-2">
                                 <div class=" fg-line">
                                     <label for="searchDataIni"></label>
-                                    {!! Form::text('searchDataIni', null, array('id' => 'searchDataIni', 'class' => 'form-control input-sm', 'placeholder' => 'Data Inicial')) !!}
+                                    {!! Form::text('searchDataIni', null, array('id' => 'searchDataIni', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data Inicial')) !!}
                                 </div>
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <div class=" fg-line">
                                     <label for="searchCpf"></label>
-                                    {!! Form::text('searchDataFin', null, array('id' => 'searchDataFin', 'class' => 'form-control input-sm', 'placeholder' => 'Data Final')) !!}
+                                    {!! Form::text('searchDataFin', null, array('id' => 'searchDataFin', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data Final')) !!}
                                 </div>
                             </div>
 
