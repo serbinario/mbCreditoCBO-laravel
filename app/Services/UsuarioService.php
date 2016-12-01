@@ -57,9 +57,6 @@ class UsuarioService
         #Encripitando a senha
         $data['password'] = \bcrypt($data['password']);
 
-        #
-        $data['active'] = 1;
-
         #Salvando registro
         $usuario = $this->repository->create($data);
 
@@ -69,10 +66,16 @@ class UsuarioService
 
     /**
      * @param $data
-     * @return array
+     * @param $idUsuario
+     * @return bool
      */
     public function nivelPermissoesUsuario($data, $idUsuario)
     {
+        #Tesntando se os checkboxers estão preenchidos
+        if (!isset($data['userHole'])) {
+            return false;
+        }
+
         #Separando dados de nível de permissão - tabela users_has_roles
         $permissoes = $data['userHole'];
 

@@ -30,7 +30,7 @@ class UsuarioValidator extends LaravelValidator
 			'salt' =>  '' ,
 			'email' =>  'email' ,
 			'active' =>  'integer|max:1' ,
-            'users.users_has_roles.role_id' => 'required'
+//            'users.users_has_roles.role_id' => 'required'
         ],
 
         ValidatorInterface::RULE_UPDATE => [
@@ -40,7 +40,7 @@ class UsuarioValidator extends LaravelValidator
             'salt' =>  '' ,
             'email' =>  'email' ,
             'active' =>  'integer|max:1' ,
-            'users.users_has_roles.role_id' => 'required'
+//            'users.users_has_roles.role_id' => 'required'
         ],
    ];
 

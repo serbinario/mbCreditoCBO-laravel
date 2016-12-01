@@ -35,21 +35,33 @@
         </br>
         <div class="form-group">
             <label for="opcao1" class="checkbox checkbox-inline m-r-20">
-                {!! Form::checkbox('userHole[opcaoOperador]', 1, isset($rolePermission['roleOperador']) ?? null, ['id' => 'opcao1']) !!}
+                {{--{!! Form::hidden('userHole[opcaoOperador]', 0) !!}--}}
+                {!! Form::checkbox('userHole[opcaoOperador]', 1, isset($rolePermission['roleOperador']) ? $rolePermission['roleOperador'] : null, ['id' => 'opcao1']) !!}
                 <i class="input-helper"></i>
                 OPERADOR
             </label>
          <label for="opcao2" class="checkbox checkbox-inline m-r-20">
-                {!! Form::checkbox('userHole[opcaoAdmin]', 2, isset($rolePermission['roleAdmin']) ?? null, ['id' => 'opcao2']) !!}
+                {!! Form::checkbox('userHole[opcaoAdmin]', 2, isset($rolePermission['roleAdmin']) ? $rolePermission['roleAdmin'] : null, ['id' => 'opcao2']) !!}
                 <i class="input-helper"></i>
                 ADMIN
             </label>
          <label for="opcao3" class="checkbox checkbox-inline m-r-20">
-                {!! Form::checkbox('userHole[opcaoGerente]', 3, isset($rolePermission['roleGerente']) ?? null, ['id' => 'opcao3']) !!}
+                {!! Form::checkbox('userHole[opcaoGerente]', 3, isset($rolePermission['roleGerente']) ? $rolePermission['roleGerente'] : null, ['id' => 'opcao3']) !!}
                 <i class="input-helper"></i>
                 GERENTE
             </label>
         </div>
+
+        <label>Status:</label>
+        <div class="form-group">
+            <label for="status" class="checkbox checkbox-inline m-r-20">
+                {!! Form::hidden('active', 0) !!}
+                {!! Form::checkbox('active', 1, null, ['id' => 'status']) !!}
+                <i class="input-helper"></i>
+                Ativo
+            </label>
+        </div>
+        </br>
 
         <div class="form-group">
             <div class="fg-line">

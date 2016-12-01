@@ -87,7 +87,7 @@ class UsuarioController extends Controller
         try {
             #Recuperando os dados da requisição
             $data = $request->all();
-//        dd($data);
+
             #Validando a requisição
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -126,13 +126,10 @@ class UsuarioController extends Controller
             });
 
             $rolePermission = [
-                'roleOperador' => count($roleOperador) > 0 ? true : false,
-                'roleAdmin' => count($roleAdmin) > 0 ? true : false,
-                'roleGerente' => count($roleGerente) > 0 ? true : false
+                'roleOperador' => count($roleOperador) > 0 ? 1 : 0,
+                'roleAdmin' => count($roleAdmin) > 0 ? 1 : 0,
+                'roleGerente' => count($roleGerente) > 0 ? 1 : 0
             ];
-
-            #Tratando as datas
-           // $aluno = $this->service->getAlunoWithDateFormatPtBr($aluno);
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);

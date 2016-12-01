@@ -21,17 +21,17 @@ $(document).ready(function () {
 
             'userHole[opcaoOperador]': {
                 integer: true,
-                required: true
+                // required: true
             },
 
             'userHole[opcaoAdmin]': {
                 integer: true,
-                required: true
+                // required: true
             },
 
             'userHole[opcaoGerente]': {
                 integer: true,
-                required: true
+                // required: true
             },
 
             id_operadores: {
