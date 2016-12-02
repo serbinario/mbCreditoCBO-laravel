@@ -1,5 +1,6 @@
 $.validator.addMethod("unique",
     function(value, element, params) {
+
         var isUnique = false;
         if(value == '')
             return isUnique;
@@ -12,14 +13,16 @@ $.validator.addMethod("unique",
             url: params[0],
             type : 'POST',
             async: false,
-            data: { idCliente : params[1], value : value},
+            data: { idCliente : params[1].val(), value : value},
             dataType: 'json',
             cache: true,
             success: function(data){
-                console.log(data);
-                if (data.success == true) {
-                    isUnique = true;
-                }
+
+            }
+        }).done(function(data){
+
+            if (data.success == false) {
+                isUnique = true;
             }
         });
 

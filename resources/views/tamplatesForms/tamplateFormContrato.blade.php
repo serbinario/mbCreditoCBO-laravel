@@ -245,16 +245,18 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: '/mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: '/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
+                        console.log(json.dados[0]['idCliente']);
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
+                        $('#idCliente').val(json.dados[0]['idCliente']);
 
                         //Preenchendo o select de agência
                         $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);

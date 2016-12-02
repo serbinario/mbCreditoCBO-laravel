@@ -463,27 +463,15 @@ class ContratoController extends Controller
             #Recuperando dados da requisição
             $contrato = $request->all();
 
-            if (empty($contrato['idCliente'])) {
             #Consultando
-            $contrato = \DB::table('chamadas')
+            $query = \DB::table('chamadas')
                 ->select([
                     'codigo_transacao'
                 ])
                 ->where('codigo_transacao', $contrato['value'])
                 ->get();
 
-            } else {
-            $contrato = \DB::table('chamadas')
-                ->join('clientes', 'clientes.id', '=', 'chamadas.cliente_id')
-                ->select(['chamadas.codigo_transacao',
-                         'clientes.id'
-                        ])
-                ->where('chamadas.codigo_transacao', $contrato['value'])
-                ->where('clientes.id', $contrato['idCliente'])
-                ->get();
-            }
-
-            if (count($contrato) > 0 ) {
+            if (count($query) > 0 ) {
                 $result = true;
             }
 
