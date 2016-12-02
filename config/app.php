@@ -183,6 +183,11 @@ return [
          */
         Barryvdh\Cors\ServiceProvider::class,
 
+        /**
+         *
+         */
+        Lord\Laroute\LarouteServiceProvider::class,
+
     ],
 
     /*

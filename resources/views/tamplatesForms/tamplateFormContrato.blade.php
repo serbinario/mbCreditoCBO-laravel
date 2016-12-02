@@ -219,16 +219,16 @@
     <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
 
     {{--GERENCIAMENTO TELEFONES--}}
-    {{--<script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>--}}
+    <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
         // Habilitando o ambiemte (Grid de Telefones) para create ou edit
-        {{--@if(isset($model))
+        @if(isset($model))
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
         objTablePhone = new TablePhonesEdit("{{$model->id}}");
         @else
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
         objTablePhone = new TablePhonesCreate();
-        @endif--}}
+        @endif
 
         /*
          Evento responsável por consulta o cpf no banco de dados
@@ -245,7 +245,7 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: '/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: '/public/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
@@ -267,8 +267,8 @@
                         $('#clienteAgencia').attr('readonly', true);
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
-                        /*objTablePhone.tableDestroy();
-                        objTablePhone = new TablePhonesEdit(json.dados[0]['idCliente']);*/
+                        objTablePhone.tableDestroy();
+                        objTablePhone = new TablePhonesEdit(json.dados[0]['idCliente']);
                     } else {
                         //Apagando dados do input
                         $('#clienteNome').val("");
@@ -278,8 +278,8 @@
                         $('#clienteAgencia').val("");
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
-                        /*objTablePhone.tableDestroy();
-                        objTablePhone = new TablePhonesCreate();*/
+                        objTablePhone.tableDestroy();
+                        objTablePhone = new TablePhonesCreate();
                     }
                 })
             }
