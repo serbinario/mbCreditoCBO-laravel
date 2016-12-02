@@ -17,7 +17,7 @@ $.validator.addMethod("unique",
             cache: true,
             success: function(data){
                 console.log(data);
-                if (data.success == false) {
+                if (data.success == true) {
                     isUnique = true;
                 }
             }
