@@ -245,7 +245,7 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: '/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: '/mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json'
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
