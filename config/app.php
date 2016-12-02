@@ -186,7 +186,7 @@ return [
         /**
          *
          */
-        Lord\Laroute\LarouteServiceProvider::class,
+//        Lord\Laroute\LarouteServiceProvider::class,
 
     ],
 
