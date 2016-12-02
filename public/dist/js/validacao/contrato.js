@@ -42,7 +42,7 @@ $(document).ready(function () {
             },
             'contrato[data_contratado]': {
                 required: true,
-                dateBr: true
+                // dateBr: true
             },
             'contrato[valor_contratado]': {
                 required: true,
@@ -58,7 +58,7 @@ $(document).ready(function () {
             },
             'contrato[data_prox_chamada]': {
                 required: true,
-                dateBr: true
+                //dateBr: true
             },
             'contrato[matricula]': {
                 maxlength: 20,
