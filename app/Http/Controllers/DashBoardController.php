@@ -110,9 +110,9 @@ class DashBoardController extends Controller
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
 
-        # Validando o retorno da query WEEK("2014/09/18")
-        if(count(($result = $query->get())) > 0) {
-            return $result[0]->qtd_contratos;
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
         }
 
         # Validando o retorno da query
