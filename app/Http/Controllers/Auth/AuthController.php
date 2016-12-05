@@ -87,4 +87,15 @@ class AuthController extends Controller
             'opcaoGerente' => $data['permissao']*/
         ]);
     }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getCredentials($request)
+    {
+        $credentials = $request->only($this->loginUsername(), 'password');
+
+        return array_add($credentials, 'active', '1');
+    }
 }
