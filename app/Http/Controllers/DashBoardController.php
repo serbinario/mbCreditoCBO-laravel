@@ -20,7 +20,7 @@ class DashBoardController extends Controller
         $searchAgente = $request->get('searchAgente');
 
         # Colocando o valor na sessão
-        $request->session()->put('searchAgente', $searchAgente ?? 0);
+        $request->session()->put('searchAgente', $searchAgente && !empty($searchAgente) ? $searchAgente : 0);
 
         # Recuperando os agentes
         $agentes = \MbCreditoCBO\Entities\Operador::lists('nome_operadores', 'id_operadores');
