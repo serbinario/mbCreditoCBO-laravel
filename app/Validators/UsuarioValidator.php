@@ -25,8 +25,8 @@ class UsuarioValidator extends LaravelValidator
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
 
-			'username' =>  'required|chave_j' ,
-			'password' =>  'required|max:60' ,
+			//'username' =>  'required|chave_j' ,
+			//'password' =>  'required|max:60' ,
 			'salt' =>  '' ,
 			'email' =>  'email' ,
 			'active' =>  'integer|max:1' ,
@@ -35,8 +35,8 @@ class UsuarioValidator extends LaravelValidator
 
         ValidatorInterface::RULE_UPDATE => [
 
-            'username' =>  'required|chave_j' ,
-            'password' =>  'required|max:60' ,
+            //'username' =>  'required|chave_j' ,
+            //'password' =>  'required|max:60' ,
             'salt' =>  '' ,
             'email' =>  'email' ,
             'active' =>  'integer|max:1' ,

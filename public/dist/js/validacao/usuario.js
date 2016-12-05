@@ -3,17 +3,17 @@ $(document).ready(function () {
 
     $("#formUsuario").validate({
         rules: {
-            username: {
-                alphanumeric: true,
-                required: true,
-                chaveJ: true
-            },
+            // username: {
+            //     alphanumeric: true,
+            //     required: true,
+            //     chaveJ: true
+            // },
 
-            password: {
-                alphanumeric: true,
-                maxlength: 60,
-                required: true
-            },
+            // password: {
+            //     alphanumeric: true,
+            //     maxlength: 60,
+            //     required: true
+            // },
 
             email: {
                 email: true

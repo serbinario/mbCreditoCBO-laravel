@@ -130,7 +130,7 @@ class UsuarioController extends Controller
                 'roleAdmin' => count($roleAdmin) > 0 ? 1 : 0,
                 'roleGerente' => count($roleGerente) > 0 ? 1 : 0
             ];
-
+            
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
 
