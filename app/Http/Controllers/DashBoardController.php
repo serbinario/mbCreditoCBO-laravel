@@ -103,13 +103,17 @@ class DashBoardController extends Controller
     {
         # Criando a query
         $query = \DB::table('chamadas')
-          
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where(\DB::raw('MONTH(chamadas.data_contratado)'), date('m'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
 
-
+        # Validando o retorno da query WEEK("2014/09/18")
+        if(count(($result = $query->get())) > 0) {
+            return $result[0]->qtd_contratos;
+        }
 
         # Validando o retorno da query
         if(count(($result = $query->get())) > 0) {
