@@ -13,7 +13,12 @@
         <div class="form-group">
             <div class=" fg-line">
                 <label for="username">Login: </label>
-                {!! Form::text('username', old('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
+                @if(isset($model))
+                    {!! Form::text('username', old('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário', 'readonly' => 'readonly')) !!}
+                @else
+                    {!! Form::text('username', old('username'), array('class' => 'form-control input-sm', 'placeholder' => 'Nome de usuário')) !!}
+                @endif
+
             </div>
         </div>
 
@@ -73,7 +78,10 @@
         </div>
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
-        <a class="btn btn-primary btn-sm m-t-10" href="{{ route('usuario.index') }}"">Voltar</a>
+
+        @if(Auth::user()->is('ROLE_ADMIN'))
+            <a class="btn btn-primary btn-sm m-t-10" href="{{ route('usuario.index') }}">Voltar</a>
+        @endif
 
     </div>
 </div>
