@@ -83,7 +83,9 @@
                     </div>
 
                     <div class="sp-info">
-                        {{Auth::user()->operador()->get()->first()->nome_operadores}}
+                        {{ isset(Auth::user()->operador()->id)
+                            ? Auth::user()->operador()->get()->first()->nome_operadores
+                            : Auth::user()->username }}
 
                         <i class="zmdi zmdi-caret-down"></i>
                     </div>
