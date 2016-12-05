@@ -162,11 +162,14 @@ class UsuarioController extends Controller
             return redirect()->back()->with("message", "Alteração realizada com sucesso!");
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
-        } catch (\Throwable $e) { dd($e);
+        } catch (\Throwable $e) { 
             return redirect()->back()->with('message', $e->getMessage());
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function dadosUsuario()
     {
         $usuario = \DB::table('operadores')

@@ -182,6 +182,7 @@ class ContratoService
         #Criando vinculo entre contrato e cliente e usuário
         $data['contrato']['cliente_id'] = $cliente->id;
         $data['contrato']['user_id'] = Auth::user()->id;
+        $data['contrato']['valor_contratado'] = str_replace(',', '.', $data['contrato']['valor_contratado']);
 
         # Tratando a imagem
         $this->tratamentoImagem($data['contrato']);

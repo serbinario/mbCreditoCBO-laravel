@@ -11,6 +11,28 @@
                     <h4>Nº de Contratos</h4>
                 </div>
 
+                <form id="search-form" role="form" method="GET">
+                    <div class="row">
+                        <div class="form-group col-sm-3">
+                            <div class=" fg-line">
+                                <label for="searchMes"></label>
+                                <div class="select" style="background-color: white">
+                                    {!! Form::select('searchAgente', (['' => 'Todos os agentes'] + $agentes->toArray()), Session::get('searchAgente'), array('class'=> 'chosen form-control input-sm')) !!}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2 m-t-15">
+                            <button type="submit" class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="topo-conteudo-full">
+                    <h4>Nº de Contratos</h4>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
                         <div class="mini-charts-item bgm-lightgreen">
@@ -99,7 +121,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // Relatório de Contratos por Mês
-            $.getJSON( "{{ route('dashboard.chartContratosByMonth') }}", function( data ) {
+            $.getJSON( "{{ route('dashboard.chartContratosByMonth', ['searchAgente' => Session::get('searchAgente')]) }}", function( data ) {
                 $.plot("#bar-chart", [data], {
                     colors: ["#00BCD4"],
                     series: {
@@ -130,7 +152,7 @@
             });
 
             // Relatório de cotratos por ano
-            $.getJSON("{{ route('dashboard.chartContratosByYear') }}", function (json) {
+            $.getJSON("{{ route('dashboard.chartContratosByYear', ['searchAgente' => Session::get('searchAgente')]) }}", function (json) {
                 var options = {
                     colors: ["#00BCD4"],
                     grid : {

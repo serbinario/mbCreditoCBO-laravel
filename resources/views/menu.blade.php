@@ -86,14 +86,14 @@
                 </a>
 
                 <ul class="main-menu">
-                    <li>
-                        <a href="profile-about.html"><i class="zmdi zmdi-account"></i>Perfil</a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="profile-about.html"><i class="zmdi zmdi-account"></i>Perfil</a>--}}
+                    {{--</li>--}}
                     {{--<li>
                         <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
                     </li>--}}
                     <li>
-                        <a href=""><i class="zmdi zmdi-settings"></i>Alterar Senha</a>
+                        <a href="{{ route('usuario.edit', ['id' => Auth::user()->id])  }}"><i class="zmdi zmdi-settings"></i>Perfil</a>
                     </li>
                     <li>
                         <a href="{{ route('auth.getLogout') }}"><i class="zmdi zmdi-time-restore"></i>Sair</a>
@@ -102,7 +102,8 @@
             </div>
 
             <ul class="main-menu">
-                <li><a href="{{ route('index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
+                {{--<li><a href="{{ route('index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>--}}
                 <li><a href="{{ route('dashboard') }}"><i class="zmdi zmdi-chart"></i> Dashboard</a></li>
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBO</a>
@@ -110,16 +111,16 @@
                         <li><a href="{{ route('operador.index') }}">Agentes</a></li>
                     </ul>
                 </li>
+                @endif
+                {{--<li class="sub-menu">--}}
+                    {{--<a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBG</a>--}}
 
-                <li class="sub-menu">
-                    <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBG</a>
-
-                    <ul>
-                        {{--<li><a href="textual-menu.html">Textual menu</a></li>
-                        <li><a href="image-logo.html">Image logo</a></li>
-                        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>--}}
-                    </ul>
-                </li>
+                    {{--<ul>--}}
+                        {{--<li><a href="textual-menu.html">Textual menu</a></li>--}}
+                        {{--<li><a href="image-logo.html">Image logo</a></li>--}}
+                        {{--<li><a href="top-mainmenu.html">Mainmenu on top</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-phone"></i>Callcenter</a>
@@ -130,13 +131,14 @@
                     </ul>
                 </li>
 
+                @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-globe-lock"></i>Configurações</a>
                     <ul>
                         <li><a href="{{ route('usuario.index') }}">Gerenciamento de Usuários</a></li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
         </aside>
         {{--FIM Menu Lateral--}}

@@ -16,8 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('index', ['as' => 'index', 'uses' => 'DefaultController@index']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashBoardController@index']);
-    Route::get('dashboard/chartContratosByMonth', ['as' => 'dashboard.chartContratosByMonth', 'uses' => 'DashBoardController@getDataChartContratosByMonth']);
-    Route::get('dashboard/chartContratosByYear', ['as' => 'dashboard.chartContratosByYear', 'uses' => 'DashBoardController@getDataChartContratosByYear']);
+    Route::get('dashboard/chartContratosByMonth/{searchAgente}', ['as' => 'dashboard.chartContratosByMonth', 'uses' => 'DashBoardController@getDataChartContratosByMonth']);
+    Route::get('dashboard/chartContratosByYear/{searchAgente}', ['as' => 'dashboard.chartContratosByYear', 'uses' => 'DashBoardController@getDataChartContratosByYear']);
 
     Route::group(['prefix' => 'operador', 'as' => 'operador.'], function () {
         Route::get('index', ['as' => 'index', 'uses' => 'OperadorController@index']);

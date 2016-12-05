@@ -90,8 +90,25 @@ class UsuarioService
     }
 
     /**
+     * @param $data
+     * @param $usuario
+     * @return mixed
+     */
+    private function tratamentoPermissao($data, $usuario)
+    {
+        # Removendo as permissões
+        \DB::table('users_has_roles')
+            ->where('user_id', $usuario->id)
+            ->delete();
+
+        # Cadastrando as permissões
+        return $this->nivelPermissoesUsuario($data, $usuario->id);
+    }
+
+    /**
      * @param array $data
-     * @return array
+     * @return Usuario
+     * @throws \Exception
      */
     public function store(array $data) : Usuario
     {
@@ -113,7 +130,8 @@ class UsuarioService
     /**
      * @param array $data
      * @param int $id
-     * @return mixed
+     * @return Usuario
+     * @throws \Exception
      */
     public function update(array $data, int $id) : Usuario
     {
@@ -126,6 +144,9 @@ class UsuarioService
 
         #Atualizando no banco de dados
         $usuario = $this->repository->update($data, $id);
+
+        # Tratando as permissões
+        $this->tratamentoPermissao($data, $usuario);
 
         # Alterando a senha do usuário
         if(isset($newPassword)) {

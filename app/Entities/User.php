@@ -47,7 +47,7 @@ class User extends Model implements AuthenticatableContract,
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Hole::class, 'users_has_roles', 'user_id', 'role_id');
     }
 
     /**

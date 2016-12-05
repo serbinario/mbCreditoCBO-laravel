@@ -67,6 +67,17 @@
                                     {!! Form::text('searchDataFin', null, array('id' => 'searchDataFin', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data Final')) !!}
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-3">
+                                <div class=" fg-line">
+                                    <label for="searchMes"></label>
+                                    <div class="select">
+                                        {!! Form::select('searchAgente', (['' => 'Todos os agentes'] + $agentes->toArray()), null, array('class'=> 'chosen form-control input-sm')) !!}
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group col-sm-2">
                                 <div class=" fg-line">
@@ -74,7 +85,6 @@
                                     {!! Form::text('searchGlobal', null, array('id' => 'searchGlobal', 'class' => 'form-control input-sm', 'placeholder' => 'Pesquisar ...')) !!}
                                 </div>
                             </div>
-
 
                             <div class="col-sm-2 m-t-15">
                                 <button type="submit" class="btn btn-primary btn-sm m-t-10" id="btnConsultar" href="#">Consultar</button>
@@ -146,6 +156,7 @@
                 url: "{!! route('contrato.grid') !!}",
                 data: function (d) {
                     d.mes = $('select[name=searchMes] option:selected').val();
+                    d.agente  = $('select[name=searchAgente] option:selected').val();
                     d.dataIni = $('input[name=searchDataIni]').val();
                     d.dataFin = $('input[name=searchDataFin]').val();
                     d.global  = $('input[name=searchGlobal]').val();
@@ -221,7 +232,6 @@
                 $('#'+id+' td.details-control').trigger( 'click' );
             } );
         } );
-
         // Função de formatação do detalhe
         function formatDetail(d) {
             // Transformando em json
@@ -239,6 +249,9 @@
                                 '<th>Nº do contrato</th>' +
                                 '<th>Data da religação</th>' +
                                 '<th>Link Contrato</th>' +
+                                @if(!Auth::user()->is('ROLE_OPERADOR'))
+                                    '<th>Operador</th>' +
+                                @endif
                             '</tr>' +
                             '</thead>';
 
@@ -253,8 +266,11 @@
                             '<td>'+ contratos[i].codigo_transacao + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
                             '<td>'+ (contratos[i].path_arquivo ?
-                                    '<a target="_blank" href="/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
+                                    '<a target="_blank" href="/mbCreditoCBO-laravel/public/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
                             '</td>' +
+                            @if(!Auth::user()->is('ROLE_OPERADOR'))
+                                '<td>'+ contratos[i].usuario.username + '</td>' +
+                            @endif
                         '</tr>';
             }
 
