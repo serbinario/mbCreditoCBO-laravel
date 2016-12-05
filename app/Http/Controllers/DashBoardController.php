@@ -240,6 +240,11 @@ class DashBoardController extends Controller
         # Validando o retorno da query
         if(count(($results = $query->get())) > 0) {
             foreach($results as $result) {
+                # Validando a data
+                if(!$result->data_contratado) {
+                   continue;
+                }
+
                 # Convertendo para DateTime
                 $dateTemp = \DateTime::createFromFormat('Y-m-d', $result->data_contratado);
 
