@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        @if(Auth::user()->is('ROLE_ADMIN'))
+        @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
         <label>Nível de permissão:</label>
         </br>
         <div class="form-group">
@@ -69,7 +69,6 @@
         </div>
         </br>
 
-
         <div class="form-group">
             <div class="fg-line">
                 <label for="id_operadores">Operador</label>
@@ -82,7 +81,7 @@
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
 
-        @if(Auth::user()->is('ROLE_ADMIN'))
+        @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
             <a class="btn btn-primary btn-sm m-t-10" href="{{ route('usuario.index') }}">Voltar</a>
         @endif
 
