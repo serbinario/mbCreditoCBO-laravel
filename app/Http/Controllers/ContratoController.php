@@ -176,9 +176,17 @@ class ContratoController extends Controller
                 }
             })
             ->addColumn('contratos', function ($row) {
+                # Array de consulta
+                $arrayFilter = ['cliente_id' => $row->idCliente];
+
+                # Filtro de usuário
+                if(Auth::user()->is('ROLE_OPERADOR')) {
+                    $arrayFilter['user_id'] = Auth::user()->id;
+                }
+
                 # Retorno
                 return $this->contratoRepository->with(['tipoContrato', 'convenio', 'usuario'])
-                    ->findByField(['cliente_id' => $row->idCliente, 'user_id' =>  Auth::user()->id]);
+                    ->findByField($arrayFilter);
             })
             ->addColumn('action', function ($row) {
                 # Html de retorno
