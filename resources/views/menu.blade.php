@@ -8,8 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MB Crédito - CBO</title>
 
-        {{--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--}}
-
+        <!-- -->
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/fullcalendar/dist/fullcalendar.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/animate.css/animate.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.css') }}"  media="screen,projection"/>
@@ -17,12 +16,9 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
+        <!-- Animação de loading em consultas ajax -->
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/load.css')}}" rel="stylesheet"/>
 
-        {{--<link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">--}}
-        {{--<link href="/lib/nouislider/distribute/nouislider.min.css" rel="stylesheet">--}}
-        {{--<link href="/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">--}}
-        {{--<link href="/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet">--}}
-        {{--<link href="/lib/farbtastic/farbtastic.css" rel="stylesheet">--}}
         <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
         <link href="{{ asset('/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
 
@@ -160,6 +156,15 @@
         </div>
     </div>
 
+    <!-- Imagem de carregamento em requisições ajax-->
+    <div class="modal">
+        <div class="preloader pl-xxl">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20"/>
+            </svg>
+        </div>
+    </div>
+    <!-- -->
 
     <footer id="footer" class="p-t-0">
         <strong>Copyright &copy; 2015-2016 <a target="_blank" href="http://serbinario.com.br"><i></i>SERBINARIO</a> .</strong> Todos os direitos reservados.
@@ -205,6 +210,21 @@
             format : 'd/m/Y'
         });
     </script>
+
+    <!-- Imagem de carregamento em requisições ajax-->
+    {{--<script type="text/javascript">
+        $body = $("body");
+
+        $(document).on({
+            ajaxStart: function() {
+                $body.addClass("loading");
+            },
+            ajaxStop: function() {
+                $body.removeClass("loading");
+            }
+        });
+    </script>--}}
+    <!-- -->
 
     @yield('javascript')
 

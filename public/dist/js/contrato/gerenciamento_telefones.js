@@ -49,7 +49,14 @@ function TablePhonesEdit(_idClient) {
             type: 'POST',
             url: '/mbCreditoCBO-laravel/public/index.php/contrato/telefone/store/' + this.idClient,
             data: {'telefone' : telefone},
-            datatype: 'json'
+            datatype: 'json',
+            beforeSend: function () {
+                $body = $('body');
+                $body.addClass("loading");
+            },
+            complete: function () {
+                $body.removeClass("loading");
+            }
         }).done(function (json)  {
             // Limpando o campo
             $('#addPhoneText').val('');

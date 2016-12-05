@@ -242,15 +242,25 @@
             if (cpfCliente == "") {
                 alert("Por favor, informe um número válido");
             } else {
+                //Variavel de uso
+                $body = $('body');
+
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
                     url: '/mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
-                    datatype: 'json'
+                    datatype: 'json',
+                    beforeSend: function () {
+                        $body.addClass("loading");
+                    },
+                    complete: function () {
+                        $body.removeClass("loading");
+                    }
+
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
-                        console.log(json.dados[0]['idCliente']);
+
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
