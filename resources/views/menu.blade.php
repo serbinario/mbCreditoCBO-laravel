@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="sp-info">
-                        {{ isset(Auth::user()->operador()->id)
+                        {{ isset(Auth::user()->operador()->nome_operadores)
                             ? Auth::user()->operador()->get()->first()->nome_operadores
                             : Auth::user()->username }}
 
