@@ -36,6 +36,7 @@
             </div>
         </div>
 
+        @if(Auth::user()->is('ROLE_ADMIN'))
         <label>Nível de permissão:</label>
         </br>
         <div class="form-group">
@@ -68,6 +69,7 @@
         </div>
         </br>
 
+
         <div class="form-group">
             <div class="fg-line">
                 <label for="id_operadores">Operador</label>
@@ -76,7 +78,8 @@
                 </div>
             </div>
         </div>
-
+        @endif
+        
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
 
         @if(Auth::user()->is('ROLE_ADMIN'))
