@@ -40,7 +40,7 @@ return [
     */
 
     'models' => [
-        'role' => \MbCreditoCBO\Entities\Role::class,
+        'role' => \MbCreditoCBO\Entities\Hole::class,
         'permission' => Bican\Roles\Models\Permission::class,
     ],
 

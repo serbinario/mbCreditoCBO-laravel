@@ -79,7 +79,7 @@
             </div>
         </div>
         @endif
-        
+
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
 
         @if(Auth::user()->is('ROLE_ADMIN'))

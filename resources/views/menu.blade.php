@@ -106,6 +106,7 @@
             </div>
 
             <ul class="main-menu">
+                @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
                 {{--<li><a href="{{ route('index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>--}}
                 <li><a href="{{ route('dashboard') }}"><i class="zmdi zmdi-chart"></i> Dashboard</a></li>
                 <li class="sub-menu">
@@ -114,7 +115,7 @@
                         <li><a href="{{ route('operador.index') }}">Agentes</a></li>
                     </ul>
                 </li>
-
+                @endif
                 {{--<li class="sub-menu">--}}
                     {{--<a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBG</a>--}}
 
@@ -134,13 +135,14 @@
                     </ul>
                 </li>
 
+                @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-globe-lock"></i>Configurações</a>
                     <ul>
                         <li><a href="{{ route('usuario.index') }}">Gerenciamento de Usuários</a></li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
         </aside>
         {{--FIM Menu Lateral--}}
