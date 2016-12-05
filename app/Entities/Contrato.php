@@ -101,4 +101,12 @@ class Contrato extends Model implements Transformable
     {
         return $query->select(['prazo as nome', 'id']);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'user_id');
+    }
 }

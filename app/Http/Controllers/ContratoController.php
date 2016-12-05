@@ -177,7 +177,7 @@ class ContratoController extends Controller
             })
             ->addColumn('contratos', function ($row) {
                 # Retorno
-                return $this->contratoRepository->with(['tipoContrato', 'convenio'])
+                return $this->contratoRepository->with(['tipoContrato', 'convenio', 'usuario'])
                     ->findByField(['cliente_id' => $row->idCliente, 'user_id' =>  Auth::user()->id]);
             })
             ->addColumn('action', function ($row) {

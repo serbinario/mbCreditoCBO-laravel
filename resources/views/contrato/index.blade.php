@@ -232,7 +232,6 @@
                 $('#'+id+' td.details-control').trigger( 'click' );
             } );
         } );
-
         // Função de formatação do detalhe
         function formatDetail(d) {
             // Transformando em json
@@ -250,6 +249,9 @@
                                 '<th>Nº do contrato</th>' +
                                 '<th>Data da religação</th>' +
                                 '<th>Link Contrato</th>' +
+                                @if(!Auth::user()->is('ROLE_OPERADOR'))
+                                    '<th>Operador</th>' +
+                                @endif
                             '</tr>' +
                             '</thead>';
 
@@ -266,6 +268,9 @@
                             '<td>'+ (contratos[i].path_arquivo ?
                                     '<a target="_blank" href="/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
                             '</td>' +
+                            @if(!Auth::user()->is('ROLE_OPERADOR'))
+                                '<td>'+ contratos[i].usuario.username + '</td>' +
+                            @endif
                         '</tr>';
             }
 
