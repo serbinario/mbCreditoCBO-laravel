@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Http\Controllers;
 
+use Illuminate\Http\Request;
 use MbCreditoCBO\Http\Requests;
 
 /**
@@ -13,32 +14,45 @@ class DashBoardController extends Controller
     /**
      * @return mixed
      */
-    public function index()
+    public function index(Request $request)
     {
+        # Recuperando o parêmatro da consulta
+        $searchAgente = $request->get('searchAgente');
+
+        # Recuperando os agentes
+        $agentes = \MbCreditoCBO\Entities\Operador::lists('nome_operadores', 'id_operadores');
+
         # Array de retorno
         $dados = [
-            'qtdContratosHoje'   => $this->getQtdContratosHoje(),
-            'qtdContratosSemana' => $this->getQtdContratosSemana(),
-            'qtdContratosMes'    => $this->getQtdContratosMes(),
-            'qtdContratosAno'    => $this->getQtdContratosAno(),
-            'chartContratosByMonth' => $this->getDataChartContratosByMonth()
+            'qtdContratosHoje'   => $this->getQtdContratosHoje($searchAgente),
+            'qtdContratosSemana' => $this->getQtdContratosSemana($searchAgente),
+            'qtdContratosMes'    => $this->getQtdContratosMes($searchAgente),
+            'qtdContratosAno'    => $this->getQtdContratosAno($searchAgente),
+            'chartContratosByMonth' => $this->getDataChartContratosByMonth($searchAgente)
         ];
 
         # Retorno para view
-        return view('dashboard.index', compact('dados'));
+        return view('dashboard.index', compact('dados', 'agentes'));
     }
 
     /**
      * @return int
      */
-    private function getQtdContratosHoje()
+    private function getQtdContratosHoje($searchAgente)
     {
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where('chamadas.data_contratado', date('Y-m-d'))
             ->select([
-                \DB::raw('count(id) as qtd_contratos')
+                \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query WEEK("2014/09/18")
         if(count(($result = $query->get())) > 0) {
@@ -52,16 +66,23 @@ class DashBoardController extends Controller
     /**
      * @return int
      */
-    private function getQtdContratosSemana()
+    private function getQtdContratosSemana($searchAgente)
     {
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where(\DB::raw('WEEK(data_contratado,5) - WEEK(DATE_SUB(data_contratado, INTERVAL DAYOFMONTH(data_contratado)-1 DAY),5)+1'), date('w') +1)
             ->where(\DB::raw('MONTH(data_contratado)'), date('m'))
             ->where(\DB::raw('YEAR(data_contratado)'), date('Y'))
             ->select([
-                \DB::raw('count(id) as qtd_contratos')
+                \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query WEEK("2014/09/18")
         if(count(($result = $query->get())) > 0) {
@@ -75,14 +96,21 @@ class DashBoardController extends Controller
     /**
      * @return int
      */
-    private function getQtdContratosMes()
+    private function getQtdContratosMes($searchAgente)
     {
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where(\DB::raw('MONTH(chamadas.data_contratado)'), date('m'))
             ->select([
-                \DB::raw('count(id) as qtd_contratos')
+                \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query
         if(count(($result = $query->get())) > 0) {
@@ -96,14 +124,21 @@ class DashBoardController extends Controller
     /**
      * @return int
      */
-    private function getQtdContratosAno()
+    private function getQtdContratosAno($searchAgente)
     {
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where(\DB::raw('YEAR(chamadas.data_contratado)'), date('Y'))
             ->select([
-                \DB::raw('count(id) as qtd_contratos')
+                \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query
         if(count(($result = $query->get())) > 0) {
@@ -117,7 +152,7 @@ class DashBoardController extends Controller
     /**
      * @return mixed
      */
-    public function getDataChartContratosByMonth()
+    public function getDataChartContratosByMonth($searchAgente)
     {
         # Array de meses do ano
         $arrayMonth = [['Janeiro', 0], ['Fevereiro', 0], ['Março', 0], ['Abril', 0], ['Maio', 0], ['Junho', 0],
@@ -125,10 +160,17 @@ class DashBoardController extends Controller
 
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->where(\DB::raw('YEAR(chamadas.data_contratado)'), date('Y'))
             ->select([
                 'chamadas.data_contratado'
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query
         if(count(($results = $query->get())) > 0) {
@@ -161,7 +203,7 @@ class DashBoardController extends Controller
     /**
      * @return mixed
      */
-    public function getDataChartContratosByYear()
+    public function getDataChartContratosByYear($searchAgente)
     {
         # Array de meses do ano
         $arrayYear = [];
@@ -180,10 +222,17 @@ class DashBoardController extends Controller
 
         # Criando a query
         $query = \DB::table('chamadas')
+            ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->select([
                 'chamadas.data_contratado',
-                \DB::raw('count(id) as qtd_contratos'),
+                \DB::raw('count(chamadas.id) as qtd_contratos'),
             ]);
+
+        # Buscando por operador
+        if($searchAgente) {
+            $query->where('operadores.id_operadores', $searchAgente);
+        }
 
         # Validando o retorno da query
         if(count(($results = $query->get())) > 0) {
