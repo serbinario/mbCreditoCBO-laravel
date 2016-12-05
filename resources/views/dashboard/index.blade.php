@@ -17,7 +17,7 @@
                             <div class=" fg-line">
                                 <label for="searchMes"></label>
                                 <div class="select" style="background-color: white">
-                                    {!! Form::select('searchAgente', (['' => 'Todos os agentes'] + $agentes->toArray()), null, array('class'=> 'chosen form-control input-sm')) !!}
+                                    {!! Form::select('searchAgente', (['' => 'Todos os agentes'] + $agentes->toArray()), Session::get('searchAgente'), array('class'=> 'chosen form-control input-sm')) !!}
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // Relatório de Contratos por Mês
-            $.getJSON( "{{ route('dashboard.chartContratosByMonth') }}", function( data ) {
+            $.getJSON( "{{ route('dashboard.chartContratosByMonth', ['searchAgente' => Session::get('searchAgente')]) }}", function( data ) {
                 $.plot("#bar-chart", [data], {
                     colors: ["#00BCD4"],
                     series: {
@@ -152,7 +152,7 @@
             });
 
             // Relatório de cotratos por ano
-            $.getJSON("{{ route('dashboard.chartContratosByYear') }}", function (json) {
+            $.getJSON("{{ route('dashboard.chartContratosByYear', ['searchAgente' => Session::get('searchAgente')]) }}", function (json) {
                 var options = {
                     colors: ["#00BCD4"],
                     grid : {

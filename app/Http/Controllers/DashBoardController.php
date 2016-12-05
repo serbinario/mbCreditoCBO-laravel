@@ -19,6 +19,9 @@ class DashBoardController extends Controller
         # Recuperando o parêmatro da consulta
         $searchAgente = $request->get('searchAgente');
 
+        # Colocando o valor na sessão
+        $request->session()->put('searchAgente', $searchAgente ?? 0);
+
         # Recuperando os agentes
         $agentes = \MbCreditoCBO\Entities\Operador::lists('nome_operadores', 'id_operadores');
 
@@ -100,17 +103,13 @@ class DashBoardController extends Controller
     {
         # Criando a query
         $query = \DB::table('chamadas')
-            ->join('users', 'users.id', '=', 'chamadas.user_id')
-            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
+          
             ->where(\DB::raw('MONTH(chamadas.data_contratado)'), date('m'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
 
-        # Buscando por operador
-        if($searchAgente) {
-            $query->where('operadores.id_operadores', $searchAgente);
-        }
+
 
         # Validando o retorno da query
         if(count(($result = $query->get())) > 0) {
