@@ -10,6 +10,7 @@ use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Http\Requests;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
+use MbCreditoCBO\Repositories\OperadorRepository;
 use MbCreditoCBO\Services\ContratoService;
 use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -49,21 +50,29 @@ class ContratoController extends Controller
     private $contratoRepository;
 
     /**
+     * @var OperadorRepository
+     */
+    private $operadorRepository;
+
+    /**
      * ContratoController constructor.
      * @param ContratoService $service
      * @param ContratoValidator $validator
      * @param ClienteRepository $clienteRepository
      * @param ContratoRepository $contratoRepository
+     * @param OperadorRepository $operadorRepository
      */
     public function __construct(ContratoService $service,
                                 ContratoValidator $validator,
                                 ClienteRepository $clienteRepository,
-                                ContratoRepository $contratoRepository)
+                                ContratoRepository $contratoRepository,
+                                OperadorRepository $operadorRepository)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
         $this->clienteRepository = $clienteRepository;
         $this->contratoRepository = $contratoRepository;
+        $this->operadorRepository = $operadorRepository;
     }
 
     /**
@@ -75,8 +84,11 @@ class ContratoController extends Controller
         $meses = ['' => 'Selecione um mês', 1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março', 4 => 'Abril', 5 => 'Maio',
             6 => 'Junho', 7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'];
 
+        # Recuperando os agentes
+        $agentes = \MbCreditoCBO\Entities\Operador::lists('nome_operadores', 'id_operadores');
+
         # Retorno para view
-        return view('contrato.index', compact('meses'));
+        return view('contrato.index', compact('meses', 'agentes'));
     }
 
     /**
@@ -89,6 +101,7 @@ class ContratoController extends Controller
             ->join('chamadas', 'chamadas.cliente_id', '=', 'clientes.id')
             ->join('agencias_callcenter as agencias', 'agencias.id', '=', 'clientes.agencia_id')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
+            ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->leftJoin('telefones', function ($join) {
                 $join->on(
                     'telefones.id', '=',
@@ -129,6 +142,11 @@ class ContratoController extends Controller
                 # Filtrando por mes
                 if ($request->has('mes')) {
                     $query->where(\DB::raw('MONTH(chamadas.data_contratado)'), '=', $request->get('mes'));
+                }
+
+                # Filtrando por mes
+                if ($request->has('agente')) {
+                    $query->where('operadores.id_operadores', '=', $request->get('agente'));
                 }
                
                 # Filtrando por ranger de data
