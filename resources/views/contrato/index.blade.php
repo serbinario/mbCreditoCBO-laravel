@@ -266,7 +266,7 @@
                             '<td>'+ contratos[i].codigo_transacao + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
                             '<td>'+ (contratos[i].path_arquivo ?
-                                    '<a target="_blank" href="/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
+                                    '<a target="_blank" href="/mbCreditoCBO-laravel/public/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
                             '</td>' +
                             @if(!Auth::user()->is('ROLE_OPERADOR'))
                                 '<td>'+ contratos[i].usuario.username + '</td>' +
