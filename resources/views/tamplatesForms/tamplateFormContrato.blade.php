@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-body card-padding">
 
-        <input type="hidden" id="idCliente" value="{{ isset($model->id) ? $model->id : null }}">
+        <input type="hidden" id="idCliente" value="{{ isset($model->cliente->id) ? $model->cliente->id : null }}">
 
         @if(!isset($model))
             <div class="topo-conteudo-full">

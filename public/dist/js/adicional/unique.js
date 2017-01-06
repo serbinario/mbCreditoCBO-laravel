@@ -16,9 +16,6 @@ $.validator.addMethod("unique",
             data: { idCliente : params[1].val(), value : value},
             dataType: 'json',
             cache: true,
-            success: function(data){
-
-            }
         }).done(function(data){
 
             if (data.success == false) {
