@@ -109,7 +109,6 @@ class ContratoController extends Controller
                         where telefone_atual.cliente_id = clientes.id ORDER BY telefone_atual.id DESC LIMIT 1)')
                 );
             })
-            ->where('users.id', Auth::user()->id)
             ->orderBy('chamadas.data_contratado', 'DESC')
             ->groupBy('clientes.id')
             ->select([
@@ -121,6 +120,14 @@ class ContratoController extends Controller
                 'clientes.conta',
                 'telefones.telefone'
             ]);
+
+        # Recuperando a coluna de permissões
+        $arrayRole = array_column(Auth::user()->roles->toArray(), 'role');
+
+        # Verificando a permissão
+        if(!in_array('ROLE_ADMIN', $arrayRole) && !in_array('ROLE_GERENTE', $arrayRole)) {
+            $rows->where('users.id', Auth::user()->id);
+        }
 
         #Editando a grid
         return Datatables::of($rows)

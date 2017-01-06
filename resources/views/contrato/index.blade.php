@@ -70,6 +70,7 @@
                         </div>
 
                         <div class="row">
+                            @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
                             <div class="form-group col-sm-3">
                                 <div class=" fg-line">
                                     <label for="searchMes"></label>
@@ -78,6 +79,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
 
                             <div class="form-group col-sm-2">
                                 <div class=" fg-line">
