@@ -13,14 +13,14 @@ $.validator.addMethod("unique",
             url: params[0],
             type : 'POST',
             async: false,
-            data: { idCliente : params[1].val(), value : value},
+            data: { idModel : params[1].val(), value : value},
             dataType: 'json',
             cache: true,
-        }).done(function(data){
-
+            success: function(data){
             if (data.success == false) {
                 isUnique = true;
             }
+        }
         });
 
         return isUnique;

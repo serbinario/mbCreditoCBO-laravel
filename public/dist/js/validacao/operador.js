@@ -10,7 +10,8 @@ $(document).ready(function () {
             },
             cod_operadores: {
                 required: true,
-                chaveJ: true
+                chaveJ: true,
+                unique: ['http://ser.cbo/index.php/operador/searchChaveJ', $('#idOperador')]
             }
         },
         //For custom messages

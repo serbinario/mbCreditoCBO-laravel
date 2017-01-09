@@ -1,3 +1,4 @@
+
 <div class="block-header">
     <h2>Cadastro de Agentes</h2>
 </div>
@@ -7,6 +8,8 @@
         <div class="topo-conteudo-full">
             <h4>Dados do Agente</h4>
         </div>
+
+        <input type="hidden" id="idOperador" value="{{ isset($model->id_operadores) ? $model->id_operadores : null }}">
 
         <div class="row">
             <div class="form-group col-sm-4">

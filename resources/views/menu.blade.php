@@ -74,26 +74,17 @@
                 <a href="" data-ma-action="profile-menu-toggle">
                     <div class="sp-pic">
                         <img src="/dist/img/demo/profile-pics/1.jpg" alt="">
-                        {{--{{dd(Auth::user())}}--}}
-                        {{--{{Auth::user()->operador()->get()->first()->nome_operadores}}--}}
                     </div>
 
                     <div class="sp-info">
-                        {{ isset(Auth::user()->operador()->nome_operadores)
-                            ? Auth::user()->operador()->get()->first()->nome_operadores
+                        {{ isset(Auth::user()->operador->nome_operadores)
+                            ? Auth::user()->operador->nome_operadores
                             : Auth::user()->username }}
-
                         <i class="zmdi zmdi-caret-down"></i>
                     </div>
                 </a>
 
                 <ul class="main-menu">
-                    {{--<li>--}}
-                        {{--<a href="profile-about.html"><i class="zmdi zmdi-account"></i>Perfil</a>--}}
-                    {{--</li>--}}
-                    {{--<li>
-                        <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                    </li>--}}
                     <li>
                         <a href="{{ route('usuario.edit', ['id' => Auth::user()->id])  }}"><i class="zmdi zmdi-settings"></i>Perfil</a>
                     </li>
@@ -105,7 +96,6 @@
 
             <ul class="main-menu">
                 @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
-                {{--<li><a href="{{ route('index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>--}}
                 <li><a href="{{ route('dashboard') }}"><i class="zmdi zmdi-chart"></i> Dashboard</a></li>
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBO</a>
@@ -114,16 +104,6 @@
                     </ul>
                 </li>
                 @endif
-                {{--<li class="sub-menu">--}}
-                    {{--<a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-text"></i>CBG</a>--}}
-
-                    {{--<ul>--}}
-                        {{--<li><a href="textual-menu.html">Textual menu</a></li>--}}
-                        {{--<li><a href="image-logo.html">Image logo</a></li>--}}
-                        {{--<li><a href="top-mainmenu.html">Mainmenu on top</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
-
                 <li class="sub-menu">
                     <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-phone"></i>Callcenter</a>
                     <ul>
@@ -168,18 +148,10 @@
             </svg>
         </div>
     </div>
-    <!-- -->
+    <!-- Fim imagem de carregamento em requisições ajax-->
 
     <footer id="footer" class="p-t-0">
         <strong>Copyright &copy; 2015-2016 <a target="_blank" href="http://serbinario.com.br"><i></i>SERBINARIO</a> .</strong> Todos os direitos reservados.
-
-       {{-- <ul class="f-menu">
-            <li><a href="http://serbinario.com.br/">Início</a></li>
-            <li><a href="http://serbinario.com.br/#sobre">Sobre</a></li>
-            <li><a href="http://serbinario.com.br/#service">Serviços</a></li>
-            <li><a href="http://serbinario.com.br/#produtos">Produtos</a></li>
-            <li><a href="http://serbinario.com.br/#contato">Contato</a></li>
-        </ul>--}}
     </footer>
 
     <!-- Javascript Libraries -->

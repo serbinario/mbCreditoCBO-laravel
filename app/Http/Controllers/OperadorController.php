@@ -168,4 +168,48 @@ class OperadorController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function searchChaveJ(Request $request)
+    {
+        try {
+            #Declaração de variável de uso
+            $result = false;
+            #Dados vindo na requisição
+            $dados = $request->all();
+
+            #
+            if (empty($dados['idModel'])) {
+                #Consultando
+                $operador = \DB::table('operadores')
+                    ->select([
+                        'operadores.cod_operadores'
+                    ])
+                    ->where('operadores.cod_operadores', $dados['value'])
+                    ->get();
+
+            } else {
+                #Consultando
+                $operador = \DB::table('operadores')
+                    ->select([
+                        'operadores.id_operadores',
+                        'operadores.cod_operadores'
+                    ])
+                    ->where('operadores.id_operadores', '!=' ,$dados['idModel'])
+                    ->where('operadores.cod_operadores', $dados['value'])
+                    ->get();
+            }
+
+            if (count($operador)) {
+                $result = true;
+            }
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => $result]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
 }

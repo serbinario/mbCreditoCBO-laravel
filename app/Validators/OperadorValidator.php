@@ -11,7 +11,8 @@ class OperadorValidator extends LaravelValidator
         'required' => ':attribute é requerido',
         'chave_j' => ':attribute com 7 digitos, precedido da letra \'J\'',
         'between' => ':attribute deve conter no mínimo :min e no máximo :max caracteres',
-        'serbinario_alpha_space' => ':attribute deve conter apenas letras e espaços'
+        'serbinario_alpha_space' => ':attribute deve conter apenas letras e espaços',
+        'unique' => ':attribute já se encontra cadastrado'
     ];
 
     protected $attributes =[
@@ -21,7 +22,7 @@ class OperadorValidator extends LaravelValidator
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-			'cod_operadores' =>  'required|chave_j',
+			'cod_operadores' =>  'required|chave_j|unique:operadores,cod_operadores',
 			'nome_operadores' =>  'required|between:0,200|serbinario_alpha_space',
 			'status_operadores' =>  'integer|max:1' ,
         ],

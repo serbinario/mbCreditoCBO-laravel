@@ -1,9 +1,13 @@
+{{--{{ dd($model->id) }}--}}
 <div class="block-header">
     <h2>Edição do cliente</h2>
 </div>
 
 <div class="card">
     <div class="card-body card-padding">
+
+        <input type="hidden" id="idCliente" value="{{ isset($model->id) ? $model->id : null }}">
+
         <div class="topo-conteudo-full">
             <h4>Dados do cliente</h4>
         </div>

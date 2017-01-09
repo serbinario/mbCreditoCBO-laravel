@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store', ['as' => 'store', 'uses' => 'OperadorController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'OperadorController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'OperadorController@update']);
+
+        //unique chave j
+        Route::post('searchChaveJ', ['as' => 'searchChaveJ', 'uses' => 'OperadorController@searchChaveJ']);
     });
 
     Route::group(['prefix' => 'contrato', 'as' => 'contrato.'], function () {
