@@ -11,7 +11,7 @@ $(document).ready(function () {
             cod_operadores: {
                 required: true,
                 chaveJ: true,
-                unique: ['http://mbCreditoCBO-laravel/public/index.php/operador/searchChaveJ', $('#idOperador')]
+                unique: ['/mbCreditoCBO-laravel/public/index.php/operador/searchChaveJ', $('#idOperador')]
             }
         },
         //For custom messages
