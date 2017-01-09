@@ -452,7 +452,7 @@ class ContratoController extends Controller
             $contrato = $request->all();
 
             #
-            if (empty($contrato['idCliente'])) {
+            if (empty($contrato['idModel'])) {
                 #Consultando
                 $cpfCliente = \DB::table('clientes')
                     ->select([
@@ -468,7 +468,7 @@ class ContratoController extends Controller
                         'clientes.id',
                         'clientes.cpf'
                     ])
-                    ->where('clientes.id', '!=' ,$contrato['idCliente'])
+                    ->where('clientes.id', '!=' ,$contrato['idModel'])
                     ->where('clientes.cpf', $contrato['value'])
                     ->get();
             }

@@ -1,4 +1,3 @@
-{{--{{ dd($model->id) }}--}}
 <div class="block-header">
     <h2>Edição do cliente</h2>
 </div>

@@ -41,7 +41,7 @@ $(document).ready(function () {
                 integer: true
             },
             'contrato[data_contratado]': {
-                required: true,
+                required: true
                 // dateBr: true
             },
             'contrato[valor_contratado]': {
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 required: true
             },
             'contrato[data_prox_chamada]': {
-                required: true,
+                required: true
                 //dateBr: true
             },
             'contrato[matricula]': {
