@@ -302,11 +302,19 @@ class ContratoController extends Controller
     public function edit($id)
     {
         try {
+            #
+            $selectAgencia = [];
+
             #Recuperando o contrato
             $model = $this->clienteRepository->find($id);
 
             #Carregando os dados para o cadastro
-            $loadFields = $this->service->load($this->loadFields);
+            //$loadFields = $this->service->load($this->loadFields);
+            $agencias = $this->service->buscaAgencia();
+
+            foreach ($agencias as $agencia) {
+                $selectAgencia[] = [$agencia->id => $agencia->numero_agencia.' - '.$agencia->nome_agencia];
+            }
 
             # Array de parcelas
             $arrayParcelas = ['' => 'Selecione uma parcela'];
@@ -317,7 +325,7 @@ class ContratoController extends Controller
             }
 
             #retorno para view
-            return view('contrato.edit', compact('model', 'loadFields','arrayParcelas'));
+            return view('contrato.edit', compact('model', 'selectAgencia'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('message', $e->getMessage());
         }
@@ -510,6 +518,49 @@ class ContratoController extends Controller
 
             #retorno para view
             return \Illuminate\Support\Facades\Response::json(['success' => $result]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function buscaAgencia()
+    {
+        try{
+            #Consultado
+            $agencia = \DB::table('agencias_callcenter')
+                ->select([
+                    'agencias_callcenter.id',
+                    'agencias_callcenter.numero_agencia',
+                    'agencias_callcenter.nome_agencia',
+                ])
+                ->get();
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $agencia]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function buscaNoAgencia($agencia)
+    {
+        try{
+            #Consultado
+            $noAgencia = \DB::table('agencias_callcenter')
+                ->select([
+                    'agencias_callcenter.id',
+                    'agencias_callcenter.numero_agencia'])
+                ->where('id', $agencia)
+                ->get();
+
+            #retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $noAgencia]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
         }

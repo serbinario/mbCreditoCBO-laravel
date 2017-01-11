@@ -59,6 +59,10 @@ Route::group(['middleware' => 'auth'], function () {
         
         # Rota do pdf do contrato
         Route::get('viewContrato/{id}', ['as' => 'viewContrato', 'uses' => 'ContratoController@viewContrato']);
+
+        #
+        Route::get('buscaAgencia', ['as' => 'buscaAgencia', 'uses' => 'ContratoController@buscaAgencia']);
+        Route::get('buscaNoAgencia/{idAgencia}', ['as' => 'buscaNoAgencia', 'uses' => 'ContratoController@buscaNoAgencia']);
     });
 
     Route::group(['prefix' => 'agencia', 'as' => 'agencia.'], function () {

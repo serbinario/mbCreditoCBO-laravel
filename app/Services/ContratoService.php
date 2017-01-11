@@ -47,7 +47,7 @@ class ContratoService
         $contrato = $this->repository->find($id);
 
         #Verificando se o registro foi encontrado
-        if(!$contrato) {
+        if (!$contrato) {
             throw new \Exception('Contrato não encontrada!');
         }
 
@@ -65,7 +65,7 @@ class ContratoService
         $arrayCliente = $this->clienteRepository->findByField(['cpf' => $data['cpf']]);
 
         # validando a consulta
-        if(count($arrayCliente) > 0) {
+        if (count($arrayCliente) > 0) {
             return $arrayCliente[0];
         }
 
@@ -80,7 +80,7 @@ class ContratoService
     public function tratamentoTelefone(array $data, $cliente)
     {
         # Recortando os telefones em arrays
-        if(!empty($data['telefones'])) {
+        if (!empty($data['telefones'])) {
             $telefonesArray = explode(',', $data['telefones']);
 
             # Percorrendo e salvando os telefones
@@ -168,7 +168,7 @@ class ContratoService
      * @return Contrato
      * @throws \Exception
      */
-    public function store(array $data) : Contrato
+    public function store(array $data): Contrato
     {
         # Salvando o cliente e retornando o objeto
         $cliente = $this->tratamentoCliente($data);
@@ -189,9 +189,9 @@ class ContratoService
 
         #Salvando registro pincipal
         $contrato = $this->repository->create($data['contrato']);
-       
+
         #Verificando se foi criado no banco de dados
-        if(!$contrato) {
+        if (!$contrato) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
@@ -205,13 +205,13 @@ class ContratoService
      * @return Cliente
      * @throws \Exception
      */
-    public function update(array $data, int $id) : Cliente
+    public function update(array $data, int $id): Cliente
     {
         #Atualizando no banco de dados
         $cliente = $this->clienteRepository->update($data, $id);
 
         #Verificando se foi atualizado no banco de dados
-        if(!$cliente) {
+        if (!$cliente) {
             throw new \Exception('Ocorreu um erro ao cadastrar!');
         }
 
@@ -229,20 +229,20 @@ class ContratoService
      * @param array $models || Melhorar esse código
      * @return array
      */
-    public function load(array $models, $ajax = false) : array
+    public function load(array $models, $ajax = false): array
     {
         #Declarando variáveis de uso
-        $result    = [];
+        $result = [];
         $expressao = [];
 
         #Criando e executando as consultas
         foreach ($models as $model) {
             # separando as strings
-            $explode   = explode("|", $model);
+            $explode = explode("|", $model);
 
             # verificando a condição
-            if(count($explode) > 1) {
-                $model     = $explode[0];
+            if (count($explode) > 1) {
+                $model = $explode[0];
                 $expressao = explode(",", $explode[1]);
             }
 
@@ -253,7 +253,7 @@ class ContratoService
             //$model     = isset($expressao[2]) ? $expressao[2] : $model;
 
             if ($ajax) {
-                if(count($expressao) > 0) {
+                if (count($expressao) > 0) {
                     switch (count($expressao)) {
                         case 1 :
                             #Recuperando o registro e armazenando no array
@@ -274,7 +274,7 @@ class ContratoService
                     $result[strtolower($model)] = $nameModel::orderBy('nome', 'asc')->get(['nome', 'id']);
                 }
             } else {
-                if(count($expressao) > 0) {
+                if (count($expressao) > 0) {
                     switch (count($expressao)) {
                         case 1 :
                             #Recuperando o registro e armazenando no array
@@ -311,11 +311,11 @@ class ContratoService
     {
         # Tratamento de campos de chaves estrangeira
         foreach ($data as $key => $value) {
-            if(is_array($value)) {
+            if (is_array($value)) {
                 foreach ($value as $key2 => $value2) {
                     $explodeKey2 = explode("_", $key2);
 
-                    if ($explodeKey2[count($explodeKey2) -1] == "id" && $value2 == null ) {
+                    if ($explodeKey2[count($explodeKey2) - 1] == "id" && $value2 == null) {
                         $data[$key][$key2] = null;
                     }
                 }
@@ -323,7 +323,7 @@ class ContratoService
 
             $explodeKey = explode("_", $key);
 
-            if ($explodeKey[count($explodeKey) -1] == "id" && $value == null ) {
+            if ($explodeKey[count($explodeKey) - 1] == "id" && $value == null) {
                 $data[$key] = null;
             }
         }
@@ -332,4 +332,28 @@ class ContratoService
         return $data;
     }
 
+    /**
+     * @return mixed
+     */
+    public function buscaAgencia()
+    {
+//        try {
+            #Consultado
+            $agencia = \DB::table('agencias_callcenter')
+                ->select([
+                    'agencias_callcenter.id',
+                    'agencias_callcenter.numero_agencia',
+                    'agencias_callcenter.nome_agencia',
+                ])
+                ->get();
+
+            return $agencia;
+
+            /*#retorno para view
+            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $agencia]);
+        } catch (\Throwable $e)
+        {
+            return \Illuminate\Support\Facades\Response::json(['success' => false, 'msg' => $e->getMessage()]);
+        }*/
+    }
 }

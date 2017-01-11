@@ -1,6 +1,5 @@
 <div class="block-header">
     <h2>Cadastro de Contratos</h2>
-
 </div>
 
 <div class="card">
@@ -50,16 +49,22 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="agencia_id">Agência</label>
                     <div class="select">
-                        {!! Form::select('agencia_id', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null,
-                            array(isset($model) ? 'disabled' : '', 'id' => 'clienteAgencia')) !!}
+                        {!! Form::select('agencia_id', array(), null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
                     </div>
                 </div>
             </div>
-
+            <div class="form-group col-sm-2">
+                <div class="fg-line">
+                    <div class="fg-line">
+                        <label for="noAgencia">No. Agência</label>
+                        {!! Form::text('noAgencia', Session::getOldInput('noAgencia'), array('id' => 'noAgencia', 'class' => 'form-control input-sm', 'readonly' => 'true')) !!}
+                    </div>
+                </div>
+            </div>
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
                     <label for="conta">Conta</label>
@@ -230,6 +235,42 @@
         objTablePhone = new TablePhonesCreate();
         @endif
 
+        /*<select> agencia com nome e número*/
+        $(document).on('ready', function () {
+            //consulta
+            $.ajax({
+                type: 'GET',
+                url: '/index.php/contrato/buscaAgencia',
+                datatype: 'json'
+
+            //resposta com a montagem do <select>
+            }).done(function (json) {
+                var option = "";
+
+                option += '<option value="">Selecione uma agência</option>';
+                for (var i = 0; i < json.dados.length; i++) {
+                    option += '<option value="' + json.dados[i]['id'] + '">' + json.dados[i]['numero_agencia'] + ' - ' + json.dados[i]['nome_agencia'] + '</option>';
+                }
+
+                $('#clienteAgencia').append(option);
+            })
+        });
+        /**/
+        /*inserindo número da agencia no input respectivo*/
+        $('#clienteAgencia').on('change', function() {
+
+            var agencia = $(this).val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                datatype: 'json'
+
+            }).done(function (json) {
+                $('#noAgencia').val(json.dados[0].numero_agencia);
+            })
+        });
+        /**/
         /*
          Evento responsável por consulta o cpf no banco de dados
          e preencher os dados do cliente se o cpf for encontrado.
@@ -260,13 +301,14 @@
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
-
+console.log(json.dados);
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
                         $('#idCliente').val(json.dados[0]['idCliente']);
+                        $('#noAgencia').val(json.dados[0]['numero_agencia']);
 
                         //Preenchendo o select de agência
                         $('#clienteAgencia option[value=' + json.dados[0]['id'] + ']').attr('selected', true);
@@ -277,6 +319,7 @@
                         $('#clienteConta').attr('readonly', true);
                         $('#clienteTelefone').attr('readonly', true);
                         $('#clienteAgencia').attr('readonly', true);
+                        $('#noAgencia').attr('readonly', true);
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
                         objTablePhone.tableDestroy();
@@ -288,6 +331,7 @@
                         $('#clienteConta').val("");
                         $('#clienteTelefone').val("");
                         $('#clienteAgencia').val("");
+                        $('#noAgencia').val("");
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
                         objTablePhone.tableDestroy();
@@ -295,7 +339,7 @@
                     }
                 })
             }
-        });
+        }),
 
         // evento para interromper a submissão
         $('#formContrato').submit(function (event) {
