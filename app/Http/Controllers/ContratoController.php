@@ -246,11 +246,21 @@ class ContratoController extends Controller
     public function createContrato($id)
     {
         try {
+            #
+            $selectAgencia = [];
+
             #Recuperando o contrato
             $model = $this->clienteRepository->find($id);
 
             #Carregando os dados para o cadastro
             $loadFields = $this->service->load($this->loadFields);
+
+            #Carregando select de agência
+            $agencias = $this->service->buscaAgencia();
+
+            foreach ($agencias as $agencia) {
+                $selectAgencia[] = [$agencia->id => $agencia->numero_agencia.' - '.$agencia->nome_agencia];
+            }
 
             # Array de parcelas
             $arrayParcelas = ['' => 'Selecione uma parcela'];
@@ -261,7 +271,7 @@ class ContratoController extends Controller
             }
 
             #retorno para view
-            return view('contrato.createContrato', compact('model', 'loadFields', 'arrayParcelas'));
+            return view('contrato.createContrato', compact('model', 'loadFields', 'selectAgencia', 'arrayParcelas'));
         } catch (\Throwable $e) {
             return redirect()->back()->with('message', $e->getMessage());
         }
@@ -308,8 +318,7 @@ class ContratoController extends Controller
             #Recuperando o contrato
             $model = $this->clienteRepository->find($id);
 
-            #Carregando os dados para o cadastro
-            //$loadFields = $this->service->load($this->loadFields);
+            #Carregando select de agência
             $agencias = $this->service->buscaAgencia();
 
             foreach ($agencias as $agencia) {
@@ -523,9 +532,8 @@ class ContratoController extends Controller
         }
     }
 
-    /**
-     * @return mixed
-     */
+    /*Metodo responsavel por retornar todas as agência cadastradas a fim de alimentar
+    o select "agencia" em "novo cliente" e "editar cliente"*/
     public function buscaAgencia()
     {
         try{
@@ -545,9 +553,8 @@ class ContratoController extends Controller
         }
     }
 
-    /**
-     * @return mixed
-     */
+    /*Metodo responsavel por retornar o número da agência a fim de alimentar
+    o campo "no. agencia" em "novo cliente" e "editar cliente"*/
     public function buscaNoAgencia($agencia)
     {
         try{

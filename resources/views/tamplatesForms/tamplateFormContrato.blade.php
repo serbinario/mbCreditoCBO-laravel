@@ -53,7 +53,11 @@
                 <div class="fg-line">
                     <label for="agencia_id">Agência</label>
                     <div class="select">
-                        {!! Form::select('agencia_id', array(), null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
+                        @if(!isset($model))
+                            {!! Form::select('agencia_id', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
+                        @else
+                            {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class' => 'form-control', 'readonly' => 'true')) !!}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -235,42 +239,50 @@
         objTablePhone = new TablePhonesCreate();
         @endif
 
-        /*<select> agencia com nome e número*/
+        /*Esse evento é executado quando o usuário utiliza a opção de "novo contrato", injetando o número da agência
+        * no campo "no. agência". É necessario, pois quando usada essa função, os dados do cliente são carregados
+        * automaticamente*/
         $(document).on('ready', function () {
-            //consulta
-            $.ajax({
-                type: 'GET',
-                url: '/index.php/contrato/buscaAgencia',
-                datatype: 'json'
 
-            //resposta com a montagem do <select>
-            }).done(function (json) {
-                var option = "";
+            //recueprando id da agencia do cliente
+            var agencia = $('#clienteAgencia').val();
 
-                option += '<option value="">Selecione uma agência</option>';
-                for (var i = 0; i < json.dados.length; i++) {
-                    option += '<option value="' + json.dados[i]['id'] + '">' + json.dados[i]['numero_agencia'] + ' - ' + json.dados[i]['nome_agencia'] + '</option>';
-                }
+            if (agencia) {
+                //consulta
+                $.ajax({
+                    type: 'GET',
+                    url: '/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                    datatype: 'json'
 
-                $('#clienteAgencia').append(option);
-            })
+                }).done(function (json) {
+                    //injentando numero agencia em campo "no. agencia"
+                    $('#noAgencia').val(json.dados[0].numero_agencia);
+                })
+            }
+
         });
         /**/
-        /*inserindo número da agencia no input respectivo*/
-        $('#clienteAgencia').on('change', function() {
 
-            var agencia = $(this).val();
+        /*Esse evento é executado quando o usuário utiliza a opção de "novo cliente", injeta o número da agência
+         * no campo "no. agência".*/
+        $('#clienteAgencia').on('change', function () {
 
+            //recueprando id da agencia do cliente
+            var agencia = $('#clienteAgencia').val();
+
+            //consulta
             $.ajax({
                 type: 'GET',
                 url: '/index.php/contrato/buscaNoAgencia' + '/' + agencia,
                 datatype: 'json'
 
             }).done(function (json) {
+                //injentando numero agencia em campo "no. agencia"
                 $('#noAgencia').val(json.dados[0].numero_agencia);
             })
         });
         /**/
+
         /*
          Evento responsável por consulta o cpf no banco de dados
          e preencher os dados do cliente se o cpf for encontrado.
@@ -301,12 +313,12 @@
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
-console.log(json.dados);
                         //Injetando dados nos campos
                         $('#clienteNome').val(json.dados[0]['name']);
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
+                        //$('#clienteAgencia').attr(json.dados[0]['numero_agencia']);
                         $('#idCliente').val(json.dados[0]['idCliente']);
                         $('#noAgencia').val(json.dados[0]['numero_agencia']);
 
@@ -319,7 +331,7 @@ console.log(json.dados);
                         $('#clienteConta').attr('readonly', true);
                         $('#clienteTelefone').attr('readonly', true);
                         $('#clienteAgencia').attr('readonly', true);
-                        $('#noAgencia').attr('readonly', true);
+                        //$('#noAgencia').attr('readonly', true);
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
                         objTablePhone.tableDestroy();
@@ -365,40 +377,6 @@ console.log(json.dados);
             $('#valorContrato').mask('00000,00', {reverse: true});
             $('#addPhoneText').mask('(00) 000000000');
         });
-
-        //Verificando se o número de contrato que foi preenchido já existe no banco
-        /*$(document).on('focusout', "#condigoTransacao", function () {
-            //Recuperando valor preenchido no campo
-            var numeroContrato = $('#condigoTransacao').val();
-
-            jQuery.ajax({
-                type: 'GET',
-                url: 'http://ser.cbo/index.php/contrato/searchContrato/' + numeroContrato,
-                datatype: 'json'
-            }).done(function (json) {
-
-                if(json.dados.length > 0){
-                    alert("O número de contrato preenchido já existe");
-                }
-            })
-        });*/
-
-       /* // Validação personalizada
-        $.validator.addMethod("uniqueContrato", function(value, element) {
-            $.ajax({
-                type: "POST",
-                url: '',
-                data: "checkUsername="+value,
-                dataType:"html",
-                success: function(msg)
-                {
-                    //If username exists, set response to true
-                    response = ( msg == 'true' ) ? true : false;
-                }
-            });
-            return response;
-        },"Username is Already Taken");*/
-
     </script>
 
 @endsection

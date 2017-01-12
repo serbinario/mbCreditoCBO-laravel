@@ -62,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         #
         Route::get('buscaAgencia', ['as' => 'buscaAgencia', 'uses' => 'ContratoController@buscaAgencia']);
+        Route::get('buscaAgencia/{idAgencia}', ['as' => 'buscaAgencia', 'uses' => 'ContratoController@buscaAgencia']);
         Route::get('buscaNoAgencia/{idAgencia}', ['as' => 'buscaNoAgencia', 'uses' => 'ContratoController@buscaNoAgencia']);
     });
 
