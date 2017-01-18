@@ -117,7 +117,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: '/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                url: '/mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
                 datatype: 'json'
 
             }).done(function (json) {
