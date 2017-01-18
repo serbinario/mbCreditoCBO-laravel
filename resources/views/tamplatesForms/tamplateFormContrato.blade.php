@@ -273,7 +273,7 @@
             //consulta
             $.ajax({
                 type: 'GET',
-                url: '/mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                url: 'mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
                 datatype: 'json'
 
             }).done(function (json) {
@@ -301,7 +301,7 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: '/mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: 'mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json',
                     beforeSend: function () {
                         $body.addClass("loading");
