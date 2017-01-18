@@ -103,6 +103,7 @@
                                 <th>CPF</th>
                                 <th>Agência</th>
                                 <th>Nº da Conta</th>
+                                <th>Matrícula/Benefício</th>
                                 <th>Telefone</th>
                                 <th>Açao</th>
                             </tr>
@@ -114,6 +115,7 @@
                                 <th>CPF</th>
                                 <th>Agência</th>
                                 <th>Nº da Conta</th>
+                                <th>Matrícula/Benefício</th>
                                 <th>Telefone</th>
                                 <th>Açao</th>
                             </tr>
@@ -176,23 +178,10 @@
                 {data: 'cpf', name: 'clientes.cpf'},
                 {data: 'numero_agencia', name: 'agencias.numero_agencia'},
                 {data: 'conta', name: 'clientes.conta'},
+                {data: 'matricula', name: 'chamadas.matricula'},
                 {data: 'telefone', name: 'telefones.telefone'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
-            /*"oLanguage": {
-                "sStripClasses": "",
-                "sSearch": "",
-                "sSearchPlaceholder": "Enter Keywords Here",
-                "sInfo": "_START_ - _END_ de _TOTAL_",
-                "sLengthMenu": '<span>Linhas por Página:</span><select class="browser-default">' +
-                '<option value="10">10</option>' +
-                '<option value="20">20</option>' +
-                '<option value="30">30</option>' +
-                '<option value="40">40</option>' +
-                '<option value="50">50</option>' +
-                '<option value="-1">All</option>' +
-                '</select></div>'
-            },*/
         });
 
         // Função do submit do search da grid principal

@@ -54,7 +54,7 @@
                     <label for="agencia_id">Agência</label>
                     <div class="select">
                         @if(!isset($model))
-                            {!! Form::select('agencia_id', ([["" => "Selecione uma agência"] + $loadFields['agenciacallcenter']->toArray()]), null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
+                            {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
                         @else
                             {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class' => 'form-control', 'readonly' => 'true')) !!}
                         @endif
@@ -164,7 +164,7 @@
             </div>
             <div class="form-group col-sm-3">
                 <div class="fg-line">
-                    <label for="contrato[matricula]">Matrícula</label>
+                    <label for="contrato[matricula]">Matrícula/Benefício</label>
                     {!! Form::text('contrato[matricula]', Session::getOldInput('contrato[matricula]'), array('class' => 'form-control input-sm', 'placeholder' => 'Número de Matrícula')) !!}
                 </div>
             </div>

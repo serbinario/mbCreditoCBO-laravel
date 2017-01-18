@@ -112,12 +112,13 @@ class ContratoController extends Controller
             ->orderBy('chamadas.data_contratado', 'DESC')
             ->groupBy('clientes.id')
             ->select([
-                'clientes.id as idCliente',
                 'chamadas.id',
+                'chamadas.matricula',
+                'clientes.id as idCliente',
                 'clientes.name',
                 'clientes.cpf',
-                'agencias.numero_agencia',
                 'clientes.conta',
+                'agencias.numero_agencia',
                 'telefones.telefone'
             ]);
 
@@ -224,8 +225,16 @@ class ContratoController extends Controller
      */
     public function create()
     {
+        #variavel de uso
+        $selectAgencia = [];
+
         #Carregando os dados para o cadastro
         $loadFields = $this->service->load($this->loadFields);
+        $agencias = $this->service->buscaAgencia();
+
+        foreach ($agencias as $agencia) {
+            $selectAgencia[] = [$agencia->id => $agencia->numero_agencia.' - '.$agencia->nome_agencia];
+        }
 
         # Array de parcelas
         $arrayParcelas = ['' => 'Selecione uma parcela'];
@@ -236,7 +245,7 @@ class ContratoController extends Controller
         }
 
         #Retorno para view
-        return view('contrato.create', compact('loadFields', 'arrayParcelas'));
+        return view('contrato.create', compact('loadFields', 'selectAgencia', 'arrayParcelas'));
     }
 
     /**
