@@ -182,6 +182,13 @@ class ContratoController extends Controller
                             ->orWhere('agencias.numero_agencia', 'like', "%$search%");
                     });
                 }
+
+                # Filtrando por contratos com data de religação pendente @Felipe, @Andrey
+                if ($request->has('pendentes')) {
+                    $now = new \DateTime('now');
+                    $query->where('chamadas.data_prox_chamada', '<=', $now->format('Y-m-d'));
+                }
+
             })
             ->addColumn('contratos', function ($row) {
                 # Array de consulta

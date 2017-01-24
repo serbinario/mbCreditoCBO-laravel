@@ -251,7 +251,7 @@
                 //consulta
                 $.ajax({
                     type: 'GET',
-                    url: '/mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                    url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
                     datatype: 'json'
 
                 }).done(function (json) {
@@ -273,7 +273,8 @@
             //consulta
             $.ajax({
                 type: 'GET',
-                url: '/mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
+                //'/index.php/contrato/buscaNoAgencia' + '/' + agencia,
                 datatype: 'json'
 
             }).done(function (json) {
@@ -301,7 +302,8 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: '/mbCreditoCBO-laravel/public/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: laroute.route('contrato.searchCliente', {'clienteCpf' : cpfCliente}),
+                    //'/index.php/contrato/searchCliente/' + cpfCliente,
                     datatype: 'json',
                     beforeSend: function () {
                         $body.addClass("loading");

@@ -170,6 +170,8 @@
     <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
     {{-- Mascaras https://igorescobar.github.io/jQuery-Mask-Plugin/ --}}
     <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
+    {{--laroute--}}
+    <script src="{{ asset('/js/laroute.js') }}"></script>
 
     <!-- Placeholder for IE9 -->
     <!--[if IE 9 ]-->

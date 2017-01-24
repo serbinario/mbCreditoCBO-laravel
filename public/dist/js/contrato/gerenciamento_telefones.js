@@ -16,7 +16,8 @@ function TablePhonesEdit(_idClient) {
         iDisplayLength: 5,
         bLengthChange: false,
         bFilter: false,
-        ajax: "/mbCreditoCBO-laravel/public/index.php/contrato/telefone/grid/" + this.idClient,
+        ajax: laroute.route('contrato.telefone.grid', {'idClient' : this.idClient}),
+        //ajax: "/index.php/contrato/telefone/grid/" + this.idClient,
         columns: [
             {data: 'telefone', name: 'telefones.telefone'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
@@ -26,7 +27,7 @@ function TablePhonesEdit(_idClient) {
     // Recupera a table carregada
     this.getTable = function () {
         return table;
-    }
+    },
 
     // Eliminando a table
     this.tableDestroy = function () {
@@ -47,7 +48,8 @@ function TablePhonesEdit(_idClient) {
         // Requisição ajax
         jQuery.ajax({
             type: 'POST',
-            url: '/mbCreditoCBO-laravel/public/index.php/contrato/telefone/store/' + this.idClient,
+            url: laroute.route('contrato.telefone.create', {'idClient' : this.idClient}),
+            //url: '/index.php/contrato/telefone/store/' + this.idClient,
             data: {'telefone' : telefone},
             datatype: 'json',
             beforeSend: function () {

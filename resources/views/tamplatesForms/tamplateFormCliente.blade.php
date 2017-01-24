@@ -117,7 +117,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: '/mbCreditoCBO-laravel/public/index.php/contrato/buscaNoAgencia' + '/' + agencia,
+                url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
                 datatype: 'json'
 
             }).done(function (json) {

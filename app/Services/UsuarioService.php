@@ -145,16 +145,12 @@ class UsuarioService
         #Atualizando no banco de dados
         $usuario = $this->repository->update($data, $id);
 
-        # Tratando as permissões
-        $this->tratamentoPermissao($data, $usuario);
-
         # Alterando a senha do usuário
         if(isset($newPassword)) {
             $usuario->fill([
                 'password' => $newPassword //Aqui estou inserindo mais um índece no array, que armazenará a senha
             ])->save();
         }
-
 
         #Verificando se foi atualizado no banco de dados
         if(!$usuario) {

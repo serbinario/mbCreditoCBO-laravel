@@ -67,6 +67,14 @@
                                     {!! Form::text('searchDataFin', null, array('id' => 'searchDataFin', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data Final')) !!}
                                 </div>
                             </div>
+                        </br>
+                            <div class="form-group">
+                                <label for="opcao1" class="checkbox checkbox-inline m-r-20">
+                                    {!! Form::checkbox('pendentes', null) !!}
+                                    <i class="input-helper"></i>
+                                    Contratos com pendência de contato
+                                </label>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -144,13 +152,13 @@
                     // Tratando a data
                     for(var i = 0; i < contratos.length; i++) {
                         var arrayDate = contratos[i].data_prox_chamada.split("/");
-                        var dateBase  = new Date(arrayDate[2], arrayDate[1], arrayDate[0]);
+                        var dateBase  = new Date(arrayDate[2], arrayDate[1] -1, arrayDate[0]);
 
                         // Recuperando a data atual
                         var dateNow   = new Date();
 
                         // vendo se a data da chamada é atual
-                        if(dateBase.getDate() == dateNow.getDate()) {
+                        if(dateBase <= dateNow) {
                             $(row).find('td').addClass('date_alert');
                         }
                     }
@@ -164,6 +172,7 @@
                     d.dataIni = $('input[name=searchDataIni]').val();
                     d.dataFin = $('input[name=searchDataFin]').val();
                     d.global  = $('input[name=searchGlobal]').val();
+                    d.pendentes = $('input[name=pendentes]').is(':checked') ? true : '';
                 }
             },
             bFilter: false,
