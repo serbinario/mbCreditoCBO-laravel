@@ -113,7 +113,6 @@ class ContratoController extends Controller
             ->groupBy('clientes.id')
             ->select([
                 'chamadas.id',
-                'chamadas.matricula',
                 'clientes.id as idCliente',
                 'clientes.name',
                 'clientes.cpf',

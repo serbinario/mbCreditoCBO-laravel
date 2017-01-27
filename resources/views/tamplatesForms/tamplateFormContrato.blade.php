@@ -61,14 +61,14 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            {{--<div class="form-group col-sm-2">
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="noAgencia">No. Agência</label>
                         {!! Form::text('noAgencia', Session::getOldInput('noAgencia'), array('id' => 'noAgencia', 'class' => 'form-control input-sm', 'readonly' => 'true')) !!}
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
                     <label for="conta">Conta</label>
@@ -238,51 +238,6 @@
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
         objTablePhone = new TablePhonesCreate();
         @endif
-
-        /*Esse evento é executado quando o usuário utiliza a opção de "novo contrato", injetando o número da agência
-        * no campo "no. agência". É necessario, pois quando usada essa função, os dados do cliente são carregados
-        * automaticamente*/
-        $(document).on('ready', function () {
-
-            //recueprando id da agencia do cliente
-            var agencia = $('#clienteAgencia').val();
-
-            if (agencia) {
-                //consulta
-                $.ajax({
-                    type: 'GET',
-                    url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
-                    datatype: 'json'
-
-                }).done(function (json) {
-                    //injentando numero agencia em campo "no. agencia"
-                    $('#noAgencia').val(json.dados[0].numero_agencia);
-                })
-            }
-
-        });
-        /**/
-
-        /*Esse evento é executado quando o usuário utiliza a opção de "novo cliente", injeta o número da agência
-         * no campo "no. agência".*/
-        $('#clienteAgencia').on('change', function () {
-
-            //recueprando id da agencia do cliente
-            var agencia = $('#clienteAgencia').val();
-
-            //consulta
-            $.ajax({
-                type: 'GET',
-                url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
-                //'/index.php/contrato/buscaNoAgencia' + '/' + agencia,
-                datatype: 'json'
-
-            }).done(function (json) {
-                //injentando numero agencia em campo "no. agencia"
-                $('#noAgencia').val(json.dados[0].numero_agencia);
-            })
-        });
-        /**/
 
         /*
          Evento responsável por consulta o cpf no banco de dados

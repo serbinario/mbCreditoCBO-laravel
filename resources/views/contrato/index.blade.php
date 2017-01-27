@@ -111,7 +111,7 @@
                                 <th>CPF</th>
                                 <th>Agência</th>
                                 <th>Nº da Conta</th>
-                                <th>Matrícula/Benefício</th>
+                                {{--<th>Matrícula/Benefício</th>--}}
                                 <th>Telefone</th>
                                 <th>Açao</th>
                             </tr>
@@ -123,7 +123,7 @@
                                 <th>CPF</th>
                                 <th>Agência</th>
                                 <th>Nº da Conta</th>
-                                <th>Matrícula/Benefício</th>
+                                {{--<th>Matrícula/Benefício</th>--}}
                                 <th>Telefone</th>
                                 <th>Açao</th>
                             </tr>
@@ -187,7 +187,6 @@
                 {data: 'cpf', name: 'clientes.cpf'},
                 {data: 'numero_agencia', name: 'agencias.numero_agencia'},
                 {data: 'conta', name: 'clientes.conta'},
-                {data: 'matricula', name: 'chamadas.matricula'},
                 {data: 'telefone', name: 'telefones.telefone'},
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
@@ -247,6 +246,7 @@
                                 '<th>Tipo contratação</th>' +
                                 '<th>Convênio</th>' +
                                 '<th>Nº do contrato</th>' +
+                                '<th>Mat/Ben</th>' +
                                 '<th>Data da religação</th>' +
                                 '<th>Link Contrato</th>' +
                                 @if(!Auth::user()->is('ROLE_OPERADOR'))
@@ -262,6 +262,7 @@
                             '<td>'+ contratos[i].valor_contratado + '</td>' +
                             '<td>'+ contratos[i].data_contratado + '</td>' +
                             '<td>'+ contratos[i].tipo_contrato.tipo_contrato + '</td>' +
+                            '<td>'+ contratos[i].matricula + '</td>' +
                             '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
                             '<td>'+ contratos[i].codigo_transacao + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +

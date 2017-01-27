@@ -53,6 +53,7 @@ return [
      * Appends a prefix to URLs. By default the prefix is an empty string.
     *
     */
+    //'prefix' => '/index.php',
     'prefix' => '/mbCreditoCBO-laravel/public/index.php',
 
 ];

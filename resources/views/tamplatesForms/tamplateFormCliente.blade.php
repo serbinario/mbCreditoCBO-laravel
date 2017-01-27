@@ -35,14 +35,14 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-sm-2">
+            {{--<div class="form-group col-sm-2">
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="noAgencia">No. Agência</label>
                         {!! Form::text('noAgencia', Session::getOldInput('noAgencia'), array('id' => 'noAgencia', 'class' => 'form-control input-sm', 'readonly' => 'true')) !!}
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <div class="form-group col-sm-4">
                 <div class=" fg-line">
                     <label for="conta">Conta</label>
@@ -106,23 +106,6 @@
         /*Mascaras*/
         $(document).ready(function() {
             $('#addPhoneText').mask('(00) 000000000');
-        });
-        /**/
-    </script>
-    <script>
-        /*inserindo número da agencia no input respectivo*/
-        $(document).on('ready', function () {
-
-            var agencia = $('#clienteAgencia').val();
-
-            $.ajax({
-                type: 'GET',
-                url: laroute.route('contrato.buscaNoAgencia', {'idAgencia' : agencia}),
-                datatype: 'json'
-
-            }).done(function (json) {
-                $('#noAgencia').val(json.dados[0].numero_agencia);
-            })
         });
         /**/
     </script>
