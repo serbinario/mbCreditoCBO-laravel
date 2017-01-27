@@ -239,7 +239,7 @@ class ContratoController extends Controller
         $agencias = $this->service->buscaAgencia();
 
         foreach ($agencias as $agencia) {
-            $selectAgencia[] = [$agencia->id => $agencia->numero_agencia.' - '.$agencia->nome_agencia];
+            $selectAgencia[$agencia->id] = $agencia->numero_agencia.' - '.$agencia->nome_agencia;
         }
 
         # Array de parcelas
@@ -337,7 +337,7 @@ class ContratoController extends Controller
             $agencias = $this->service->buscaAgencia();
 
             foreach ($agencias as $agencia) {
-                $selectAgencia[] = [$agencia->id => $agencia->numero_agencia.' - '.$agencia->nome_agencia];
+                $selectAgencia[$agencia->id] = $agencia->numero_agencia.' - '.$agencia->nome_agencia;
             }
 
             # Array de parcelas
