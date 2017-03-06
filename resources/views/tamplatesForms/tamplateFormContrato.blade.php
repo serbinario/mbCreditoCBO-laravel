@@ -173,7 +173,7 @@
                 <div class="fg-line">
                     <label for="contrato[prazo]">Quantidade de Parcelas</label>
                     <div class="select">
-                        {!! Form::select('contrato[prazo]', $arrayParcelas, null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[prazo]', $arrayParcelas, null, array('id' => 'prazo', 'class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@
             <div class="form-group col-sm-3">
                 <div class="fg-line">
                     <label for="contrato[data_prox_chamada]">Data próx. Ligação</label>
-                    {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data')) !!}
+                    {!! Form::text('contrato[data_prox_chamada]', Session::getOldInput('contrato[data_prox_chamada]'), array('id' => 'dataReligacao', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data')) !!}
                 </div>
             </div>
         </div>
@@ -230,6 +230,25 @@
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
+
+        //Responsavel por validar se a data inserida é superior a data atual
+        $('#dataReligacao').focusout(function() {
+
+            var dataReligacao = $('#dataReligacao').val();
+            var arrayDataReligacao = dataReligacao.split("/");
+            var dataAtual = new Date();
+
+            if (arrayDataReligacao.length != 3) {
+                return false;
+            }
+
+            var objDataReligacao = new Date(arrayDataReligacao[2], arrayDataReligacao[1]-1, arrayDataReligacao[0]);
+
+            if (objDataReligacao < dataAtual) {
+                alert("A data para religação deve ser maior que a data atual");
+            }
+        });
+
         // Habilitando o ambiemte (Grid de Telefones) para create ou edit
         @if(isset($model))
         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
@@ -308,7 +327,7 @@
                     }
                 })
             }
-        }),
+        })
 
         // evento para interromper a submissão
         $('#formContrato').submit(function (event) {
