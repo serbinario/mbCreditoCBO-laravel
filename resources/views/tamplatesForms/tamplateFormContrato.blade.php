@@ -234,18 +234,21 @@
         //Responsavel por validar se a data inserida é superior a data atual
         $('#dataReligacao').focusout(function() {
 
+            //variaveis de uso
             var dataReligacao = $('#dataReligacao').val();
             var arrayDataReligacao = dataReligacao.split("/");
             var dataAtual = new Date();
-
+            
             if (arrayDataReligacao.length != 3) {
                 return false;
             }
 
             var objDataReligacao = new Date(arrayDataReligacao[2], arrayDataReligacao[1]-1, arrayDataReligacao[0]);
 
+            //se a data for inferior, informo e removo a data inserida
             if (objDataReligacao < dataAtual) {
                 alert("A data para religação deve ser maior que a data atual");
+                dataReligacao = $('#dataReligacao').val("");
             }
         });
 
