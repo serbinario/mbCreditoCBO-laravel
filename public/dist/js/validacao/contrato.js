@@ -16,7 +16,7 @@ $(document).ready(function () {
                 required: true,
                 cpfBR: true,
                 maxlength: 15,
-                unique: ['/mbCreditoCBO-laravel/public/index.php/contrato/searchCpf', $('#idCliente')]
+                unique: [laroute.route('contrato.searchCpf'), $('#idCliente')]
             },
             addPhoneText: {
                 required: true,
@@ -51,7 +51,7 @@ $(document).ready(function () {
             'contrato[codigo_transacao]': {
                 required: true,
                 number: true,
-                unique: ['/mbCreditoCBO-laravel/public/index.php/contrato/searchContrato', $('#idCliente')]
+                unique: [laroute.route('contrato.searchContrato'), $('#idCliente')]
             },
             'contrato[prazo]': {
                 required: true
