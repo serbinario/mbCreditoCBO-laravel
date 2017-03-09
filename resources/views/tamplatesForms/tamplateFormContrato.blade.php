@@ -238,7 +238,7 @@
             var dataReligacao = $('#dataReligacao').val();
             var arrayDataReligacao = dataReligacao.split("/");
             var dataAtual = new Date();
-            
+
             if (arrayDataReligacao.length != 3) {
                 return false;
             }
