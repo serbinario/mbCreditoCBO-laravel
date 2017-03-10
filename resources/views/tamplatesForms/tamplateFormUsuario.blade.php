@@ -4,6 +4,7 @@
 </div>
 <div class="card">
 
+
     <div class="card-body card-padding">
         <div class="topo-conteudo-full">
             <h4>Dados do Usuário</h4>
@@ -36,46 +37,48 @@
         </div>
 
         @if(Auth::user()->is('ROLE_ADMIN') || Auth::user()->is('ROLE_GERENTE'))
-        <label>Nível de permissão:</label>
-        </br>
-        <div class="form-group">
-            <label for="opcao1" class="checkbox checkbox-inline m-r-20">
-                {{--{!! Form::hidden('userHole[opcaoOperador]', 0) !!}--}}
-                {!! Form::checkbox('userHole[opcaoOperador]', 1, isset($rolePermission['roleOperador']) ? $rolePermission['roleOperador'] : null, ['id' => 'opcao1']) !!}
-                <i class="input-helper"></i>
-                OPERADOR
-            </label>
-         <label for="opcao2" class="checkbox checkbox-inline m-r-20">
-                {!! Form::checkbox('userHole[opcaoAdmin]', 2, isset($rolePermission['roleAdmin']) ? $rolePermission['roleAdmin'] : null, ['id' => 'opcao2']) !!}
-                <i class="input-helper"></i>
-                ADMIN
-            </label>
-         <label for="opcao3" class="checkbox checkbox-inline m-r-20">
-                {!! Form::checkbox('userHole[opcaoGerente]', 3, isset($rolePermission['roleGerente']) ? $rolePermission['roleGerente'] : null, ['id' => 'opcao3']) !!}
-                <i class="input-helper"></i>
-                GERENTE
-            </label>
-        </div>
-
-        <label>Status:</label>
-        <div class="form-group">
-            <label for="status" class="checkbox checkbox-inline m-r-20">
-                {!! Form::hidden('active', 0) !!}
-                {!! Form::checkbox('active', 1, null, ['id' => 'status']) !!}
-                <i class="input-helper"></i>
-                Ativo
-            </label>
-        </div>
-        </br>
-
-        <div class="form-group">
-            <div class="fg-line">
-                <label for="id_operadores">Operador</label>
-                <div class="select">
-                    {!! Form::select('id_operadores', $selectOperador, null, array('id' => 'operador', 'class'=> 'form-control')) !!}
-                </div>
+            <label>Nível de permissão:</label>
+            </br>
+            <div class="form-group">
+                <label for="opcao1" class="checkbox checkbox-inline m-r-20">
+                    {{--{!! Form::hidden('userHole[opcaoOperador]', 0) !!}--}}
+                    {!! Form::checkbox('userHole[opcaoOperador]', 1, isset($rolePermission['roleOperador']) ? $rolePermission['roleOperador'] : null, ['id' => 'opcao1']) !!}
+                    <i class="input-helper"></i>
+                    OPERADOR
+                </label>
+                <label for="opcao2" class="checkbox checkbox-inline m-r-20">
+                    {!! Form::checkbox('userHole[opcaoAdmin]', 2, isset($rolePermission['roleAdmin']) ? $rolePermission['roleAdmin'] : null, ['id' => 'opcao2']) !!}
+                    <i class="input-helper"></i>
+                    ADMIN
+                </label>
+                <label for="opcao3" class="checkbox checkbox-inline m-r-20">
+                    {!! Form::checkbox('userHole[opcaoGerente]', 3, isset($rolePermission['roleGerente']) ? $rolePermission['roleGerente'] : null, ['id' => 'opcao3']) !!}
+                    <i class="input-helper"></i>
+                    GERENTE
+                </label>
             </div>
-        </div>
+
+            <label>Status:</label>
+            <div class="form-group">
+                <label for="status" class="checkbox checkbox-inline m-r-20">
+                    {!! Form::hidden('active', 0) !!}
+                    {!! Form::checkbox('active', 1, null, ['id' => 'status']) !!}
+                    <i class="input-helper"></i>
+                    Ativo
+                </label>
+            </div>
+            </br>
+
+            @if(!isset($model))
+                <div class="form-group">
+                    <div class="fg-line">
+                        <label for="id_operadores">Operador</label>
+                        <div class="select">
+                            {!! Form::select('id_operadores', $selectOperador, null, array('class'=> 'form-control')) !!}
+                        </div>
+                    </div>
+                </div>
+            @endif
         @endif
 
         <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
@@ -97,4 +100,26 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     {{--Regras de validação--}}
     <script type="text/javascript" src="{{ asset('/dist/js/validacao/usuario.js')  }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //variavel de uso
+            var idOperador = $('#idOperador').val();
+
+            //consulta
+            $.ajax({
+                type: 'GET',
+                url: ['/usuario/verificarOperador'],
+                datatype: 'json',
+                headers: {
+                    'X-CSRF-TOKEN' : '{{  csrf_token() }}'
+                }
+            }).done(function (json) {
+                /*console.log(json.success);
+                 //Preenchendo o select de agência
+                 //                $('#operador option[value=' + json.success['id_operadores'] + ']');
+                 $('#operador option[value=' + json.success['id_operadores'] + ']' + json.success['nome_operadores']);*/
+            })
+        });
+    </script>
 @endsection
