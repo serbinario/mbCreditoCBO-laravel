@@ -16,7 +16,7 @@ function TablePhonesEdit(_idClient) {
         iDisplayLength: 5,
         bLengthChange: false,
         bFilter: false,
-        ajax: ['/contrato/telefone/grid' + '/' + this.idClient],
+        ajax: '/contrato/telefone/grid/' + this.idClient,
         columns: [
             {data: 'telefone', name: 'telefones.telefone'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
@@ -47,7 +47,7 @@ function TablePhonesEdit(_idClient) {
         // Requisição ajax
         jQuery.ajax({
             type: 'POST',
-            url: ['/contrato/telefone/create' + '/' + this.idClient],
+            url: '/contrato/telefone/store/' + this.idClient,
             data: {'telefone' : telefone},
             datatype: 'json',
             beforeSend: function () {

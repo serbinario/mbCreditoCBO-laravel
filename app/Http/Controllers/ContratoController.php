@@ -444,7 +444,7 @@ class ContratoController extends Controller
         try{
             # Recuperando o cliente
             $cliente = $this->clienteRepository->find($idClient);
-            
+
             # Adicionando o telefone
             $cliente->telefones()->saveMany([new Telefone(['telefone' => $request->get('telefone')])]);
 

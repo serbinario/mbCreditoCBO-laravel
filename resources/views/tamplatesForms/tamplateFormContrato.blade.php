@@ -279,7 +279,7 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: ['/contrato/searchCliente' + '/' + cpfCliente],
+                    url: ['/contrato/searchCliente/' + cpfCliente],
                     datatype: 'json',
                     beforeSend: function () {
                         $body.addClass("loading");
