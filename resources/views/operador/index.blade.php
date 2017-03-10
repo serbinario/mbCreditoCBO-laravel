@@ -74,7 +74,7 @@
                 '<option value="50">50</option>' +
                 '<option value="-1">All</option>' +
                 '</select></div>'
-            },
+            }
         });
        // $('select').material_select();
     </script>

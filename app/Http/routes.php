@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store', ['as' => 'store', 'uses' => 'UsuarioController@store']);
         Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'UsuarioController@edit']);
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'UsuarioController@update']);
+        Route::get('verificarOperador', ['as' => 'verificarOperador', 'uses' => 'UsuarioController@verificarOperador']);
     });
 
 });

@@ -112,6 +112,7 @@ class UsuarioService
      */
     public function store(array $data) : Usuario
     {
+        //dd($data);
         #Metodo responsavel por registrar o usuario - tabela users
         $usuario = $this->registrandoUsuario($data);
 
@@ -243,5 +244,33 @@ class UsuarioService
 
         #retorno
         return $result;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function verificarOperador()
+    {
+        //try {
+            $operadores = \DB::table('operadores')
+                ->whereNotIn('id_operadores', function($query) {
+                    $query->from('operadores')
+                        ->join('users', 'users.id_operadores', '=', 'operadores.id_operadores')
+                        ->select (
+                            'operadores.id_operadores'
+                        );
+                })
+                ->select (
+                    'operadores.id_operadores',
+                    'operadores.nome_operadores'
+                )
+                ->get();
+
+            return $operadores;
+
+            /*return \Illuminate\Support\Facades\Response::json(['success' => $operadores]);
+        } catch (\Throwable $e) {
+            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+        }*/
     }
 }

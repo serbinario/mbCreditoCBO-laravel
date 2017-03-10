@@ -231,7 +231,7 @@
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
 
-        //Responsavel por validar se a data inserida é superior a data atual
+        //Responsavel por validar se a data de contratação inserida é superior a data atual
         $('#dataReligacao').focusout(function() {
 
             //variaveis de uso
@@ -279,8 +279,7 @@
                 //Buscando dados cliente pelo CPF
                 jQuery.ajax({
                     type: 'GET',
-                    url: laroute.route('contrato.searchCliente', {'clienteCpf' : cpfCliente}),
-                    //'/index.php/contrato/searchCliente/' + cpfCliente,
+                    url: ['/contrato/searchCliente' + '/' + cpfCliente],
                     datatype: 'json',
                     beforeSend: function () {
                         $body.addClass("loading");
@@ -288,7 +287,6 @@
                     complete: function () {
                         $body.removeClass("loading");
                     }
-
                 }).done(function (json) {
                     //Verificando se existe registro com CPF informado
                     if (json.dados.length > 0) {
@@ -297,7 +295,6 @@
                         $('#clienteCpf').val(json.dados[0]['cpf']);
                         $('#clienteConta').val(json.dados[0]['conta']);
                         $('#clienteTelefone').val(json.dados[0]['numero']);
-                        //$('#clienteAgencia').attr(json.dados[0]['numero_agencia']);
                         $('#idCliente').val(json.dados[0]['idCliente']);
                         $('#noAgencia').val(json.dados[0]['numero_agencia']);
 
@@ -310,7 +307,6 @@
                         $('#clienteConta').attr('readonly', true);
                         $('#clienteTelefone').attr('readonly', true);
                         $('#clienteAgencia').attr('readonly', true);
-                        //$('#noAgencia').attr('readonly', true);
 
                         // Instaciando a table de telefones (Variável declarada no arquivo "gerenciemento_telefones.js")
                         objTablePhone.tableDestroy();

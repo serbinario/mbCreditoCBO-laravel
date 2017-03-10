@@ -71,11 +71,23 @@ class UsuarioController extends Controller
      */
     public function create()
     {
+        #variavel de uso
+        $selectOperador = [];
+        $selectOperador[] = 'Selecione um operador';
+
+        #carregando dados
+        $operadores = $this->service->verificarOperador();
+
+        #alimentando select
+        foreach ($operadores as $operador) {
+            $selectOperador[$operador->id_operadores] = $operador->nome_operadores;
+        }
+
         #Carregando os dados para o cadastro
         $loadFields = $this->service->load($this->loadFields);
 
         #Retorno para view
-        return view('usuario.create', compact('loadFields'));
+        return view('usuario.create', compact('loadFields', 'selectOperador'));
     }
 
     /**
@@ -181,5 +193,4 @@ class UsuarioController extends Controller
 
         return view('menu', compact('usuario'));
     }
-
 }

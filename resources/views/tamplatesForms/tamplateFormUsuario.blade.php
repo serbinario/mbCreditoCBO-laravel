@@ -4,7 +4,6 @@
 </div>
 <div class="card">
 
-
     <div class="card-body card-padding">
         <div class="topo-conteudo-full">
             <h4>Dados do Usuário</h4>
@@ -73,7 +72,7 @@
             <div class="fg-line">
                 <label for="id_operadores">Operador</label>
                 <div class="select">
-                    {!! Form::select('id_operadores', ([$loadFields['operador']->toArray()]), null, array('class'=> 'form-control')) !!}
+                    {!! Form::select('id_operadores', $selectOperador, null, array('id' => 'operador', 'class'=> 'form-control')) !!}
                 </div>
             </div>
         </div>
