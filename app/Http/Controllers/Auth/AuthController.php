@@ -29,7 +29,7 @@ class AuthController extends Controller
      * Atributo que armazena o caminho de redirecionamento
      * quando o usuário tiver sucesso ao se autenticar
      */
-    protected $redirectPath = '/index';
+    protected $redirectPath = '/dashboard';
 
     /**
      * @var string
@@ -79,12 +79,7 @@ class AuthController extends Controller
     {
         return User::create([
             'username' => $data['username'],
-//            'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            //'id_operadores' => $data['id_operadores']
-            /*'opcaoOperador' => $data['permissao'],
-            'opcaoAdmin' => $data['permissao'],
-            'opcaoGerente' => $data['permissao']*/
         ]);
     }
 

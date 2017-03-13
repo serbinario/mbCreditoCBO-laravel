@@ -112,7 +112,6 @@ class UsuarioService
      */
     public function store(array $data) : Usuario
     {
-        //dd($data);
         #Metodo responsavel por registrar o usuario - tabela users
         $usuario = $this->registrandoUsuario($data);
 
@@ -136,6 +135,7 @@ class UsuarioService
      */
     public function update(array $data, int $id) : Usuario
     {
+
         #tratando a senha
         if(empty($data['password'])) {
             unset($data['password']); //Aqui estou destruíndo o índece do array, que armazena a senha
@@ -145,6 +145,23 @@ class UsuarioService
 
         #Atualizando no banco de dados
         $usuario = $this->repository->update($data, $id);
+
+        #Removendo permissões do usuario
+        $usuario->userHole()->delete();
+
+        #Testando se os checkboxers estão preenchidos
+        if (!isset($data['userHole'])) {
+            throw new \Exception('Nível de permissão não preenchido');
+        }
+
+        #Separando dados de nível de permissão - tabela users_has_roles
+        $permissoes = $data['userHole'];
+
+        #Salvando atualização das permissões do usuario
+        foreach ($permissoes as $permissao) {
+            #Salvando nivel de permissao do usuario - tabela users_has_roles
+            $this->userHoleRepository->create(['user_id' => $id, 'role_id' => $permissao]);
+        }
 
         # Alterando a senha do usuário
         if(isset($newPassword)) {
