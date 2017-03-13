@@ -244,8 +244,8 @@
                                 '<th>Valor Contratado</th>' +
                                 '<th>Data da contratação</th>' +
                                 '<th>Tipo contratação</th>' +
-                                '<th>Convênio</th>' +
                                 '<th>Nº do contrato</th>' +
+                                '<th>Convênio</th>' +
                                 '<th>Mat/Ben</th>' +
                                 '<th>Data da religação</th>' +
                                 '<th>Link Contrato</th>' +
@@ -262,9 +262,9 @@
                             '<td>'+ contratos[i].valor_contratado + '</td>' +
                             '<td>'+ contratos[i].data_contratado + '</td>' +
                             '<td>'+ contratos[i].tipo_contrato.tipo_contrato + '</td>' +
-                            '<td>'+ contratos[i].matricula + '</td>' +
-                            '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
                             '<td>'+ contratos[i].codigo_transacao + '</td>' +
+                            '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
+                            '<td>'+ contratos[i].matricula + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
                             '<td>'+ (contratos[i].path_arquivo ?
                                     '<a target="_blank" href="/mbCreditoCBO-laravel/public/index.php/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
