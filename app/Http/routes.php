@@ -14,7 +14,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
  */
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('');
+    Route::get('', 'DashBoardController@index');
 
     Route::get('index', ['as' => 'index', 'uses' => 'DefaultController@index']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashBoardController@index']);
