@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-body card-padding">
 
-        <input type="hidden" id="idCliente" value="{{ isset($model->cliente->id) ? $model->cliente->id : null }}">
+        <input type="hidden" id="idCliente" value="{{ isset($model->id) ? $model->id : null }}">
 
         @if(!isset($model))
             <div class="topo-conteudo-full">
@@ -135,7 +135,7 @@
                 <div class="fg-line">
                     <label for="contrato[tipo_contrato_id]">Tipos de Créditos</label>
                     <div class="select">
-                        {!! Form::select('contrato[tipo_contrato_id]', ([["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[tipo_contrato_id]', (["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
