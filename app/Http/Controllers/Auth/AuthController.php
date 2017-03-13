@@ -2,6 +2,7 @@
 
 namespace MbCreditoCBO\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\User;
 use Validator;
 use MbCreditoCBO\Http\Controllers\Controller;
@@ -92,5 +93,28 @@ class AuthController extends Controller
         $credentials = $request->only($this->loginUsername(), 'password');
 
         return array_add($credentials, 'active', '1');
+    }
+
+
+    /**
+     * Get the post register / login redirect path.
+     *
+     * @return string
+     */
+    public function redirectPath()
+    {
+        # Recuperando a coluna de permissões
+        $arrayRole = array_column(Auth::user()->roles->toArray(), 'role');
+
+        # Verificando a permissão
+        if(!in_array('ROLE_ADMIN', $arrayRole) && !in_array('ROLE_GERENTE', $arrayRole)) {
+            $this->redirectPath = 'contrato/index';
+        }
+
+        if (property_exists($this, 'redirectPath')) {
+            return $this->redirectPath;
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
     }
 }
