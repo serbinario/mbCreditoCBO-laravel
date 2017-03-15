@@ -57,14 +57,14 @@ class ContratoValidator extends LaravelValidator
             'cpf' => 'required|cpf_br|max:15', //unique:clientes,cpf||
             'agencia' => 'integer',
             'conta' => 'required|between:4,15|bank_br',
-            'status_chamada' =>  'integer|max:1' ,
+            /*'status_chamada' =>  'integer|max:1' ,
             'contrato.tipo_contrato_id' =>  'required|integer' ,
             'contrato.convenio_id' =>  'required|integer' ,
             'contrato.prazo' =>  'required|integer' ,
             'contrato.valor_contratado' =>  'required|decimal' ,
             'contrato.data_contratado' =>  'required|serbinario_date_format:"d/m/Y"' ,
             'contrato.codigo_transacao' =>  'required|integer' , //unique:chamadas,codigo_transacao
-            'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"'
+            'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"'*/
 
         ],
    ];
