@@ -31,7 +31,7 @@
                     <div class="panel-heading">
                         <div class="row-fluid user-row">
                             <center>
-                                <h3>CBO</h3>
+                                <h3>MB Crédito</h3>
                             </center>
                         </div>
                     </div>
@@ -66,17 +66,17 @@
                                     </div>
                                 </div>
 
-                                <div class="checkbox">
+                                {{--<div class="checkbox">
                                     <label>
                                         <input type="checkbox" value="">
                                         <i class="input-helper"></i>
                                         Manter-me conectado
                                     </label>
-                                </div>
+                                </div>--}}
 
                                 <div class="row">
-                                    <div class="col-xs-4">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
+                                    <div class="col-xs-12">
+                                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                                     </div>
                                 </div>
                             </div>
