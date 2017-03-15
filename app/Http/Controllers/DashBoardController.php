@@ -75,13 +75,14 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('WEEK(chamadas.created_at,5) - WEEK(DATE_SUB(chamadas.created_at, INTERVAL DAYOFMONTH(chamadas.created_at)-1 DAY),5)+1'), date('w') +1)
+           // ->where(\DB::raw('WEEK(chamadas.created_at,5) - WEEK(DATE_SUB(chamadas.created_at, INTERVAL DAYOFMONTH(chamadas.created_at)-1 DAY),5)+1'), date('w') +1)
+            ->where(\DB::raw('WEEK(chamadas.created_at, 5)'), date('W'))
             ->where(\DB::raw('MONTH(chamadas.created_at)'), date('m'))
             ->where(\DB::raw('YEAR(chamadas.created_at)'), date('Y'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
-
+        
         # Buscando por operador
         if($searchAgente) {
             $query->where('operadores.id_operadores', $searchAgente);
@@ -165,9 +166,9 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('YEAR(chamadas.data_contratado)'), date('Y'))
+            ->where(\DB::raw('YEAR(chamadas.created_at)'), date('Y'))
             ->select([
-                'chamadas.data_contratado'
+                \DB::raw('DATE(chamadas.created_at) as data_contratado')
             ]);
 
         # Buscando por operador
@@ -228,8 +229,7 @@ class DashBoardController extends Controller
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
             ->select([
-                'chamadas.data_contratado',
-                \DB::raw('count(chamadas.id) as qtd_contratos'),
+                \DB::raw('DATE(chamadas.created_at) as data_contratado'),
             ]);
 
         # Buscando por operador
@@ -250,17 +250,17 @@ class DashBoardController extends Controller
 
                 # Seleção do mês
                 switch ((int) $dateTemp->format('Y')) {
-                    case $arrayYear[0][0]: $arrayYear[0][1] += $result->qtd_contratos; break;
-                    case $arrayYear[1][0]: $arrayYear[1][1] += $result->qtd_contratos; break;
-                    case $arrayYear[2][0]: $arrayYear[2][1] += $result->qtd_contratos; break;
-                    case $arrayYear[3][0]: $arrayYear[3][1] += $result->qtd_contratos; break;
-                    case $arrayYear[4][0]: $arrayYear[4][1] += $result->qtd_contratos; break;
-                    case $arrayYear[5][0]: $arrayYear[5][1] += $result->qtd_contratos; break;
-                    case $arrayYear[6][0]: $arrayYear[6][1] += $result->qtd_contratos; break;
-                    case $arrayYear[7][0]: $arrayYear[7][1] += $result->qtd_contratos; break;
-                    case $arrayYear[8][0]: $arrayYear[8][1] += $result->qtd_contratos; break;
-                    case $arrayYear[9][0]: $arrayYear[9][1] += $result->qtd_contratos; break;
-                    case $arrayYear[10][0]: $arrayYear[10][1] += $result->qtd_contratos; break;
+                    case $arrayYear[0][0]: $arrayYear[0][1] += 1; break;
+                    case $arrayYear[1][0]: $arrayYear[1][1] += 1; break;
+                    case $arrayYear[2][0]: $arrayYear[2][1] += 1; break;
+                    case $arrayYear[3][0]: $arrayYear[3][1] += 1; break;
+                    case $arrayYear[4][0]: $arrayYear[4][1] += 1; break;
+                    case $arrayYear[5][0]: $arrayYear[5][1] += 1; break;
+                    case $arrayYear[6][0]: $arrayYear[6][1] += 1; break;
+                    case $arrayYear[7][0]: $arrayYear[7][1] += 1; break;
+                    case $arrayYear[8][0]: $arrayYear[8][1] += 1; break;
+                    case $arrayYear[9][0]: $arrayYear[9][1] += 1; break;
+                    case $arrayYear[10][0]: $arrayYear[10][1] += 1; break;
                 }
             }
         }
