@@ -127,7 +127,7 @@
                 <div class=" fg-line">
                     <label for="contrato[convenio_id]">Convênio</label>
                     <div class="select">
-                        {!! Form::select('contrato[convenio_id]', ([["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()]), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[convenio_id]', (["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()), null, array('class'=> 'chosen')) !!}
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                 <div class="fg-line">
                     <div class="fg-line">
                         <label for="contrato[data_contratado]">Data da Contratação</label>
-                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data da contratação')) !!}
+                        {!! Form::text('contrato[data_contratado]', Session::getOldInput('contrato[data_contratado]'), array('id' => 'dataContratacao', 'class' => 'form-control dateTimePicker input-sm', 'placeholder' => 'Data da contratação')) !!}
                     </div>
                 </div>
             </div>
@@ -207,7 +207,7 @@
             </div>
 
         <!--botão-->
-        <button class="btn btn-primary btn-sm m-t-10">Salvar</button>
+        <button class="btn btn-primary btn-sm m-t-10 btnLoading">Salvar</button>
         <a class="btn btn-primary btn-sm m-t-10" href="{{ route('contrato.index') }}">Voltar</a>
         <!--botão-->
     </div>
@@ -230,8 +230,7 @@
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
-
-        //Responsavel por validar se a data de contratação inserida é superior a data atual
+        //Responsavel por validar se a data de religação inserida é inferior a data atual
         $('#dataReligacao').focusout(function() {
 
             //variaveis de uso
@@ -330,7 +329,6 @@
 
         // evento para interromper a submissão
         $('#formContrato').submit(function (event) {
-
             @if(!isset($model))
                 // Variável quer armazenará os conteudos
                 var telefones = [];
@@ -345,13 +343,13 @@
             @endif
         });
 
-        /*Mascaras*/
         $(document).ready(function() {
+            /*Mascaras*/
             $('#clienteCpf').mask('000.000.000-00', {reverse: true});
             $('#searchCliente').mask('000.000.000-00', {reverse: true});
             $('#valorContrato').mask('00000,00', {reverse: true});
             $('#addPhoneText').mask('(00) 000000000');
-        });
+        })
     </script>
 
 @endsection
