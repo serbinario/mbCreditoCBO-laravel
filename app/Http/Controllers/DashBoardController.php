@@ -76,9 +76,9 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('WEEK(data_contratado,5) - WEEK(DATE_SUB(data_contratado, INTERVAL DAYOFMONTH(data_contratado)-1 DAY),5)+1'), date('w') +1)
-            ->where(\DB::raw('MONTH(data_contratado)'), date('m'))
-            ->where(\DB::raw('YEAR(data_contratado)'), date('Y'))
+            ->where(\DB::raw('WEEK(created_at,5) - WEEK(DATE_SUB(created_at, INTERVAL DAYOFMONTH(created_at)-1 DAY),5)+1'), date('w') +1)
+            ->where(\DB::raw('MONTH(created_at)'), date('m'))
+            ->where(\DB::raw('YEAR(created_at)'), date('Y'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
@@ -106,7 +106,7 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('MONTH(chamadas.data_contratado)'), date('m'))
+            ->where(\DB::raw('MONTH(chamadas.created_at)'), date('m'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
@@ -134,7 +134,7 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('YEAR(chamadas.data_contratado)'), date('Y'))
+            ->where(\DB::raw('YEAR(chamadas.created_at)'), date('Y'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
