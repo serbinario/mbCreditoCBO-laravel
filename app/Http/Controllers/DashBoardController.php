@@ -47,7 +47,8 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where("date_format(chamadas.created_at,'%m-%d-%Y')", date('Y-m-d'))
+//            ->where(\DB::raw("date_format(chamadas.created_at,'%m-%d-%Y')"), date('Y-m-d'))
+            ->where(\DB::raw("date(chamadas.created_at)"), date('Y-m-d'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
