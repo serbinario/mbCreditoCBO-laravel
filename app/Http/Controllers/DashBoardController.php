@@ -47,7 +47,6 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-//            ->where(\DB::raw("date_format(chamadas.created_at,'%m-%d-%Y')"), date('Y-m-d'))
             ->where(\DB::raw("date(chamadas.created_at)"), date('Y-m-d'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
@@ -76,9 +75,9 @@ class DashBoardController extends Controller
         $query = \DB::table('chamadas')
             ->join('users', 'users.id', '=', 'chamadas.user_id')
             ->join('operadores', 'operadores.id_operadores', '=', 'users.id_operadores')
-            ->where(\DB::raw('WEEK(created_at,5) - WEEK(DATE_SUB(created_at, INTERVAL DAYOFMONTH(created_at)-1 DAY),5)+1'), date('w') +1)
-            ->where(\DB::raw('MONTH(created_at)'), date('m'))
-            ->where(\DB::raw('YEAR(created_at)'), date('Y'))
+            ->where(\DB::raw('WEEK(chamadas.created_at,5) - WEEK(DATE_SUB(chamadas.created_at, INTERVAL DAYOFMONTH(chamadas.created_at)-1 DAY),5)+1'), date('w') +1)
+            ->where(\DB::raw('MONTH(chamadas.created_at)'), date('m'))
+            ->where(\DB::raw('YEAR(chamadas.created_at)'), date('Y'))
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
