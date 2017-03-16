@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\Entities\Telefone;
-use MbCreditoCBO\Http\Requests;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
 use MbCreditoCBO\Repositories\OperadorRepository;
@@ -16,6 +15,7 @@ use Yajra\Datatables\Datatables;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use MbCreditoCBO\Validators\ContratoValidator;
+use MbCreditoCBO\Helpers\MimeTypeHelper;
 
 class ContratoController extends Controller
 {
@@ -55,24 +55,32 @@ class ContratoController extends Controller
     private $operadorRepository;
 
     /**
+     * @var MimeTypeHelper
+     */
+    private $mimeTypeHelper;
+
+    /**
      * ContratoController constructor.
      * @param ContratoService $service
      * @param ContratoValidator $validator
      * @param ClienteRepository $clienteRepository
      * @param ContratoRepository $contratoRepository
      * @param OperadorRepository $operadorRepository
+     * @param MimeTypeHelper $mimeTypeHelper
      */
     public function __construct(ContratoService $service,
                                 ContratoValidator $validator,
                                 ClienteRepository $clienteRepository,
                                 ContratoRepository $contratoRepository,
-                                OperadorRepository $operadorRepository)
+                                OperadorRepository $operadorRepository,
+                                MimeTypeHelper $mimeTypeHelper)
     {
         $this->service   =  $service;
         $this->validator =  $validator;
         $this->clienteRepository = $clienteRepository;
         $this->contratoRepository = $contratoRepository;
         $this->operadorRepository = $operadorRepository;
+        $this->mimeTypeHelper = $mimeTypeHelper;
     }
 
     /**
@@ -462,9 +470,14 @@ class ContratoController extends Controller
     public function viewContrato($id)
     {
         try {
-            return new Response(file_get_contents($this->service->getPathArquivo($id)), 200, [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'inline; filename="'.'contrato.pdf'.'"'
+            # Recuperando o path do arquivo
+            $path = $this->service->getPathArquivo($id);
+
+            # Retorno
+            return new Response(file_get_contents($path), 200, [
+                'Content-Type' => $this->mimeTypeHelper->getMimeType($path),
+                'Content-Disposition' => 'inline; filename="'
+                    .$this->mimeTypeHelper->getNewNameWithExtension($path, 'contrato').'"'
             ]);
         } catch (\Throwable $e) {
             return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
