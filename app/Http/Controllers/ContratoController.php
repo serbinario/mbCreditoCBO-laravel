@@ -281,7 +281,7 @@ class ContratoController extends Controller
             $arrayParcelas = ['' => 'Selecione uma parcela'];
 
             # Criando as parcelas
-            for ($i = 1; $i <= 72; $i++) {
+            for ($i = 1; $i <= 96; $i++) {
                 $arrayParcelas[$i] = $i;
             }
 

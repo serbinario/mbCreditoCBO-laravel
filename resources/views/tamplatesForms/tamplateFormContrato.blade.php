@@ -54,7 +54,7 @@
                     <label for="agencia_id">Agência</label>
                     <div class="select">
                         @if(!isset($model))
-                            {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class' => 'form-control')) !!}
+                            {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class'=> 'form-control')) !!}
                         @else
                             {!! Form::select('agencia_id', $selectAgencia, null, array('id' => 'clienteAgencia', 'class' => 'form-control', 'readonly' => 'true')) !!}
                         @endif
@@ -127,7 +127,7 @@
                 <div class=" fg-line">
                     <label for="contrato[convenio_id]">Convênio</label>
                     <div class="select">
-                        {!! Form::select('contrato[convenio_id]', (["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[convenio_id]', (["" => "Selecione um convênio"] + $loadFields['conveniocallcenter']->toArray()), null, array('class'=> 'form-control')) !!}
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                 <div class="fg-line">
                     <label for="contrato[tipo_contrato_id]">Tipos de Créditos</label>
                     <div class="select">
-                        {!! Form::select('contrato[tipo_contrato_id]', (["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()), null, array('class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[tipo_contrato_id]', (["" => "Linha de crédito"] + $loadFields['tipocontrato']->toArray()), null, array('class'=> 'form-control')) !!}
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
                 <div class="fg-line">
                     <label for="contrato[prazo]">Quantidade de Parcelas</label>
                     <div class="select">
-                        {!! Form::select('contrato[prazo]', $arrayParcelas, null, array('id' => 'prazo', 'class'=> 'chosen')) !!}
+                        {!! Form::select('contrato[prazo]', $arrayParcelas, null, array('id' => 'prazo', 'class'=> 'form-control')) !!}
                     </div>
                 </div>
             </div>
@@ -246,7 +246,11 @@
 
             //se a data for inferior, informo e removo a data inserida
             if (objDataReligacao < dataAtual) {
-                alert("A data para religação deve ser maior que a data atual");
+                swal(
+                        'A data para próxima ligação deve ser maior do que a data atual',
+                        'Click em OK para continuar',
+                        'error'
+                );
                 dataReligacao = $('#dataReligacao').val("");
             }
         });
@@ -270,7 +274,11 @@
 
             //Checando se o campo de consulta foi preenchido
             if (cpfCliente == "") {
-                alert("Por favor, informe um número válido");
+                swal(
+                        'Por favor, informe um número válido',
+                        'Click em OK para continuar',
+                        'error'
+                );
             } else {
                 //Variavel de uso
                 $body = $('body');

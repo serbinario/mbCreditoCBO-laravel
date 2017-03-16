@@ -87,15 +87,15 @@
 </div>
 
 @section('javascript')
-    {{--Mensagens personalizadas--}}
+    {{--Mensagens personalizadas--}}{{--
     <script type="text/javascript" src="{{ asset('/dist/js/messages_pt_BR.js')  }}"></script>
-    {{--Regras adicionais--}}
+    --}}{{--Regras adicionais--}}{{--
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/alphanumeric.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/bankBr.js')  }}"></script>
     <script type="text/javascript" src="{{ asset('/lib/jquery-validation/src/additional/integer.js')  }}"></script>
-    {{--Regras de validação--}}
-    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>
+    --}}{{--Regras de validação--}}{{--
+    <script type="text/javascript" src="{{ asset('/dist/js/validacao/contrato.js')  }}"></script>--}}
 
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>

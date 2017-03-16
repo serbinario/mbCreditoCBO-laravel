@@ -1,7 +1,7 @@
 // Regras de validação
 $(document).ready(function () {
 
-    $("#formContrato").validate({
+    $("#formCliente").validate({
         rules: {
             searchCpf: {
                 // number: true,
@@ -82,22 +82,9 @@ $(document).ready(function () {
             //console.log("Error");
             $(element).parent().parent().addClass("has-error");
         },
-
         unhighlight: function(element, errorClass, validClass) {
             //console.log("Sucess");
             $(element).parent().parent().removeClass("has-error");
-        },
-
-        invalidHandler: function(error, validator) {
-            var errors = validator.numberOfInvalids();
-
-            if (errors > 0){
-                swal(
-                    'Existem campos com preenchimento incorreto',
-                    'Click em OK para continuar',
-                    'error'
-                );
-            }
         }
     });
 });
