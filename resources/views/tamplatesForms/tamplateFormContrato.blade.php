@@ -246,7 +246,11 @@
 
             //se a data for inferior, informo e removo a data inserida
             if (objDataReligacao < dataAtual) {
-                alert("A data para religação deve ser maior que a data atual");
+                swal(
+                        'A data para próxima ligação deve ser maior do que a data atual',
+                        'Click em OK para continuar',
+                        'error'
+                );
                 dataReligacao = $('#dataReligacao').val("");
             }
         });
@@ -270,7 +274,11 @@
 
             //Checando se o campo de consulta foi preenchido
             if (cpfCliente == "") {
-                alert("Por favor, informe um número válido");
+                swal(
+                        'Por favor, informe um número válido',
+                        'Click em OK para continuar',
+                        'error'
+                );
             } else {
                 //Variavel de uso
                 $body = $('body');

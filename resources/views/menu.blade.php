@@ -19,10 +19,8 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
         <!-- Animação de loading em consultas ajax -->
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/load.css')}}" rel="stylesheet"/>
-
         <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
         <link href="{{ asset('/lib/summernote/dist/summernote.css') }}" rel="stylesheet">
-
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_1.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/app_2.min.css') }}"  media="screen,projection"/>
 
@@ -31,7 +29,7 @@
 
         @yield('css')
     </head>
-    <body>
+    <body id="body">
     <header id="header" class="clearfix" data-ma-theme="blue">
         <ul class="h-inner">
             <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
@@ -161,17 +159,13 @@
     <script src="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('/lib/Waves/dist/waves.min.js') }}"></script>
     <script src="{{ asset('/dist/jquery.datetimepicker.js') }}"></script>
-    {{--<script src="{{ asset('/lib/bootstrap-growl/jquery.bootstrap-growl.min.js') }}"></script>--}}
     <script src="{{ asset('/lib/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    {{--jquery Validator https://jqueryvalidation.org/ --}}
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
     <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
-    {{-- Mascaras https://igorescobar.github.io/jQuery-Mask-Plugin/ --}}
     <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
-    {{--laroute--}}
     <script src="{{ asset('/js/laroute.js') }}"></script>
 
     <!-- Placeholder for IE9 -->
