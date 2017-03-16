@@ -51,6 +51,7 @@ class ContratoValidator extends LaravelValidator
             'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"'
 
        ],
+
         ValidatorInterface::RULE_UPDATE => [
 
             'name' => 'required|serbinario_alpha_space|max:100',
@@ -68,5 +69,4 @@ class ContratoValidator extends LaravelValidator
 
         ],
    ];
-
 }

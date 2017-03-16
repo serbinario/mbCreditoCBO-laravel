@@ -100,26 +100,4 @@
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/alphaSpace.js')  }}"></script>
     {{--Regras de validação--}}
     <script type="text/javascript" src="{{ asset('/dist/js/validacao/usuario.js')  }}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //variavel de uso
-            var idOperador = $('#idOperador').val();
-
-            //consulta
-            $.ajax({
-                type: 'GET',
-                url: ['/usuario/verificarOperador'],
-                datatype: 'json',
-                headers: {
-                    'X-CSRF-TOKEN' : '{{  csrf_token() }}'
-                }
-            }).done(function (json) {
-                /*console.log(json.success);
-                 //Preenchendo o select de agência
-                 //                $('#operador option[value=' + json.success['id_operadores'] + ']');
-                 $('#operador option[value=' + json.success['id_operadores'] + ']' + json.success['nome_operadores']);*/
-            })
-        });
-    </script>
 @endsection

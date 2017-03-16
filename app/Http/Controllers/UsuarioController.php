@@ -85,7 +85,7 @@ class UsuarioController extends Controller
 
         #Carregando os dados para o cadastro
         $loadFields = $this->service->load($this->loadFields);
-
+//dd($loadFields);
         #Retorno para view
         return view('usuario.create', compact('loadFields', 'selectOperador'));
     }

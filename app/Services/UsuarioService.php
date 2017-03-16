@@ -269,25 +269,25 @@ class UsuarioService
     public function verificarOperador()
     {
         //try {
-            $operadores = \DB::table('operadores')
-                ->whereNotIn('id_operadores', function($query) {
-                    $query->from('operadores')
-                        ->join('users', 'users.id_operadores', '=', 'operadores.id_operadores')
-                        ->select (
-                            'operadores.id_operadores'
-                        );
-                })
-                ->select (
-                    'operadores.id_operadores',
-                    'operadores.nome_operadores'
-                )
-                ->get();
+        $operadores = \DB::table('operadores')
+            ->whereNotIn('id_operadores', function($query) {
+                $query->from('operadores')
+                    ->join('users', 'users.id_operadores', '=', 'operadores.id_operadores')
+                    ->select (
+                        'operadores.id_operadores'
+                    );
+            })
+            ->select (
+                'operadores.id_operadores',
+                'operadores.nome_operadores'
+            )
+            ->get();
 
-            return $operadores;
+        return $operadores;
 
-            /*return \Illuminate\Support\Facades\Response::json(['success' => $operadores]);
-        } catch (\Throwable $e) {
-            return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
-        }*/
+        /*return \Illuminate\Support\Facades\Response::json(['success' => $operadores]);
+    } catch (\Throwable $e) {
+        return \Illuminate\Support\Facades\Response::json(['success' => false,'msg' => $e->getMessage()]);
+    }*/
     }
 }
