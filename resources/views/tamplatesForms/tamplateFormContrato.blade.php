@@ -192,19 +192,21 @@
             <h4>Upload de Arquivos</h4>
         </div>
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <span class="btn btn-primary btn-file m-r-10">
-                            <span class="fileinput-new">Selecione um arquivo</span>
-                            {{--<span class="fileinput-exists">Mudar</span>--}}
-                            <input type="file" name="contrato[path_arquivo]">
-                        </span>
-                        <span class="fileinput-filename"></span>
-                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="file" name="contrato[path_arquivo][]" multiple="multiple"
+                       id="imagensDosContratos" class="file" data-preview-file-type="text" data-show-upload="false">
+                {{--<div class="fileinput fileinput-new" data-provides="fileinput">--}}
+                    {{--<span class="btn btn-primary btn-file m-r-10">--}}
+                        {{--<span class="fileinput-new">Selecione um arquivo</span>--}}
+                        {{--<span class="fileinput-exists">Mudar</span>--}}
+                        {{--<input type="file" name="contrato[path_arquivo][]" multiple="multiple">--}}
+                    {{--</span>--}}
+                    {{--<span class="fileinput-filename"></span>--}}
+                    {{--<a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>--}}
+                {{--</div>--}}
             </div>
+        </div>
 
         <!--botão-->
         <button class="btn btn-primary btn-sm m-t-10 btnLoading">Salvar</button>
@@ -230,6 +232,13 @@
     {{--GERENCIAMENTO TELEFONES--}}
     <script type="text/javascript" src="{{ asset('/dist/js/contrato/gerenciamento_telefones.js')  }}"></script>
     <script type="text/javascript">
+
+        $('#imagensDosContratos').fileinput({
+            language: "pt-BR",
+            allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+
+
         //Responsavel por validar se a data de religação inserida é inferior a data atual
         $('#dataReligacao').focusout(function() {
 

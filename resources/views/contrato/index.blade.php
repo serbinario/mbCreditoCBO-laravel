@@ -266,8 +266,9 @@
                             '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
                             '<td>'+ contratos[i].matricula + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
-                            '<td>'+ (contratos[i].path_arquivo ?
-                                    '<a target="_blank" href="/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '') +
+                            '<td>'+
+                                 contratos[i].path_arquivo ?
+                                '<a target="_blank" href="/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '' +
                             '</td>' +
                             @if(!Auth::user()->is('ROLE_OPERADOR'))
                                 '<td>'+ contratos[i].usuario.username + '</td>' +

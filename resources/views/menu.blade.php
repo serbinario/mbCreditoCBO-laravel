@@ -17,6 +17,9 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('/dist/js/krajee/css/fileinput.css')}}" rel="stylesheet"/>
+
+
         <!-- Animação de loading em consultas ajax -->
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/load.css')}}" rel="stylesheet"/>
         <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">
@@ -164,7 +167,9 @@
     <script src="{{ asset('/lib/jquery-validation/dist/jquery.validate.js') }}"></script>
     <script src="{{ asset('/lib/jquery-validation/src/additional/cpfBR.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/dist/js/adicional/unique.js')  }}"></script>
-    <script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>
+    {{--<script src="{{ asset('/dist/js/fileinput/fileinput.min.js')}}"></script>--}}
+    <script src="{{ asset('/dist/js/krajee/js/fileinput.js')}}"></script>
+    <script src="{{ asset('/dist/js/krajee/js/locales/pt-BR.js')}}"></script>
     <script src="{{ asset('/lib/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
     <script src="{{ asset('/js/laroute.js') }}"></script>
 
