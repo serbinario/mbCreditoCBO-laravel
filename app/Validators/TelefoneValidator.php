@@ -7,6 +7,7 @@ use \Prettus\Validator\LaravelValidator;
 
 class TelefoneValidator extends LaravelValidator
 {
+    use TraitValidation;
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [

@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class OperadorValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
         'required' => ':attribute é requerido',
         'chave_j' => ':attribute com 7 digitos, precedido da letra \'J\'',

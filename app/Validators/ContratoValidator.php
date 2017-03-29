@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class ContratoValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
         'required' => ':attribute é requerido',
         'between' => ':attribute deve conter no mínimo :min e no máximo :max caracteres',
@@ -18,7 +20,7 @@ class ContratoValidator extends LaravelValidator
         'unique' => ':attribute dado já cadastrado, por favor, informe outro',
         'serbinario_date_format:"d/m/Y"' => ':attribute deve estar disposto como: dia/mês/ano',
         'decimal' => ':attribute deve conter um valor acima de 0, máximo uma vírgula e sem pontos',
-        'serbinario_array_not_elements_files' => ':atribute é requerido'
+        'serbinario_array_not_elements_files' => ':attribute é requerido'
     ];
 
     protected $attributes =[

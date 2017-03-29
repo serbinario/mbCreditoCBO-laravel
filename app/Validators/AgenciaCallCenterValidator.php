@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class AgenciaCallCenterValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
         'required' => ':attribute é requerido',
         'between' => ':attribute deve conter no mínimo :min e no máximo :max caracteres',

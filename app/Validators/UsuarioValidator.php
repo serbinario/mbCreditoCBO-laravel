@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class UsuarioValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
         'required' => ':attribute é requerido',
         'max' => ':attribute deve conter no máximo :size caracteres',

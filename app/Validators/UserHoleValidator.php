@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class UserHoleValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
     ];
 

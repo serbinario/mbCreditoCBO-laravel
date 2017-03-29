@@ -7,6 +7,8 @@ use \Prettus\Validator\LaravelValidator;
 
 class ConvenioCallCenterValidator extends LaravelValidator
 {
+    use TraitValidation;
+
     protected $messages   = [
         'required' => ':attribute é requerido',
         'serbinario_alpha_space' => ':attribute deve conter apenas letras e espaços',
