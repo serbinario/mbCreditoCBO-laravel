@@ -235,7 +235,7 @@
 
         $('#imagensDosContratos').fileinput({
             language: "pt-BR",
-            allowedFileExtensions: ["jpg", "png", "gif"]
+            allowedFileExtensions: ["jpg", "png", "gif", "pdf"]
         });
 
 

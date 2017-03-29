@@ -13,7 +13,7 @@
     "autosize": "^3.0.17",
     "bootstrap-select": "^1.11.2",
     "bower": "*",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "flot-orderBars": "emmerich/flot-orderBars",
     "flot.curvedlines": "1.1.1",
     "flot.tooltip": "~0.8.5",
