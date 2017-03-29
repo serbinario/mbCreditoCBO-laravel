@@ -14,6 +14,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        # Validator para espaços em branco
+        Validator::extend('serbinario_array_not_elements_files', function($attribute, $value, $formats, $validator) {
+
+            if(!is_array($value) || !$value) {
+                return false;
+            }
+
+            if(count($value) == 1 && $value[0] == null) {
+                return false;
+            }
+
+            #retorno
+            return true;
+        });
+
         # Validator para espaços em branco
         Validator::extend('serbinario_alpha_space', function($attribute, $value, $formats, $validator) {
             #expressão regular

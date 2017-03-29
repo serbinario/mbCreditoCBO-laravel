@@ -188,6 +188,10 @@ class ContratoService
                 $files = $data[$key];
 
                 foreach($files as $chaveDoArquivo => $arquivo) {
+                    if(!$arquivo) {
+                        break;
+                    }
+
                     # Criando e recuperando o nome da imagem
                     $fileName = md5(uniqid(rand(), true)) . "." . $arquivo->getClientOriginalExtension();
 

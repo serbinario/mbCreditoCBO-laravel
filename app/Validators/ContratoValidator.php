@@ -17,7 +17,8 @@ class ContratoValidator extends LaravelValidator
         'integer' => ':attribute deve conter apenas número(s) inteiro(s)',
         'unique' => ':attribute dado já cadastrado, por favor, informe outro',
         'serbinario_date_format:"d/m/Y"' => ':attribute deve estar disposto como: dia/mês/ano',
-        'decimal' => ':attribute deve conter um valor acima de 0, máximo uma vírgula e sem pontos'
+        'decimal' => ':attribute deve conter um valor acima de 0, máximo uma vírgula e sem pontos',
+        'serbinario_array_not_elements_files' => ':atribute é requerido'
     ];
 
     protected $attributes =[
@@ -31,7 +32,8 @@ class ContratoValidator extends LaravelValidator
         'contrato.valor_contratado' => 'Valor Contratado',
         'contrato.data_contratado' => 'Data da Contratação',
         'contrato.codigo_transacao' => 'Nº do Contrato',
-        'contrato.data_prox_chamada' => 'Data próx. Ligação'
+        'contrato.data_prox_chamada' => 'Data próx. Ligação',
+        'contrato.path_arquivo' => 'Upload de Arquivos'
     ];
 
     protected $rules = [
@@ -48,7 +50,8 @@ class ContratoValidator extends LaravelValidator
             'contrato.valor_contratado' =>  'required|decimal' ,
             'contrato.data_contratado' =>  'required|serbinario_date_format:"d/m/Y"' ,
             'contrato.codigo_transacao' =>  'required|unique:chamadas,codigo_transacao|integer' ,
-            'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"'
+            'contrato.data_prox_chamada' =>  'required|serbinario_date_format:"d/m/Y"',
+            'contrato.path_arquivo' => 'serbinario_array_not_elements_files'
 
        ],
 
