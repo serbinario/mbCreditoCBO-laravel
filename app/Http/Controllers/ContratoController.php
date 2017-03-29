@@ -315,7 +315,7 @@ class ContratoController extends Controller
 
             #Validando a requisição
             $this->service->tratamentoCampos($data);
-        
+
             #Executando a ação
             $this->service->store($data);
 
