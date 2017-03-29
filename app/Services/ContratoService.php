@@ -342,6 +342,7 @@ class ContratoService
                 'agencias_callcenter.numero_agencia',
                 'agencias_callcenter.nome_agencia',
             ])
+            ->orderBy('numero_agencia')
             ->get();
 
         return $agencia;
