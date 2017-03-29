@@ -29,8 +29,7 @@ class Contrato extends Model implements Transformable
 		'codigo_transacao',
 		'data_prox_chamada',
         'matricula',
-        'user_id',
-        'path_arquivo'
+        'user_id'
 	];
 
     /**
@@ -108,5 +107,13 @@ class Contrato extends Model implements Transformable
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'chamada_id');
     }
 }

@@ -207,7 +207,7 @@ class ContratoController extends Controller
                 }
 
                 # Retorno
-                return $this->contratoRepository->with(['tipoContrato', 'convenio', 'usuario'])
+                return $this->contratoRepository->with(['tipoContrato', 'convenio', 'usuario', 'documentos'])
                     ->findByField($arrayFilter);
             })
             ->addColumn('action', function ($row) {
@@ -323,7 +323,7 @@ class ContratoController extends Controller
             return redirect()->back()->with("message", "Cadastro realizado com sucesso!");
         } catch (ValidatorException $e) {
             return redirect()->back()->withErrors($this->validator->errors())->withInput();
-        } catch (\Throwable $e) {
+        } catch (\Throwable $e) { dd($e);
             return redirect()->back()->with('message', $e->getMessage());
         }
     }

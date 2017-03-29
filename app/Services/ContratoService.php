@@ -4,6 +4,7 @@ namespace MbCreditoCBO\Services;
 
 use Illuminate\Support\Facades\Auth;
 use MbCreditoCBO\Entities\Cliente;
+use MbCreditoCBO\Entities\Documento;
 use MbCreditoCBO\Entities\Telefone;
 use MbCreditoCBO\Repositories\ClienteRepository;
 use MbCreditoCBO\Repositories\ContratoRepository;
@@ -53,6 +54,62 @@ class ContratoService
 
         #retorno
         return $contrato;
+    }
+
+    /**
+     * @param array $data
+     * @return Contrato
+     * @throws \Exception
+     */
+    public function store(array $data): Contrato
+    {
+        # Salvando o cliente e retornando o objeto
+        $cliente = $this->tratamentoCliente($data);
+
+        # Tratamento do número do contrato
+        $this->numeroContrato($data);
+
+        #Salvando registro de telefone
+        $this->tratamentoTelefone($data, $cliente);
+
+        #Criando vinculo entre contrato e cliente e usuário
+        $data['contrato']['cliente_id'] = $cliente->id;
+        $data['contrato']['user_id'] = Auth::user()->id;
+        $data['contrato']['valor_contratado'] = str_replace(',', '.', $data['contrato']['valor_contratado']);
+
+        #Salvando registro pincipal
+        $contrato = $this->repository->create($data['contrato']);
+
+        #Verificando se foi criado no banco de dados
+        if (!$contrato) {
+            throw new \Exception('Ocorreu um erro ao cadastrar!');
+        }
+
+        # Tratando a imagem
+        $this->tratamentoImagem($data['contrato'], $contrato->id);
+
+        #Retorno
+        return $contrato;
+    }
+
+    /**
+     * @param array $data
+     * @param int $id
+     * @return Cliente
+     * @throws \Exception
+     */
+    public function update(array $data, int $id): Cliente
+    {
+        #Atualizando no banco de dados
+        $cliente = $this->clienteRepository->update($data, $id);
+
+        #Verificando se foi atualizado no banco de dados
+        if (!$cliente) {
+            throw new \Exception('Ocorreu um erro ao cadastrar!');
+        }
+
+        #Retorno
+        return $cliente;
     }
 
     /**
@@ -116,38 +173,35 @@ class ContratoService
      * @param array $data
      * @return array
      */
-    public function tratamentoImagem(array &$data, $contrato = "")
+    public function tratamentoImagem(array $data, $id)
     {
         #tratando a imagem
         foreach ($data as $key => $value) {
             $explode = explode("_", $key);
 
             if (count($explode) > 0 && $explode[0] == "path") {
-                $file = $data[$key];
 
                 if (empty($data[$key])) {
-                    unset($data[$key]);
-
                     return true;
                 }
 
-                $fileName = md5(uniqid(rand(), true)) . "." . $file->getClientOriginalExtension();
+                $files = $data[$key];
 
-                # Validando a atualização
-                if (!empty($contrato) && $contrato->{$key} != null) {
-                    unlink(__DIR__ . "/../../../public/" . $this->destinationPath . $contrato->{$key});
+                foreach($files as $chaveDoArquivo => $arquivo) {
+                    # Criando e recuperando o nome da imagem
+                    $fileName = md5(uniqid(rand(), true)) . "." . $arquivo->getClientOriginalExtension();
+
+                    #Movendo a imagem
+                    $arquivo->move($this->destinationPath, $fileName);
+
+                    #Removendo o índice do array
+                    unset($data[$key][$chaveDoArquivo]);
+
+                    # Salvando o documento
+                    Documento::create(['path_arquivo' => $fileName, 'chamada_id' => $id]);
                 }
-
-                #Movendo a imagem
-                $file->move($this->destinationPath, $fileName);
-
-                #renomeando
-                $data[$key] = $fileName;
             }
         }
-
-        # retorno
-        return $data;
     }
 
     /**
@@ -157,66 +211,10 @@ class ContratoService
     public function getPathArquivo($id)
     {
         # Recuperando o contrato
-        $contrato = $this->repository->find($id);
+        $documento = Documento::where('id', $id)->first();
 
         #Retornando o caminho completo do arquivo
-        return $this->destinationPath . $contrato->path_arquivo;
-    }
-
-    /**
-     * @param array $data
-     * @return Contrato
-     * @throws \Exception
-     */
-    public function store(array $data): Contrato
-    {
-        # Salvando o cliente e retornando o objeto
-        $cliente = $this->tratamentoCliente($data);
-
-        # Tratamento do número do contrato
-        $this->numeroContrato($data);
-
-        #Salvando registro de telefone
-        $this->tratamentoTelefone($data, $cliente);
-
-        #Criando vinculo entre contrato e cliente e usuário
-        $data['contrato']['cliente_id'] = $cliente->id;
-        $data['contrato']['user_id'] = Auth::user()->id;
-        $data['contrato']['valor_contratado'] = str_replace(',', '.', $data['contrato']['valor_contratado']);
-
-        # Tratando a imagem
-        $this->tratamentoImagem($data['contrato']);
-
-        #Salvando registro pincipal
-        $contrato = $this->repository->create($data['contrato']);
-
-        #Verificando se foi criado no banco de dados
-        if (!$contrato) {
-            throw new \Exception('Ocorreu um erro ao cadastrar!');
-        }
-
-        #Retorno
-        return $contrato;
-    }
-
-    /**
-     * @param array $data
-     * @param int $id
-     * @return Cliente
-     * @throws \Exception
-     */
-    public function update(array $data, int $id): Cliente
-    {
-        #Atualizando no banco de dados
-        $cliente = $this->clienteRepository->update($data, $id);
-
-        #Verificando se foi atualizado no banco de dados
-        if (!$cliente) {
-            throw new \Exception('Ocorreu um erro ao cadastrar!');
-        }
-
-        #Retorno
-        return $cliente;
+        return $this->destinationPath . $documento->path_arquivo;
     }
 
     /**
@@ -337,23 +335,15 @@ class ContratoService
      */
     public function buscaAgencia()
     {
-//        try {
-            #Consultado
-            $agencia = \DB::table('agencias_callcenter')
-                ->select([
-                    'agencias_callcenter.id',
-                    'agencias_callcenter.numero_agencia',
-                    'agencias_callcenter.nome_agencia',
-                ])
-                ->get();
+        #Consultado
+        $agencia = \DB::table('agencias_callcenter')
+            ->select([
+                'agencias_callcenter.id',
+                'agencias_callcenter.numero_agencia',
+                'agencias_callcenter.nome_agencia',
+            ])
+            ->get();
 
-            return $agencia;
-
-            /*#retorno para view
-            return \Illuminate\Support\Facades\Response::json(['success' => true, 'dados' => $agencia]);
-        } catch (\Throwable $e)
-        {
-            return \Illuminate\Support\Facades\Response::json(['success' => false, 'msg' => $e->getMessage()]);
-        }*/
+        return $agencia;
     }
 }

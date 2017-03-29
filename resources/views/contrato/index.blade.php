@@ -237,7 +237,7 @@
             var contratos = JSON.parse(d.contratos);
 
             // Criando html de retorno
-            var html =  '<table class="table-responsible">' +
+            var html =  '<table class="table-responsible table-bordered">' +
                             '<thead>' +
                             '<tr>' +
                                 '<th>Prazo</th>' +
@@ -257,6 +257,13 @@
 
             // Percorrendo os contratos e meintando o body da table
             for(var i = 0; i < contratos.length; i++) {
+
+                var htmlLinks = "";
+
+                for(var j = 0; j < contratos[i].documentos.length; j++) {
+                    htmlLinks += '<a target="_blank" href="/contrato/viewContrato/' + contratos[i].documentos[j].id + '">Visualizar</a><br>';
+                }
+
                 html += '<tr>' +
                             '<td>'+ contratos[i].prazo +'</td>' +
                             '<td>'+ contratos[i].valor_contratado + '</td>' +
@@ -266,10 +273,7 @@
                             '<td>'+ contratos[i].convenio.nome_convenio + '</td>' +
                             '<td>'+ contratos[i].matricula + '</td>' +
                             '<td>'+ contratos[i].data_prox_chamada + '</td>' +
-                            '<td>'+
-                                 contratos[i].path_arquivo ?
-                                '<a target="_blank" href="/contrato/viewContrato/' + contratos[i].id + '">Visualizar</a>' : '' +
-                            '</td>' +
+                            '<td>'+ htmlLinks +'</td>' +
                             @if(!Auth::user()->is('ROLE_OPERADOR'))
                                 '<td>'+ contratos[i].usuario.username + '</td>' +
                             @endif
