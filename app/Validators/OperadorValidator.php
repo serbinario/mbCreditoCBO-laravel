@@ -24,7 +24,7 @@ class OperadorValidator extends LaravelValidator
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-			'cod_operadores' =>  'required|chave_j|unique:operadores,cod_operadores',
+//			'cod_operadores' =>  'required|chave_j|unique:operadores,cod_operadores',
 			'nome_operadores' =>  'required|between:0,200|serbinario_alpha_space',
 			'status_operadores' =>  'integer|max:1' ,
         ],

@@ -11,7 +11,7 @@ $(document).ready(function () {
             cod_operadores: {
                 required: true,
                 chaveJ: true,
-                unique: ['/operador/searchChaveJ', $('#idOperador')]
+                unique: [laroute.route('operador.searchChaveJ', $('#idOperador'))]
             }
         },
         //For custom messages

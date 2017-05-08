@@ -19,7 +19,6 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/datetimepicker/build/jquery.datetimepicker.min.css')}}" rel="stylesheet"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/js/krajee/css/fileinput.css')}}" rel="stylesheet"/>
 
-
         <!-- Animação de loading em consultas ajax -->
         <link type="text/css" rel="stylesheet" href="{{ asset('/dist/css/load.css')}}" rel="stylesheet"/>
         <link href="{{ asset('/lib/chosen/chosen.css') }}" rel="stylesheet">

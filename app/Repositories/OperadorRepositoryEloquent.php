@@ -35,8 +35,6 @@ class OperadorRepositoryEloquent extends BaseRepository implements OperadorRepos
          return OperadorValidator::class;
     }
 
-
-
     /**
      * Boot up the repository, pushing criteria
      */

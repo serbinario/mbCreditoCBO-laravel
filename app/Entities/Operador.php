@@ -14,8 +14,7 @@ class Operador extends Model implements Transformable
 
     protected $primaryKey = 'id_operadores';
 
-    protected $fillable = [ 
-//		'id_operadores',
+    protected $fillable = [
 		'cod_operadores',
 		'nome_operadores',
 		'status_operadores',

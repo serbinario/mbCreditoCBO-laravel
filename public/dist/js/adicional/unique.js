@@ -16,7 +16,7 @@ $.validator.addMethod("unique",
             url: params[0],
             type : 'POST',
             async: false,
-            data: { idModel : params[1].val(), value : value},
+            data: { idModel : params[1], value : value},
             dataType: 'json',
             cache: true,
             beforeSend: function () {
