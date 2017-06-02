@@ -156,7 +156,7 @@ class ContratoController extends Controller
 
                 # Filtrando por mes
                 if ($request->has('mes')) {
-                    $query->where(\DB::raw('MONTH(chamadas.data_contratado)'), '=', $request->get('mes'));
+                    $query->where(\DB::raw('MONTH(chamadas.created_at)'), '=', $request->get('mes'));
                 }
 
                 # Filtrando por mes
@@ -172,7 +172,8 @@ class ContratoController extends Controller
 
                     # Validando a conversão das datas
                     if($dataIni && $dataFin) {
-                        $query->whereBetween('chamadas.data_contratado',[$dataIni->format('Y-m-d'), $dataFin->format('Y-m-d')]);
+                        $query->whereBetween(\DB::raw('date(chamadas.created_at)'),
+                            [$dataIni->format('Y-m-d'), $dataFin->format('Y-m-d')]);
                     }
                 }
 

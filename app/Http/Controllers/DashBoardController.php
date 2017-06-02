@@ -51,7 +51,7 @@ class DashBoardController extends Controller
             ->select([
                 \DB::raw('count(chamadas.id) as qtd_contratos')
             ]);
-
+       
         # Buscando por operador
         if($searchAgente) {
             $query->where('operadores.id_operadores', $searchAgente);
